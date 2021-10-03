@@ -8,40 +8,33 @@ class ComingSoonPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final logoHeight = MediaQuery.of(context).size.width * .4;
+    final logoHeight = MediaQuery.of(context).size.height * .4;
     return Scaffold(
-      appBar: _buildLogo(logoHeight),
-      backgroundColor: Colors.blueGrey,
-      body: Padding(
-        padding: const EdgeInsets.only(top: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            ..._buildText(context),
-            const SizedBox(
-              height: 20,
-            ),
-            _buildSocialLinks(context),
-          ],
-        ),
+      // appBar: _buildLogo(logoHeight),
+      backgroundColor: const Color.fromRGBO(35, 31, 32, 1),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          _buildLogoBody(logoHeight),
+          ..._buildText(context),
+          const SizedBox(
+            height: 20,
+          ),
+          _buildSocialLinks(context),
+        ],
       ),
     );
   }
 
-  AppBar _buildLogo(double logoHeight) {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      toolbarHeight: logoHeight,
-      title: Padding(
-        padding: const EdgeInsets.only(top: 30),
-        child: Center(
-          child: LogoWidget(
-            height: logoHeight - 30,
-            // color: Colors.amberAccent,
-          ),
+  Widget _buildLogoBody(double logoHeight) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 50),
+      child: Center(
+        child: LogoWidget(
+          height: logoHeight,
+          // color: Colors.amberAccent,
         ),
       ),
     );
@@ -51,12 +44,18 @@ class ComingSoonPage extends StatelessWidget {
         Center(
             child: Text(
           'Oops...',
-          style: Theme.of(context).textTheme.headline1,
+          style: Theme.of(context)
+              .textTheme
+              .headline1!
+              .copyWith(color: const Color.fromRGBO(194, 162, 126, 1)),
         )),
         Center(
             child: Text(
           'En construcción',
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context)
+              .textTheme
+              .headline5!
+              .copyWith(color: const Color.fromRGBO(194, 162, 126, 1)),
         )),
       ];
 
@@ -85,5 +84,9 @@ class ComingSoonPage extends StatelessWidget {
 
   Widget _buildSocialLinkButton(BuildContext context,
           {required IconData icon, required void Function() onPressed}) =>
-      IconButton(onPressed: onPressed, icon: FaIcon(icon));
+      IconButton(
+        onPressed: onPressed,
+        icon: FaIcon(icon),
+        color: const Color.fromRGBO(194, 162, 126, 1),
+      );
 }
