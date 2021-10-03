@@ -18,6 +18,10 @@ class ComingSoonPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             ..._buildText(context),
+            const SizedBox(
+              height: 20,
+            ),
+            _buildSocialLinks(context),
           ],
         ),
       ),
@@ -53,4 +57,15 @@ class ComingSoonPage extends StatelessWidget {
           style: Theme.of(context).textTheme.headline5,
         )),
       ];
+
+  Widget _buildSocialLinks(BuildContext context) => Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.email),
+          Icon(Icons.face),
+          Icon(Icons.face),
+          Icon(Icons.face)
+        ],
+      );
 }
