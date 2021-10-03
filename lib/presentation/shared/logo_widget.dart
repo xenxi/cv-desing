@@ -1,13 +1,37 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
 class LogoWidget extends StatelessWidget {
-  const LogoWidget({Key? key}) : super(key: key);
+  final double height;
+  final Color? color;
+  const LogoWidget({
+    Key? key,
+    required this.height,
+    this.color,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Image(
-      image: AssetImage('assets/img/logo.jpg'),
-      fit: BoxFit.scaleDown,
+    final imgLogo = Image(
+      height: height,
+      image: const AssetImage('assets/img/logo.png'),
+      fit: BoxFit.contain,
+    );
+
+    if (color != null) return _applyColor(imgLogo);
+
+    return imgLogo;
+  }
+
+  Widget _applyColor(Image logo) {
+    return ShaderMask(
+      shaderCallback: (Rect bounds) {
+        return LinearGradient(
+          colors: [color!, color!],
+          tileMode: TileMode.mirror,
+        ).createShader(bounds);
+      },
+      child: logo,
     );
   }
 }
