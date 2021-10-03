@@ -10,7 +10,6 @@ class ComingSoonPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final logoHeight = MediaQuery.of(context).size.height * .4;
     return Scaffold(
-      // appBar: _buildLogo(logoHeight),
       backgroundColor: const Color.fromRGBO(35, 31, 32, 1),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
