@@ -1,6 +1,7 @@
 import 'package:cv_desing_website_flutter/presentation/shared/logo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ComingSoonPage extends StatelessWidget {
   const ComingSoonPage({Key? key}) : super(key: key);
@@ -63,13 +64,26 @@ class ComingSoonPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _buildSocialLinkButton(context, icon: FontAwesomeIcons.envelope),
-          _buildSocialLinkButton(context, icon: FontAwesomeIcons.instagram),
-          _buildSocialLinkButton(context, icon: FontAwesomeIcons.tiktok),
+          _buildSocialLinkButton(context,
+              icon: FontAwesomeIcons.envelope,
+              onPressed: () async => await _launchURL(
+                  'mailto:dscurriculumvitae@gmail.com?subject=Información web')),
+          _buildSocialLinkButton(context,
+              icon: FontAwesomeIcons.instagram,
+              onPressed: () async => await _launchURL(
+                  'https://www.instagram.com/dscurriculumvitae')),
+          _buildSocialLinkButton(context,
+              icon: FontAwesomeIcons.tiktok,
+              onPressed: () async => await _launchURL(
+                  'https://www.tiktok.com/@dscurriculumvitae')),
         ],
       );
 
+  Future<void> _launchURL(String url) async {
+    await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
+  }
+
   Widget _buildSocialLinkButton(BuildContext context,
-          {required IconData icon}) =>
-      IconButton(onPressed: () => {}, icon: FaIcon(icon));
+          {required IconData icon, required void Function() onPressed}) =>
+      IconButton(onPressed: onPressed, icon: FaIcon(icon));
 }
