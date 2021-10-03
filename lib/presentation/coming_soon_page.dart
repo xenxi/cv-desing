@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/presentation/shared/logo_widget.dart';
 import 'package:flutter/material.dart';
 
 class ComingSoonPage extends StatelessWidget {
@@ -5,12 +6,9 @@ class ComingSoonPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: Image(
-          image: AssetImage('assets/img/logo.jpg'),
-          fit: BoxFit.scaleDown,
-        ),
+        child: LogoWidget(),
       ),
     );
   }
