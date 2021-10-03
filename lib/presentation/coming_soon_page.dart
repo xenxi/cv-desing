@@ -1,5 +1,6 @@
 import 'package:cv_desing_website_flutter/presentation/shared/logo_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ComingSoonPage extends StatelessWidget {
   const ComingSoonPage({Key? key}) : super(key: key);
@@ -62,10 +63,13 @@ class ComingSoonPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.email),
-          Icon(Icons.face),
-          Icon(Icons.face),
-          Icon(Icons.face)
+          _buildSocialLinkButton(context, icon: FontAwesomeIcons.envelope),
+          _buildSocialLinkButton(context, icon: FontAwesomeIcons.instagram),
+          _buildSocialLinkButton(context, icon: FontAwesomeIcons.tiktok),
         ],
       );
+
+  Widget _buildSocialLinkButton(BuildContext context,
+          {required IconData icon}) =>
+      IconButton(onPressed: () => {}, icon: FaIcon(icon));
 }
