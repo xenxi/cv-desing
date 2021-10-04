@@ -8,21 +8,26 @@ class ComingSoonPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final logoHeight = MediaQuery.of(context).size.height * .4;
+    final size = MediaQuery.of(context).size;
+    final logoHeight = size.height * .4;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(35, 31, 32, 1),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          _buildLogoBody(logoHeight),
-          ..._buildText(context),
-          const SizedBox(
-            height: 20,
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: size.height),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildLogoBody(logoHeight),
+              ..._buildText(context),
+              const SizedBox(
+                height: 20,
+              ),
+              _buildSocialLinks(context),
+            ],
           ),
-          _buildSocialLinks(context),
-        ],
+        ),
       ),
     );
   }
