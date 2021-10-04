@@ -1,5 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/logo_widget.dart';
+import 'package:cv_desing_website_flutter/presentation/coming_soon/components/comin_soon_logo_widget.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +9,7 @@ class ComingSoonPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final logoHeight = size.height * .4;
+
     return Scaffold(
       backgroundColor: const Color.fromRGBO(35, 31, 32, 1),
       body: SingleChildScrollView(
@@ -19,29 +19,13 @@ class ComingSoonPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _buildLogoBody(logoHeight),
+              const ComingSoonLogoWidget(),
               ..._buildText(context),
               const SizedBox(
                 height: 20,
               ),
               const SocialLinksWidget(),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLogoBody(double logoHeight) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 50),
-      child: Center(
-        child: FlipInY(
-          delay: const Duration(milliseconds: 700),
-          child: LogoWidget(
-            height: logoHeight,
-            minHeight: 250,
-            // color: Colors.amberAccent,
           ),
         ),
       ),
