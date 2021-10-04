@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 
 class LogoWidget extends StatelessWidget {
   final double height;
+  final double minHeight;
   final Color? color;
   const LogoWidget({
     Key? key,
     required this.height,
+    this.minHeight = 0,
     this.color,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final imgLogo = Image(
-      height: height,
+      height: height < minHeight ? minHeight : height,
       image: const AssetImage('assets/img/logo.png'),
       fit: BoxFit.contain,
     );

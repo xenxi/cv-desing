@@ -33,6 +33,7 @@ class ComingSoonPage extends StatelessWidget {
       child: Center(
         child: LogoWidget(
           height: logoHeight,
+          minHeight: 250,
           // color: Colors.amberAccent,
         ),
       ),
