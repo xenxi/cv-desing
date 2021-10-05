@@ -11,7 +11,7 @@ class ComingSoonPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(35, 31, 32, 1),
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(minHeight: size.height),
@@ -40,7 +40,7 @@ class ComingSoonPage extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headline1!
-                .copyWith(color: const Color.fromRGBO(194, 162, 126, 1)),
+                .copyWith(color: Theme.of(context).colorScheme.primary),
           ),
         )),
         Center(
@@ -51,7 +51,7 @@ class ComingSoonPage extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headline5!
-                .copyWith(color: const Color.fromRGBO(194, 162, 126, 1)),
+                .copyWith(color: Theme.of(context).colorScheme.primary),
           ),
         )),
       ];
