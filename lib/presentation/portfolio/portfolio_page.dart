@@ -37,10 +37,31 @@ class PortfolioPage extends StatelessWidget {
               direction: Axis.horizontal,
               spacing: assignWidth(context: context, fraction: 0.0099),
               runSpacing: assignHeight(context: context, fraction: 0.02),
+              children: _buildItems(context),
             )
           ],
         ),
       ),
     );
   }
+
+  List<Widget> _buildItems(BuildContext context) {
+    return data.map((cv) => _buildItem(context, data: cv)).toList();
+  }
+
+  Widget _buildItem(BuildContext context, {required Curriculum data}) =>
+      Container(
+        height: 400,
+        width: 500,
+        child: Stack(
+          children: [
+            Image.asset(
+              data.url,
+              width: 500,
+              height: 400,
+              fit: BoxFit.cover,
+            )
+          ],
+        ),
+      );
 }
