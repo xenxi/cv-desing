@@ -60,6 +60,7 @@ class PortfolioPage extends StatelessWidget {
               width: 500,
               height: 400,
               fit: BoxFit.cover,
+              alignment: Alignment.topCenter,
             )
           ],
         ),
