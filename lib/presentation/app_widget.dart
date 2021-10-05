@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'coming_soon_page.dart';
+import 'coming_soon/coming_soon_page.dart';
 
 class MyApp extends StatelessWidget {
   @override
