@@ -1,4 +1,5 @@
 import 'package:cv_desing_website_flutter/presentation/portfolio/portfolio_page.dart';
+import 'package:cv_desing_website_flutter/presentation/theme.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -6,9 +7,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Diseños CV',
-      home: PortfolioPage(),
+      home: const PortfolioPage(),
+      theme: CustomTheme.lightTheme,
     );
   }
 }
