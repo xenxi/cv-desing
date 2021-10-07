@@ -1,6 +1,9 @@
 import 'package:cv_desing_website_flutter/domain/curriculum.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
+import 'package:cv_desing_website_flutter/presentation/core/values/image_path.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/social_button.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 final data = [
   Curriculum(1, 'CV12A', 'assets/cvs/CV12A.jpg'),
@@ -17,6 +20,28 @@ final data = [
   Curriculum(12, 'CV12Q', 'assets/cvs/CV12Q.jpg'),
   Curriculum(13, 'CV12R', 'assets/cvs/CV12R.jpg'),
 ];
+final socialData = [
+  SocialButtonData(
+    tag: 'TWITTER_URL',
+    iconData: FontAwesomeIcons.twitter,
+    url: 'TWITTER_URL',
+  ),
+  SocialButtonData(
+    tag: 'FACEBOOK_URL',
+    iconData: FontAwesomeIcons.facebook,
+    url: 'FACEBOOK_URL',
+  ),
+  SocialButtonData(
+    tag: 'LINKED_IN_URL',
+    iconData: FontAwesomeIcons.linkedin,
+    url: 'LINKED_IN_URL',
+  ),
+  SocialButtonData(
+    tag: 'INSTAGRAM_URL',
+    iconData: FontAwesomeIcons.instagram,
+    url: 'INSTAGRAM_URL',
+  ),
+];
 
 class PortfolioPage extends StatelessWidget {
   const PortfolioPage({Key? key}) : super(key: key);
@@ -24,9 +49,7 @@ class PortfolioPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("CV"),
-      ),
+      appBar: _buildAppBar(context),
       body: Container(
         decoration: BoxDecoration(color: Colors.red),
         width: widthOfScreen(context),
@@ -43,6 +66,66 @@ class PortfolioPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      toolbarHeight: 100,
+      title: Container(
+        height: 100,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey,
+              offset: Offset(0.0, 1.0), //(x,y)
+              blurRadius: 1.0,
+            )
+          ],
+        ),
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              Image.asset(
+                ImagePath.logo,
+                height: 52,
+                fit: BoxFit.cover,
+              ),
+              SizedBox(width: 20),
+              VerticalDivider(thickness: .8),
+              Spacer(flex: 1),
+              Row(
+                children: [
+                  ..._buildSocialIcons(socialData),
+                  SizedBox(
+                    width: 20.0,
+                  )
+                ],
+              ),
+              VerticalDivider(thickness: .8),
+              SizedBox(width: 20),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _buildSocialIcons(List<SocialButtonData> socialItems) {
+    List<Widget> items = [];
+    for (int index = 0; index < socialItems.length; index++) {
+      items.add(
+        SocialButton(
+          tag: socialItems[index].tag,
+          iconData: socialItems[index].iconData,
+          onPressed: () => {},
+        ),
+      );
+      items.add(SizedBox(
+        width: 16,
+      ));
+    }
+    return items;
   }
 
   List<Widget> _buildItems(BuildContext context) {
