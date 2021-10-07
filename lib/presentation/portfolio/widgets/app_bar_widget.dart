@@ -14,41 +14,29 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       toolbarHeight: 100,
-      title: Container(
-        height: 100,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey,
-              offset: Offset(0.0, 1.0), //(x,y)
-              blurRadius: 1.0,
-            )
+      backgroundColor: Colors.white,
+      title: IntrinsicHeight(
+        child: Row(
+          children: [
+            Image.asset(
+              ImagePath.logo,
+              height: 52,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(width: 20),
+            VerticalDivider(thickness: .8),
+            Spacer(flex: 1),
+            Row(
+              children: [
+                ..._buildSocialIcons(socialData),
+                SizedBox(
+                  width: 20.0,
+                )
+              ],
+            ),
+            VerticalDivider(thickness: .8),
+            SizedBox(width: 20),
           ],
-        ),
-        child: IntrinsicHeight(
-          child: Row(
-            children: [
-              Image.asset(
-                ImagePath.logo,
-                height: 52,
-                fit: BoxFit.cover,
-              ),
-              SizedBox(width: 20),
-              VerticalDivider(thickness: .8),
-              Spacer(flex: 1),
-              Row(
-                children: [
-                  ..._buildSocialIcons(socialData),
-                  SizedBox(
-                    width: 20.0,
-                  )
-                ],
-              ),
-              VerticalDivider(thickness: .8),
-              SizedBox(width: 20),
-            ],
-          ),
         ),
       ),
     );
