@@ -1,9 +1,8 @@
 import 'package:cv_desing_website_flutter/presentation/portfolio/widgets/project_categories/project_category_data.dart';
+import 'package:cv_desing_website_flutter/presentation/portfolio/widgets/project_item/project_item.dart';
 import 'package:flutter/material.dart';
-
 import 'package:cv_desing_website_flutter/domain/curriculum.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
-
 import 'project_categories/project_categories.dart';
 
 class Gallery extends StatelessWidget {
@@ -19,7 +18,7 @@ class Gallery extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(color: Colors.red),
+      color: Colors.white,
       width: widthOfScreen(context),
       height: heightOfScreen(context),
       child: ListView(
@@ -27,15 +26,37 @@ class Gallery extends StatelessWidget {
           ProjectCategories(
             categories: projectCategories,
           ),
-          Wrap(
-            direction: Axis.horizontal,
-            spacing: assignWidth(context: context, fraction: 0.0099),
-            runSpacing: assignHeight(context: context, fraction: 0.02),
-            children: _buildItems(context),
+          const SizedBox(
+            height: 40.0,
+          ),
+          Container(
+            width: widthOfScreen(context),
+            child: Wrap(
+              spacing: assignWidth(context: context, fraction: 0.025),
+              runSpacing: assignWidth(context: context, fraction: 0.025),
+              children: _buildProjects(context, data: curriculumsData),
+            ),
           )
         ],
       ),
     );
+  }
+
+  List<Widget> _buildProjects(BuildContext context,
+      {required List<Curriculum> data}) {
+    List<Widget> items = [];
+    for (int index = 0; index < data.length; index++) {
+      items.add(ProjectItem(
+        width: assignWidth(context: context, fraction: 0.225),
+        height: assignHeight(context: context, fraction: 0.4),
+        bannerHeight: assignHeight(context: context, fraction: 0.4) / 3,
+        title: data[index].reference,
+        subtitle: data[index].category,
+        imageUrl: data[index].url,
+      ));
+    }
+
+    return items;
   }
 
   List<Widget> _buildItems(BuildContext context) {
