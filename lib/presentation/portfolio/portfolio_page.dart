@@ -21,6 +21,11 @@ final curriculumsData = [
   Curriculum(12, 'CV12Q', 'assets/cvs/CV12Q.jpg'),
   Curriculum(13, 'CV12R', 'assets/cvs/CV12R.jpg'),
 ];
+final categoriesData = [
+  ProjectCategoryData(number: 0, title: 'Test 1'),
+  ProjectCategoryData(number: 1, title: 'Test 2'),
+  ProjectCategoryData(number: 2, title: 'Test 3'),
+];
 final socialData = [
   SocialButtonData(
     tag: 'TWITTER_URL',
@@ -53,6 +58,7 @@ class PortfolioPage extends StatelessWidget {
       appBar: AppBarWidget(socialData: socialData),
       body: GalleryWidget(
         curriculumsData: curriculumsData,
+        projectCategories: categoriesData,
       ),
     );
   }
