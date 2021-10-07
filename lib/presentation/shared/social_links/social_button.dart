@@ -1,34 +1,19 @@
 import 'package:flutter/material.dart';
 
-class SocialButtonData {
-  final String tag;
-  final String url;
-  final IconData iconData;
-  final Color? iconColor;
-  final Color? borderColor;
-
-  SocialButtonData({
-    required this.tag,
-    required this.iconData,
-    required this.url,
-    this.iconColor,
-    this.borderColor,
-  });
-}
-
 class SocialButton extends StatelessWidget {
   const SocialButton({
+    Key? key,
     required this.tag,
-    required this.iconData,
-    this.onPressed,
     this.width = 28,
-    this.height = 28,
     this.elevation = 1,
-    this.buttonColor = Colors.white,
-    this.iconColor = Colors.black,
+    this.height = 28,
+    required this.iconData,
     this.iconSize = 14,
+    this.iconColor = Colors.black,
+    this.buttonColor = Colors.white,
     this.decoration,
-  });
+    this.onPressed,
+  }) : super(key: key);
 
   final String tag;
   final double width;

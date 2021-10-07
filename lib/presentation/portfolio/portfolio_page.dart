@@ -1,6 +1,6 @@
 import 'package:cv_desing_website_flutter/domain/curriculum.dart';
 import 'package:cv_desing_website_flutter/presentation/portfolio/widgets/gallery_widget.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/social_button.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button_data.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

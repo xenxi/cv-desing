@@ -1,6 +1,7 @@
 import 'package:cv_desing_website_flutter/presentation/shared/logo_widget.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button_data.dart';
 import 'package:flutter/material.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/social_button.dart';
 import 'navbar_divider.dart';
 
 class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
