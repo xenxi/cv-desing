@@ -1,7 +1,7 @@
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
-
 import 'package:cv_desing_website_flutter/presentation/shared/social_button.dart';
+import 'navbar_divider.dart';
 
 class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
   final List<SocialButtonData> socialData;
@@ -20,7 +20,7 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
           children: [
             _buildLogo(),
             SizedBox(width: 20),
-            VerticalDivider(thickness: .8),
+            const NavbarDivider(),
             Spacer(flex: 1),
             Row(
               children: [
@@ -30,7 +30,7 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
                 )
               ],
             ),
-            VerticalDivider(thickness: .8),
+            const NavbarDivider(),
             SizedBox(width: 20),
           ],
         ),
