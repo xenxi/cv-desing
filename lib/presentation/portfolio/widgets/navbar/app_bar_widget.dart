@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/presentation/shared/logo_widget.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_button.dart';
@@ -18,31 +19,27 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
       title: IntrinsicHeight(
         child: Row(
           children: [
-            _buildLogo(),
-            SizedBox(width: 20),
+            const LogoWidget(
+              height: 80,
+            ),
+            const SizedBox(width: 20),
             const NavbarDivider(),
-            Spacer(flex: 1),
+            const Spacer(flex: 1),
             Row(
               children: [
                 ..._buildSocialIcons(socialData),
-                SizedBox(
+                const SizedBox(
                   width: 20.0,
                 )
               ],
             ),
             const NavbarDivider(),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
           ],
         ),
       ),
     );
   }
-
-  Widget _buildLogo() => Image.asset(
-        ImagePath.logo,
-        height: 80,
-        fit: BoxFit.fitHeight,
-      );
 
   List<Widget> _buildSocialIcons(List<SocialButtonData> socialItems) {
     List<Widget> items = [];
@@ -64,3 +61,18 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(100);
 }
+
+// class LogoWidget extends StatelessWidget {
+//   const LogoWidget({
+//     Key? key,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Image.asset(
+//       ImagePath.logo,
+//       height: 80,
+//       fit: BoxFit.fitHeight,
+//     );
+//   }
+// }

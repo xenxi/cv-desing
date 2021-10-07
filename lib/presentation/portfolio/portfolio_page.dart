@@ -4,7 +4,7 @@ import 'package:cv_desing_website_flutter/presentation/shared/social_button.dart
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'widgets/app_bar_widget.dart';
+import 'widgets/navbar/app_bar_widget.dart';
 
 final curriculumsData = [
   Curriculum(1, 'CV12A', 'assets/cvs/CV12A.jpg'),
