@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class LogoWidget extends StatelessWidget {
+class Logo extends StatelessWidget {
   final double height;
   final double minHeight;
   final Color? color;
-  const LogoWidget({
+  const Logo({
     Key? key,
     required this.height,
     this.minHeight = 0,

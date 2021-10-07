@@ -1,10 +1,10 @@
 import 'package:cv_desing_website_flutter/domain/curriculum.dart';
-import 'package:cv_desing_website_flutter/presentation/portfolio/widgets/gallery_widget.dart';
+import 'package:cv_desing_website_flutter/presentation/portfolio/widgets/gallery.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button_data.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'widgets/navbar/app_bar_widget.dart';
+import 'widgets/navbar/custom_navbar.dart';
 
 final curriculumsData = [
   Curriculum(1, 'CV12A', 'assets/cvs/CV12A.jpg'),
@@ -55,8 +55,8 @@ class PortfolioPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(socialData: socialData),
-      body: GalleryWidget(
+      appBar: CustomNavBar(socialData: socialData),
+      body: Gallery(
         curriculumsData: curriculumsData,
         projectCategories: categoriesData,
       ),

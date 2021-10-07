@@ -1,12 +1,12 @@
-import 'package:cv_desing_website_flutter/presentation/shared/logo_widget.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button_data.dart';
 import 'package:flutter/material.dart';
 import 'navbar_divider.dart';
 
-class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
+class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
   final List<SocialButtonData> socialData;
-  const AppBarWidget({
+  const CustomNavBar({
     Key? key,
     required this.socialData,
   }) : super(key: key);
@@ -19,7 +19,7 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
       title: IntrinsicHeight(
         child: Row(
           children: [
-            const LogoWidget(
+            const Logo(
               height: 80,
             ),
             const SizedBox(width: 20),

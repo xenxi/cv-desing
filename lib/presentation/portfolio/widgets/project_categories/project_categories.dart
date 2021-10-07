@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../gallery_widget.dart';
+import '../gallery.dart';
 import 'project_category.dart';
 
 class ProjectCategories extends StatelessWidget {

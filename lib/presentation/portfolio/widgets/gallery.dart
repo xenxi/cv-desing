@@ -17,11 +17,11 @@ class ProjectCategoryData {
   });
 }
 
-class GalleryWidget extends StatelessWidget {
+class Gallery extends StatelessWidget {
   final List<Curriculum> curriculumsData;
 
   final List<ProjectCategoryData> projectCategories;
-  const GalleryWidget({
+  const Gallery({
     Key? key,
     required this.curriculumsData,
     required this.projectCategories,

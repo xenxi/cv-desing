@@ -1,8 +1,8 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/social_links_widget.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/social_links.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/comin_soon_logo_widget.dart';
+import 'widgets/comin_soon_logo.dart';
 
 class ComingSoonPage extends StatelessWidget {
   const ComingSoonPage({Key? key}) : super(key: key);
@@ -20,12 +20,12 @@ class ComingSoonPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const ComingSoonLogoWidget(),
+              const ComingSoonLogo(),
               ..._buildText(context),
               const SizedBox(
                 height: 20,
               ),
-              const SocialLinksWidget(),
+              const SocialLinks(),
             ],
           ),
         ),
