@@ -1,5 +1,4 @@
 import 'package:cv_desing_website_flutter/presentation/shared/logo_widget.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_button.dart';
 import 'navbar_divider.dart';
@@ -51,7 +50,7 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
           onPressed: () => {},
         ),
       );
-      items.add(SizedBox(
+      items.add(const SizedBox(
         width: 16,
       ));
     }
@@ -61,18 +60,3 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(100);
 }
-
-// class LogoWidget extends StatelessWidget {
-//   const LogoWidget({
-//     Key? key,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Image.asset(
-//       ImagePath.logo,
-//       height: 80,
-//       fit: BoxFit.fitHeight,
-//     );
-//   }
-// }
