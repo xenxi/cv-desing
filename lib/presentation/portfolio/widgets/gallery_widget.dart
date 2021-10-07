@@ -4,10 +4,10 @@ import 'package:cv_desing_website_flutter/domain/curriculum.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 
 class GalleryWidget extends StatelessWidget {
-  final List<Curriculum> curriculums;
+  final List<Curriculum> curriculumsData;
   const GalleryWidget({
     Key? key,
-    required this.curriculums,
+    required this.curriculumsData,
   }) : super(key: key);
 
   @override
@@ -30,7 +30,7 @@ class GalleryWidget extends StatelessWidget {
   }
 
   List<Widget> _buildItems(BuildContext context) {
-    return curriculums.map((cv) => _buildItem(context, data: cv)).toList();
+    return curriculumsData.map((cv) => _buildItem(context, data: cv)).toList();
   }
 
   Widget _buildItem(BuildContext context, {required Curriculum data}) =>
