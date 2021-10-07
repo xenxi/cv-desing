@@ -1,11 +1,9 @@
 import 'package:cv_desing_website_flutter/domain/curriculum.dart';
-import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
+import 'package:cv_desing_website_flutter/presentation/portfolio/widgets/gallery_widget.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_button.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'components/gallery_widget.dart';
 
 final data = [
   Curriculum(1, 'CV12A', 'assets/cvs/CV12A.jpg'),

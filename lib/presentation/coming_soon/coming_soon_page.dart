@@ -1,7 +1,8 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cv_desing_website_flutter/presentation/coming_soon/components/comin_soon_logo_widget.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links_widget.dart';
 import 'package:flutter/material.dart';
+
+import 'widgets/comin_soon_logo_widget.dart';
 
 class ComingSoonPage extends StatelessWidget {
   const ComingSoonPage({Key? key}) : super(key: key);
