@@ -1,9 +1,11 @@
 import 'package:cv_desing_website_flutter/domain/curriculum.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
-import 'package:cv_desing_website_flutter/presentation/core/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_button.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'components/gallery_widget.dart';
 
 final data = [
   Curriculum(1, 'CV12A', 'assets/cvs/CV12A.jpg'),
@@ -50,20 +52,8 @@ class PortfolioPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
-      body: Container(
-        decoration: BoxDecoration(color: Colors.red),
-        width: widthOfScreen(context),
-        height: heightOfScreen(context),
-        child: ListView(
-          children: [
-            Wrap(
-              direction: Axis.horizontal,
-              spacing: assignWidth(context: context, fraction: 0.0099),
-              runSpacing: assignHeight(context: context, fraction: 0.02),
-              children: _buildItems(context),
-            )
-          ],
-        ),
+      body: GalleryWidget(
+        curriculums: data,
       ),
     );
   }
@@ -127,25 +117,4 @@ class PortfolioPage extends StatelessWidget {
     }
     return items;
   }
-
-  List<Widget> _buildItems(BuildContext context) {
-    return data.map((cv) => _buildItem(context, data: cv)).toList();
-  }
-
-  Widget _buildItem(BuildContext context, {required Curriculum data}) =>
-      Container(
-        height: 400,
-        width: 500,
-        child: Stack(
-          children: [
-            Image.asset(
-              data.url,
-              width: 500,
-              height: 400,
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
-            )
-          ],
-        ),
-      );
 }
