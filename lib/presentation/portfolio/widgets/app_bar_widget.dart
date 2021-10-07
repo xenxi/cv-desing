@@ -18,11 +18,7 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
       title: IntrinsicHeight(
         child: Row(
           children: [
-            Image.asset(
-              ImagePath.logo,
-              height: 52,
-              fit: BoxFit.cover,
-            ),
+            _buildLogo(),
             SizedBox(width: 20),
             VerticalDivider(thickness: .8),
             Spacer(flex: 1),
@@ -41,6 +37,12 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
       ),
     );
   }
+
+  Widget _buildLogo() => Image.asset(
+        ImagePath.logo,
+        height: 80,
+        fit: BoxFit.fitHeight,
+      );
 
   List<Widget> _buildSocialIcons(List<SocialButtonData> socialItems) {
     List<Widget> items = [];
