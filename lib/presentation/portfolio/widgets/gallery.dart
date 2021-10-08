@@ -1,9 +1,12 @@
 import 'package:cv_desing_website_flutter/presentation/portfolio/widgets/project_categories/project_category_data.dart';
-import 'package:cv_desing_website_flutter/presentation/portfolio/widgets/project_item/project_item.dart';
+import 'package:cv_desing_website_flutter/presentation/portfolio/widgets/project_item/project_item_v2.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dart';
+import 'package:cv_desing_website_flutter/presentation/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:cv_desing_website_flutter/domain/curriculum.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'project_categories/project_categories.dart';
+import 'project_item/project_item.dart';
 
 class Gallery extends StatelessWidget {
   final List<Curriculum> curriculumsData;
@@ -23,13 +26,18 @@ class Gallery extends StatelessWidget {
       height: heightOfScreen(context),
       child: ListView(
         children: [
+          SectionTitle(
+            title: "Diseños",
+            subTitle: "Lorem ipsum dolor est",
+            color: CustomTheme.primaryColor,
+          ),
           ProjectCategories(
             categories: projectCategories,
           ),
           const SizedBox(
             height: 40.0,
           ),
-          Container(
+          SizedBox(
             width: widthOfScreen(context),
             child: Wrap(
               spacing: assignWidth(context: context, fraction: 0.025),
@@ -47,7 +55,7 @@ class Gallery extends StatelessWidget {
     List<Widget> items = [];
     for (int index = 0; index < data.length; index++) {
       items.add(ProjectItem(
-        width: assignWidth(context: context, fraction: 0.225),
+        width: 300,
         height: assignHeight(context: context, fraction: 0.4),
         bannerHeight: assignHeight(context: context, fraction: 0.4) / 3,
         title: data[index].reference,
