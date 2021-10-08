@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class ProjectItem extends HookWidget {
+  static final BorderRadius _cardBorderRadius = BorderRadius.circular(10);
   final String title;
 
   final String subtitle;
@@ -33,8 +34,8 @@ class ProjectItem extends HookWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
+          color: Colors.red,
+          borderRadius: _cardBorderRadius,
           boxShadow: isHover.value
               ? [
                   BoxShadow(
@@ -45,10 +46,14 @@ class ProjectItem extends HookWidget {
                 ]
               : [],
         ),
-        child: Stack(
-          children: [
-            _buildProjectImage(context),
-          ],
+        child: ClipRRect(
+          borderRadius: _cardBorderRadius,
+          child: Row(
+            children: [
+              _buildProjectImage(context),
+              // Expanded(child: child)
+            ],
+          ),
         ),
       ),
     );
