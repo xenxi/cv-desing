@@ -35,7 +35,7 @@ class ProjectItem extends HookWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          color: Colors.red,
+          color: CustomTheme.primaryColor,
           borderRadius: _cardBorderRadius,
           boxShadow: isHover.value
               ? [
@@ -47,51 +47,51 @@ class ProjectItem extends HookWidget {
                 ]
               : [],
         ),
-        child: ClipRRect(
-          borderRadius: _cardBorderRadius,
-          child: Row(
-            children: [
-              _buildProjectImage(context),
-              Expanded(
-                  child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: CustomTheme.defaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(subtitle),
-                    SizedBox(
-                      height: CustomTheme.defaultPadding / 2,
-                    ),
-                    Text(
-                      title,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline5
-                          ?.copyWith(height: 1.5),
-                    ),
-                    SizedBox(height: CustomTheme.defaultPadding),
-                    const Text(
-                      "View Details",
-                      style: TextStyle(decoration: TextDecoration.underline),
-                    )
-                  ],
-                ),
-              ))
-              // Expanded(child: child)
-            ],
-          ),
+        child: Row(
+          children: [
+            _buildProjectImage(context),
+            Expanded(
+                child: Padding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: CustomTheme.defaultPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(subtitle),
+                  SizedBox(
+                    height: CustomTheme.defaultPadding / 2,
+                  ),
+                  Text(
+                    title,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        ?.copyWith(height: 1.5),
+                  ),
+                  SizedBox(height: CustomTheme.defaultPadding),
+                  const Text(
+                    "View Details",
+                    style: TextStyle(decoration: TextDecoration.underline),
+                  )
+                ],
+              ),
+            ))
+            // Expanded(child: child)
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildProjectImage(BuildContext context) => Image.asset(
-        imageUrl,
-        // width: width,
-        height: height,
-        fit: BoxFit.fitHeight,
-        alignment: Alignment.topCenter,
+  Widget _buildProjectImage(BuildContext context) => ClipRRect(
+        borderRadius: _cardBorderRadius,
+        child: Image.asset(
+          imageUrl,
+          // width: width,
+          height: height,
+          fit: BoxFit.fitHeight,
+          alignment: Alignment.topCenter,
+        ),
       );
 }
