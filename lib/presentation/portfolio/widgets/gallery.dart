@@ -51,19 +51,15 @@ class Gallery extends StatelessWidget {
   }
 
   List<Widget> _buildProjects(BuildContext context,
-      {required List<Curriculum> data}) {
-    List<Widget> items = [];
-    for (int index = 0; index < data.length; index++) {
-      items.add(ProjectItem(
-        width: 300,
-        height: assignHeight(context: context, fraction: 0.4),
-        bannerHeight: assignHeight(context: context, fraction: 0.4) / 3,
-        title: data[index].reference,
-        subtitle: data[index].category,
-        imageUrl: data[index].url,
-      ));
-    }
-
-    return items;
-  }
+          {required List<Curriculum> data}) =>
+      List.generate(
+          data.length,
+          (index) => ProjectItem(
+                width: 300,
+                height: assignHeight(context: context, fraction: 0.4),
+                bannerHeight: assignHeight(context: context, fraction: 0.4) / 3,
+                title: data[index].reference,
+                subtitle: data[index].category,
+                imageUrl: data[index].url,
+              ));
 }
