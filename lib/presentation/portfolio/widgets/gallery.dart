@@ -58,25 +58,4 @@ class Gallery extends StatelessWidget {
 
     return items;
   }
-
-  List<Widget> _buildItems(BuildContext context) {
-    return curriculumsData.map((cv) => _buildItem(context, data: cv)).toList();
-  }
-
-  Widget _buildItem(BuildContext context, {required Curriculum data}) =>
-      SizedBox(
-        height: 400,
-        width: 500,
-        child: Stack(
-          children: [
-            Image.asset(
-              data.url,
-              width: 500,
-              height: 400,
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
-            )
-          ],
-        ),
-      );
 }
