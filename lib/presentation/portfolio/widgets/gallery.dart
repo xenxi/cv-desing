@@ -55,8 +55,8 @@ class Gallery extends StatelessWidget {
       List.generate(
           data.length,
           (index) => ProjectItem(
-                width: 300,
-                height: assignHeight(context: context, fraction: 0.4),
+                width: 540,
+                height: 320,
                 bannerHeight: assignHeight(context: context, fraction: 0.4) / 3,
                 title: data[index].reference,
                 subtitle: data[index].category,

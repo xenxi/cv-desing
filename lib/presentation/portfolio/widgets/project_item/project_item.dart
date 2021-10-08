@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/presentation/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -51,6 +52,31 @@ class ProjectItem extends HookWidget {
           child: Row(
             children: [
               _buildProjectImage(context),
+              Expanded(
+                  child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: CustomTheme.defaultPadding),
+                child: Column(
+                  children: [
+                    Text(subtitle),
+                    SizedBox(
+                      height: CustomTheme.defaultPadding / 2,
+                    ),
+                    Text(
+                      title,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline5
+                          ?.copyWith(height: 1.5),
+                    ),
+                    SizedBox(height: CustomTheme.defaultPadding),
+                    const Text(
+                      "View Details",
+                      style: TextStyle(decoration: TextDecoration.underline),
+                    )
+                  ],
+                ),
+              ))
               // Expanded(child: child)
             ],
           ),
