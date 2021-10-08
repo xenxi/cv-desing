@@ -57,6 +57,8 @@ class ProjectItem extends HookWidget {
                 padding: EdgeInsets.symmetric(
                     horizontal: CustomTheme.defaultPadding),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(subtitle),
                     SizedBox(
