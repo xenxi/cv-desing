@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class ProjectItem extends StatelessWidget {
+class ProjectItem extends HookWidget {
   final String title;
 
   final String subtitle;
@@ -23,13 +24,32 @@ class ProjectItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isHover = useState(false);
     return InkWell(
-      onHover: (val) {},
+      onHover: (val) => isHover.value = val,
       onTap: () {},
-      child: Stack(
-        children: [
-          _buildProjectImage(context),
-        ],
+      child: AnimatedContainer(
+        duration: const Duration(microseconds: 300),
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: isHover.value
+              ? [
+                  BoxShadow(
+                    offset: const Offset(0, 20),
+                    blurRadius: 50,
+                    color: Colors.black.withOpacity(0.1),
+                  )
+                ]
+              : [],
+        ),
+        child: Stack(
+          children: [
+            _buildProjectImage(context),
+          ],
+        ),
       ),
     );
   }
