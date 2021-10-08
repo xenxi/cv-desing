@@ -23,9 +23,9 @@ class ProjectItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) => {},
-      onExit: (_) => {},
+    return InkWell(
+      onHover: (val) {},
+      onTap: () {},
       child: Stack(
         children: [
           _buildProjectImage(context),
