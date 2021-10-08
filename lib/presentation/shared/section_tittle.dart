@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,9 @@ class SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: CustomTheme.defaultPadding),
-      constraints: const BoxConstraints(maxWidth: 1110),
+      constraints: BoxConstraints(
+        maxWidth: widthOfScreen(context),
+      ),
       height: 100,
       child: Row(
         children: [
