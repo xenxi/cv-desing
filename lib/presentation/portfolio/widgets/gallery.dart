@@ -1,5 +1,4 @@
 import 'package:cv_desing_website_flutter/presentation/portfolio/widgets/project_categories/project_category_data.dart';
-import 'package:cv_desing_website_flutter/presentation/portfolio/widgets/project_item/project_item_v2.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dart';
 import 'package:cv_desing_website_flutter/presentation/theme.dart';
 import 'package:flutter/material.dart';
