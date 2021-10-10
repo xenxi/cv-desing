@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'presentation/app_widget.dart';
+import 'presentation/cv_desing_app.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const CvDesingApp());

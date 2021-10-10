@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SocialLinksWidget extends StatelessWidget {
-  const SocialLinksWidget({Key? key}) : super(key: key);
+class SocialLinks extends StatelessWidget {
+  const SocialLinks({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,8 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cv_desing_website_flutter/presentation/coming_soon/components/comin_soon_logo_widget.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/social_links_widget.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/social_links.dart';
 import 'package:flutter/material.dart';
+
+import 'widgets/comin_soon_logo.dart';
 
 class ComingSoonPage extends StatelessWidget {
   const ComingSoonPage({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class ComingSoonPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(35, 31, 32, 1),
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(minHeight: size.height),
@@ -19,12 +20,12 @@ class ComingSoonPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const ComingSoonLogoWidget(),
+              const ComingSoonLogo(),
               ..._buildText(context),
               const SizedBox(
                 height: 20,
               ),
-              const SocialLinksWidget(),
+              const SocialLinks(),
             ],
           ),
         ),
@@ -40,7 +41,7 @@ class ComingSoonPage extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headline1!
-                .copyWith(color: const Color.fromRGBO(194, 162, 126, 1)),
+                .copyWith(color: Theme.of(context).colorScheme.primary),
           ),
         )),
         Center(
@@ -51,7 +52,7 @@ class ComingSoonPage extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headline5!
-                .copyWith(color: const Color.fromRGBO(194, 162, 126, 1)),
+                .copyWith(color: Theme.of(context).colorScheme.primary),
           ),
         )),
       ];
