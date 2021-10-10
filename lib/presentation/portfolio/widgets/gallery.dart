@@ -39,8 +39,8 @@ class Gallery extends StatelessWidget {
           SizedBox(
             width: widthOfScreen(context),
             child: Wrap(
-              spacing: assignWidth(context: context, fraction: 0.025),
-              runSpacing: assignWidth(context: context, fraction: 0.025),
+              spacing: CustomTheme.defaultPadding,
+              runSpacing: CustomTheme.defaultPadding * 2,
               children: _buildProjects(context, data: curriculumsData),
             ),
           )
@@ -54,7 +54,7 @@ class Gallery extends StatelessWidget {
       List.generate(
           data.length,
           (index) => ProjectItem(
-                width: assignWidth(context: context, fraction: 0.2),
+                width: 300,
                 height: assignHeight(context: context, fraction: 0.3),
                 bannerHeight: assignHeight(context: context, fraction: 0.4) / 3,
                 title: data[index].reference,
