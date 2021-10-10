@@ -1,3 +1,5 @@
+import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
+import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 import 'package:flutter/material.dart';
 
 class HomeSection extends StatelessWidget {
@@ -5,6 +7,15 @@ class HomeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      color: Colors.red,
+      alignment: Alignment.center,
+      width: widthOfScreen(context),
+      height: heightOfScreen(context),
+      child: Container(
+        color: Colors.blue,
+        margin: EdgeInsets.only(top: CustomTheme.defaultPadding),
+      ),
+    );
   }
 }
