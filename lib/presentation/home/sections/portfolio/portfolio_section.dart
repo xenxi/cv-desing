@@ -1,10 +1,6 @@
 import 'package:cv_desing_website_flutter/domain/curriculum.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button_data.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'widgets/gallery.dart';
-import 'widgets/navbar/custom_navbar.dart';
 import 'widgets/project_categories/project_category_data.dart';
 
 final curriculumsData = [
@@ -27,40 +23,15 @@ final categoriesData = [
   ProjectCategoryData(number: 1, title: 'Test 2'),
   ProjectCategoryData(number: 2, title: 'Test 3'),
 ];
-final socialData = [
-  SocialButtonData(
-    tag: 'TWITTER_URL',
-    iconData: FontAwesomeIcons.twitter,
-    url: 'TWITTER_URL',
-  ),
-  SocialButtonData(
-    tag: 'FACEBOOK_URL',
-    iconData: FontAwesomeIcons.facebook,
-    url: 'FACEBOOK_URL',
-  ),
-  SocialButtonData(
-    tag: 'LINKED_IN_URL',
-    iconData: FontAwesomeIcons.linkedin,
-    url: 'LINKED_IN_URL',
-  ),
-  SocialButtonData(
-    tag: 'INSTAGRAM_URL',
-    iconData: FontAwesomeIcons.instagram,
-    url: 'INSTAGRAM_URL',
-  ),
-];
 
 class PortfolioSection extends StatelessWidget {
   const PortfolioSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomNavBar(socialData: socialData),
-      body: Gallery(
-        curriculumsData: curriculumsData,
-        projectCategories: categoriesData,
-      ),
+    return Gallery(
+      curriculumsData: curriculumsData,
+      projectCategories: categoriesData,
     );
   }
 }
