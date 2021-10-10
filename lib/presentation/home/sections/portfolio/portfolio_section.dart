@@ -50,8 +50,8 @@ final socialData = [
   ),
 ];
 
-class PortfolioPage extends StatelessWidget {
-  const PortfolioPage({Key? key}) : super(key: key);
+class PortfolioSection extends StatelessWidget {
+  const PortfolioSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
