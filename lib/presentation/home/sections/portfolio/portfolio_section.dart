@@ -4,8 +4,6 @@ import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
-
-import 'widgets/gallery.dart';
 import 'widgets/project_categories/project_categories.dart';
 import 'widgets/project_categories/project_category_data.dart';
 import 'widgets/project_item/project_item.dart';
