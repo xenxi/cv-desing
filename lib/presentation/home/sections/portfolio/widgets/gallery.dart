@@ -19,8 +19,7 @@ class Gallery extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
+    return SizedBox(
       width: widthOfScreen(context),
       height: heightOfScreen(context),
       child: ListView(
