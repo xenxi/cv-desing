@@ -39,7 +39,7 @@ class PortfolioSection extends StatelessWidget {
       width: double.infinity,
       height: heightOfScreen(context),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7E8FF).withOpacity(0.3),
+        color: CustomTheme.primaryColor.withOpacity(.35),
         image: const DecorationImage(
           fit: BoxFit.cover,
           image: AssetImage(ImagePath.bg2),
