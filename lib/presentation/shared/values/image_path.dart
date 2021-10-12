@@ -8,5 +8,7 @@ class ImagePath {
   static const String bg4 = '$imageDir/bg_04.jpg';
   static const String bg5 = '$imageDir/bg_05.jpg';
   static const String bg6 = '$imageDir/bg_06.jpg';
+  static const String bg7 = '$imageDir/bg_07.jpg';
+  static const String bg8 = '$imageDir/bg_08.jpg';
   static const String homeMainImage = '$imageDir/home.png';
 }

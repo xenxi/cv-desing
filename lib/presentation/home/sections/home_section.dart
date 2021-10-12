@@ -16,8 +16,8 @@ class HomeSection extends StatelessWidget {
         image: DecorationImage(
           fit: BoxFit.cover,
           colorFilter:
-              ColorFilter.mode(CustomTheme.secondaryColor, BlendMode.color),
-          image: const AssetImage(ImagePath.bg6),
+              ColorFilter.mode(CustomTheme.secondaryColor, BlendMode.hardLight),
+          image: const AssetImage(ImagePath.bg7),
         ),
       ),
       child: SizedBox(
