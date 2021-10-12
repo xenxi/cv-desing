@@ -25,23 +25,46 @@ class HomeSection extends StatelessWidget {
       width: widthOfScreen(context),
       height: heightOfScreen(context),
       child: Container(
+        color: Colors.red,
         margin: EdgeInsets.only(top: CustomTheme.defaultPadding),
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Logo(height: 60),
-                Spacer(),
-                _buildGlassContainer(context),
-                Spacer(
-                  flex: 3,
-                )
-              ],
-            )
-          ],
+        child: SizedBox(
+          width: 1200,
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Logo(height: 60),
+                  Spacer(),
+                  _buildGlassContainer(context),
+                  Spacer(
+                    flex: 3,
+                  )
+                ],
+              ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: _buildMainImage(),
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: _buildText(context),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _buildMainImage() {
+    return Container(
+      constraints: BoxConstraints(maxWidth: 639, maxHeight: 860),
+      child: Image.asset(ImagePath.homeMainImage),
     );
   }
 
@@ -57,4 +80,20 @@ class HomeSection extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildText(BuildContext context) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('Impulsa el potencial de CV y destácate'),
+          _checkListText(context,
+              text: 'Elimina la molestia de escribir un CV'),
+          _checkListText(context, text: 'Gran cantidad de diseños'),
+          _checkListText(context, text: 'Obten tu CV en poco tiempo'),
+        ],
+      );
+
+  Widget _checkListText(BuildContext context, {required String text}) => Row(
+        children: [const Icon(Icons.check), Text(text)],
+      );
 }
