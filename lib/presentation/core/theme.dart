@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomTheme {
+  static double navbarHeight = 100.0;
   static double defaultPadding = 20.0;
   static double defaultBorderRadius = 10.0;
   static Color primaryColor = const Color.fromRGBO(194, 162, 126, 1);

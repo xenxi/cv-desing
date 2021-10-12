@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button_data.dart';
@@ -14,7 +15,7 @@ class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      toolbarHeight: 100,
+      toolbarHeight: CustomTheme.navbarHeight,
       backgroundColor: Colors.white,
       title: IntrinsicHeight(
         child: Row(

@@ -30,9 +30,9 @@ class HomeSection extends StatelessWidget {
         child: Container(
           // color: Colors.black,
           height: double.infinity,
-          width: 1200,
+          width: double.infinity,
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: CustomTheme.defaultPadding),
+            padding: EdgeInsets.all(CustomTheme.defaultPadding * 2),
             child: _buildGlassContainer(
               context,
               children: Row(
@@ -45,7 +45,7 @@ class HomeSection extends StatelessWidget {
                       children: [
                         _buildText(context),
                         SizedBox(
-                          height: CustomTheme.defaultPadding,
+                          height: CustomTheme.defaultPadding * 2,
                         ),
                         TextButton.icon(
                             style: TextButton.styleFrom(
@@ -59,7 +59,7 @@ class HomeSection extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: CustomTheme.defaultPadding,
+                    width: CustomTheme.defaultPadding * 2,
                   ),
                   Expanded(child: Image.asset(ImagePath.homeMainImage))
                 ],
