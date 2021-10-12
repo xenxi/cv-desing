@@ -38,7 +38,15 @@ class HomeSection extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [const Logo(height: 60), _buildText(context)],
+                    children: [
+                      SizedBox(
+                        height: CustomTheme.defaultPadding,
+                      ),
+                      const Logo(height: 60),
+                      const Expanded(child: SizedBox()),
+                      _buildText(context),
+                      const Expanded(child: SizedBox()),
+                    ],
                   ),
                 ),
                 Expanded(child: Image.asset(ImagePath.homeMainImage))
@@ -56,7 +64,10 @@ class HomeSection extends StatelessWidget {
       borderRadius: BorderRadius.circular(CustomTheme.defaultBorderRadius),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-        child: children,
+        child: Padding(
+          padding: EdgeInsets.all(CustomTheme.defaultPadding),
+          child: children,
+        ),
       ),
     );
   }
