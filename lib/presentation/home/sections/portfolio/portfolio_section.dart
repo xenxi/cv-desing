@@ -1,6 +1,7 @@
 import 'package:cv_desing_website_flutter/domain/curriculum.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
+import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
@@ -34,10 +35,7 @@ class PortfolioSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: CustomTheme.defaultPadding * 6),
-      width: double.infinity,
-      height: heightOfScreen(context),
+    return Section(
       decoration: BoxDecoration(
         color: CustomTheme.primaryColor.withOpacity(.35),
         image: const DecorationImage(
