@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
+import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
@@ -11,60 +12,49 @@ class HomeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Section(
       decoration: BoxDecoration(
         color: CustomTheme.secondaryColor,
         image: DecorationImage(
           fit: BoxFit.cover,
           colorFilter:
               ColorFilter.mode(CustomTheme.secondaryColor, BlendMode.color),
-          image: const AssetImage(ImagePath.bg1),
+          image: const AssetImage(ImagePath.bg6),
         ),
       ),
-      alignment: Alignment.center,
-      width: widthOfScreen(context),
-      height: heightOfScreen(context),
-      child: Container(
-        // color: Colors.red,
-        // margin: EdgeInsets.only(top: CustomTheme.defaultPadding),
-        child: Container(
-          // color: Colors.black,
-          height: double.infinity,
-          width: double.infinity,
-          child: Padding(
-            padding: EdgeInsets.all(CustomTheme.defaultPadding * 2),
-            child: _buildGlassContainer(
-              context,
-              children: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildText(context),
-                        SizedBox(
-                          height: CustomTheme.defaultPadding * 2,
-                        ),
-                        TextButton.icon(
-                            style: TextButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                primary: CustomTheme.secondaryColor,
-                                fixedSize: const Size(double.infinity, 50)),
-                            onPressed: () {},
-                            icon: const Icon(Icons.design_services),
-                            label: const Text('Empezar'))
-                      ],
+      child: SizedBox(
+        height: double.infinity,
+        width: MediaQuery.of(context).size.width * .8,
+        child: _buildGlassContainer(
+          context,
+          children: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildText(context),
+                    SizedBox(
+                      height: CustomTheme.defaultPadding * 2,
                     ),
-                  ),
-                  SizedBox(
-                    width: CustomTheme.defaultPadding * 2,
-                  ),
-                  Expanded(child: Image.asset(ImagePath.homeMainImage))
-                ],
+                    TextButton.icon(
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            primary: CustomTheme.secondaryColor,
+                            fixedSize: const Size(double.infinity, 50)),
+                        onPressed: () {},
+                        icon: const Icon(Icons.design_services),
+                        label: const Text('Empezar'))
+                  ],
+                ),
               ),
-            ),
+              SizedBox(
+                width: CustomTheme.defaultPadding * 2,
+              ),
+              Expanded(child: Image.asset(ImagePath.homeMainImage))
+            ],
           ),
         ),
       ),

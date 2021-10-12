@@ -4,12 +4,12 @@ import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 
 class Section extends StatelessWidget {
-  final Widget children;
-  final BoxDecoration? boxDecoration;
+  final Widget child;
+  final BoxDecoration? decoration;
   const Section({
     Key? key,
-    required this.children,
-    this.boxDecoration,
+    required this.child,
+    this.decoration,
   }) : super(key: key);
 
   @override
@@ -17,8 +17,8 @@ class Section extends StatelessWidget {
     return Container(
       width: widthOfScreen(context),
       height: heightOfScreen(context) - CustomTheme.navbarHeight,
-      child: children,
-      decoration: boxDecoration,
+      child: child,
+      decoration: decoration,
       alignment: Alignment.center,
     );
   }
