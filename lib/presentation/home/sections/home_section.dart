@@ -44,21 +44,22 @@ class HomeSection extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildText(context),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              right: CustomTheme.defaultPadding,
-                              top: CustomTheme.defaultPadding * 2),
-                          child: TextButton.icon(
-                              style: TextButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  primary: CustomTheme.secondaryColor,
-                                  fixedSize: const Size(double.infinity, 50)),
-                              onPressed: () {},
-                              icon: const Icon(Icons.design_services),
-                              label: const Text('Empezar')),
-                        )
+                        SizedBox(
+                          height: CustomTheme.defaultPadding,
+                        ),
+                        TextButton.icon(
+                            style: TextButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                primary: CustomTheme.secondaryColor,
+                                fixedSize: const Size(double.infinity, 50)),
+                            onPressed: () {},
+                            icon: const Icon(Icons.design_services),
+                            label: const Text('Empezar'))
                       ],
                     ),
+                  ),
+                  SizedBox(
+                    width: CustomTheme.defaultPadding,
                   ),
                   Expanded(child: Image.asset(ImagePath.homeMainImage))
                 ],
