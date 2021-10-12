@@ -5,9 +5,11 @@ import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 
 class Section extends StatelessWidget {
   final Widget children;
+  final BoxDecoration? boxDecoration;
   const Section({
     Key? key,
     required this.children,
+    this.boxDecoration,
   }) : super(key: key);
 
   @override
@@ -16,6 +18,7 @@ class Section extends StatelessWidget {
       width: widthOfScreen(context),
       height: heightOfScreen(context) - CustomTheme.navbarHeight,
       child: children,
+      decoration: boxDecoration,
       alignment: Alignment.center,
     );
   }
