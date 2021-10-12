@@ -1,9 +1,7 @@
 import 'dart:ui';
 
-import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +21,8 @@ class HomeSection extends StatelessWidget {
         ),
       ),
       child: SizedBox(
-        height: double.infinity,
-        width: MediaQuery.of(context).size.width * .8,
+        height: MediaQuery.of(context).size.height * .7,
+        width: MediaQuery.of(context).size.width * .7,
         child: _buildGlassContainer(
           context,
           children: Row(
@@ -66,9 +64,9 @@ class HomeSection extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(CustomTheme.defaultBorderRadius),
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
         child: Padding(
-          padding: EdgeInsets.all(CustomTheme.defaultPadding),
+          padding: EdgeInsets.all(CustomTheme.defaultPadding * 2),
           child: children,
         ),
       ),
