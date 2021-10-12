@@ -26,31 +26,43 @@ class HomeSection extends StatelessWidget {
       height: heightOfScreen(context),
       child: Container(
         // color: Colors.red,
-        margin: EdgeInsets.only(top: CustomTheme.defaultPadding),
-        child: SizedBox(
+        // margin: EdgeInsets.only(top: CustomTheme.defaultPadding),
+        child: Container(
+          // color: Colors.black,
+          height: double.infinity,
           width: 1200,
-          child: _buildGlassContainer(
-            context,
-            children: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: CustomTheme.defaultPadding,
-                      ),
-                      const Logo(height: 60),
-                      const Expanded(child: SizedBox()),
-                      _buildText(context),
-                      const Expanded(child: SizedBox()),
-                    ],
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: CustomTheme.defaultPadding),
+            child: _buildGlassContainer(
+              context,
+              children: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildText(context),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              right: CustomTheme.defaultPadding,
+                              top: CustomTheme.defaultPadding * 2),
+                          child: TextButton.icon(
+                              style: TextButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  primary: CustomTheme.secondaryColor,
+                                  fixedSize: const Size(double.infinity, 50)),
+                              onPressed: () {},
+                              icon: const Icon(Icons.design_services),
+                              label: const Text('Empezar')),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                Expanded(child: Image.asset(ImagePath.homeMainImage))
-              ],
+                  Expanded(child: Image.asset(ImagePath.homeMainImage))
+                ],
+              ),
             ),
           ),
         ),
