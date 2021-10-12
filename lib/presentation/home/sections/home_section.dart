@@ -18,65 +18,45 @@ class HomeSection extends StatelessWidget {
           fit: BoxFit.cover,
           colorFilter:
               ColorFilter.mode(CustomTheme.secondaryColor, BlendMode.color),
-          image: const AssetImage(ImagePath.bg3),
+          image: const AssetImage(ImagePath.bg1),
         ),
       ),
       alignment: Alignment.center,
       width: widthOfScreen(context),
       height: heightOfScreen(context),
       child: Container(
-        color: Colors.red,
+        // color: Colors.red,
         margin: EdgeInsets.only(top: CustomTheme.defaultPadding),
         child: SizedBox(
           width: 1200,
-          child: Stack(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Logo(height: 60),
-                  Spacer(),
-                  _buildGlassContainer(context),
-                  Spacer(
-                    flex: 3,
-                  )
-                ],
-              ),
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: _buildMainImage(),
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: _buildText(context),
+          child: _buildGlassContainer(
+            context,
+            children: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [const Logo(height: 60), _buildText(context)],
+                  ),
                 ),
-              ),
-            ],
+                Expanded(child: Image.asset(ImagePath.homeMainImage))
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildMainImage() {
-    return Container(
-      constraints: BoxConstraints(maxWidth: 639, maxHeight: 860),
-      child: Image.asset(ImagePath.homeMainImage),
-    );
-  }
-
-  Widget _buildGlassContainer(BuildContext context) {
+  Widget _buildGlassContainer(BuildContext context,
+      {required Widget children}) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(CustomTheme.defaultBorderRadius),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-        child: Container(
-          height: 600,
-          width: 600,
-        ),
+        child: children,
       ),
     );
   }
@@ -85,7 +65,18 @@ class HomeSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Impulsa el potencial de CV y destácate'),
+          const Text(
+            'Impulsa el potencial de CV y destácate',
+            style: TextStyle(
+              fontSize: 60,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              height: 1.5,
+            ),
+          ),
+          SizedBox(
+            height: CustomTheme.defaultPadding,
+          ),
           _checkListText(context,
               text: 'Elimina la molestia de escribir un CV'),
           _checkListText(context, text: 'Gran cantidad de diseños'),
@@ -94,6 +85,19 @@ class HomeSection extends StatelessWidget {
       );
 
   Widget _checkListText(BuildContext context, {required String text}) => Row(
-        children: [const Icon(Icons.check), Text(text)],
+        children: [
+          Icon(
+            Icons.check,
+            color: CustomTheme.primaryColor,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Text(text,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5
+                  ?.copyWith(color: Colors.white))
+        ],
       );
 }
