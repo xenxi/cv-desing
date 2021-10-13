@@ -16,7 +16,9 @@ class Section extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: widthOfScreen(context),
-      height: heightOfScreen(context) - CustomTheme.navbarHeight,
+      constraints: BoxConstraints(
+        minHeight: heightOfScreen(context) - CustomTheme.navbarHeight,
+      ),
       child: child,
       decoration: decoration,
       alignment: Alignment.center,

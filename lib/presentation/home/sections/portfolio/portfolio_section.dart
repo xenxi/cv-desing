@@ -38,6 +38,7 @@ class PortfolioSection extends StatelessWidget {
     return Section(
       decoration: _buildSectionDecoration(),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           SectionTitle(
             title: "Diseños",
@@ -50,18 +51,18 @@ class PortfolioSection extends StatelessWidget {
           const SizedBox(
             height: 40.0,
           ),
-          Expanded(
-              child: GridView.builder(
-                  padding: EdgeInsets.symmetric(
-                      vertical: CustomTheme.defaultPadding,
-                      horizontal: CustomTheme.defaultPadding * 4),
-                  itemCount: curriculumsData.length,
-                  gridDelegate: _buildGridSize(),
-                  itemBuilder: (context, index) => ProjectItem(
-                        title: curriculumsData[index].reference,
-                        subtitle: curriculumsData[index].category,
-                        imageUrl: curriculumsData[index].url,
-                      )))
+          GridView.builder(
+              shrinkWrap: true,
+              padding: EdgeInsets.symmetric(
+                  vertical: CustomTheme.defaultPadding,
+                  horizontal: CustomTheme.defaultPadding * 4),
+              itemCount: curriculumsData.length,
+              gridDelegate: _buildGridSize(),
+              itemBuilder: (context, index) => ProjectItem(
+                    title: curriculumsData[index].reference,
+                    subtitle: curriculumsData[index].category,
+                    imageUrl: curriculumsData[index].url,
+                  ))
         ],
       ),
     );
