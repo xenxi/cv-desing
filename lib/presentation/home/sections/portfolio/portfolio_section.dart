@@ -35,13 +35,7 @@ class PortfolioSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Section(
-      decoration: BoxDecoration(
-        color: CustomTheme.primaryColor.withOpacity(.35),
-        image: const DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage(ImagePath.bg2),
-        ),
-      ),
+      decoration: _buildSectionDecoration(),
       child: Column(
         children: [
           SectionTitle(
@@ -66,6 +60,16 @@ class PortfolioSection extends StatelessWidget {
                         imageUrl: curriculumsData[index].url,
                       )))
         ],
+      ),
+    );
+  }
+
+  BoxDecoration _buildSectionDecoration() {
+    return BoxDecoration(
+      color: CustomTheme.primaryColor.withOpacity(.35),
+      image: const DecorationImage(
+        fit: BoxFit.cover,
+        image: AssetImage(ImagePath.bg2),
       ),
     );
   }
