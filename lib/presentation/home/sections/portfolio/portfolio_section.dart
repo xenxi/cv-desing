@@ -59,12 +59,7 @@ class PortfolioSection extends StatelessWidget {
               // width: widthOfScreen(context),
               child: GridView.builder(
                   itemCount: curriculumsData.length,
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 300,
-                      // mainAxisExtent: 100,
-                      childAspectRatio: .7,
-                      crossAxisSpacing: 50,
-                      mainAxisSpacing: 20),
+                  gridDelegate: _buildGridSize(),
                   itemBuilder: (context, index) => ProjectItem(
                         title: curriculumsData[index].reference,
                         subtitle: curriculumsData[index].category,
@@ -73,5 +68,14 @@ class PortfolioSection extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  SliverGridDelegateWithMaxCrossAxisExtent _buildGridSize() {
+    return const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 300,
+        // mainAxisExtent: 100,
+        childAspectRatio: .7,
+        crossAxisSpacing: 50,
+        mainAxisSpacing: 20);
   }
 }
