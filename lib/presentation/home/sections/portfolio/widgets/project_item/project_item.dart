@@ -30,24 +30,8 @@ class ProjectItem extends HookWidget {
           builder: (BuildContext context, SizingInformation sizingInformation) {
         return ClipRRect(
           borderRadius: _cardBorderRadius,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 1000),
-            curve: Curves.easeInOutCubicEmphasized,
-            width: isHover.value ? 500 : 300,
-            decoration: BoxDecoration(
-                color: CustomTheme.secondaryColor,
-                borderRadius: _cardBorderRadius,
-                boxShadow: [
-                  BoxShadow(
-                    offset: const Offset(0, 20),
-                    blurRadius: 20,
-                    color: Colors.black.withOpacity(isHover.value ? .4 : 0),
-                  )
-                ]),
-            child: _buildItemV2(context,
-                isHover: isHover.value,
-                size: sizingInformation.localWidgetSize),
-          ),
+          child: _buildItemV2(context,
+              isHover: isHover.value, size: sizingInformation.localWidgetSize),
         );
       }),
     );
