@@ -56,14 +56,21 @@ class PortfolioSection extends StatelessWidget {
           const SizedBox(
             height: 40.0,
           ),
-          SizedBox(
-            width: widthOfScreen(context),
-            child: Wrap(
-              spacing: CustomTheme.defaultPadding,
-              runSpacing: CustomTheme.defaultPadding * 2,
-              children: _buildProjects(context, data: curriculumsData),
-            ),
-          )
+          Expanded(
+              // width: widthOfScreen(context),
+              child: GridView.builder(
+                  itemCount: curriculumsData.length,
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 300,
+                      // mainAxisExtent: 100,
+                      childAspectRatio: .7,
+                      crossAxisSpacing: 50,
+                      mainAxisSpacing: 20),
+                  itemBuilder: (context, index) => ProjectItem(
+                        title: curriculumsData[index].reference,
+                        subtitle: curriculumsData[index].category,
+                        imageUrl: curriculumsData[index].url,
+                      )))
         ],
       ),
     );
@@ -74,9 +81,9 @@ class PortfolioSection extends StatelessWidget {
       List.generate(
           data.length,
           (index) => ProjectItem(
-                width: 300,
-                height: assignHeight(context: context, fraction: 0.3),
-                bannerHeight: assignHeight(context: context, fraction: 0.4) / 3,
+                // width: 300,
+                // height: assignHeight(context: context, fraction: 0.3),
+                // bannerHeight: assignHeight(context: context, fraction: 0.4) / 3,
                 title: data[index].reference,
                 subtitle: data[index].category,
                 imageUrl: data[index].url,
