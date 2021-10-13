@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/email_address.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -17,8 +18,7 @@ class SocialLinks extends StatelessWidget {
           delay: const Duration(milliseconds: 1000),
           child: _buildSocialLinkButton(context,
               icon: FontAwesomeIcons.envelope,
-              onPressed: () async => await openMail(
-                  'mailto:dscurriculumvitae@gmail.com',
+              onPressed: () async => await openMail(EmailAddress.defaultAccount,
                   subject: 'Información web')),
         ),
         ElasticIn(
