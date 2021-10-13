@@ -4,6 +4,7 @@ import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart
 import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'widgets/project_categories/project_categories.dart';
 import 'widgets/project_categories/project_category_data.dart';
 import 'widgets/project_item/project_item.dart';
@@ -36,31 +37,34 @@ class PortfolioSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Section(
       decoration: _buildSectionDecoration(),
-      child: Column(
-        children: [
-          SectionTitle(
-            title: "Diseños",
-            subTitle: "Lorem ipsum dolor est",
-            color: CustomTheme.primaryColor,
-          ),
-          ProjectCategories(
-            categories: categoriesData,
-          ),
-          const SizedBox(
-            height: 40.0,
-          ),
-          Expanded(
-              child: GridView.builder(
-                  padding: EdgeInsets.all(CustomTheme.defaultPadding * 2),
-                  itemCount: curriculumsData.length,
-                  gridDelegate: _buildGridSize(),
-                  itemBuilder: (context, index) => ProjectItem(
-                        title: curriculumsData[index].reference,
-                        subtitle: curriculumsData[index].category,
-                        imageUrl: curriculumsData[index].url,
-                      )))
-        ],
-      ),
+      child: ResponsiveBuilder(
+          builder: (BuildContext context, SizingInformation sizingInformation) {
+        return Column(
+          children: [
+            SectionTitle(
+              title: "Diseños",
+              subTitle: "Lorem ipsum dolor est",
+              color: CustomTheme.primaryColor,
+            ),
+            ProjectCategories(
+              categories: categoriesData,
+            ),
+            const SizedBox(
+              height: 40.0,
+            ),
+            Expanded(
+                child: GridView.builder(
+                    padding: EdgeInsets.all(CustomTheme.defaultPadding * 2),
+                    itemCount: curriculumsData.length,
+                    gridDelegate: _buildGridSize(),
+                    itemBuilder: (context, index) => ProjectItem(
+                          title: curriculumsData[index].reference,
+                          subtitle: curriculumsData[index].category,
+                          imageUrl: curriculumsData[index].url,
+                        )))
+          ],
+        );
+      }),
     );
   }
 
