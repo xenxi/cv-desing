@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class ProjectItem extends HookWidget {
   static final BorderRadius _cardBorderRadius = BorderRadius.circular(10);
@@ -39,26 +40,30 @@ class ProjectItem extends HookWidget {
                 color: Colors.black.withOpacity(isHover.value ? .4 : 0),
               )
             ]),
-        child: _buildItemV2(context, isHover),
+        // child: _buildItemV2(context, isHover),
+        child: ResponsiveBuilder(
+          builder: (BuildContext context, SizingInformation sizingInformation) {
+            return _buildItemV2(context,
+                isHover: isHover.value,
+                size: sizingInformation.localWidgetSize);
+          },
+        ),
       ),
     );
   }
 
-  Stack _buildItemV2(BuildContext context, ValueNotifier<bool> isHover) {
+  Widget _buildItemV2(BuildContext context,
+      {required bool isHover, required Size size}) {
     return Stack(
       clipBehavior: Clip.none,
       children: [
         _buildProjectImage(context),
-        if (isHover.value)
-          Positioned(
-            right: -50,
-            top: 0,
-            child: ZoomIn(
-              child: Container(
-                width: 100,
-                height: double.infinity,
-                color: Colors.red,
-              ),
+        if (isHover)
+          ZoomIn(
+            child: Container(
+              width: size.width,
+              height: size.height,
+              color: CustomTheme.secondaryColor.withOpacity(.8),
             ),
           )
       ],
@@ -75,34 +80,38 @@ class ProjectItem extends HookWidget {
             color: Colors.red,
             padding:
                 EdgeInsets.symmetric(horizontal: CustomTheme.defaultPadding),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  subtitle,
-                  style: TextStyle(color: _textColor),
-                ),
-                SizedBox(
-                  height: CustomTheme.defaultPadding / 2,
-                ),
-                Text(
-                  title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline5
-                      ?.copyWith(height: 1.5, color: _textColor),
-                ),
-                SizedBox(height: CustomTheme.defaultPadding),
-                Text(
-                  "View Details",
-                  style: TextStyle(
-                      decoration: TextDecoration.underline, color: _textColor),
-                )
-              ],
-            ),
+            child: _buildTextInfo(context),
           )
         // Expanded(child: child)
+      ],
+    );
+  }
+
+  Widget _buildTextInfo(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          subtitle,
+          style: TextStyle(color: _textColor),
+        ),
+        SizedBox(
+          height: CustomTheme.defaultPadding / 2,
+        ),
+        Text(
+          title,
+          style: Theme.of(context)
+              .textTheme
+              .headline5
+              ?.copyWith(height: 1.5, color: _textColor),
+        ),
+        SizedBox(height: CustomTheme.defaultPadding),
+        Text(
+          "View Details",
+          style: TextStyle(
+              decoration: TextDecoration.underline, color: _textColor),
+        )
       ],
     );
   }
