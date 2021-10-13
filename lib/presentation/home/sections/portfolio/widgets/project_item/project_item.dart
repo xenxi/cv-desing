@@ -64,25 +64,9 @@ class ProjectItem extends HookWidget {
               width: size.width,
               height: size.height,
               color: CustomTheme.secondaryColor.withOpacity(.8),
+              child: _buildTextInfo(context),
             ),
           )
-      ],
-    );
-  }
-
-  Row _buildItem(BuildContext context, ValueNotifier<bool> isHover) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        _buildProjectImage(context),
-        if (isHover.value)
-          Container(
-            color: Colors.red,
-            padding:
-                EdgeInsets.symmetric(horizontal: CustomTheme.defaultPadding),
-            child: _buildTextInfo(context),
-          )
-        // Expanded(child: child)
       ],
     );
   }
