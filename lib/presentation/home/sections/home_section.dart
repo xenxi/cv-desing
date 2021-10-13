@@ -28,8 +28,6 @@ class HomeSection extends StatelessWidget {
       ),
       child: ResponsiveBuilder(builder: (context, sizingInformation) {
         return SizedBox(
-          height: sizingInformation.screenSize.height *
-              (sizingInformation.isDesktop ? .7 : 1),
           width: sizingInformation.screenSize.width *
               (sizingInformation.isDesktop ? .7 : 1),
           child: _buildGlassContainer(
