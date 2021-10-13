@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/presentation/shared/components/scroller_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button_data.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -34,11 +35,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey portfolioKey = GlobalKey();
     return Scaffold(
       appBar: CustomNavBar(socialData: socialData),
       body: SingleChildScrollView(
         child: Column(
-          children: const [HomeSection(), PortfolioSection()],
+          children: [
+            HomeSection(
+              goToProjectSection: () =>
+                  scrollToSection(portfolioKey.currentContext),
+            ),
+            PortfolioSection(
+              key: portfolioKey,
+            )
+          ],
         ),
       ),
     );

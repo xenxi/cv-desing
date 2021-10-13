@@ -1,12 +1,17 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
-import 'package:flutter/material.dart';
 
 class HomeSection extends StatelessWidget {
-  const HomeSection({Key? key}) : super(key: key);
+  final VoidCallback goToProjectSection;
+  const HomeSection({
+    Key? key,
+    required this.goToProjectSection,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +47,7 @@ class HomeSection extends StatelessWidget {
                             backgroundColor: Colors.white,
                             primary: CustomTheme.secondaryColor,
                             fixedSize: const Size(double.infinity, 50)),
-                        onPressed: () {},
+                        onPressed: goToProjectSection,
                         icon: const Icon(Icons.design_services),
                         label: const Text('Empezar'))
                   ],

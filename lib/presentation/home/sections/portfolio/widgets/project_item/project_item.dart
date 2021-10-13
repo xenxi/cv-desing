@@ -93,7 +93,7 @@ class ProjectItem extends HookWidget {
   }
 
   Future<void> openEmail() =>
-      openMail(EmailAddress.defaultAccount, subject: 'CV: $title');
+      openMail(EmailAddress.defaultAccount, subject: title);
 
   Widget _buildProjectImage(BuildContext context) => ClipRRect(
         borderRadius: _cardBorderRadius,
