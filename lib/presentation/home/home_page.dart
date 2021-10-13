@@ -38,10 +38,7 @@ class HomePage extends StatelessWidget {
       appBar: CustomNavBar(socialData: socialData),
       body: SingleChildScrollView(
         child: Column(
-          children: [
-            // const HomeSection(),
-            const PortfolioSection()
-          ],
+          children: [const HomeSection(), const PortfolioSection()],
         ),
       ),
     );

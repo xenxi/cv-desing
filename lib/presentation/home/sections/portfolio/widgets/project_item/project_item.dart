@@ -66,7 +66,10 @@ class ProjectItem extends HookWidget {
       children: [
         Text(
           subtitle,
-          style: TextStyle(color: _textColor),
+          style: Theme.of(context)
+              .textTheme
+              .headline6
+              ?.copyWith(color: _textColor),
         ),
         SizedBox(
           height: CustomTheme.defaultPadding / 2,
@@ -75,15 +78,14 @@ class ProjectItem extends HookWidget {
           title,
           style: Theme.of(context)
               .textTheme
-              .headline5
-              ?.copyWith(height: 1.5, color: _textColor),
+              .headline4
+              ?.copyWith(color: _textColor),
         ),
         SizedBox(height: CustomTheme.defaultPadding),
-        Text(
-          "View Details",
-          style: TextStyle(
-              decoration: TextDecoration.underline, color: _textColor),
-        )
+        ElevatedButton.icon(
+            onPressed: () {},
+            icon: const Icon(Icons.info),
+            label: const Text("Solicitar"))
       ],
     );
   }

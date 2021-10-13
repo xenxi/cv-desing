@@ -37,34 +37,33 @@ class PortfolioSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Section(
       decoration: _buildSectionDecoration(),
-      child: ResponsiveBuilder(
-          builder: (BuildContext context, SizingInformation sizingInformation) {
-        return Column(
-          children: [
-            SectionTitle(
-              title: "Diseños",
-              subTitle: "Lorem ipsum dolor est",
-              color: CustomTheme.primaryColor,
-            ),
-            ProjectCategories(
-              categories: categoriesData,
-            ),
-            const SizedBox(
-              height: 40.0,
-            ),
-            Expanded(
-                child: GridView.builder(
-                    padding: EdgeInsets.all(CustomTheme.defaultPadding * 2),
-                    itemCount: curriculumsData.length,
-                    gridDelegate: _buildGridSize(),
-                    itemBuilder: (context, index) => ProjectItem(
-                          title: curriculumsData[index].reference,
-                          subtitle: curriculumsData[index].category,
-                          imageUrl: curriculumsData[index].url,
-                        )))
-          ],
-        );
-      }),
+      child: Column(
+        children: [
+          SectionTitle(
+            title: "Diseños",
+            subTitle: "Lorem ipsum dolor est",
+            color: CustomTheme.primaryColor,
+          ),
+          ProjectCategories(
+            categories: categoriesData,
+          ),
+          const SizedBox(
+            height: 40.0,
+          ),
+          Expanded(
+              child: GridView.builder(
+                  padding: EdgeInsets.symmetric(
+                      vertical: CustomTheme.defaultPadding,
+                      horizontal: CustomTheme.defaultPadding * 4),
+                  itemCount: curriculumsData.length,
+                  gridDelegate: _buildGridSize(),
+                  itemBuilder: (context, index) => ProjectItem(
+                        title: curriculumsData[index].reference,
+                        subtitle: curriculumsData[index].category,
+                        imageUrl: curriculumsData[index].url,
+                      )))
+        ],
+      ),
     );
   }
 
@@ -79,11 +78,10 @@ class PortfolioSection extends StatelessWidget {
   }
 
   SliverGridDelegateWithMaxCrossAxisExtent _buildGridSize() {
-    return const SliverGridDelegateWithMaxCrossAxisExtent(
+    return SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 300,
-        // mainAxisExtent: 100,
         childAspectRatio: .7,
-        crossAxisSpacing: 50,
-        mainAxisSpacing: 20);
+        crossAxisSpacing: CustomTheme.defaultPadding * 2,
+        mainAxisSpacing: CustomTheme.defaultPadding * 2);
   }
 }
