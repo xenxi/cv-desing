@@ -56,8 +56,8 @@ class PortfolioSection extends StatelessWidget {
             height: 40.0,
           ),
           Expanded(
-              // width: widthOfScreen(context),
               child: GridView.builder(
+                  padding: EdgeInsets.all(CustomTheme.defaultPadding * 2),
                   itemCount: curriculumsData.length,
                   gridDelegate: _buildGridSize(),
                   itemBuilder: (context, index) => ProjectItem(
