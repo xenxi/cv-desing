@@ -7,3 +7,8 @@ Future<void> openUrlLink(String url) async {
     throw 'Could not launch $url';
   }
 }
+
+Future<void> openMail(String email, {String subject = ''}) async {
+  final url = 'mailto:$email?subject=$subject';
+  return openUrlLink(url);
+}
