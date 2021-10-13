@@ -30,26 +30,29 @@ class ProjectItem extends HookWidget {
           builder: (BuildContext context, SizingInformation sizingInformation) {
         return ClipRRect(
           borderRadius: _cardBorderRadius,
-          child: _buildItemV2(context,
+          child: _buildItem(context,
               isHover: isHover.value, size: sizingInformation.localWidgetSize),
         );
       }),
     );
   }
 
-  Widget _buildItemV2(BuildContext context,
+  Widget _buildItem(BuildContext context,
       {required bool isHover, required Size size}) {
     return Stack(
       clipBehavior: Clip.hardEdge,
       children: [
         _buildProjectImage(context),
         if (isHover)
-          ZoomIn(
-            child: Container(
-              width: size.width,
-              height: size.height,
-              color: CustomTheme.secondaryColor.withOpacity(.8),
-              child: _buildTextInfo(context),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: FlipInX(
+              child: Container(
+                width: size.width,
+                height: size.height,
+                color: CustomTheme.secondaryColor.withOpacity(.8),
+                child: _buildTextInfo(context),
+              ),
             ),
           )
       ],
@@ -58,7 +61,7 @@ class ProjectItem extends HookWidget {
 
   Widget _buildTextInfo(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
