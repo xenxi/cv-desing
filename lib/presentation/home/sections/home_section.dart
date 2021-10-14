@@ -55,7 +55,7 @@ class HomeSection extends StatelessWidget {
                     ],
                   ),
                 ),
-                if (!sizingInformation.isMobile) ...[
+                if (sizingInformation.isDesktop) ...[
                   SizedBox(
                     width: CustomTheme.defaultPadding * 2,
                   ),
