@@ -41,23 +41,36 @@ class ProjectItem extends HookWidget {
 
   Widget _buildItem(BuildContext context,
       {required bool isHover, required Size size}) {
-    return Stack(
-      clipBehavior: Clip.hardEdge,
-      children: [
-        _buildProjectImage(context),
-        if (isHover)
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: FlipInX(
-              child: Container(
-                width: size.width,
-                height: size.height,
-                color: CustomTheme.secondaryColor.withOpacity(.8),
-                child: _buildTextInfo(context),
+    return Container(
+      margin: const EdgeInsets.all(2),
+      decoration: BoxDecoration(
+        borderRadius: _cardBorderRadius,
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(1.0, .5), //(x,y)
+            blurRadius: 2.0,
+          ),
+        ],
+      ),
+      child: Stack(
+        clipBehavior: Clip.hardEdge,
+        children: [
+          _buildProjectImage(context),
+          if (isHover)
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: FlipInX(
+                child: Container(
+                  width: size.width,
+                  height: size.height,
+                  color: CustomTheme.secondaryColor.withOpacity(.8),
+                  child: _buildTextInfo(context),
+                ),
               ),
-            ),
-          )
-      ],
+            )
+        ],
+      ),
     );
   }
 
