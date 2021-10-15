@@ -31,8 +31,10 @@ class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
             ),
             const SizedBox(width: 20),
             const NavbarDivider(),
-            NavbarItems(
-              navItems: navItems,
+            Expanded(
+              child: NavbarItems(
+                navItems: navItems,
+              ),
             ),
             const Spacer(flex: 1),
             Row(

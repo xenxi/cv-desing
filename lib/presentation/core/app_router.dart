@@ -3,9 +3,11 @@ import 'package:cv_desing_website_flutter/presentation/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
+  static String blog = '/blog';
   static Map<String, WidgetBuilder> routes = {
     // '': (context) => const ComingSoonPage(),
     '/': (context) => const ComingSoonPage(),
     '/preview': (context) => const HomePage(),
+    blog: (context) => const ComingSoonPage(),
   };
 }
