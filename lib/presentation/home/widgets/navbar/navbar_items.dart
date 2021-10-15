@@ -2,11 +2,12 @@ import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/scroller_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'nav_item.dart';
 import 'navbar_item_data.dart';
 
-class NavbarItems extends StatelessWidget {
+class NavbarItems extends HookWidget {
   final List<NavItemData> navItems;
   const NavbarItems({
     Key? key,
@@ -15,19 +16,17 @@ class NavbarItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final items = useState(navItems);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: navItems
+      children: items.value
           .map((dataItem) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: NavItem(
                   title: dataItem.name,
                   isSelected: dataItem.isSelected,
-                  onTap: () => _onTapNavItem(
-                    context,
-                    key: dataItem.key,
-                    navItemName: dataItem.name,
-                  ),
+                  onTap: () =>
+                      _onTapNavItem(context, selected: dataItem, items: items),
                 ),
               ))
           .toList(),
@@ -36,20 +35,21 @@ class NavbarItems extends StatelessWidget {
 
   void _onTapNavItem(
     BuildContext context, {
-    required GlobalKey key,
-    required String navItemName,
+    required NavItemData selected,
+    required ValueNotifier<List<NavItemData>> items,
   }) {
-    if (navItemName == Location.blog) {
+    if (selected.name == Location.blog) {
       Navigator.of(context).pushNamed(AppRouter.blog);
     } else {
-      for (int index = 0; index < navItems.length; index++) {
-        if (navItemName == navItems[index].name) {
-          scrollToSection(key.currentContext!);
-          navItems[index].isSelected = true;
+      for (var item in items.value) {
+        if (selected.name == item.name) {
+          scrollToSection(item.key.currentContext!);
+          item.isSelected = true;
         } else {
-          navItems[index].isSelected = false;
+          item.isSelected = false;
         }
       }
+      items.value = List.from(navItems);
     }
   }
 }

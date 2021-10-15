@@ -15,7 +15,7 @@ final GlobalKey blogKey = GlobalKey();
 final List<NavItemData> navItems = [
   NavItemData(name: Location.home, key: homeKey, isSelected: true),
   NavItemData(name: Location.desings, key: desingsKey),
-  NavItemData(name: Location.blog, key: blogKey),
+  // NavItemData(name: Location.blog, key: blogKey),
 ];
 final socialData = [
   SocialButtonData(
