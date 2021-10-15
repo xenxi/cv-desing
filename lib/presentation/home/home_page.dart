@@ -1,12 +1,19 @@
 import 'package:cv_desing_website_flutter/presentation/shared/components/scroller_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button_data.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'sections/home_section.dart';
 import 'sections/portfolio/portfolio_section.dart';
 import 'widgets/navbar/custom_navbar.dart';
+import 'widgets/navbar/navbar_item_data.dart';
 
+final List<NavItemData> navItems = [
+  NavItemData(name: Location.home, key: GlobalKey(), isSelected: true),
+  NavItemData(name: Location.desings, key: GlobalKey()),
+  NavItemData(name: Location.blog, key: GlobalKey()),
+];
 final socialData = [
   SocialButtonData(
     tag: 'TWITTER_URL',

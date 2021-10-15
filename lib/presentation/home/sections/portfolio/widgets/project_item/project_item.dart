@@ -8,7 +8,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 class ProjectItem extends HookWidget {
   static final BorderRadius _cardBorderRadius = BorderRadius.circular(10);
-  static final Color _textColor = Colors.white;
+  static const Color _textColor = Colors.white;
   final String title;
 
   final String subtitle;

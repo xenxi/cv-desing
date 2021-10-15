@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/domain/curriculum.dart';
 import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
@@ -58,10 +59,12 @@ class PortfolioSection extends StatelessWidget {
                   horizontal: CustomTheme.defaultPadding * 4),
               itemCount: curriculumsData.length,
               gridDelegate: _buildGridSize(),
-              itemBuilder: (context, index) => ProjectItem(
-                    title: curriculumsData[index].reference,
-                    subtitle: curriculumsData[index].category,
-                    imageUrl: curriculumsData[index].url,
+              itemBuilder: (context, index) => FadeIn(
+                    child: ProjectItem(
+                      title: curriculumsData[index].reference,
+                      subtitle: curriculumsData[index].category,
+                      imageUrl: curriculumsData[index].url,
+                    ),
                   ))
         ],
       ),
