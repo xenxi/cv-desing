@@ -55,18 +55,20 @@ class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
 
   List<Widget> _buildSocialIcons(List<SocialButtonData> socialItems) {
     List<Widget> items = [];
-    for (int index = 0; index < socialItems.length; index++) {
+
+    for (var item in socialItems) {
       items.add(
         SocialButton(
-          tag: socialItems[index].tag,
-          iconData: socialItems[index].iconData,
-          onPressed: () => {},
+          tag: item.tag,
+          iconData: item.iconData,
+          onPressed: item.onPressed,
         ),
       );
       items.add(const SizedBox(
         width: 16,
       ));
     }
+
     return items;
   }
 

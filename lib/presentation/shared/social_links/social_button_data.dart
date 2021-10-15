@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class SocialButtonData {
   final String tag;
-  final String url;
+  final void Function() onPressed;
   final IconData iconData;
   final Color? iconColor;
   final Color? borderColor;
@@ -10,7 +10,7 @@ class SocialButtonData {
   SocialButtonData({
     required this.tag,
     required this.iconData,
-    required this.url,
+    required this.onPressed,
     this.iconColor,
     this.borderColor,
   });
