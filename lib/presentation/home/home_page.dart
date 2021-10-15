@@ -1,5 +1,4 @@
 import 'package:cv_desing_website_flutter/presentation/shared/components/scroller_funtions.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button_data.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +10,7 @@ import 'widgets/navbar/navbar_item_data.dart';
 final GlobalKey desingsKey = GlobalKey();
 final GlobalKey homeKey = GlobalKey();
 final GlobalKey blogKey = GlobalKey();
+
 final List<NavItemData> navItems = [
   NavItemData(name: Location.home, key: homeKey, isSelected: true),
   NavItemData(name: Location.desings, key: desingsKey),

@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 
 class AppRouter {
   static String blog = '/blog';
+  static String home = '/preview';
   static Map<String, WidgetBuilder> routes = {
     // '': (context) => const ComingSoonPage(),
     '/': (context) => const ComingSoonPage(),
-    '/preview': (context) => const HomePage(),
+    home: (context) => const HomePage(),
     blog: (context) => const ComingSoonPage(),
   };
 }

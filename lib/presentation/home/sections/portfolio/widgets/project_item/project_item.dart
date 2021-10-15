@@ -57,18 +57,29 @@ class ProjectItem extends HookWidget {
         clipBehavior: Clip.hardEdge,
         children: [
           _buildProjectImage(context),
-          if (isHover)
+          if (isHover) ...[
             Align(
-              alignment: Alignment.bottomCenter,
+              alignment: Alignment.center,
               child: FlipInX(
                 child: Container(
                   width: size.width,
                   height: size.height,
-                  color: CustomTheme.secondaryColor.withOpacity(.8),
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                        CustomTheme.secondaryColor.withOpacity(.2),
+                        CustomTheme.secondaryColor.withOpacity(.7),
+                        CustomTheme.secondaryColor.withOpacity(.8),
+                        CustomTheme.secondaryColor.withOpacity(.7),
+                        CustomTheme.secondaryColor.withOpacity(.2),
+                      ])),
                   child: _buildTextInfo(context),
                 ),
               ),
-            )
+            ),
+          ]
         ],
       ),
     );

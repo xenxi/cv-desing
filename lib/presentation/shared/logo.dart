@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {
@@ -21,7 +22,10 @@ class Logo extends StatelessWidget {
 
     if (color != null) return _applyColor(imgLogo);
 
-    return imgLogo;
+    return InkWell(
+        onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
+            AppRouter.home, (Route<dynamic> route) => false),
+        child: imgLogo);
   }
 
   Widget _applyColor(Image logo) {
