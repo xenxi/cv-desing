@@ -9,10 +9,13 @@ import 'sections/portfolio/portfolio_section.dart';
 import 'widgets/navbar/custom_navbar.dart';
 import 'widgets/navbar/navbar_item_data.dart';
 
+final GlobalKey desingsKey = GlobalKey();
+final GlobalKey homeKey = GlobalKey();
+final GlobalKey blogKey = GlobalKey();
 final List<NavItemData> navItems = [
-  NavItemData(name: Location.home, key: GlobalKey(), isSelected: true),
-  NavItemData(name: Location.desings, key: GlobalKey()),
-  NavItemData(name: Location.blog, key: GlobalKey()),
+  NavItemData(name: Location.home, key: homeKey, isSelected: true),
+  NavItemData(name: Location.desings, key: desingsKey),
+  NavItemData(name: Location.blog, key: blogKey),
 ];
 final socialData = [
   SocialButtonData(
@@ -42,7 +45,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey portfolioKey = GlobalKey();
     return Scaffold(
       appBar: CustomNavBar(
         socialData: socialData,
@@ -52,11 +54,12 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             HomeSection(
+              key: homeKey,
               goToProjectSection: () =>
-                  scrollToSection(portfolioKey.currentContext),
+                  scrollToSection(desingsKey.currentContext),
             ),
             PortfolioSection(
-              key: portfolioKey,
+              key: desingsKey,
             )
           ],
         ),
