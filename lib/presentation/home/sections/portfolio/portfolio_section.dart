@@ -43,7 +43,7 @@ class PortfolioSection extends StatelessWidget {
         children: [
           SectionTitle(
             title: "Diseños",
-            subTitle: "Lorem ipsum dolor est",
+            subTitle: "Escoge tu preferido",
             color: CustomTheme.primaryColor,
           ),
           ProjectCategories(
