@@ -4,6 +4,7 @@ import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart
 import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/desings_data.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 import 'widgets/project_categories/project_categories.dart';
 import 'widgets/project_categories/project_category_data.dart';
@@ -27,8 +28,8 @@ class PortfolioSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SectionTitle(
-            title: "Diseños",
-            subTitle: "Escoge tu preferido",
+            title: Location.portfolioSectionTitle,
+            subTitle: Location.portfolioSectionSubtitle,
             color: CustomTheme.primaryColor,
           ),
           ProjectCategories(
