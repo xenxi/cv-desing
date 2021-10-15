@@ -44,7 +44,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final GlobalKey portfolioKey = GlobalKey();
     return Scaffold(
-      appBar: CustomNavBar(socialData: socialData),
+      appBar: CustomNavBar(
+        socialData: socialData,
+        navItems: navItems,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
