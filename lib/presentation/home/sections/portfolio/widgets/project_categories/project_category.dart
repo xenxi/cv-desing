@@ -1,19 +1,21 @@
+import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:flutter/material.dart';
 
 class ProjectCategory extends StatefulWidget {
   const ProjectCategory({
     Key? key,
+    required this.category,
     required this.title,
+    required this.onTap,
+    required this.number,
+    required this.hoverColor,
     this.titleColor = Colors.black,
     this.numberColor = Colors.transparent,
     this.titleStyle,
-    required this.number,
-    required this.hoverColor,
     this.numberStyle,
-    this.onTap,
     this.isSelected = false,
   }) : super(key: key);
-
+  final Category category;
   final String title;
   final Color titleColor;
   final Color numberColor;
@@ -21,7 +23,7 @@ class ProjectCategory extends StatefulWidget {
   final int number;
   final Color hoverColor;
   final TextStyle? numberStyle;
-  final GestureTapCallback? onTap;
+  final void Function(Category category) onTap;
   final bool isSelected;
 
   @override
@@ -57,7 +59,7 @@ class _ProjectCategoryState extends State<ProjectCategory>
       onEnter: (e) => _mouseEnter(true),
       onExit: (e) => _mouseEnter(false),
       child: InkWell(
-        onTap: widget.onTap,
+        onTap: () => widget.onTap(widget.category),
         hoverColor: Colors.transparent,
         child: RichText(
           text: TextSpan(

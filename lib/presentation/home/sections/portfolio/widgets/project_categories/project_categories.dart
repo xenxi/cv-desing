@@ -1,12 +1,17 @@
-import 'package:cv_desing_website_flutter/presentation/home/sections/portfolio/widgets/project_categories/project_category_data.dart';
+import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cv_desing_website_flutter/presentation/home/sections/portfolio/widgets/project_categories/project_category_data.dart';
+
 import 'project_category.dart';
 
 class ProjectCategories extends StatelessWidget {
   final List<ProjectCategoryData> categories;
+  final void Function(Category category) onCategoryTap;
   const ProjectCategories({
     Key? key,
     required this.categories,
+    required this.onCategoryTap,
   }) : super(key: key);
 
   @override
@@ -29,7 +34,8 @@ class ProjectCategories extends StatelessWidget {
           title: categories[index].title,
           number: categories[index].number,
           isSelected: categories[index].isSelected,
-          onTap: () => {},
+          onTap: onCategoryTap,
+          category: categories[index].category,
           hoverColor: hoverColor,
         ),
       );
