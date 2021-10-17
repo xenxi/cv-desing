@@ -64,13 +64,16 @@ class PortfolioSection extends HookWidget {
           horizontal: CustomTheme.defaultPadding * 4),
       itemCount: curriculumsData.length,
       gridDelegate: _buildGridSize(),
-      itemBuilder: (context, index) => FadeIn(
-            child: ProjectItem(
-              title: curriculumsData[index].reference,
-              subtitle: curriculumsData[index].category.toString(),
-              imageUrl: curriculumsData[index].url,
-            ),
-          ));
+      itemBuilder: (context, index) {
+        return ElasticIn(
+          delay: Duration(milliseconds: 80 * index),
+          child: ProjectItem(
+            title: curriculumsData[index].reference,
+            subtitle: curriculumsData[index].category.toString(),
+            imageUrl: curriculumsData[index].url,
+          ),
+        );
+      });
 
   BoxDecoration _buildSectionDecoration() {
     return BoxDecoration(
