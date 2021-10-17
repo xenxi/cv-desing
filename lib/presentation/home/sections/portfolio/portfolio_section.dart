@@ -3,6 +3,7 @@ import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/components/category_extensions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
@@ -19,7 +20,7 @@ class PortfolioSection extends HookWidget {
           category: category,
           number:
               DesingData.desings.where((e) => e.category == category).length,
-          title: category.toString()))
+          title: category.displayName))
       .toList();
 
   PortfolioSection({Key? key}) : super(key: key);
