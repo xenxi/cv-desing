@@ -27,6 +27,7 @@ class PortfolioSection extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final desings = useState(DesingData.desings);
+    final categories = useState(categoriesData);
     return Section(
       decoration: _buildSectionDecoration(),
       child: Column(
@@ -38,8 +39,11 @@ class PortfolioSection extends HookWidget {
             color: CustomTheme.primaryColor,
           ),
           ProjectCategories(
-            categories: categoriesData,
+            categories: categories.value,
             onCategoryTap: (c) {
+              categories.value = categoriesData
+                  .map((e) => e.copyWith(isSelected: e.category == c))
+                  .toList();
               desings.value =
                   DesingData.desings.where((e) => e.category == c).toList();
             },
@@ -85,6 +89,4 @@ class PortfolioSection extends HookWidget {
         crossAxisSpacing: CustomTheme.defaultPadding * 2,
         mainAxisSpacing: CustomTheme.defaultPadding * 2);
   }
-
-  void _onCategoryTap(Category category) {}
 }

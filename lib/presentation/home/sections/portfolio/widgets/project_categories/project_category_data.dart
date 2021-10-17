@@ -11,4 +11,18 @@ class ProjectCategoryData {
     required this.category,
     this.isSelected = false,
   });
+
+  ProjectCategoryData copyWith({
+    String? title,
+    int? number,
+    bool? isSelected,
+    Category? category,
+  }) {
+    return ProjectCategoryData(
+      title: title ?? this.title,
+      number: number ?? this.number,
+      isSelected: isSelected ?? this.isSelected,
+      category: category ?? this.category,
+    );
+  }
 }
