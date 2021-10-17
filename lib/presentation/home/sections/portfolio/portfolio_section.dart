@@ -1,8 +1,9 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/values/desings_data.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +11,15 @@ import 'widgets/project_categories/project_categories.dart';
 import 'widgets/project_categories/project_category_data.dart';
 import 'widgets/project_item/project_item.dart';
 
-final categoriesData = [
-  ProjectCategoryData(number: 0, title: 'Test 1'),
-  ProjectCategoryData(number: 1, title: 'Test 2'),
-  ProjectCategoryData(number: 2, title: 'Test 3'),
-];
-
 class PortfolioSection extends StatelessWidget {
   final curriculumsData = DesingData.desings;
+  final categoriesData = Category.values
+      .map((category) => ProjectCategoryData(
+          number:
+              DesingData.desings.where((e) => e.category == category).length,
+          title: category.toString()))
+      .toList();
+
   PortfolioSection({Key? key}) : super(key: key);
 
   @override
@@ -38,23 +40,27 @@ class PortfolioSection extends StatelessWidget {
           const SizedBox(
             height: 40.0,
           ),
-          GridView.builder(
-              shrinkWrap: true,
-              padding: EdgeInsets.symmetric(
-                  vertical: CustomTheme.defaultPadding,
-                  horizontal: CustomTheme.defaultPadding * 4),
-              itemCount: curriculumsData.length,
-              gridDelegate: _buildGridSize(),
-              itemBuilder: (context, index) => FadeIn(
-                    child: ProjectItem(
-                      title: curriculumsData[index].reference,
-                      subtitle: curriculumsData[index].category,
-                      imageUrl: curriculumsData[index].url,
-                    ),
-                  ))
+          _buildItems()
         ],
       ),
     );
+  }
+
+  GridView _buildItems() {
+    return GridView.builder(
+        shrinkWrap: true,
+        padding: EdgeInsets.symmetric(
+            vertical: CustomTheme.defaultPadding,
+            horizontal: CustomTheme.defaultPadding * 4),
+        itemCount: curriculumsData.length,
+        gridDelegate: _buildGridSize(),
+        itemBuilder: (context, index) => FadeIn(
+              child: ProjectItem(
+                title: curriculumsData[index].reference,
+                subtitle: curriculumsData[index].category.toString(),
+                imageUrl: curriculumsData[index].url,
+              ),
+            ));
   }
 
   BoxDecoration _buildSectionDecoration() {

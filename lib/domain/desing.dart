@@ -1,8 +1,10 @@
+import 'category.dart';
+
 class Desing {
   final int id;
   final String reference;
   final String url;
-  final String category;
+  final Category category;
 
   Desing(
     this.id,

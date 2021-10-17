@@ -1,9 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button_data.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/comin_soon_logo.dart';
