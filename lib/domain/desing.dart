@@ -1,10 +1,10 @@
-class Curriculum {
+class Desing {
   final int id;
   final String reference;
   final String url;
   final String category;
 
-  Curriculum(
+  Desing(
     this.id,
     this.reference,
     this.url,
