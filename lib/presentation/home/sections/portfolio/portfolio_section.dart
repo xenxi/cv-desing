@@ -30,10 +30,11 @@ class PortfolioSection extends HookWidget {
   Widget build(BuildContext context) {
     final desings = useState(DesingData.desings);
     final categories = useState(categoriesData);
-    return Section(
-      decoration: _buildSectionDecoration(),
-      child: ResponsiveBuilder(builder: (context, sizingInformation) {
-        return Column(
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+      return Section(
+        expandable: !sizingInformation.isMobile,
+        decoration: _buildSectionDecoration(),
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             SectionTitle(
@@ -56,9 +57,9 @@ class PortfolioSection extends HookWidget {
             ),
             _buildItems(desings.value, sizingInformation)
           ],
-        );
-      }),
-    );
+        ),
+      );
+    });
   }
 
   GridView _buildItemList(List<Desing> curriculumsData) => GridView.builder(
@@ -99,9 +100,7 @@ class PortfolioSection extends HookWidget {
 
   Widget _buildItems(List<Desing> items, SizingInformation sizingInformation) {
     if (sizingInformation.isMobile) {
-      return SizedBox(
-        height: sizingInformation.screenSize.height,
-        width: sizingInformation.screenSize.width,
+      return Expanded(
         child: PageView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: items.length,
