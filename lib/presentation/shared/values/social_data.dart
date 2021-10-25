@@ -22,6 +22,6 @@ class SocialData {
         tag: 'TIKTOK_URL',
         iconData: FontAwesomeIcons.tiktok,
         onPressed: () async =>
-            await openUrlLink('https://www.instagram.com/dscurriculumvitae')),
+            await openUrlLink('https://www.tiktok.com/@dscurriculumvitae')),
   ];
 }
