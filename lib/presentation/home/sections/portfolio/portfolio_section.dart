@@ -10,6 +10,7 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'widgets/project_categories/project_categories.dart';
 import 'widgets/project_categories/project_category_data.dart';
 import 'widgets/project_item/project_item.dart';
@@ -31,30 +32,32 @@ class PortfolioSection extends HookWidget {
     final categories = useState(categoriesData);
     return Section(
       decoration: _buildSectionDecoration(),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SectionTitle(
-            title: Location.portfolioSectionTitle,
-            subTitle: Location.portfolioSectionSubtitle,
-            color: CustomTheme.primaryColor,
-          ),
-          ProjectCategories(
-            categories: categories.value,
-            onCategoryTap: (c) {
-              categories.value = categoriesData
-                  .map((e) => e.copyWith(isSelected: e.category == c))
-                  .toList();
-              desings.value =
-                  DesingData.desings.where((e) => e.category == c).toList();
-            },
-          ),
-          const SizedBox(
-            height: 40.0,
-          ),
-          _buildItems(desings.value)
-        ],
-      ),
+      child: ResponsiveBuilder(builder: (context, sizingInformation) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SectionTitle(
+              title: Location.portfolioSectionTitle,
+              subTitle: Location.portfolioSectionSubtitle,
+              color: CustomTheme.primaryColor,
+            ),
+            ProjectCategories(
+              categories: categories.value,
+              onCategoryTap: (c) {
+                categories.value = categoriesData
+                    .map((e) => e.copyWith(isSelected: e.category == c))
+                    .toList();
+                desings.value =
+                    DesingData.desings.where((e) => e.category == c).toList();
+              },
+            ),
+            const SizedBox(
+              height: 40.0,
+            ),
+            _buildItems(desings.value)
+          ],
+        );
+      }),
     );
   }
 
