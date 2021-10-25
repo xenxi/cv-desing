@@ -105,13 +105,10 @@ class PortfolioSection extends HookWidget {
           scrollDirection: Axis.horizontal,
           itemCount: items.length,
           itemBuilder: (context, index) {
-            return Container(
-              color: Colors.red,
-              width: 100,
-              height: 100,
-              child: Center(
-                child: Text("$index"),
-              ),
+            return ProjectItem(
+              title: items[index].reference,
+              subtitle: items[index].category.toString(),
+              imageUrl: items[index].url,
             );
           },
         ),

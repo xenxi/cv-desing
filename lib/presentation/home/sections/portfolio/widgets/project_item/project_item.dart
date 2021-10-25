@@ -28,19 +28,14 @@ class ProjectItem extends HookWidget {
     return InkWell(
       onHover: (val) => isHover.value = val,
       onTap: openEmail,
-      child: ResponsiveBuilder(
-          builder: (BuildContext context, SizingInformation sizingInformation) {
-        return ClipRRect(
-          borderRadius: _cardBorderRadius,
-          child: _buildItem(context,
-              isHover: isHover.value, size: sizingInformation.localWidgetSize),
-        );
-      }),
+      child: ClipRRect(
+        borderRadius: _cardBorderRadius,
+        child: _buildItem(context, isHover: isHover.value),
+      ),
     );
   }
 
-  Widget _buildItem(BuildContext context,
-      {required bool isHover, required Size size}) {
+  Widget _buildItem(BuildContext context, {required bool isHover}) {
     return Container(
       margin: const EdgeInsets.all(2),
       decoration: BoxDecoration(
@@ -62,8 +57,8 @@ class ProjectItem extends HookWidget {
               alignment: Alignment.center,
               child: FlipInX(
                 child: Container(
-                  width: size.width,
-                  height: size.height,
+                  width: double.infinity,
+                  height: double.infinity,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
                           begin: Alignment.topCenter,
@@ -123,6 +118,7 @@ class ProjectItem extends HookWidget {
         borderRadius: _cardBorderRadius,
         child: Image.asset(
           imageUrl,
+          width: double.infinity,
           fit: BoxFit.cover,
           alignment: Alignment.topCenter,
         ),
