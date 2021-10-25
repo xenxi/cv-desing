@@ -106,15 +106,20 @@ class PortfolioSection extends HookWidget {
           padding: EdgeInsets.all(CustomTheme.defaultPadding),
           child: PageView.builder(
             controller: PageController(
-              viewportFraction: .8,
+              viewportFraction: .9,
             ),
             scrollDirection: Axis.horizontal,
             itemCount: items.length,
+            pageSnapping: true,
             itemBuilder: (context, index) {
-              return ProjectItem(
-                title: items[index].reference,
-                subtitle: items[index].category.toString(),
-                imageUrl: items[index].image(),
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: CustomTheme.defaultBorderRadius),
+                child: ProjectItem(
+                  title: items[index].reference,
+                  subtitle: items[index].category.toString(),
+                  imageUrl: items[index].image(),
+                ),
               );
             },
           ),
