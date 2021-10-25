@@ -102,16 +102,22 @@ class PortfolioSection extends HookWidget {
   Widget _buildItems(List<Desing> items, SizingInformation sizingInformation) {
     if (sizingInformation.isMobile) {
       return Expanded(
-        child: PageView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            return ProjectItem(
-              title: items[index].reference,
-              subtitle: items[index].category.toString(),
-              imageUrl: items[index].url,
-            );
-          },
+        child: Padding(
+          padding: EdgeInsets.all(CustomTheme.defaultPadding),
+          child: PageView.builder(
+            controller: PageController(
+              viewportFraction: .8,
+            ),
+            scrollDirection: Axis.horizontal,
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              return ProjectItem(
+                title: items[index].reference,
+                subtitle: items[index].category.toString(),
+                imageUrl: items[index].url,
+              );
+            },
+          ),
         ),
       );
     }

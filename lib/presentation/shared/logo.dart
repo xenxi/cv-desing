@@ -1,15 +1,18 @@
-import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 
 class Logo extends StatelessWidget {
   final double height;
   final double minHeight;
   final Color? color;
+  final void Function() onTap;
   const Logo({
     Key? key,
     required this.height,
     this.minHeight = 0,
     this.color,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -22,10 +25,7 @@ class Logo extends StatelessWidget {
 
     if (color != null) return _applyColor(imgLogo);
 
-    return InkWell(
-        onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
-            AppRouter.home, (Route<dynamic> route) => false),
-        child: imgLogo);
+    return InkWell(onTap: onTap, child: imgLogo);
   }
 
   Widget _applyColor(Image logo) {

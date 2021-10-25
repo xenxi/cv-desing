@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
@@ -26,8 +27,10 @@ class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
       title: IntrinsicHeight(
         child: Row(
           children: [
-            const Logo(
+            Logo(
               height: 80,
+              onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
+                  AppRouter.home, (Route<dynamic> route) => false),
             ),
             const SizedBox(width: 20),
             const NavbarDivider(),
