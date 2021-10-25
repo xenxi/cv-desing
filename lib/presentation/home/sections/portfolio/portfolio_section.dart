@@ -54,14 +54,14 @@ class PortfolioSection extends HookWidget {
             const SizedBox(
               height: 40.0,
             ),
-            _buildItems(desings.value)
+            _buildItems(desings.value, sizingInformation)
           ],
         );
       }),
     );
   }
 
-  GridView _buildItems(List<Desing> curriculumsData) => GridView.builder(
+  GridView _buildItemList(List<Desing> curriculumsData) => GridView.builder(
       shrinkWrap: true,
       padding: EdgeInsets.symmetric(
           vertical: CustomTheme.defaultPadding,
@@ -70,7 +70,7 @@ class PortfolioSection extends HookWidget {
       gridDelegate: _buildGridSize(),
       itemBuilder: (context, index) {
         return ElasticIn(
-          delay: Duration(milliseconds: 80 * index),
+          delay: Duration(milliseconds: 100 * index),
           child: ProjectItem(
             title: curriculumsData[index].reference,
             subtitle: curriculumsData[index].category.toString(),
@@ -95,5 +95,30 @@ class PortfolioSection extends HookWidget {
         childAspectRatio: .7,
         crossAxisSpacing: CustomTheme.defaultPadding * 2,
         mainAxisSpacing: CustomTheme.defaultPadding * 2);
+  }
+
+  Widget _buildItems(List<Desing> items, SizingInformation sizingInformation) {
+    if (sizingInformation.isMobile) {
+      return SizedBox(
+        height: sizingInformation.screenSize.height,
+        width: sizingInformation.screenSize.width,
+        child: PageView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            return Container(
+              color: Colors.red,
+              width: 100,
+              height: 100,
+              child: Center(
+                child: Text("$index"),
+              ),
+            );
+          },
+        ),
+      );
+    }
+
+    return _buildItemList(items);
   }
 }
