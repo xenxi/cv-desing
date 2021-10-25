@@ -15,7 +15,6 @@ class ComingSoonLogo extends StatelessWidget {
           child: Logo(
             height: MediaQuery.of(context).size.height * .4,
             minHeight: 250,
-            onTap: () {},
             // color: Colors.amberAccent,
           ),
         ),

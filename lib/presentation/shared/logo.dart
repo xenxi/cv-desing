@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
-
 class Logo extends StatelessWidget {
   final double height;
   final double minHeight;
   final Color? color;
-  final void Function() onTap;
+  final void Function()? onTap;
   const Logo({
     Key? key,
     required this.height,
     this.minHeight = 0,
     this.color,
-    required this.onTap,
+    this.onTap,
   }) : super(key: key);
 
   @override
