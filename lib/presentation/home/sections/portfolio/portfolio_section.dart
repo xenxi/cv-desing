@@ -21,7 +21,8 @@ class PortfolioSection extends HookWidget {
           category: category,
           number:
               DesingData.desings.where((e) => e.category == category).length,
-          title: category.displayName))
+          title: category.displayName,
+          isSelected: category == Category.curriculum))
       .toList();
 
   PortfolioSection({Key? key}) : super(key: key);
