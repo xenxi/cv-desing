@@ -76,7 +76,7 @@ class PortfolioSection extends HookWidget {
           child: ProjectItem(
             title: curriculumsData[index].reference,
             subtitle: curriculumsData[index].category.toString(),
-            imageUrl: curriculumsData[index].fileName,
+            imageUrl: curriculumsData[index].thumbnail(),
           ),
         );
       });
@@ -114,7 +114,7 @@ class PortfolioSection extends HookWidget {
               return ProjectItem(
                 title: items[index].reference,
                 subtitle: items[index].category.toString(),
-                imageUrl: items[index].fileName,
+                imageUrl: items[index].image(),
               );
             },
           ),

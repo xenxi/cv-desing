@@ -5,16 +5,16 @@ import 'category.dart';
 class Desing {
   final int id;
   final String reference;
-  final String fileName;
+  final String _fileName;
   final Category category;
 
   Desing(
     this.id,
     this.reference,
-    this.fileName,
+    this._fileName,
     this.category,
   );
 
-  String thumbnail() => '${ImagePath.curriculumsThumbnailDir}/$fileName';
-  String image() => '${ImagePath.curriculumsDir}/$fileName';
+  String thumbnail() => '${ImagePath.curriculumsThumbnailDir}/$_fileName';
+  String image() => '${ImagePath.curriculumsDir}/$_fileName';
 }
