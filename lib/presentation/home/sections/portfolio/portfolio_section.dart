@@ -114,10 +114,10 @@ class PortfolioSection extends HookWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: IconButton(
-              icon: Icon(
+              iconSize: 50,
+              color: CustomTheme.primaryColor,
+              icon: const Icon(
                 Icons.chevron_left,
-                color: CustomTheme.primaryColor,
-                size: 50,
               ),
               onPressed: () {},
             ),
@@ -125,10 +125,10 @@ class PortfolioSection extends HookWidget {
           Align(
             alignment: Alignment.centerRight,
             child: IconButton(
-              icon: Icon(
+              color: CustomTheme.primaryColor,
+              iconSize: 50,
+              icon: const Icon(
                 Icons.chevron_right,
-                color: CustomTheme.primaryColor,
-                size: 50,
               ),
               onPressed: () {},
             ),
