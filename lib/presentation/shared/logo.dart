@@ -21,9 +21,11 @@ class Logo extends StatelessWidget {
       fit: BoxFit.contain,
     );
 
-    if (color != null) return _applyColor(imgLogo);
+    final logoWithColor = color != null ? _applyColor(imgLogo) : imgLogo;
 
-    return InkWell(onTap: onTap, child: imgLogo);
+    return onTap != null
+        ? InkWell(onTap: onTap, child: logoWithColor)
+        : logoWithColor;
   }
 
   Widget _applyColor(Image logo) {
