@@ -109,27 +109,54 @@ class PortfolioSection extends HookWidget {
 
   Expanded _buildMobileItemList(List<Desing> items) {
     return Expanded(
-      child: Padding(
-        padding: EdgeInsets.all(CustomTheme.defaultPadding),
-        child: PageView.builder(
-          controller: PageController(
-            viewportFraction: .9,
-          ),
-          scrollDirection: Axis.horizontal,
-          itemCount: items.length,
-          pageSnapping: true,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: CustomTheme.defaultBorderRadius),
-              child: ProjectItem(
-                title: items[index].reference,
-                subtitle: items[index].category.toString(),
-                imageUrl: items[index].image(),
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: IconButton(
+              icon: Icon(
+                Icons.chevron_left,
+                color: CustomTheme.primaryColor,
+                size: 50,
               ),
-            );
-          },
-        ),
+              onPressed: () {},
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: IconButton(
+              icon: Icon(
+                Icons.chevron_right,
+                color: CustomTheme.primaryColor,
+                size: 50,
+              ),
+              onPressed: () {},
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: 35, vertical: CustomTheme.defaultBorderRadius),
+            child: PageView.builder(
+              controller: PageController(
+                viewportFraction: 1,
+              ),
+              scrollDirection: Axis.horizontal,
+              itemCount: items.length,
+              pageSnapping: true,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: CustomTheme.defaultBorderRadius),
+                  child: ProjectItem(
+                    title: items[index].reference,
+                    subtitle: items[index].category.toString(),
+                    imageUrl: items[index].image(),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
