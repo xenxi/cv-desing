@@ -1,7 +1,9 @@
+import 'package:cv_desing_website_flutter/presentation/home/widgets/navbar/custom_mobile_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/scroller_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'sections/home_section.dart';
 import 'sections/portfolio/portfolio_section.dart';
 import 'widgets/navbar/custom_navbar.dart';
@@ -22,25 +24,36 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomNavBar(
-        socialData: SocialData.links,
-        navItems: navItems,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            HomeSection(
-              key: homeKey,
-              goToProjectSection: () =>
-                  scrollToSection(desingsKey.currentContext),
-            ),
-            PortfolioSection(
-              key: desingsKey,
-            )
-          ],
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+      return Scaffold(
+        appBar: _buildNavBar(sizingInformation) as PreferredSizeWidget,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              HomeSection(
+                key: homeKey,
+                goToProjectSection: () =>
+                    scrollToSection(desingsKey.currentContext),
+              ),
+              PortfolioSection(
+                key: desingsKey,
+              )
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
+  }
+
+  Widget _buildNavBar(SizingInformation sizingInformation) {
+    return sizingInformation.isMobile
+        ? CustomMobileNavBar(
+            socialData: SocialData.links,
+            navItems: navItems,
+          )
+        : CustomNavBar(
+            socialData: SocialData.links,
+            navItems: navItems,
+          );
   }
 }
