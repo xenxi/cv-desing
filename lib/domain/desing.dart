@@ -15,6 +15,6 @@ class Desing {
     this.category,
   );
 
-  String thumbnail() => '${ImagePath.curriculumsThumbnailDir}/$_fileName';
-  String image() => '${ImagePath.curriculumsDir}/$_fileName';
+  String thumbnail() => '${ImagePath.desingsThumbnailDir}/$_fileName';
+  String image() => '${ImagePath.desingsDir}/$_fileName';
 }
