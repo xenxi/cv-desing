@@ -1,6 +1,6 @@
 class ImagePath {
   static const String imageDir = 'assets/img';
-  static const String desingsDir = 'assets/cvs';
+  static const String desingsDir = 'assets/desings';
   static const String desingsThumbnailDir = '$desingsDir/thumbnail';
   static const String logo = '$imageDir/logo.png';
   static const String logoXs = '$imageDir/logo_xs.png';
