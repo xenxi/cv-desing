@@ -31,6 +31,8 @@ class PortfolioSection extends HookWidget {
   Widget build(BuildContext context) {
     final desings = useState(DesingData.desings);
     final categories = useState(categoriesData);
+    final controller = usePageController();
+
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       return Section(
         expandable: !sizingInformation.isMobile,
@@ -56,7 +58,8 @@ class PortfolioSection extends HookWidget {
             const SizedBox(
               height: 40.0,
             ),
-            _buildItems(desings.value, sizingInformation)
+            _buildItems(desings.value,
+                sizingInformation: sizingInformation, controller: controller)
           ],
         ),
       );
@@ -99,15 +102,18 @@ class PortfolioSection extends HookWidget {
         mainAxisSpacing: CustomTheme.defaultPadding * 2);
   }
 
-  Widget _buildItems(List<Desing> items, SizingInformation sizingInformation) {
+  Widget _buildItems(List<Desing> items,
+      {required SizingInformation sizingInformation,
+      required PageController controller}) {
     if (sizingInformation.isMobile) {
-      return _buildMobileItemList(items);
+      return _buildMobileItemList(items, controller: controller);
     }
 
     return _buildItemList(items);
   }
 
-  Expanded _buildMobileItemList(List<Desing> items) {
+  Expanded _buildMobileItemList(List<Desing> items,
+      {required PageController controller}) {
     return Expanded(
       child: Stack(
         children: [
@@ -119,7 +125,9 @@ class PortfolioSection extends HookWidget {
               icon: const Icon(
                 Icons.chevron_left,
               ),
-              onPressed: () {},
+              onPressed: () => controller.previousPage(
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOutExpo),
             ),
           ),
           Align(
@@ -130,16 +138,16 @@ class PortfolioSection extends HookWidget {
               icon: const Icon(
                 Icons.chevron_right,
               ),
-              onPressed: () {},
+              onPressed: () => controller.nextPage(
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOutExpo),
             ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: 35, vertical: CustomTheme.defaultBorderRadius),
             child: PageView.builder(
-              controller: PageController(
-                viewportFraction: 1,
-              ),
+              controller: controller,
               scrollDirection: Axis.horizontal,
               itemCount: items.length,
               pageSnapping: true,
