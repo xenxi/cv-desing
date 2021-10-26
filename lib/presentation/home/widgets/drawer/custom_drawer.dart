@@ -1,12 +1,16 @@
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
+import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/navbar/nav_item.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/components/scroller_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cv_desing_website_flutter/presentation/home/widgets/navbar/navbar_item_data.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class CustomDrawer extends StatelessWidget {
+class CustomDrawer extends HookWidget {
   final Color color;
   final double? width;
   final List<NavItemData> menuList;
@@ -19,6 +23,7 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final items = useState(menuList);
     return SizedBox(
       width: width ?? widthOfScreen(context) * .85,
       child: Drawer(
@@ -42,7 +47,7 @@ class CustomDrawer extends StatelessWidget {
                 ],
               ),
               const Spacer(flex: 2),
-              ..._buildMenuList(context, menuList: menuList),
+              ..._buildMenuList(context, menuList: items),
               const Spacer(flex: 6),
             ],
           ),
@@ -53,28 +58,52 @@ class CustomDrawer extends StatelessWidget {
 
   List<Widget> _buildMenuList(
     BuildContext context, {
-    required List<NavItemData> menuList,
+    required ValueNotifier<List<NavItemData>> menuList,
   }) {
     TextTheme textTheme = Theme.of(context).textTheme;
     List<Widget> menuItems = [];
-    for (var i = 0; i < menuList.length; i++) {
+    for (var i = 0; i < menuList.value.length; i++) {
       menuItems.add(
         NavItem(
-          onTap: () => {},
-          title: menuList[i].name,
-          isSelected: menuList[i].isSelected,
+          onTap: () => _onTapNavItem(context,
+              items: menuList, selected: menuList.value[i]),
+          title: menuList.value[i].name,
+          isSelected: menuList.value[i].isSelected,
           titleStyle: textTheme.bodyText1?.copyWith(
-            color: menuList[i].isSelected
+            color: menuList.value[i].isSelected
                 ? CustomTheme.primaryColor
                 : Colors.white,
             fontSize: 16,
-            fontWeight:
-                menuList[i].isSelected ? FontWeight.bold : FontWeight.normal,
+            fontWeight: menuList.value[i].isSelected
+                ? FontWeight.bold
+                : FontWeight.normal,
           ),
         ),
       );
       menuItems.add(const Spacer());
     }
     return menuItems;
+  }
+
+  void _onTapNavItem(
+    BuildContext context, {
+    required NavItemData selected,
+    required ValueNotifier<List<NavItemData>> items,
+  }) {
+    if (selected.name == Location.blog) {
+      Navigator.of(context).pushNamed(AppRouter.blog);
+    } else {
+      for (var item in items.value) {
+        if (selected.name == item.name) {
+          scrollToSection(item.key.currentContext!);
+          item.isSelected = true;
+        } else {
+          item.isSelected = false;
+        }
+      }
+      items.value = List.from(menuList);
+    }
+
+    Navigator.of(context).pop();
   }
 }
