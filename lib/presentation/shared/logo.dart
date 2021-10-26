@@ -18,7 +18,7 @@ class Logo extends StatelessWidget {
   Widget build(BuildContext context) {
     final imgLogo = Image(
       height: height < minHeight ? minHeight : height,
-      image: const AssetImage(ImagePath.logo),
+      image: AssetImage(height > 200 ? ImagePath.logo : ImagePath.logoXs),
       fit: BoxFit.contain,
     );
 
