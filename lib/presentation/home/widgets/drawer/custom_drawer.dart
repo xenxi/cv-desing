@@ -1,6 +1,7 @@
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/navbar/nav_item.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cv_desing_website_flutter/presentation/home/widgets/navbar/navbar_item_data.dart';
@@ -26,7 +27,24 @@ class CustomDrawer extends StatelessWidget {
           padding: EdgeInsets.all(CustomTheme.defaultPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: _buildMenuList(context, menuList: menuList),
+            children: [
+              Row(
+                children: [
+                  const Logo(height: 52),
+                  const Spacer(),
+                  IconButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      iconSize: 30,
+                      color: Colors.white,
+                      icon: const Icon(
+                        Icons.close,
+                      ))
+                ],
+              ),
+              const Spacer(flex: 2),
+              ..._buildMenuList(context, menuList: menuList),
+              const Spacer(flex: 6),
+            ],
           ),
         ),
       ),
