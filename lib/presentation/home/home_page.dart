@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/drawer/custom_drawer.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/navbar/custom_mobile_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/scroller_funtions.dart';
@@ -28,7 +29,12 @@ class HomePage extends StatelessWidget {
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       return Scaffold(
         appBar: _buildNavBar(sizingInformation) as PreferredSizeWidget,
-        drawer: sizingInformation.isMobile ? const CustomDrawer() : null,
+        drawer: sizingInformation.isMobile
+            ? CustomDrawer(
+                menuList: navItems,
+                color: CustomTheme.secondaryColor,
+              )
+            : null,
         body: SingleChildScrollView(
           child: Column(
             children: [
