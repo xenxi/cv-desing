@@ -13,8 +13,7 @@ class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       toolbarHeight: CustomTheme.navbarHeight,
-      // backgroundColor: CustomTheme.secondaryColor,
-      backgroundColor: const Color(0xFF313131),
+      backgroundColor: CustomTheme.secondaryColor,
       title: IntrinsicHeight(
         child: Row(
           children: [
@@ -23,6 +22,9 @@ class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {
               height: 80,
               onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
                   AppRouter.home, (Route<dynamic> route) => false),
+            ),
+            const SizedBox(
+              width: 35,
             ),
             const Spacer(),
           ],
