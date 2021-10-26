@@ -47,10 +47,7 @@ class HomePage extends StatelessWidget {
 
   Widget _buildNavBar(SizingInformation sizingInformation) {
     return sizingInformation.isMobile
-        ? CustomMobileNavBar(
-            socialData: SocialData.links,
-            navItems: navItems,
-          )
+        ? const CustomMobileNavBar()
         : CustomNavBar(
             socialData: SocialData.links,
             navItems: navItems,
