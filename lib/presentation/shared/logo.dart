@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {
@@ -17,7 +18,7 @@ class Logo extends StatelessWidget {
   Widget build(BuildContext context) {
     final imgLogo = Image(
       height: height < minHeight ? minHeight : height,
-      image: const AssetImage('assets/img/logo.png'),
+      image: const AssetImage(ImagePath.logo),
       fit: BoxFit.contain,
     );
 
