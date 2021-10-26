@@ -7,7 +7,7 @@ class AppRouter {
   static String home = '/preview';
   static Map<String, WidgetBuilder> routes = {
     // '': (context) => const ComingSoonPage(),
-    '/': (context) => const ComingSoonPage(),
+    '/': (context) => const HomePage(),
     home: (context) => const HomePage(),
     blog: (context) => const ComingSoonPage(),
   };
