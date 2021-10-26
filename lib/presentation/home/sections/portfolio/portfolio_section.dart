@@ -29,7 +29,9 @@ class PortfolioSection extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final desings = useState(DesingData.desings);
+    final desings = useState(DesingData.desings
+        .where((e) => e.category == Category.curriculum)
+        .toList());
     final categories = useState(categoriesData);
     final controller = usePageController();
 
