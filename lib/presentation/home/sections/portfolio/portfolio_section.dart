@@ -14,7 +14,6 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'widgets/project_categories/project_categories.dart';
 import 'widgets/project_categories/project_category_data.dart';
 import 'widgets/project_item/project_item.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/components/category_extensions.dart';
 
 class PortfolioSection extends HookWidget {
   final categoriesData = Category.values
