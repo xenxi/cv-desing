@@ -22,14 +22,19 @@ class Footer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Center(
+          child: Text(
+            '© ${DateTime.now().year} ${Location.rightsReserved} ',
+            style: footerTextStyle,
+          ),
+        ),
+        Center(
           child: SelectableText.rich(
             TextSpan(
-              text: '${DateTime.now().year} ${Location.rightsReserved} ',
+              text: '${Location.designedBy} ',
               style: footerTextStyle,
               children: [
-                const TextSpan(text: '${Location.designedBy} '),
                 TextSpan(
-                  text: Location.dsCurriculum,
+                  text: '${Location.dsCurriculum}.',
                   style: footerTextStyle?.copyWith(
                     decoration: TextDecoration.underline,
                     fontWeight: FontWeight.w900,
@@ -40,6 +45,9 @@ class Footer extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
+        ),
+        const SizedBox(
+          height: 4,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
