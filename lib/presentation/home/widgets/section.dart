@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
-import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
+import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 
 class Section extends StatelessWidget {
   final Widget child;

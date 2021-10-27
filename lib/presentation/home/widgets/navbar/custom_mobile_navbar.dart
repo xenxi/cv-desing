@@ -1,7 +1,7 @@
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:flutter/material.dart';
 
-import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
+import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 
 class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {

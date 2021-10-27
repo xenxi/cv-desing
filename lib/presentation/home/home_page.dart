@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
+import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/drawer/custom_drawer.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/footer.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/navbar/custom_mobile_navbar.dart';

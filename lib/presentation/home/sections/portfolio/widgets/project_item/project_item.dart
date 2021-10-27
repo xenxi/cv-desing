@@ -1,5 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
+import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/launcher_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/email_address.dart';
 import 'package:flutter/material.dart';
