@@ -39,6 +39,7 @@ class PortfolioSection extends HookWidget {
       return Section(
         expandable: !sizingInformation.isMobile,
         decoration: _buildSectionDecoration(),
+        padding: const EdgeInsets.only(bottom: CustomTheme.footerPadding),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
