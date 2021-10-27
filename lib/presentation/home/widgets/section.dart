@@ -7,10 +7,12 @@ class Section extends StatelessWidget {
   final Widget child;
   final BoxDecoration? decoration;
   final bool expandable;
+  final EdgeInsets? padding;
   const Section({
     Key? key,
     required this.child,
     this.decoration,
+    this.padding,
     this.expandable = true,
   }) : super(key: key);
 
@@ -24,6 +26,7 @@ class Section extends StatelessWidget {
         maxHeight: expandable ? double.infinity : height,
       ),
       child: child,
+      padding: padding,
       decoration: decoration,
       alignment: Alignment.center,
     );
