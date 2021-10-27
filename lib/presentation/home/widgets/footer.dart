@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Footer extends StatelessWidget {
-  const Footer({Key? key}) : super(key: key);
+  final Color textColor;
+  final Color textLinkColor;
+  const Footer({Key? key, required this.textColor, required this.textLinkColor})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +18,7 @@ class Footer extends StatelessWidget {
   Widget _buildFooterText(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     TextStyle? footerTextStyle = textTheme.caption?.copyWith(
-      color: CustomTheme.primaryText2,
+      color: textColor,
       fontWeight: FontWeight.bold,
     );
     return Column(
@@ -38,7 +41,7 @@ class Footer extends StatelessWidget {
                   style: footerTextStyle?.copyWith(
                     decoration: TextDecoration.underline,
                     fontWeight: FontWeight.w900,
-                    color: Colors.white,
+                    color: textLinkColor,
                   ),
                 ),
               ],
@@ -62,7 +65,7 @@ class Footer extends StatelessWidget {
                     style: footerTextStyle?.copyWith(
                       decoration: TextDecoration.underline,
                       fontWeight: FontWeight.w900,
-                      color: Colors.white,
+                      color: textLinkColor,
                     ),
                   ),
                 ],

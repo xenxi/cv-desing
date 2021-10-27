@@ -50,7 +50,10 @@ class CustomDrawer extends HookWidget {
               const Spacer(flex: 2),
               ..._buildMenuList(context, menuList: items),
               const Spacer(flex: 6),
-              const Footer(),
+              const Footer(
+                textColor: CustomTheme.primaryText2,
+                textLinkColor: Colors.white,
+              ),
             ],
           ),
         ),

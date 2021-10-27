@@ -47,7 +47,13 @@ class HomePage extends StatelessWidget {
               PortfolioSection(
                 key: desingsKey,
               ),
-              const Footer(),
+              Padding(
+                padding: EdgeInsets.all(CustomTheme.defaultPadding),
+                child: Footer(
+                  textColor: CustomTheme.primaryText2,
+                  textLinkColor: CustomTheme.primaryColor,
+                ),
+              ),
             ],
           ),
         ),
