@@ -9,4 +9,18 @@ class Location {
   static const curriculum = 'Curriculum';
   static const flyer = 'flyer';
   static const businessCard = 'Tarjeta visita';
+
+  static const rightsReserved = 'All rights reserved';
+
+  static const designedBy = 'Designed by';
+
+  static const dsCurriculum = 'Diseños Currículum Vitae';
+
+  static const builtBy = 'Built with Flutter by';
+
+  static const amdiaz = 'amdiaz';
+
+  static const madeIn = 'Made in';
+
+  static const withLove = 'with';
 }

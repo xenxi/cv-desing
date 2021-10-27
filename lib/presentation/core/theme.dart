@@ -6,6 +6,10 @@ class CustomTheme {
   static double defaultBorderRadius = 10.0;
   static Color primaryColor = const Color.fromRGBO(194, 162, 126, 1);
   static Color secondaryColor = const Color.fromRGBO(35, 31, 32, 1);
+
+  static const Color primaryText1 = Color(0xFF959595);
+  static const Color primaryText2 = Color(0xFF717171);
+
   static ThemeData get lightTheme {
     return ThemeData.light().copyWith(
         primaryColor: primaryColor,

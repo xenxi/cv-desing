@@ -1,6 +1,7 @@
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/theme.dart';
+import 'package:cv_desing_website_flutter/presentation/home/widgets/footer.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/navbar/nav_item.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/scroller_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
@@ -49,6 +50,7 @@ class CustomDrawer extends HookWidget {
               const Spacer(flex: 2),
               ..._buildMenuList(context, menuList: items),
               const Spacer(flex: 6),
+              const Footer(),
             ],
           ),
         ),
