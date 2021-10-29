@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
+import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/category_extensions.dart';
@@ -83,6 +84,8 @@ class PortfolioSection extends HookWidget {
             title: curriculumsData[index].reference,
             subtitle: curriculumsData[index].category.displayName,
             imageUrl: curriculumsData[index].thumbnail(),
+            onTap: () =>
+                openDetailView(context, desing: curriculumsData[index]),
           ),
         );
       });
@@ -162,6 +165,7 @@ class PortfolioSection extends HookWidget {
                     title: items[index].reference,
                     subtitle: items[index].category.displayName,
                     imageUrl: items[index].image(),
+                    onTap: () => openDetailView(context, desing: items[index]),
                   ),
                 );
               },
@@ -170,5 +174,9 @@ class PortfolioSection extends HookWidget {
         ],
       ),
     );
+  }
+
+  void openDetailView(BuildContext context, {required Desing desing}) {
+    Navigator.pushNamed(context, AppRouter.details, arguments: desing);
   }
 }
