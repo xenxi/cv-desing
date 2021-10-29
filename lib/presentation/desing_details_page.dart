@@ -6,9 +6,11 @@ class DesingDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final desing = ModalRoute.of(context)?.settings.arguments as Desing;
+
     return Container(
       child: Center(
-        child: Text('hellow world'),
+        child: Text(desing.reference),
       ),
     );
   }
