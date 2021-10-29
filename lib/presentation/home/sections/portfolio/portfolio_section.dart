@@ -164,7 +164,7 @@ class PortfolioSection extends HookWidget {
                   child: ProjectItem(
                     title: items[index].reference,
                     subtitle: items[index].category.displayName,
-                    imageUrl: items[index].image(),
+                    imageUrl: items[index].thumbnail(),
                     onTap: () => openDetailView(context, desing: items[index]),
                   ),
                 );
