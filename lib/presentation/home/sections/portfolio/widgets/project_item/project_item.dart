@@ -103,12 +103,15 @@ class ProjectItem extends HookWidget {
         ),
         SizedBox(height: CustomTheme.defaultPadding),
         ElevatedButton.icon(
-            onPressed: onTap,
+            onPressed: openEmail,
             icon: const Icon(Icons.info),
             label: const Text("Solicitar"))
       ],
     );
   }
+
+  Future<void> openEmail() =>
+      openMail(EmailAddress.defaultAccount, subject: title);
 
   Widget _buildProjectImage(BuildContext context) => ClipRRect(
         borderRadius: _cardBorderRadius,
