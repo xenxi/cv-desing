@@ -13,12 +13,15 @@ class DesingDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Section(
-        child: Image(
-          height: heightOfScreen(context),
-          alignment: Alignment.topCenter,
-          fit: BoxFit.fitHeight,
-          image: AssetImage(
-            desing.image(),
+        child: Hero(
+          tag: desing.reference,
+          child: Image(
+            height: heightOfScreen(context),
+            alignment: Alignment.topCenter,
+            fit: BoxFit.fitHeight,
+            image: AssetImage(
+              desing.image(),
+            ),
           ),
         ),
       ),

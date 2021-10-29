@@ -113,13 +113,16 @@ class ProjectItem extends HookWidget {
   Future<void> openEmail() =>
       openMail(EmailAddress.defaultAccount, subject: title);
 
-  Widget _buildProjectImage(BuildContext context) => ClipRRect(
-        borderRadius: _cardBorderRadius,
-        child: Image.asset(
-          imageUrl,
-          width: double.infinity,
-          fit: BoxFit.cover,
-          alignment: Alignment.topCenter,
+  Widget _buildProjectImage(BuildContext context) => Hero(
+        tag: title,
+        child: ClipRRect(
+          borderRadius: _cardBorderRadius,
+          child: Image.asset(
+            imageUrl,
+            width: double.infinity,
+            fit: BoxFit.cover,
+            alignment: Alignment.topCenter,
+          ),
         ),
       );
 }
