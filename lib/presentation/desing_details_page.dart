@@ -4,7 +4,6 @@ import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +15,8 @@ class DesingDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final desing = ModalRoute.of(context)?.settings.arguments as Desing?;
-    final desing = DesingData.desings.first;
+    final desing = ModalRoute.of(context)?.settings.arguments as Desing?;
+    // final desing = DesingData.desings.first;
 
     if (desing == null) return notFound(context);
 
@@ -26,10 +25,6 @@ class DesingDetailsPage extends StatelessWidget {
         height: heightOfScreen(context),
         child: Stack(
           children: [
-            Align(
-              alignment: Alignment.center,
-              child: _buildImageBackground(),
-            ),
             Align(
               alignment: Alignment.center,
               child: _buildImage(desing),
@@ -56,14 +51,21 @@ class DesingDetailsPage extends StatelessWidget {
   }
 
   Widget _buildImage(Desing desing) {
-    return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+    return Container(
+      decoration: BoxDecoration(
+          color: CustomTheme.secondaryColor,
+          image: const DecorationImage(
+            image: AssetImage(
+              ImagePath.bg11,
+            ),
+            fit: BoxFit.cover,
+          )),
       child: Center(
         child: Hero(
           tag: desing.reference,
           child: Image(
             alignment: Alignment.topCenter,
-            fit: BoxFit.contain,
+            fit: BoxFit.cover,
             image: AssetImage(
               desing.image(),
             ),
@@ -72,16 +74,6 @@ class DesingDetailsPage extends StatelessWidget {
       ),
     );
   }
-
-  Widget _buildImageBackground() => const Image(
-        alignment: Alignment.topCenter,
-        fit: BoxFit.cover,
-        height: double.infinity,
-        width: double.infinity,
-        image: AssetImage(
-          ImagePath.bg10,
-        ),
-      );
 
   Future<void> openEmail(BuildContext context,
       {required String subject}) async {
