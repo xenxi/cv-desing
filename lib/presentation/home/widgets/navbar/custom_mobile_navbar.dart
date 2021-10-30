@@ -19,14 +19,14 @@ class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {
           children: [
             const Spacer(),
             Logo(
-              height: 80,
+              height: 50,
               onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
                   AppRouter.home, (Route<dynamic> route) => false),
             ),
             const SizedBox(
               width: 35,
             ),
-            const Spacer(),
+            // const Spacer(),
           ],
         ),
       ),
@@ -34,5 +34,5 @@ class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(100);
+  Size get preferredSize => const Size.fromHeight(60);
 }
