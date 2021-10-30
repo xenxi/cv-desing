@@ -23,17 +23,7 @@ class DesingDetailsPage extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.center,
-              child: Hero(
-                tag: desing.reference,
-                child: Image(
-                  height: double.infinity,
-                  alignment: Alignment.topCenter,
-                  fit: BoxFit.fitHeight,
-                  image: AssetImage(
-                    desing.image(),
-                  ),
-                ),
-              ),
+              child: _buildImage(desing),
             ),
             Align(
               alignment: Alignment.topRight,
@@ -52,6 +42,20 @@ class DesingDetailsPage extends StatelessWidget {
         ),
         backgroundColor: CustomTheme.primaryColor,
         onPressed: () => openEmail(context, subject: desing.reference),
+      ),
+    );
+  }
+
+  Hero _buildImage(Desing desing) {
+    return Hero(
+      tag: desing.reference,
+      child: Image(
+        height: double.infinity,
+        alignment: Alignment.topCenter,
+        fit: BoxFit.fitHeight,
+        image: AssetImage(
+          desing.image(),
+        ),
       ),
     );
   }
