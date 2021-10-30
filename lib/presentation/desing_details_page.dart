@@ -1,5 +1,6 @@
 import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
+import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,10 @@ class DesingDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final desing = ModalRoute.of(context)?.settings.arguments as Desing;
+    final desing = ModalRoute.of(context)?.settings.arguments as Desing?;
+
+    if (desing == null) return notFound(context);
+
     return Scaffold(
       body: SizedBox(
         height: heightOfScreen(context),
@@ -60,5 +64,19 @@ class DesingDetailsPage extends StatelessWidget {
 
   void close(BuildContext context) {
     Navigator.of(context).pop();
+  }
+
+  Widget notFound(BuildContext context) {
+    return Column(
+      children: [
+        Icon(Icons.search_off),
+        Text('No se ha encontrado el recurso que buscaba'),
+        ElevatedButton.icon(
+            onPressed: () =>
+                Navigator.pushReplacementNamed(context, AppRouter.home),
+            icon: const Icon(Icons.refresh),
+            label: const Text('Ir al menu'))
+      ],
+    );
   }
 }
