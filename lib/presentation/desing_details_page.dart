@@ -4,6 +4,7 @@ import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +16,8 @@ class DesingDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final desing = ModalRoute.of(context)?.settings.arguments as Desing?;
-    // final desing = DesingData.desings.first;
+    // final desing = ModalRoute.of(context)?.settings.arguments as Desing?;
+    final desing = DesingData.desings.first;
 
     if (desing == null) return notFound(context);
 
@@ -41,8 +42,8 @@ class DesingDetailsPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(
-          Icons.shop,
-          color: Colors.white,
+          Icons.shopping_cart_outlined,
+          color: Colors.black,
         ),
         backgroundColor: CustomTheme.primaryColor,
         onPressed: () => openEmail(context, subject: desing.reference),

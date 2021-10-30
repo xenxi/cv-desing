@@ -8,6 +8,7 @@ class CvDesingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Diseños CV',
       initialRoute: '/',
       routes: AppRouter.routes,
