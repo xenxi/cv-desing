@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
@@ -49,9 +50,12 @@ class DesingDetailsPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(
-          Icons.shopping_cart_outlined,
-          color: Colors.black,
+        child: Swing(
+          infinite: true,
+          child: const Icon(
+            Icons.shopping_cart_outlined,
+            color: Colors.black,
+          ),
         ),
         backgroundColor: CustomTheme.primaryColor,
         onPressed: () => openEmail(context, subject: desing.reference),
