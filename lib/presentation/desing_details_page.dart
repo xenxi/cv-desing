@@ -46,15 +46,16 @@ class DesingDetailsPage extends StatelessWidget {
     );
   }
 
-  Hero _buildImage(Desing desing) {
-    return Hero(
-      tag: desing.reference,
-      child: Image(
-        height: double.infinity,
-        alignment: Alignment.topCenter,
-        fit: BoxFit.fitHeight,
-        image: AssetImage(
-          desing.image(),
+  Widget _buildImage(Desing desing) {
+    return Center(
+      child: Hero(
+        tag: desing.reference,
+        child: Image(
+          alignment: Alignment.topCenter,
+          fit: BoxFit.contain,
+          image: AssetImage(
+            desing.image(),
+          ),
         ),
       ),
     );
