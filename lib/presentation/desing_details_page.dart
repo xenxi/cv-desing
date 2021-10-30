@@ -32,9 +32,17 @@ class DesingDetailsPage extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: IconButton(
-                onPressed: () => close(context),
-                icon: const Icon(Icons.close),
+              child: Padding(
+                padding: EdgeInsets.all(CustomTheme.defaultPadding),
+                child: ClipOval(
+                  child: Material(
+                    color: CustomTheme.primaryColor,
+                    child: IconButton(
+                      onPressed: () => close(context),
+                      icon: const Icon(Icons.close),
+                    ),
+                  ),
+                ),
               ),
             )
           ],
