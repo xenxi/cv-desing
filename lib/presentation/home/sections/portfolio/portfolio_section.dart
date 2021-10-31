@@ -38,7 +38,7 @@ class PortfolioSection extends HookWidget {
 
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       return Section(
-        expandable: !sizingInformation.isMobile,
+        // expandable: !sizingInformation.isMobile,
         decoration: _buildSectionDecoration(),
         padding: const EdgeInsets.only(bottom: CustomTheme.footerPadding),
         child: Column(
@@ -111,7 +111,7 @@ class PortfolioSection extends HookWidget {
   Widget _buildItems(List<Desing> items,
       {required SizingInformation sizingInformation,
       required PageController controller}) {
-    if (sizingInformation.isMobile) {
+    if (sizingInformation.isMobile && false) {
       return _buildMobileItemList(items, controller: controller);
     }
 
