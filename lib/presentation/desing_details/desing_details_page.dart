@@ -22,17 +22,23 @@ class DesingDetailsPage extends StatelessWidget {
 
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       return Scaffold(
+        appBar: sizingInformation.isMobile
+            ? AppBar(
+                backgroundColor: CustomTheme.secondaryColor,
+              )
+            : null,
         body: SizedBox(
           height: heightOfScreen(context),
           child: Stack(
             children: [
               DetailMockUp(child: _buildImage(desing)),
-              Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                    padding: EdgeInsets.all(CustomTheme.defaultPadding),
-                    child: const RoundedCloseButton()),
-              ),
+              if (!sizingInformation.isMobile)
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                      padding: EdgeInsets.all(CustomTheme.defaultPadding),
+                      child: const RoundedCloseButton()),
+                ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(

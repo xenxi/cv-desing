@@ -6,14 +6,14 @@ import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/launcher_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/email_address.dart';
 
-class ProjectItem extends HookWidget {
+class DesingItem extends HookWidget {
   static final BorderRadius _cardBorderRadius = BorderRadius.circular(10);
   static const Color _textColor = Colors.white;
   final String title;
   final String subtitle;
   final String imageUrl;
   final void Function() onTap;
-  const ProjectItem({
+  const DesingItem({
     Key? key,
     required this.title,
     required this.subtitle,

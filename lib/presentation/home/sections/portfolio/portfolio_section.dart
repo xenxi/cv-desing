@@ -15,7 +15,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'widgets/project_categories/project_categories.dart';
 import 'widgets/project_categories/project_category_data.dart';
-import 'widgets/desing_items/project_item.dart';
+import 'widgets/desing_items/desing_item.dart';
 
 class PortfolioSection extends HookWidget {
   final categoriesData = Category.values
@@ -82,7 +82,7 @@ class PortfolioSection extends HookWidget {
       itemBuilder: (context, index) {
         return ElasticIn(
           delay: Duration(milliseconds: 100 * index),
-          child: ProjectItem(
+          child: DesingItem(
             title: curriculumsData[index].reference,
             subtitle: curriculumsData[index].category.displayName,
             imageUrl: curriculumsData[index].thumbnail(),
@@ -127,7 +127,7 @@ class PortfolioSection extends HookWidget {
             width: double.infinity,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
-              child: ProjectItem(
+              child: DesingItem(
                 title: item.reference,
                 subtitle: item.category.displayName,
                 imageUrl: item.thumbnail(),
@@ -185,7 +185,7 @@ class PortfolioSection extends HookWidget {
                 return Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: CustomTheme.defaultBorderRadius),
-                  child: ProjectItem(
+                  child: DesingItem(
                     title: items[index].reference,
                     subtitle: items[index].category.displayName,
                     imageUrl: items[index].thumbnail(),
