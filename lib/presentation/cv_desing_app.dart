@@ -1,4 +1,5 @@
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/page_not_found.dart';
 import 'package:flutter/material.dart';
 import 'core/app_router.dart';
 
@@ -12,6 +13,8 @@ class CvDesingApp extends StatelessWidget {
       title: 'Diseños CV',
       initialRoute: '/',
       routes: AppRouter.routes,
+      onUnknownRoute: (settings) =>
+          MaterialPageRoute(builder: (_) => const PageNotFound()),
       theme: CustomTheme.lightTheme,
     );
   }
