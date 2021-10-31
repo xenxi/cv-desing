@@ -4,6 +4,8 @@ import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/home/sections/portfolio/widgets/desing_items/desing_items.dart';
+import 'package:cv_desing_website_flutter/presentation/home/sections/portfolio/widgets/desing_items/desing_mobile_items.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/category_extensions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dart';
@@ -39,7 +41,6 @@ class PortfolioSection extends HookWidget {
 
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       return Section(
-        // expandable: !sizingInformation.isMobile,
         decoration: _buildSectionDecoration(),
         padding: const EdgeInsets.only(bottom: CustomTheme.footerPadding),
         child: Column(
@@ -71,27 +72,6 @@ class PortfolioSection extends HookWidget {
     });
   }
 
-  GridView _buildItemList(List<Desing> curriculumsData) => GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.symmetric(
-          vertical: CustomTheme.defaultPadding,
-          horizontal: CustomTheme.defaultPadding * 4),
-      itemCount: curriculumsData.length,
-      gridDelegate: _buildGridSize(),
-      itemBuilder: (context, index) {
-        return ElasticIn(
-          delay: Duration(milliseconds: 100 * index),
-          child: DesingItem(
-            title: curriculumsData[index].reference,
-            subtitle: curriculumsData[index].category.displayName,
-            imageUrl: curriculumsData[index].thumbnail(),
-            onTap: () =>
-                openDetailView(context, desing: curriculumsData[index]),
-          ),
-        );
-      });
-
   BoxDecoration _buildSectionDecoration() {
     return BoxDecoration(
       color: CustomTheme.primaryColor.withOpacity(.35),
@@ -102,101 +82,19 @@ class PortfolioSection extends HookWidget {
     );
   }
 
-  SliverGridDelegateWithMaxCrossAxisExtent _buildGridSize() {
-    return SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 300,
-        childAspectRatio: .7,
-        crossAxisSpacing: CustomTheme.defaultPadding * 2,
-        mainAxisSpacing: CustomTheme.defaultPadding * 2);
-  }
-
   Widget _buildItems(List<Desing> items,
       {required SizingInformation sizingInformation,
       required PageController controller}) {
     if (sizingInformation.isMobile) {
-      return ListView.builder(
-        shrinkWrap: true,
-        padding: EdgeInsets.all(CustomTheme.defaultPadding),
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          final item = items[index];
-
-          return SizedBox(
-            height: heightOfScreen(context) * .5,
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: DesingItem(
-                title: item.reference,
-                subtitle: item.category.displayName,
-                imageUrl: item.thumbnail(),
-                onTap: () => openDetailView(context, desing: item),
-              ),
-            ),
-          );
-        },
+      return DesingMobileItems(
+        desings: items,
+        onItemTap: openDetailView,
       );
     }
 
-    return _buildItemList(items);
-  }
-
-  Expanded _buildMobileItemList(List<Desing> items,
-      {required PageController controller}) {
-    return Expanded(
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: IconButton(
-              iconSize: 50,
-              color: CustomTheme.primaryColor,
-              icon: const Icon(
-                Icons.chevron_left,
-              ),
-              onPressed: () => controller.previousPage(
-                  duration: const Duration(milliseconds: 400),
-                  curve: Curves.easeInOutExpo),
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: IconButton(
-              color: CustomTheme.primaryColor,
-              iconSize: 50,
-              icon: const Icon(
-                Icons.chevron_right,
-              ),
-              onPressed: () => controller.nextPage(
-                  duration: const Duration(milliseconds: 400),
-                  curve: Curves.easeInOutExpo),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: 35, vertical: CustomTheme.defaultBorderRadius),
-            child: PageView.builder(
-              controller: controller,
-              scrollDirection: Axis.horizontal,
-              itemCount: items.length,
-              pageSnapping: true,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: CustomTheme.defaultBorderRadius),
-                  child: DesingItem(
-                    title: items[index].reference,
-                    subtitle: items[index].category.displayName,
-                    imageUrl: items[index].thumbnail(),
-                    onTap: () => openDetailView(context, desing: items[index]),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
+    return DesingItems(
+      desings: items,
+      onItemTap: openDetailView,
     );
   }
 
