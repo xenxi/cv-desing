@@ -15,7 +15,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'widgets/project_categories/project_categories.dart';
 import 'widgets/project_categories/project_category_data.dart';
-import 'widgets/project_item/project_item.dart';
+import 'widgets/desing_items/project_item.dart';
 
 class PortfolioSection extends HookWidget {
   final categoriesData = Category.values
