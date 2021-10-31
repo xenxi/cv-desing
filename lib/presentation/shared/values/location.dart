@@ -27,4 +27,6 @@ class Location {
   static const resourceNotFound = 'No se ha encontrado el recurso que buscaba';
 
   static const goBack = 'Volver';
+
+  static const close = 'Cerrar';
 }

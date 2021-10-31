@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
@@ -35,6 +36,7 @@ class RoundedCloseButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             color: CustomTheme.primaryColor,
             child: IconButton(
+              tooltip: Location.close,
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.close),
             ),
