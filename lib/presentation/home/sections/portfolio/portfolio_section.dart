@@ -72,6 +72,7 @@ class PortfolioSection extends HookWidget {
 
   GridView _buildItemList(List<Desing> curriculumsData) => GridView.builder(
       shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.symmetric(
           vertical: CustomTheme.defaultPadding,
           horizontal: CustomTheme.defaultPadding * 4),
@@ -111,9 +112,9 @@ class PortfolioSection extends HookWidget {
   Widget _buildItems(List<Desing> items,
       {required SizingInformation sizingInformation,
       required PageController controller}) {
-    if (sizingInformation.isMobile && false) {
-      return _buildMobileItemList(items, controller: controller);
-    }
+    // if (sizingInformation.isMobile) {
+    //   return _buildMobileItemList(items, controller: controller);
+    // }
 
     return _buildItemList(items);
   }
