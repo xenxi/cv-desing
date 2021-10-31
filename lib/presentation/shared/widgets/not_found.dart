@@ -32,20 +32,23 @@ class NotFound extends StatelessWidget {
           SizedBox(
             height: CustomTheme.defaultPadding * 2,
           ),
-          OutlinedButton.icon(
-              style: OutlinedButton.styleFrom(
-                padding: const EdgeInsets.all(10.0),
-                side: BorderSide(width: 1.0, color: CustomTheme.errorColor),
-              ),
-              onPressed: () =>
-                  Navigator.pushReplacementNamed(context, AppRouter.home),
-              icon: Icon(Icons.refresh, color: CustomTheme.errorColor),
-              label: Text(
-                'Ir al menu',
-                style: TextStyle(color: CustomTheme.errorColor),
-              ))
+          _buildGoHomeButton(context)
         ],
       ),
     );
   }
+
+  OutlinedButton _buildGoHomeButton(BuildContext context) =>
+      OutlinedButton.icon(
+          style: OutlinedButton.styleFrom(
+            padding: const EdgeInsets.all(10.0),
+            side: BorderSide(width: 1.0, color: CustomTheme.errorColor),
+          ),
+          onPressed: () =>
+              Navigator.pushReplacementNamed(context, AppRouter.home),
+          icon: Icon(Icons.refresh, color: CustomTheme.errorColor),
+          label: Text(
+            'Ir al menu',
+            style: TextStyle(color: CustomTheme.errorColor),
+          ));
 }
