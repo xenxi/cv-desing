@@ -7,6 +7,7 @@ import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/widgets/not_found.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -21,7 +22,7 @@ class DesingDetailsPage extends StatelessWidget {
     final desing = ModalRoute.of(context)?.settings.arguments as Desing?;
     // final desing = DesingData.desings.first;
 
-    if (desing == null) return notFound(context);
+    if (desing == null) return const NotFound();
 
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       return Scaffold(
@@ -117,48 +118,5 @@ class DesingDetailsPage extends StatelessWidget {
 
   void close(BuildContext context) {
     Navigator.of(context).pop();
-  }
-
-  Widget notFound(BuildContext context) {
-    return Container(
-      color: CustomTheme.secondaryColor,
-      padding: EdgeInsets.all(CustomTheme.defaultPadding),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.search_off,
-            color: CustomTheme.errorColor,
-            size: 100,
-          ),
-          SizedBox(
-            height: CustomTheme.defaultPadding,
-          ),
-          Text(
-            'No se ha encontrado el recurso que buscaba',
-            textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .headline3!
-                .copyWith(color: CustomTheme.errorColor),
-          ),
-          SizedBox(
-            height: CustomTheme.defaultPadding * 2,
-          ),
-          OutlinedButton.icon(
-              style: OutlinedButton.styleFrom(
-                padding: const EdgeInsets.all(10.0),
-                side: BorderSide(width: 1.0, color: CustomTheme.errorColor),
-              ),
-              onPressed: () =>
-                  Navigator.pushReplacementNamed(context, AppRouter.home),
-              icon: Icon(Icons.refresh, color: CustomTheme.errorColor),
-              label: Text(
-                'Ir al menu',
-                style: TextStyle(color: CustomTheme.errorColor),
-              ))
-        ],
-      ),
-    );
   }
 }
