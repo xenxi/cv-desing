@@ -13,11 +13,7 @@ class NotFound extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.search_off,
-            color: CustomTheme.errorColor,
-            size: 100,
-          ),
+          _buildNotFoundIcon(),
           SizedBox(
             height: CustomTheme.defaultPadding,
           ),
@@ -30,6 +26,12 @@ class NotFound extends StatelessWidget {
       ),
     );
   }
+
+  Icon _buildNotFoundIcon() => Icon(
+        Icons.search_off,
+        color: CustomTheme.errorColor,
+        size: 100,
+      );
 
   Text _buildTextInfo(BuildContext context) => Text(
         'No se ha encontrado el recurso que buscaba',
