@@ -10,8 +10,8 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import 'shared/components/launcher_funtions.dart';
-import 'shared/values/email_address.dart';
+import '../shared/components/launcher_funtions.dart';
+import '../shared/values/email_address.dart';
 
 class DesingDetailsPage extends StatelessWidget {
   const DesingDetailsPage({Key? key}) : super(key: key);
