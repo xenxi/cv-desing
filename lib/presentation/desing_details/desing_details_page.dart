@@ -5,6 +5,7 @@ import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/desing_details/widgets/details_mockup.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/not_found.dart';
@@ -31,19 +32,14 @@ class DesingDetailsPage extends StatelessWidget {
           height: heightOfScreen(context),
           child: Stack(
             children: [
-              Image(
-                height: double.infinity,
-                width: double.infinity,
-                image: AssetImage(
-                  ImagePath.bg11,
-                ),
+              DetailMockUp(
+                  child: Image(
+                alignment: Alignment.topCenter,
                 fit: BoxFit.cover,
-                alignment: Alignment.center,
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: _buildImage(desing),
-              ),
+                image: AssetImage(
+                  desing.image(),
+                ),
+              )),
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(
