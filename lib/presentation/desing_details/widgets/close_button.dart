@@ -10,7 +10,7 @@ class RoundedCloseButton extends StatelessWidget {
   final EdgeInsets? padding;
   @override
   Widget build(BuildContext context) {
-    final btn = _buildButton();
+    final btn = _buildButton(context);
 
     return padding != null
         ? Padding(
@@ -20,10 +20,25 @@ class RoundedCloseButton extends StatelessWidget {
         : btn;
   }
 
-  Widget _buildButton() => ClipOval(
-        child: Material(
-          color: CustomTheme.primaryColor,
-          child: const CloseButton(),
+  Widget _buildButton(BuildContext context) => Container(
+        decoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black54,
+              offset: Offset(2.0, 0.0), //(x,y)
+              blurRadius: 9.0,
+            ),
+          ],
+        ),
+        child: ClipOval(
+          child: Material(
+            borderRadius: BorderRadius.circular(20),
+            color: CustomTheme.primaryColor,
+            child: IconButton(
+              onPressed: () => Navigator.of(context).pop(),
+              icon: const Icon(Icons.close),
+            ),
+          ),
         ),
       );
 }
