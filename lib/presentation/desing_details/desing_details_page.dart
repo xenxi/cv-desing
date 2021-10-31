@@ -5,6 +5,7 @@ import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/desing_details/widgets/close_button.dart';
 import 'package:cv_desing_website_flutter/presentation/desing_details/widgets/details_mockup.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/not_found.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -50,7 +51,7 @@ class DesingDetailsPage extends StatelessWidget {
                           color: Colors.black,
                         ),
                         label: const Text(
-                          'Solicitar',
+                          Location.requestDesing,
                           style: TextStyle(color: Colors.black),
                         )),
                   ),

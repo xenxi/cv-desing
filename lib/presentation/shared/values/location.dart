@@ -29,4 +29,5 @@ class Location {
   static const goBack = 'Volver';
 
   static const close = 'Cerrar';
+  static const requestDesing = 'Solicitar';
 }
