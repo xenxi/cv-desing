@@ -21,14 +21,7 @@ class NotFound extends StatelessWidget {
           SizedBox(
             height: CustomTheme.defaultPadding,
           ),
-          Text(
-            'No se ha encontrado el recurso que buscaba',
-            textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .headline3!
-                .copyWith(color: CustomTheme.errorColor),
-          ),
+          _buildTextInfo(context),
           SizedBox(
             height: CustomTheme.defaultPadding * 2,
           ),
@@ -37,6 +30,15 @@ class NotFound extends StatelessWidget {
       ),
     );
   }
+
+  Text _buildTextInfo(BuildContext context) => Text(
+        'No se ha encontrado el recurso que buscaba',
+        textAlign: TextAlign.center,
+        style: Theme.of(context)
+            .textTheme
+            .headline3!
+            .copyWith(color: CustomTheme.errorColor),
+      );
 
   OutlinedButton _buildGoHomeButton(BuildContext context) =>
       OutlinedButton.icon(
