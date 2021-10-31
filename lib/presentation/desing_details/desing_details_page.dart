@@ -62,6 +62,7 @@ class DesingDetailsPage extends StatelessWidget {
         floatingActionButton: sizingInformation.isMobile
             ? null
             : FloatingActionButton(
+                tooltip: Location.requestDesing,
                 child: const Icon(
                   Icons.shopping_cart_outlined,
                   color: Colors.black,
