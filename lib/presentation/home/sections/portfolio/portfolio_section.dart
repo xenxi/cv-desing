@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
+import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
@@ -112,9 +113,31 @@ class PortfolioSection extends HookWidget {
   Widget _buildItems(List<Desing> items,
       {required SizingInformation sizingInformation,
       required PageController controller}) {
-    // if (sizingInformation.isMobile) {
-    //   return _buildMobileItemList(items, controller: controller);
-    // }
+    if (sizingInformation.isMobile) {
+      return ListView.builder(
+        shrinkWrap: true,
+        padding: EdgeInsets.all(CustomTheme.defaultPadding),
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          final item = items[index];
+
+          return SizedBox(
+            height: heightOfScreen(context) * .5,
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: ProjectItem(
+                title: item.reference,
+                subtitle: item.category.displayName,
+                imageUrl: item.thumbnail(),
+                onTap: () => openDetailView(context, desing: item),
+              ),
+            ),
+          );
+        },
+      );
+    }
 
     return _buildItemList(items);
   }

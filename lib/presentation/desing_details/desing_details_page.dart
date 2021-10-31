@@ -14,9 +14,9 @@ class DesingDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final desing = ModalRoute.of(context)?.settings.arguments as Desing?;
-    // final desing = ModalRoute.of(context)?.settings.arguments as Desing? ??
-    //     DesingData.desings.first;
+    // final desing = ModalRoute.of(context)?.settings.arguments as Desing?;
+    final desing = ModalRoute.of(context)?.settings.arguments as Desing? ??
+        DesingData.desings.first;
 
     if (desing == null) return const NotFound();
 
