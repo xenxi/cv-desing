@@ -83,10 +83,6 @@ class DesingDetailsPage extends StatelessWidget {
   Future<void> openEmail(BuildContext context,
       {required String subject}) async {
     await openMail(EmailAddress.defaultAccount, subject: subject);
-    close(context);
-  }
-
-  void close(BuildContext context) {
     Navigator.of(context).pop();
   }
 }
