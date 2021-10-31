@@ -59,16 +59,17 @@ class ProjectItem extends HookWidget {
                   width: double.infinity,
                   height: double.infinity,
                   decoration: BoxDecoration(
+                      borderRadius: _cardBorderRadius,
                       gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                        CustomTheme.secondaryColor.withOpacity(.2),
-                        CustomTheme.secondaryColor.withOpacity(.7),
-                        CustomTheme.secondaryColor.withOpacity(.8),
-                        CustomTheme.secondaryColor.withOpacity(.7),
-                        CustomTheme.secondaryColor.withOpacity(.2),
-                      ])),
+                            CustomTheme.secondaryColor.withOpacity(.2),
+                            CustomTheme.secondaryColor.withOpacity(.7),
+                            CustomTheme.secondaryColor.withOpacity(.8),
+                            CustomTheme.secondaryColor.withOpacity(.7),
+                            CustomTheme.secondaryColor.withOpacity(.2),
+                          ])),
                   child: _buildTextInfo(context),
                 ),
               ),
