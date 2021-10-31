@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/desing_details/widgets/close_button.dart';
 import 'package:cv_desing_website_flutter/presentation/desing_details/widgets/details_mockup.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/not_found.dart';
@@ -28,28 +29,12 @@ class DesingDetailsPage extends StatelessWidget {
           height: heightOfScreen(context),
           child: Stack(
             children: [
-              DetailMockUp(
-                  child: Image(
-                alignment: Alignment.topCenter,
-                fit: BoxFit.cover,
-                image: AssetImage(
-                  desing.image(),
-                ),
-              )),
+              DetailMockUp(child: _buildImage(desing)),
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(
-                  padding: EdgeInsets.all(CustomTheme.defaultPadding),
-                  child: ClipOval(
-                    child: Material(
-                      color: CustomTheme.primaryColor,
-                      child: IconButton(
-                        onPressed: () => close(context),
-                        icon: const Icon(Icons.close),
-                      ),
-                    ),
-                  ),
-                ),
+                    padding: EdgeInsets.all(CustomTheme.defaultPadding),
+                    child: const RoundedCloseButton()),
               ),
               if (sizingInformation.isMobile)
                 Align(
@@ -86,6 +71,14 @@ class DesingDetailsPage extends StatelessWidget {
       );
     });
   }
+
+  Image _buildImage(Desing desing) => Image(
+        alignment: Alignment.topCenter,
+        fit: BoxFit.cover,
+        image: AssetImage(
+          desing.image(),
+        ),
+      );
 
   Future<void> openEmail(BuildContext context,
       {required String subject}) async {
