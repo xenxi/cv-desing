@@ -23,4 +23,6 @@ class Location {
   static const madeIn = 'Made in';
 
   static const withLove = 'with';
+
+  static const resourceNotFound = 'No se ha encontrado el recurso que buscaba';
 }

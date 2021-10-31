@@ -1,5 +1,6 @@
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 
 class NotFound extends StatelessWidget {
@@ -34,7 +35,7 @@ class NotFound extends StatelessWidget {
       );
 
   Text _buildTextInfo(BuildContext context) => Text(
-        'No se ha encontrado el recurso que buscaba',
+        Location.resourceNotFound,
         textAlign: TextAlign.center,
         style: Theme.of(context)
             .textTheme
