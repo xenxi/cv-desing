@@ -18,58 +18,43 @@ class DesingDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final desing = ModalRoute.of(context)?.settings.arguments as Desing?;
-    // final desing = ModalRoute.of(context)?.settings.arguments as Desing? ??
-    //     DesingData.desings.first;
+    // final desing = ModalRoute.of(context)?.settings.arguments as Desing?;
+    final desing = ModalRoute.of(context)?.settings.arguments as Desing? ??
+        DesingData.desings.first;
 
     if (desing == null) return const NotFound();
 
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       return Scaffold(
+        appBar: sizingInformation.isMobile
+            ? AppBar(
+                backgroundColor: CustomTheme.secondaryColor,
+              )
+            : null,
         body: SizedBox(
           height: heightOfScreen(context),
           child: Stack(
             children: [
               DetailMockUp(child: _buildImage(desing)),
-              Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                    padding: EdgeInsets.all(CustomTheme.defaultPadding),
-                    child: const RoundedCloseButton()),
-              ),
-              if (sizingInformation.isMobile)
+              if (!sizingInformation.isMobile)
                 Align(
-                  alignment: Alignment.bottomCenter,
+                  alignment: Alignment.topRight,
                   child: Padding(
-                    padding:
-                        EdgeInsets.only(bottom: CustomTheme.defaultPadding),
-                    child: ElevatedButton.icon(
-                        onPressed: () =>
-                            openEmail(context, subject: desing.reference),
-                        icon: const Icon(
-                          Icons.shopping_cart_outlined,
-                          color: Colors.black,
-                        ),
-                        label: const Text(
-                          Location.requestDesing,
-                          style: TextStyle(color: Colors.black),
-                        )),
-                  ),
-                )
+                      padding: EdgeInsets.all(CustomTheme.defaultPadding),
+                      child: const RoundedCloseButton()),
+                ),
             ],
           ),
         ),
-        floatingActionButton: sizingInformation.isMobile
-            ? null
-            : FloatingActionButton(
-                tooltip: Location.requestDesing,
-                child: const Icon(
-                  Icons.shopping_cart_outlined,
-                  color: Colors.black,
-                ),
-                backgroundColor: CustomTheme.primaryColor,
-                onPressed: () => openEmail(context, subject: desing.reference),
-              ),
+        floatingActionButton: FloatingActionButton(
+          tooltip: Location.requestDesing,
+          child: const Icon(
+            Icons.shopping_cart_outlined,
+            color: Colors.black,
+          ),
+          backgroundColor: CustomTheme.primaryColor,
+          onPressed: () => openEmail(context, subject: desing.reference),
+        ),
       );
     });
   }
