@@ -25,4 +25,6 @@ class Location {
   static const withLove = 'with';
 
   static const resourceNotFound = 'No se ha encontrado el recurso que buscaba';
+
+  static const goBack = 'Volver';
 }

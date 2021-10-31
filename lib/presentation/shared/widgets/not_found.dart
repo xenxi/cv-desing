@@ -53,7 +53,7 @@ class NotFound extends StatelessWidget {
               Navigator.pushReplacementNamed(context, AppRouter.home),
           icon: Icon(Icons.refresh, color: CustomTheme.errorColor),
           label: Text(
-            'Ir al menu',
+            Location.goBack,
             style: TextStyle(color: CustomTheme.errorColor),
           ));
 }
