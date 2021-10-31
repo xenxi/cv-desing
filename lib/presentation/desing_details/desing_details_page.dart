@@ -19,8 +19,9 @@ class DesingDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final desing = ModalRoute.of(context)?.settings.arguments as Desing?;
-    // final desing = DesingData.desings.first;
+    // final desing = ModalRoute.of(context)?.settings.arguments as Desing?;
+    final desing = ModalRoute.of(context)?.settings.arguments as Desing? ??
+        DesingData.desings.first;
 
     if (desing == null) return const NotFound();
 
@@ -30,6 +31,15 @@ class DesingDetailsPage extends StatelessWidget {
           height: heightOfScreen(context),
           child: Stack(
             children: [
+              Image(
+                height: double.infinity,
+                width: double.infinity,
+                image: AssetImage(
+                  ImagePath.bg11,
+                ),
+                fit: BoxFit.cover,
+                alignment: Alignment.center,
+              ),
               Align(
                 alignment: Alignment.center,
                 child: _buildImage(desing),
@@ -86,18 +96,19 @@ class DesingDetailsPage extends StatelessWidget {
   }
 
   Widget _buildImage(Desing desing) {
-    return Container(
-      decoration: BoxDecoration(
-          color: CustomTheme.secondaryColor,
-          image: const DecorationImage(
-            image: AssetImage(
-              ImagePath.bg11,
-            ),
-            fit: BoxFit.cover,
-          )),
-      child: Center(
-        child: Hero(
-          tag: desing.reference,
+    return Center(
+      child: Hero(
+        tag: desing.reference,
+        child: Container(
+          decoration: const BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black,
+                offset: Offset(0.0, 1.0), //(x,y)
+                blurRadius: 6.0,
+              ),
+            ],
+          ),
           child: Image(
             alignment: Alignment.topCenter,
             fit: BoxFit.cover,
