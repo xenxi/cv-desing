@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
@@ -16,7 +17,7 @@ class TextBanner extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const Text(
-          'Impulsa el potencial de CV y destácate',
+          Location.homeTitle,
           style: TextStyle(
             fontSize: 60,
             fontWeight: FontWeight.bold,
@@ -27,9 +28,9 @@ class TextBanner extends StatelessWidget {
         const SizedBox(
           height: CustomTheme.defaultPadding,
         ),
-        _checkListText(context, text: 'Elimina la molestia de escribir un CV'),
-        _checkListText(context, text: 'Gran cantidad de diseños'),
-        _checkListText(context, text: 'Obten tu CV en poco tiempo'),
+        _checkListText(context, text: Location.homeSubtitle1),
+        _checkListText(context, text: Location.homeSubtitle2),
+        _checkListText(context, text: Location.homeSubtitle3),
         const SizedBox(
           height: CustomTheme.defaultPadding * 2,
         ),
@@ -40,7 +41,7 @@ class TextBanner extends StatelessWidget {
                 fixedSize: const Size(double.infinity, 50)),
             onPressed: onButtonTap,
             icon: const Icon(Icons.design_services),
-            label: const Text('Empezar'))
+            label: const Text(Location.start))
       ],
     );
   }
