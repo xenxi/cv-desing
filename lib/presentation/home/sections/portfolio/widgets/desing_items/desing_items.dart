@@ -27,14 +27,15 @@ class DesingItems extends StatelessWidget {
       itemCount: curriculumsData.length,
       gridDelegate: _buildGridSize(),
       itemBuilder: (context, index) {
+        final desing = curriculumsData[index];
         return ElasticIn(
           delay: Duration(milliseconds: 100 * index),
           child: DesingItem(
-            title: curriculumsData[index].reference,
-            subtitle: curriculumsData[index].category.displayName,
-            imageUrl: curriculumsData[index].thumbnail(),
-            price: curriculumsData[index].price,
-            onTap: () => onItemTap(context, desing: curriculumsData[index]),
+            title: desing.reference,
+            subtitle: desing.category.displayName,
+            imageUrl: desing.thumbnail(),
+            price: desing.price,
+            onTap: () => onItemTap(context, desing: desing),
           ),
         );
       });
