@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:cv_desing_website_flutter/presentation/home/sections/home/widgets/text_banner.dart';
+import 'package:cv_desing_website_flutter/presentation/home/sections/home/widgets/text_mobile_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
@@ -34,9 +35,13 @@ class HomeSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
-                  child: TextBanner(
-                    onButtonTap: goToProjectSection,
-                  ),
+                  child: sizingInformation.isMobile
+                      ? TextMobileBanner(
+                          onButtonTap: goToProjectSection,
+                        )
+                      : TextBanner(
+                          onButtonTap: goToProjectSection,
+                        ),
                 ),
                 if (sizingInformation.isDesktop) ...[
                   const SizedBox(
