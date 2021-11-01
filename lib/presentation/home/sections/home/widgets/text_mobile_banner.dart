@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 
@@ -16,33 +17,44 @@ class TextMobileBanner extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text(
-          Location.homeTitle,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 40,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            height: 1.5,
+        FadeInDown(
+          child: const Text(
+            Location.homeTitle,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              height: 1.5,
+            ),
           ),
         ),
         const SizedBox(
           height: CustomTheme.defaultPadding,
         ),
-        _checkListText(context, text: Location.homeSubtitle1),
-        _checkListText(context, text: Location.homeSubtitle2),
-        _checkListText(context, text: Location.homeSubtitle3),
+        FadeInLeft(
+            delay: const Duration(milliseconds: 300),
+            child: _checkListText(context, text: Location.homeSubtitle1)),
+        FadeInLeft(
+            delay: const Duration(milliseconds: 500),
+            child: _checkListText(context, text: Location.homeSubtitle2)),
+        FadeInLeft(
+            delay: const Duration(milliseconds: 700),
+            child: _checkListText(context, text: Location.homeSubtitle3)),
         const SizedBox(
           height: CustomTheme.defaultPadding * 2,
         ),
-        TextButton.icon(
-            style: TextButton.styleFrom(
-                backgroundColor: Colors.white,
-                primary: CustomTheme.secondaryColor,
-                fixedSize: const Size(double.infinity, 50)),
-            onPressed: onButtonTap,
-            icon: const Icon(Icons.design_services),
-            label: const Text(Location.start))
+        JelloIn(
+          delay: const Duration(milliseconds: 1000),
+          child: TextButton.icon(
+              style: TextButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  primary: CustomTheme.secondaryColor,
+                  fixedSize: const Size(double.infinity, 50)),
+              onPressed: onButtonTap,
+              icon: const Icon(Icons.design_services),
+              label: const Text(Location.start)),
+        )
       ],
     );
   }
