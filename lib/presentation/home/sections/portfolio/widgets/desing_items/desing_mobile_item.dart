@@ -44,11 +44,13 @@ class DesingMobileItem extends StatelessWidget {
         padding: const EdgeInsets.only(right: CustomTheme.defaultPadding),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: const [
-            Icon(
-              Icons.shopping_cart_outlined,
-              size: 35,
-              color: CustomTheme.primaryColor,
+          children: [
+            ZoomIn(
+              child: const Icon(
+                Icons.shopping_cart_outlined,
+                size: 40,
+                color: CustomTheme.primaryColor,
+              ),
             ),
           ],
         ),
