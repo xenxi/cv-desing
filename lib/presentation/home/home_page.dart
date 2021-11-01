@@ -7,7 +7,7 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/location.da
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'sections/home_section.dart';
+import 'sections/home/home_section.dart';
 import 'sections/portfolio/portfolio_section.dart';
 import 'widgets/navbar/custom_navbar.dart';
 import 'widgets/navbar/navbar_item_data.dart';
@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
               PortfolioSection(
                 key: desingsKey,
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(CustomTheme.defaultPadding),
                 child: Footer(
                   textColor: CustomTheme.primaryText2,
