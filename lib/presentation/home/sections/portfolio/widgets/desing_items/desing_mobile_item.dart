@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/widgets/price_chip.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
@@ -75,16 +76,9 @@ class DesingMobileItem extends StatelessWidget {
           _buildProjectImage(context),
           Align(
             alignment: Alignment.topRight,
-            child: Padding(
+            child: PriceChip(
+              price: price,
               padding: const EdgeInsets.all(CustomTheme.defaultPadding * .5),
-              child: Chip(
-                backgroundColor: CustomTheme.errorColor,
-                label: Text(
-                  '$price €',
-                  style: const TextStyle(color: Colors.white),
-                ),
-                elevation: 6,
-              ),
             ),
           ),
         ],
