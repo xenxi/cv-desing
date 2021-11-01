@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/widgets/price_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -53,6 +54,13 @@ class DesingItem extends HookWidget {
         clipBehavior: Clip.hardEdge,
         children: [
           _buildProjectImage(context),
+          Align(
+            alignment: Alignment.topRight,
+            child: PriceChip(
+              price: price,
+              padding: const EdgeInsets.all(CustomTheme.defaultPadding * .5),
+            ),
+          ),
           if (isHover) ...[
             Align(
               alignment: Alignment.center,
@@ -94,7 +102,7 @@ class DesingItem extends HookWidget {
               .headline6
               ?.copyWith(color: _textColor),
         ),
-        SizedBox(
+        const SizedBox(
           height: CustomTheme.defaultPadding / 2,
         ),
         Text(
@@ -104,7 +112,7 @@ class DesingItem extends HookWidget {
               .headline4
               ?.copyWith(color: _textColor),
         ),
-        SizedBox(height: CustomTheme.defaultPadding),
+        const SizedBox(height: CustomTheme.defaultPadding),
         ElevatedButton.icon(
             onPressed: openEmail,
             icon: const Icon(Icons.info),
