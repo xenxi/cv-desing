@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/presentation/home/sections/home/widgets/text_banner.dart';
 import 'package:cv_desing_website_flutter/presentation/home/sections/home/widgets/text_mobile_banner.dart';
 import 'package:flutter/material.dart';
@@ -48,10 +49,12 @@ class HomeSection extends StatelessWidget {
                     width: CustomTheme.defaultPadding * 2,
                   ),
                   Expanded(
-                      child: Image.asset(
-                    ImagePath.homeMainImage2,
-                    alignment: Alignment.center,
-                    fit: BoxFit.contain,
+                      child: ZoomIn(
+                    child: Image.asset(
+                      ImagePath.homeMainImage2,
+                      alignment: Alignment.center,
+                      fit: BoxFit.contain,
+                    ),
                   )),
                 ],
               ],
