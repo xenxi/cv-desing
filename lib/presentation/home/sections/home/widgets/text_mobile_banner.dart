@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cv_desing_website_flutter/presentation/home/sections/home/widgets/text_check.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 
@@ -34,13 +35,13 @@ class TextMobileBanner extends StatelessWidget {
         ),
         FadeInLeft(
             delay: const Duration(milliseconds: 300),
-            child: _checkListText(context, text: Location.homeSubtitle1)),
+            child: const TextCheck(label: Location.homeSubtitle1)),
         FadeInLeft(
             delay: const Duration(milliseconds: 500),
-            child: _checkListText(context, text: Location.homeSubtitle2)),
+            child: const TextCheck(label: Location.homeSubtitle2)),
         FadeInLeft(
             delay: const Duration(milliseconds: 700),
-            child: _checkListText(context, text: Location.homeSubtitle3)),
+            child: const TextCheck(label: Location.homeSubtitle3)),
         const SizedBox(
           height: CustomTheme.defaultPadding * 2,
         ),
@@ -58,23 +59,4 @@ class TextMobileBanner extends StatelessWidget {
       ],
     );
   }
-
-  Widget _checkListText(BuildContext context, {required String text}) => Row(
-        children: [
-          const Icon(
-            Icons.check,
-            color: CustomTheme.primaryColor,
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Expanded(
-            child: Text(text,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    ?.copyWith(color: Colors.white)),
-          )
-        ],
-      );
 }
