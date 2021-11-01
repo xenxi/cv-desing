@@ -38,7 +38,7 @@ class DesingMobileItem extends StatelessWidget {
       direction: DismissDirection.endToStart,
       confirmDismiss: (_) async => requestDesing(),
       background: Container(
-        color: CustomTheme.successColor,
+        color: CustomTheme.secondaryColor,
         padding: const EdgeInsets.only(right: CustomTheme.defaultPadding),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -73,6 +73,20 @@ class DesingMobileItem extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         children: [
           _buildProjectImage(context),
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: const EdgeInsets.all(CustomTheme.defaultPadding * .5),
+              child: Chip(
+                backgroundColor: CustomTheme.errorColor,
+                label: Text(
+                  '$price €',
+                  style: const TextStyle(color: Colors.white),
+                ),
+                elevation: 6,
+              ),
+            ),
+          ),
         ],
       ),
     );
