@@ -58,21 +58,4 @@ class TextBanner extends StatelessWidget {
       ],
     );
   }
-
-  Widget _checkListText(BuildContext context, {required String text}) => Row(
-        children: [
-          const Icon(
-            Icons.check,
-            color: CustomTheme.primaryColor,
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Text(text,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline5
-                  ?.copyWith(color: Colors.white))
-        ],
-      );
 }
