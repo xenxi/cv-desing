@@ -38,6 +38,7 @@ class PortfolioSection extends HookWidget {
 
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       return Section(
+        isMobile: sizingInformation.isMobile,
         decoration: _buildSectionDecoration(),
         padding: const EdgeInsets.only(
             bottom: CustomTheme.footerPadding,

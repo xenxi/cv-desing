@@ -17,18 +17,19 @@ class HomeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Section(
-      expandable: false,
-      decoration: const BoxDecoration(
-        color: CustomTheme.secondaryColor,
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          opacity: .9,
-          image: AssetImage(ImagePath.bg7),
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+      return Section(
+        expandable: false,
+        decoration: const BoxDecoration(
+          color: CustomTheme.secondaryColor,
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            opacity: .9,
+            image: AssetImage(ImagePath.bg7),
+          ),
         ),
-      ),
-      child: ResponsiveBuilder(builder: (context, sizingInformation) {
-        return SizedBox(
+        isMobile: sizingInformation.isMobile,
+        child: SizedBox(
           width: sizingInformation.screenSize.width *
               (sizingInformation.isDesktop ? .7 : 1),
           child: _buildGlassContainer(
@@ -61,9 +62,9 @@ class HomeSection extends StatelessWidget {
               ],
             ),
           ),
-        );
-      }),
-    );
+        ),
+      );
+    });
   }
 
   Widget _buildGlassContainer(BuildContext context,
