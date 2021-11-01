@@ -34,23 +34,8 @@ class HomeSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const TextBanner(),
-                      const SizedBox(
-                        height: CustomTheme.defaultPadding * 2,
-                      ),
-                      TextButton.icon(
-                          style: TextButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              primary: CustomTheme.secondaryColor,
-                              fixedSize: const Size(double.infinity, 50)),
-                          onPressed: goToProjectSection,
-                          icon: const Icon(Icons.design_services),
-                          label: const Text('Empezar'))
-                    ],
+                  child: TextBanner(
+                    onButtonTap: goToProjectSection,
                   ),
                 ),
                 if (sizingInformation.isDesktop) ...[
