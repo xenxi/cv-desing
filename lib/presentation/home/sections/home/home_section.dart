@@ -42,7 +42,12 @@ class HomeSection extends StatelessWidget {
                   const SizedBox(
                     width: CustomTheme.defaultPadding * 2,
                   ),
-                  Expanded(child: Image.asset(ImagePath.homeMainImage2)),
+                  Expanded(
+                      child: Image.asset(
+                    ImagePath.homeMainImage2,
+                    alignment: Alignment.center,
+                    fit: BoxFit.contain,
+                  )),
                 ],
               ],
             ),
