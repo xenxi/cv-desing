@@ -18,6 +18,7 @@ class HomeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Section(
+      expandable: false,
       decoration: const BoxDecoration(
         color: CustomTheme.secondaryColor,
         image: DecorationImage(

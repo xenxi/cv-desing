@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 
@@ -8,24 +9,20 @@ class Section extends StatelessWidget {
   final BoxDecoration? decoration;
   final bool expandable;
   final EdgeInsets? padding;
+  final bool isMobile;
   const Section({
     Key? key,
     required this.child,
     this.decoration,
-    this.padding,
     this.expandable = true,
+    this.padding,
+    required this.isMobile,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final isWebMobile = kIsWeb &&
-        (defaultTargetPlatform == TargetPlatform.iOS ||
-            defaultTargetPlatform == TargetPlatform.android);
-
     final height = heightOfScreen(context) -
-        (isWebMobile
-            ? CustomTheme.navbarMobileHeight
-            : CustomTheme.navbarHeight);
+        (isMobile ? CustomTheme.navbarMobileHeight : CustomTheme.navbarHeight);
 
     return Container(
       width: widthOfScreen(context),
