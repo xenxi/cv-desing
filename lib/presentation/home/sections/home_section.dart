@@ -19,6 +19,7 @@ class HomeSection extends StatelessWidget {
         color: CustomTheme.secondaryColor,
         image: DecorationImage(
           fit: BoxFit.cover,
+          opacity: .5,
           colorFilter:
               ColorFilter.mode(CustomTheme.secondaryColor, BlendMode.hardLight),
           image: AssetImage(ImagePath.bg7),
@@ -74,7 +75,7 @@ class HomeSection extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
         child: Padding(
-          padding: EdgeInsets.all(CustomTheme.defaultPadding * 2),
+          padding: const EdgeInsets.all(CustomTheme.defaultPadding * 2),
           child: children,
         ),
       ),
