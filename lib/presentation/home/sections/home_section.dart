@@ -19,9 +19,7 @@ class HomeSection extends StatelessWidget {
         color: CustomTheme.secondaryColor,
         image: DecorationImage(
           fit: BoxFit.cover,
-          opacity: .5,
-          colorFilter:
-              ColorFilter.mode(CustomTheme.secondaryColor, BlendMode.hardLight),
+          opacity: .9,
           image: AssetImage(ImagePath.bg7),
         ),
       ),
