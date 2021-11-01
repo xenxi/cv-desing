@@ -7,13 +7,9 @@ class Desing {
   final String reference;
   final String _fileName;
   final Category category;
+  final double price;
 
-  Desing(
-    this.id,
-    this.reference,
-    this._fileName,
-    this.category,
-  );
+  Desing(this.id, this.reference, this._fileName, this.category, this.price);
 
   String thumbnail() => '${ImagePath.desingsThumbnailDir}/xs_$_fileName';
   String image() => '${ImagePath.desingsDir}/$_fileName';

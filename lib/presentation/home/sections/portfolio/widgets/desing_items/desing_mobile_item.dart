@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/launcher_funtions.dart';
@@ -8,18 +7,17 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/email_addre
 
 class DesingMobileItem extends StatelessWidget {
   static final BorderRadius _cardBorderRadius = BorderRadius.circular(10);
-  static const Color _textColor = Colors.white;
   final String reference;
-  final String subtitle;
   final String imageUrl;
+  final double price;
   final void Function() onTap;
   final double? height;
 
   const DesingMobileItem({
     Key? key,
     required this.reference,
-    required this.subtitle,
     required this.imageUrl,
+    required this.price,
     required this.onTap,
     this.height,
   }) : super(key: key);
@@ -40,7 +38,7 @@ class DesingMobileItem extends StatelessWidget {
       direction: DismissDirection.endToStart,
       confirmDismiss: (_) async => requestDesing(),
       background: Container(
-        color: CustomTheme.secondaryColor,
+        color: CustomTheme.successColor,
         padding: const EdgeInsets.only(right: CustomTheme.defaultPadding),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,

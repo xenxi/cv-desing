@@ -30,8 +30,8 @@ class DesingMobileItems extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: DesingMobileItem(
         height: 300,
+        price: desing.price,
         reference: desing.reference,
-        subtitle: desing.category.displayName,
         imageUrl: desing.thumbnail(),
         onTap: () => onItemTap(context, desing: desing),
       ),
