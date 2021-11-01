@@ -24,9 +24,6 @@ class DesingItems extends StatelessWidget {
   GridView _buildItemList(List<Desing> curriculumsData) => GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.symmetric(
-          vertical: CustomTheme.defaultPadding,
-          horizontal: CustomTheme.defaultPadding * 4),
       itemCount: curriculumsData.length,
       gridDelegate: _buildGridSize(),
       itemBuilder: (context, index) {
@@ -42,7 +39,7 @@ class DesingItems extends StatelessWidget {
       });
 
   SliverGridDelegateWithMaxCrossAxisExtent _buildGridSize() {
-    return SliverGridDelegateWithMaxCrossAxisExtent(
+    return const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 300,
         childAspectRatio: .7,
         crossAxisSpacing: CustomTheme.defaultPadding * 2,

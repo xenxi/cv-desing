@@ -1,7 +1,5 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
-import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/sections/portfolio/widgets/desing_items/desing_items.dart';
@@ -17,7 +15,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'widgets/project_categories/project_categories.dart';
 import 'widgets/project_categories/project_category_data.dart';
-import 'widgets/desing_items/desing_item.dart';
 
 class PortfolioSection extends HookWidget {
   final categoriesData = Category.values
@@ -42,11 +39,14 @@ class PortfolioSection extends HookWidget {
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       return Section(
         decoration: _buildSectionDecoration(),
-        padding: const EdgeInsets.only(bottom: CustomTheme.footerPadding),
+        padding: const EdgeInsets.only(
+            bottom: CustomTheme.footerPadding,
+            left: CustomTheme.defaultPadding,
+            right: CustomTheme.defaultPadding),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SectionTitle(
+            const SectionTitle(
               title: Location.portfolioSectionTitle,
               subTitle: Location.portfolioSectionSubtitle,
               color: CustomTheme.primaryColor,
