@@ -68,11 +68,13 @@ class TextMobileBanner extends StatelessWidget {
           const SizedBox(
             width: 10,
           ),
-          Text(text,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  ?.copyWith(color: Colors.white))
+          Expanded(
+            child: Text(text,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(color: Colors.white)),
+          )
         ],
       );
 }
