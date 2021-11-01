@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomTheme {
   static const double navbarHeight = 100.0;
+  static const double navbarMobileHeight = 60.0;
   static const double defaultPadding = 20.0;
   static const double defaultBorderRadius = 10.0;
   static const Color primaryColor = Color.fromRGBO(194, 162, 126, 1);

@@ -34,5 +34,6 @@ class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(60);
+  Size get preferredSize =>
+      const Size.fromHeight(CustomTheme.navbarMobileHeight);
 }
