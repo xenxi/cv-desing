@@ -18,8 +18,9 @@ class TextMobileBanner extends StatelessWidget {
       children: [
         const Text(
           Location.homeTitle,
+          textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 60,
+            fontSize: 40,
             fontWeight: FontWeight.bold,
             color: Colors.white,
             height: 1.5,
@@ -58,7 +59,7 @@ class TextMobileBanner extends StatelessWidget {
           Text(text,
               style: Theme.of(context)
                   .textTheme
-                  .headline5
+                  .headline6
                   ?.copyWith(color: Colors.white))
         ],
       );
