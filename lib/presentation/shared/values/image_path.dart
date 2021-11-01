@@ -16,6 +16,7 @@ class ImagePath {
   static const String bg10 = '$imageDir/bg_10.jpg';
   static const String bg11 = '$imageDir/bg_11.jpg';
   static const String homeMainImage = '$imageDir/home.png';
+  static const String homeMainImage2 = '$imageDir/home_02.png';
 
   static String spainFlag = '$imageDir/spain.png';
 }

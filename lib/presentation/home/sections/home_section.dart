@@ -1,7 +1,5 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
@@ -17,13 +15,13 @@ class HomeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Section(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: CustomTheme.secondaryColor,
         image: DecorationImage(
           fit: BoxFit.cover,
           colorFilter:
               ColorFilter.mode(CustomTheme.secondaryColor, BlendMode.hardLight),
-          image: const AssetImage(ImagePath.bg7),
+          image: AssetImage(ImagePath.bg7),
         ),
       ),
       child: ResponsiveBuilder(builder: (context, sizingInformation) {
@@ -41,7 +39,7 @@ class HomeSection extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildText(context),
-                      SizedBox(
+                      const SizedBox(
                         height: CustomTheme.defaultPadding * 2,
                       ),
                       TextButton.icon(
@@ -56,10 +54,10 @@ class HomeSection extends StatelessWidget {
                   ),
                 ),
                 if (sizingInformation.isDesktop) ...[
-                  SizedBox(
+                  const SizedBox(
                     width: CustomTheme.defaultPadding * 2,
                   ),
-                  Expanded(child: Image.asset(ImagePath.homeMainImage)),
+                  Expanded(child: Image.asset(ImagePath.homeMainImage2)),
                 ],
               ],
             ),
