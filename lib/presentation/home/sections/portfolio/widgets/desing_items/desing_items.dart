@@ -33,6 +33,7 @@ class DesingItems extends StatelessWidget {
             title: curriculumsData[index].reference,
             subtitle: curriculumsData[index].category.displayName,
             imageUrl: curriculumsData[index].thumbnail(),
+            price: curriculumsData[index].price,
             onTap: () => onItemTap(context, desing: curriculumsData[index]),
           ),
         );

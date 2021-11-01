@@ -12,12 +12,14 @@ class DesingItem extends HookWidget {
   final String title;
   final String subtitle;
   final String imageUrl;
+  final double price;
   final void Function() onTap;
   const DesingItem({
     Key? key,
     required this.title,
     required this.subtitle,
     required this.imageUrl,
+    required this.price,
     required this.onTap,
   }) : super(key: key);
 
