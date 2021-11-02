@@ -1,8 +1,11 @@
 class EmailAddress {
   final String value;
-  EmailAddress({
-    required this.value,
-  });
+  EmailAddress._(
+    this.value,
+  );
+  factory EmailAddress(String input) {
+    return EmailAddress._(input);
+  }
 
   @override
   bool operator ==(Object other) {
