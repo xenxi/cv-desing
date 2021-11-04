@@ -1,4 +1,4 @@
-import '../failure.dart';
+import '../../failure.dart';
 
 class InvalidEmailFailure implements Failure {
   final String failedValue;
