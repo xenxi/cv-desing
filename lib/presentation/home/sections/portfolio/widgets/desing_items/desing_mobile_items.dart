@@ -1,4 +1,3 @@
-import 'package:cv_desing_website_flutter/presentation/shared/components/category_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'desing_mobile_item.dart';

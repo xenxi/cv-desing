@@ -12,6 +12,7 @@ extension CategoryExtension on Category {
         return Location.businessCard;
     }
 
-    return this.toString();
+    // ignore: dead_code
+    return toString();
   }
 }

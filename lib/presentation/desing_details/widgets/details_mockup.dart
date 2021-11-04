@@ -16,9 +16,9 @@ class DetailMockUp extends StatelessWidget {
 
   Widget _buildImage() {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: CustomTheme.secondaryColor,
-          image: const DecorationImage(
+          image: DecorationImage(
             image: AssetImage(
               ImagePath.bg11,
             ),

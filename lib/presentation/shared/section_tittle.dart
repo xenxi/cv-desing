@@ -16,7 +16,7 @@ class SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: CustomTheme.defaultPadding),
+      margin: const EdgeInsets.symmetric(vertical: CustomTheme.defaultPadding),
       constraints: BoxConstraints(
         maxWidth: widthOfScreen(context),
       ),
@@ -24,7 +24,7 @@ class SectionTitle extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(right: CustomTheme.defaultPadding),
+            margin: const EdgeInsets.only(right: CustomTheme.defaultPadding),
             padding: const EdgeInsets.only(bottom: 72),
             width: 8,
             height: 100,

@@ -30,7 +30,7 @@ class CustomDrawer extends HookWidget {
       child: Drawer(
         backgroundColor: color,
         child: Padding(
-          padding: EdgeInsets.all(CustomTheme.defaultPadding),
+          padding: const EdgeInsets.all(CustomTheme.defaultPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

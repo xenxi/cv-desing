@@ -10,16 +10,16 @@ class NotFound extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: CustomTheme.secondaryColor,
-      padding: EdgeInsets.all(CustomTheme.defaultPadding),
+      padding: const EdgeInsets.all(CustomTheme.defaultPadding),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buildNotFoundIcon(),
-          SizedBox(
+          const SizedBox(
             height: CustomTheme.defaultPadding,
           ),
           _buildTextInfo(context),
-          SizedBox(
+          const SizedBox(
             height: CustomTheme.defaultPadding * 2,
           ),
           _buildGoHomeButton(context)
@@ -28,13 +28,13 @@ class NotFound extends StatelessWidget {
     );
   }
 
-  Icon _buildNotFoundIcon() => Icon(
+  Widget _buildNotFoundIcon() => const Icon(
         Icons.search_off,
         color: CustomTheme.errorColor,
         size: 100,
       );
 
-  Text _buildTextInfo(BuildContext context) => Text(
+  Widget _buildTextInfo(BuildContext context) => Text(
         Location.resourceNotFound,
         textAlign: TextAlign.center,
         style: Theme.of(context)
@@ -47,12 +47,12 @@ class NotFound extends StatelessWidget {
       OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
             padding: const EdgeInsets.all(10.0),
-            side: BorderSide(width: 1.0, color: CustomTheme.errorColor),
+            side: const BorderSide(width: 1.0, color: CustomTheme.errorColor),
           ),
           onPressed: () =>
               Navigator.pushReplacementNamed(context, AppRouter.home),
-          icon: Icon(Icons.refresh, color: CustomTheme.errorColor),
-          label: Text(
+          icon: const Icon(Icons.refresh, color: CustomTheme.errorColor),
+          label: const Text(
             Location.goBack,
             style: TextStyle(color: CustomTheme.errorColor),
           ));

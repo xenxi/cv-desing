@@ -33,16 +33,17 @@ class DesingDetailsPage extends StatelessWidget {
             children: [
               DetailMockUp(child: _buildImage(desing)),
               if (!sizingInformation.isMobile)
-                Align(
+                const Align(
                   alignment: Alignment.topRight,
                   child: Padding(
                       padding: EdgeInsets.all(CustomTheme.defaultPadding),
-                      child: const RoundedCloseButton()),
+                      child: RoundedCloseButton()),
                 ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: CustomTheme.defaultPadding),
+                  padding:
+                      const EdgeInsets.only(bottom: CustomTheme.defaultPadding),
                   child: RequestButton(
                     reference: desing.reference,
                   ),
