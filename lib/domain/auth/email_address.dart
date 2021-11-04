@@ -1,6 +1,9 @@
 import 'package:dartz/dartz.dart';
+import '../failure.dart';
+import '../value_object.dart';
+import 'email_address_failure.dart';
 
-class EmailAddress {
+class EmailAddress extends ValueObject {
   final String value;
   EmailAddress._(
     this.value,
@@ -32,13 +35,7 @@ class EmailAddress {
 
     return right(input);
   }
-}
 
-abstract class Failure {}
-
-class InvalidEmailFailure implements Failure {
-  final String failedValue;
-  InvalidEmailFailure({
-    required this.failedValue,
-  });
+  @override
+  List<Object?> get props => [value];
 }
