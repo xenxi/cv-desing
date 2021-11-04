@@ -1,7 +1,7 @@
+import 'package:cv_desing_website_flutter/domain/auth/failures/email_address_failure.dart';
 import 'package:dartz/dartz.dart';
-import '../failure.dart';
-import '../value_object.dart';
-import 'failures/email_address_failure.dart';
+import '../../failure.dart';
+import '../../value_object.dart';
 
 class EmailAddress extends ValueObject {
   final String value;
