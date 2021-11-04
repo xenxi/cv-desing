@@ -1,10 +1,13 @@
+import 'package:dartz/dartz.dart';
+
 class EmailAddress {
   final String value;
   EmailAddress._(
     this.value,
   );
-  factory EmailAddress(String input) {
-    return EmailAddress._(_validateEmailAddress(input));
+
+  static Either<Failure, EmailAddress> create(String input) {
+    return _validateEmailAddress(input).bind((a) => right(EmailAddress._(a)));
   }
 
   @override
@@ -20,18 +23,22 @@ class EmailAddress {
   @override
   String toString() => 'EmailAddress($value)';
 
-  static String _validateEmailAddress(String input) {
+  static Either<Failure, String> _validateEmailAddress(String input) {
     const emailRegex =
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-    if (RegExp(emailRegex).hasMatch(input)) return input;
+    if (!RegExp(emailRegex).hasMatch(input)) {
+      return left(InvalidEmailFailure(failedValue: input));
+    }
 
-    throw InvalidEmailException(failedValue: input);
+    return right(input);
   }
 }
 
-class InvalidEmailException implements Exception {
+abstract class Failure {}
+
+class InvalidEmailFailure implements Failure {
   final String failedValue;
-  InvalidEmailException({
+  InvalidEmailFailure({
     required this.failedValue,
   });
 }
