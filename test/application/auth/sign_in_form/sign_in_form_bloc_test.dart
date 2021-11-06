@@ -8,7 +8,9 @@ void main() {
     bloc = SignInFormBloc();
   });
 
-  test('initial state should be empty', () {
-    expect(bloc.state, equals(Empty()));
+  group('signInForm should', () {
+    test('be in empty state', () {
+      expect(bloc.state, equals(Empty()));
+    });
   });
 }
