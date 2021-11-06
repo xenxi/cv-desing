@@ -4,16 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
 
 void main() {
-  late SignInFormBloc bloc;
-
-  setUp(() {
-    bloc = SignInFormBloc();
-  });
-  tearDown(() {
-    bloc.close();
-  });
   group('signInForm should', () {
     test('be in empty state', () {
+      final bloc = SignInFormBloc();
+
       expect(bloc.state, equals(Empty()));
     });
     blocTest<SignInFormBloc, SignInFormState>('update email when email changed',
