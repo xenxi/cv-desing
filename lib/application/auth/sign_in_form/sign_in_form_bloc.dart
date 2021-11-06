@@ -9,7 +9,7 @@ part 'sign_in_form_event.dart';
 part 'sign_in_form_state.dart';
 
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
-  SignInFormBloc() : super(Empty()) {
+  SignInFormBloc() : super(SignInFormState.initial()) {
     on<SignInFormEvent>((event, emit) {
       if (event is EmailChanged) {
         emit(SignInFormState(email: EmailAddress.create(event.email)));

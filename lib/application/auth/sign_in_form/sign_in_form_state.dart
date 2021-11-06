@@ -9,8 +9,7 @@ class SignInFormState extends Equatable {
 
   @override
   List<Object> get props => [email];
-}
 
-class Empty extends SignInFormState {
-  Empty() : super(email: EmailAddress.create(''));
+  factory SignInFormState.initial() =>
+      SignInFormState(email: EmailAddress.create(''));
 }
