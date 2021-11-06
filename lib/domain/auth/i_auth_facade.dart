@@ -1,11 +1,14 @@
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/password.dart';
+import 'package:dartz/dartz.dart';
+
+import 'failures/auth_failures.dart';
 
 abstract class IAuthFacade {
-  Future<void> registerWithEmailAndPassword(
+  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(
       {required EmailAddress email, required Password password});
-  Future<void> signInWithEmailAndPassword(
+  Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword(
       {required EmailAddress email, required Password password});
 
-  Future<void> signInWithGoogle();
+  Future<Either<AuthFailure, Unit>> signInWithGoogle();
 }
