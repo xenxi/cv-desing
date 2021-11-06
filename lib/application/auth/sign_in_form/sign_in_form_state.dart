@@ -1,6 +1,6 @@
 part of 'sign_in_form_bloc.dart';
 
-abstract class SignInFormState extends Equatable {
+class SignInFormState extends Equatable {
   final Either<Failure, EmailAddress> email;
 
   const SignInFormState({
