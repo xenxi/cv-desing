@@ -15,3 +15,11 @@ class EmailChanged extends SignInFormEvent {
   @override
   List<Object> get props => [email];
 }
+
+class PasswordChanged extends SignInFormEvent {
+  final String password;
+
+  const PasswordChanged(this.password);
+  @override
+  List<Object> get props => [password];
+}

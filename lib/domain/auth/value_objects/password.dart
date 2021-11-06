@@ -19,4 +19,6 @@ class Password extends ValueObject {
     if (value.isEmpty) return left(InvalidPasswordFailure(failedValue: value));
     return right(value);
   }
+
+  static Either<Failure, Password> empty() => create('');
 }
