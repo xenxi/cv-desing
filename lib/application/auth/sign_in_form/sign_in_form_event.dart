@@ -23,3 +23,9 @@ class PasswordChanged extends SignInFormEvent {
   @override
   List<Object> get props => [password];
 }
+
+class SignInWithEmailAndPasswordPressed extends SignInFormEvent {
+  const SignInWithEmailAndPasswordPressed();
+  @override
+  List<Object> get props => [];
+}
