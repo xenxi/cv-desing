@@ -13,6 +13,10 @@ class EmailAddress extends ValueObject {
     return _validateEmailAddress(input).bind((a) => right(EmailAddress._(a)));
   }
 
+  static Either<Failure, EmailAddress> empty() {
+    return create('');
+  }
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

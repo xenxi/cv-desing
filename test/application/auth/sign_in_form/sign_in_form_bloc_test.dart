@@ -8,8 +8,7 @@ void main() {
     test('be in empty state', () {
       final bloc = SignInFormBloc();
 
-      expect(
-          bloc.state, equals(SignInFormState(email: EmailAddress.create(''))));
+      expect(bloc.state, equals(SignInFormState(email: EmailAddress.empty())));
     });
     blocTest<SignInFormBloc, SignInFormState>('update email when email changed',
         build: () => SignInFormBloc(),

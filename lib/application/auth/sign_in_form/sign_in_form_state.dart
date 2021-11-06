@@ -11,5 +11,5 @@ class SignInFormState extends Equatable {
   List<Object> get props => [email];
 
   factory SignInFormState.initial() =>
-      SignInFormState(email: EmailAddress.create(''));
+      SignInFormState(email: EmailAddress.empty());
 }
