@@ -6,6 +6,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:cv_desing_website_flutter/domain/failure.dart';
 
 class MockIAuthFacade extends Mock implements IAuthFacade {}
 
@@ -60,10 +61,8 @@ void main() {
         setUp: () {
           when(
             () => authFacade.signInWithEmailAndPassword(
-                email:
-                    anyValidEmailOrFailure.getOrElse(() => throw Exception()),
-                password: anyValidPasswordOrFailure
-                    .getOrElse(() => throw Exception())),
+                email: anyValidEmailOrFailure.getOrCrash(),
+                password: anyValidPasswordOrFailure.getOrCrash()),
           ).thenAnswer((_) => Future.value(right(unit)));
         },
         act: (bloc) {
