@@ -32,30 +32,6 @@ void main() {
           failureOrSuccessOption: none());
       expect(bloc.state, equals(expectedEmptyState));
     });
-    blocTest<SignInFormBloc, SignInFormState>('update email when email changed',
-        build: () => SignInFormBloc(authFacade),
-        act: (bloc) {
-          bloc.add(const EmailChanged('aGivenValidEmail@test.com'));
-        },
-        expect: () => <SignInFormState>[
-              SignInFormState(
-                  email: EmailAddress.create('aGivenValidEmail@test.com'),
-                  password: Password.empty(),
-                  failureOrSuccessOption: none())
-            ]);
-
-    blocTest<SignInFormBloc, SignInFormState>(
-        'update password when password changed',
-        build: () => SignInFormBloc(authFacade),
-        act: (bloc) {
-          bloc.add(const PasswordChanged(anyValidPassword));
-        },
-        expect: () => <SignInFormState>[
-              SignInFormState(
-                  password: Password.create(anyValidPassword),
-                  email: EmailAddress.empty(),
-                  failureOrSuccessOption: none())
-            ]);
 
     blocTest<SignInFormBloc, SignInFormState>(
         'signIn user with email and password',
