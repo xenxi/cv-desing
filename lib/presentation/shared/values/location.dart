@@ -38,4 +38,5 @@ class Location {
   static const homeSubtitle2 = 'Gran cantidad de diseños';
   static const homeSubtitle3 = 'Obten tu CV en poco tiempo';
   static const start = 'Empezar';
+  static const email = 'Email';
 }

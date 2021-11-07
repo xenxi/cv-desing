@@ -7,7 +7,7 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () => Navigator.of(context).pushNamed(AppRouter.login),
+      onPressed: () => Navigator.of(context).pushNamed(AppRouter.auth),
       icon: const Icon(
         Icons.login,
         color: Colors.black,
