@@ -14,16 +14,19 @@ part 'sign_in_form_state.dart';
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   final IAuthFacade _authFacade;
   SignInFormBloc(this._authFacade) : super(SignInFormState.initial()) {
-    on<SignInFormEvent>((event, emit) {
+    on<SignInFormEvent>((event, emit) async {
       if (event is EmailChanged) {
         emit(state.copyWith(email: EmailAddress.create(event.email)));
       } else if (event is PasswordChanged) {
         emit(state.copyWith(password: Password.create(event.password)));
       } else if (event is SignInWithEmailAndPasswordPressed) {
         if (state.email.isValid() && state.password.isValid()) {
+          final failureOrSuccess = await _authFacade.signInWithEmailAndPassword(
+              email: state.email.getOrCrash(),
+              password: state.password.getOrCrash());
           emit(state.copyWith(
               showErrorMessages: true,
-              failureOrSuccessOption: some(right(unit))));
+              failureOrSuccessOption: some(failureOrSuccess)));
         } else {
           emit(state.copyWith(
               showErrorMessages: true, failureOrSuccessOption: none()));

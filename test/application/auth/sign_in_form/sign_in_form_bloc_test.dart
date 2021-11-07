@@ -52,6 +52,11 @@ void main() {
           bloc.add(const PasswordChanged(anyValidPassword));
           bloc.add(const SignInWithEmailAndPasswordPressed());
         },
+        verify: (_) {
+          verify(() => authFacade.signInWithEmailAndPassword(
+              email: anyValidEmailOrFailure.getOrCrash(),
+              password: anyValidPasswordOrFailure.getOrCrash())).called(1);
+        },
         expect: () => <SignInFormState>[
               SignInFormState(
                   email: anyValidEmailOrFailure,
