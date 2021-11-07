@@ -10,6 +10,9 @@ import 'package:mocktail/mocktail.dart';
 class MockIAuthFacade extends Mock implements IAuthFacade {}
 
 void main() {
+  final anyValidEmailOrFailure = EmailAddress.create('anyValidEmail@test.com');
+  final anyValidPasswordOrFailure = Password.create('anyValidPassword');
+
   late MockIAuthFacade authFacade;
 
   setUp(() {
@@ -56,13 +59,11 @@ void main() {
         build: () => SignInFormBloc(authFacade),
         setUp: () {
           when(
-            () {
-              final aValidEmail = EmailAddress.create('anyValidEmail@test.com');
-              final aValidPassword = Password.create('anyValidPassword');
-              return authFacade.signInWithEmailAndPassword(
-                  email: aValidEmail.getOrElse(() => throw Exception()),
-                  password: aValidPassword.getOrElse(() => throw Exception()));
-            },
+            () => authFacade.signInWithEmailAndPassword(
+                email:
+                    anyValidEmailOrFailure.getOrElse(() => throw Exception()),
+                password: anyValidPasswordOrFailure
+                    .getOrElse(() => throw Exception())),
           ).thenAnswer((_) => Future.value(right(unit)));
         },
         act: (bloc) {
@@ -72,16 +73,16 @@ void main() {
         },
         expect: () => <SignInFormState>[
               SignInFormState(
-                  email: EmailAddress.create('anyValidEmail@test.com'),
+                  email: anyValidEmailOrFailure,
                   password: Password.empty(),
                   failureOrSuccessOption: none()),
               SignInFormState(
-                  password: Password.create('anyValidPassword'),
-                  email: EmailAddress.create('anyValidEmail@test.com'),
+                  password: anyValidPasswordOrFailure,
+                  email: anyValidEmailOrFailure,
                   failureOrSuccessOption: none()),
               SignInFormState(
-                  password: Password.create('anyValidPassword'),
-                  email: EmailAddress.create('anyValidEmail@test.com'),
+                  password: anyValidPasswordOrFailure,
+                  email: anyValidEmailOrFailure,
                   failureOrSuccessOption: some(right(unit)))
             ]);
   });
