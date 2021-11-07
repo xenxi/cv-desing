@@ -33,6 +33,7 @@ void main() {
           email: EmailAddress.empty(),
           password: Password.empty(),
           showErrorMessages: false,
+          showLoader: false,
           failureOrSuccessOption: none());
       expect(bloc.state, equals(expectedEmptyState));
     });
@@ -62,16 +63,25 @@ void main() {
                   email: anyValidEmailOrFailure,
                   password: Password.empty(),
                   showErrorMessages: false,
+                  showLoader: false,
                   failureOrSuccessOption: none()),
               SignInFormState(
                   password: anyValidPasswordOrFailure,
                   email: anyValidEmailOrFailure,
                   showErrorMessages: false,
+                  showLoader: false,
+                  failureOrSuccessOption: none()),
+              SignInFormState(
+                  password: anyValidPasswordOrFailure,
+                  email: anyValidEmailOrFailure,
+                  showErrorMessages: false,
+                  showLoader: true,
                   failureOrSuccessOption: none()),
               SignInFormState(
                   password: anyValidPasswordOrFailure,
                   email: anyValidEmailOrFailure,
                   showErrorMessages: true,
+                  showLoader: false,
                   failureOrSuccessOption: some(right(unit)))
             ]);
     blocTest<SignInFormBloc, SignInFormState>(
@@ -86,11 +96,13 @@ void main() {
                   password: anyValidPasswordOrFailure,
                   email: anyInvalidEmailOrFailure,
                   showErrorMessages: false,
+                  showLoader: false,
                   failureOrSuccessOption: none()),
               SignInFormState(
                   password: anyValidPasswordOrFailure,
                   email: anyInvalidEmailOrFailure,
                   showErrorMessages: true,
+                  showLoader: false,
                   failureOrSuccessOption: none())
             ]);
     blocTest<SignInFormBloc, SignInFormState>(
@@ -105,11 +117,13 @@ void main() {
                   password: anyInvalidPasswordOrFailure,
                   email: anyValidEmailOrFailure,
                   showErrorMessages: false,
+                  showLoader: false,
                   failureOrSuccessOption: none()),
               SignInFormState(
                   password: anyInvalidPasswordOrFailure,
                   email: anyValidEmailOrFailure,
                   showErrorMessages: true,
+                  showLoader: false,
                   failureOrSuccessOption: none())
             ]);
   });

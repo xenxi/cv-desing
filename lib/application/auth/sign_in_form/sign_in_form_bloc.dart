@@ -21,11 +21,13 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         emit(state.copyWith(password: Password.create(event.password)));
       } else if (event is SignInWithEmailAndPasswordPressed) {
         if (state.email.isValid() && state.password.isValid()) {
+          emit(state.copyWith(showLoader: true));
           final failureOrSuccess = await _authFacade.signInWithEmailAndPassword(
               email: state.email.getOrCrash(),
               password: state.password.getOrCrash());
           emit(state.copyWith(
               showErrorMessages: true,
+              showLoader: false,
               failureOrSuccessOption: some(failureOrSuccess)));
         } else {
           emit(state.copyWith(
