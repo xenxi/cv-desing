@@ -20,7 +20,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       } else if (event is PasswordChanged) {
         emit(state.copyWith(password: Password.create(event.password)));
       } else if (event is SignInWithEmailAndPasswordPressed) {
-        if (state.email.isValid()) {
+        if (state.email.isValid() && state.password.isValid()) {
           emit(state.copyWith(
               showErrorMessages: true,
               failureOrSuccessOption: some(right(unit))));

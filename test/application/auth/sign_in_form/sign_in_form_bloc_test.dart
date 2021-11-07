@@ -85,5 +85,24 @@ void main() {
                   showErrorMessages: true,
                   failureOrSuccessOption: none())
             ]);
+    blocTest<SignInFormBloc, SignInFormState>(
+        'show error on signIn when password is invalid',
+        build: () => SignInFormBloc(authFacade),
+        act: (bloc) {
+          bloc.add(const EmailChanged(anyValidEmail));
+          bloc.add(const SignInWithEmailAndPasswordPressed());
+        },
+        expect: () => <SignInFormState>[
+              SignInFormState(
+                  password: Password.empty(),
+                  email: anyValidEmailOrFailure,
+                  showErrorMessages: false,
+                  failureOrSuccessOption: none()),
+              SignInFormState(
+                  password: Password.empty(),
+                  email: anyValidEmailOrFailure,
+                  showErrorMessages: true,
+                  failureOrSuccessOption: none())
+            ]);
   });
 }
