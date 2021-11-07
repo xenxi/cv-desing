@@ -29,6 +29,7 @@ void main() {
       final expectedEmptyState = SignInFormState(
           email: EmailAddress.empty(),
           password: Password.empty(),
+          showErrorMessages: false,
           failureOrSuccessOption: none());
       expect(bloc.state, equals(expectedEmptyState));
     });
@@ -52,15 +53,37 @@ void main() {
               SignInFormState(
                   email: anyValidEmailOrFailure,
                   password: Password.empty(),
+                  showErrorMessages: false,
                   failureOrSuccessOption: none()),
               SignInFormState(
                   password: anyValidPasswordOrFailure,
                   email: anyValidEmailOrFailure,
+                  showErrorMessages: false,
                   failureOrSuccessOption: none()),
               SignInFormState(
                   password: anyValidPasswordOrFailure,
                   email: anyValidEmailOrFailure,
+                  showErrorMessages: true,
                   failureOrSuccessOption: some(right(unit)))
+            ]);
+    blocTest<SignInFormBloc, SignInFormState>(
+        'show error on signIn when email is invalid',
+        build: () => SignInFormBloc(authFacade),
+        act: (bloc) {
+          bloc.add(const PasswordChanged(anyValidPassword));
+          bloc.add(const SignInWithEmailAndPasswordPressed());
+        },
+        expect: () => <SignInFormState>[
+              SignInFormState(
+                  password: anyValidPasswordOrFailure,
+                  email: EmailAddress.empty(),
+                  showErrorMessages: false,
+                  failureOrSuccessOption: none()),
+              SignInFormState(
+                  password: anyValidPasswordOrFailure,
+                  email: EmailAddress.empty(),
+                  showErrorMessages: true,
+                  failureOrSuccessOption: none())
             ]);
   });
 }

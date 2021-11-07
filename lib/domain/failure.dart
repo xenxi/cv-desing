@@ -17,4 +17,5 @@ class Failure<T> extends Equatable {
 
 extension MonadFailureExtension<T> on Either<Failure, T> {
   T getOrCrash() => fold((f) => throw UnexpectedValueError(f), id);
+  bool isValid() => isRight();
 }
