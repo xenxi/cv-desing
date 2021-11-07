@@ -1,11 +1,25 @@
 import 'package:cv_desing_website_flutter/domain/failure.dart';
+import 'package:dartz/dartz.dart';
 
-abstract class AuthFailure implements Failure {}
+abstract class AuthFailure extends Failure<Unit> {
+  const AuthFailure() : super(unit);
 
-// class CancelledByUser implements AuthFailure {}
+  static ServerError serverError() => const ServerError._();
+  static CancelledByUser cancelledByUser() => const CancelledByUser._();
 
-// class ServerError implements AuthFailure {}
+  static InvalidEmailAndPasswordCombination
+      invalidEmailAndPasswordCombination() =>
+          const InvalidEmailAndPasswordCombination._();
+}
 
-// class EmailAlreadyInUse implements AuthFailure {}
+class CancelledByUser extends AuthFailure {
+  const CancelledByUser._() : super();
+}
 
-// class InvalidEmailAndPasswordCombination implements AuthFailure {}
+class InvalidEmailAndPasswordCombination extends AuthFailure {
+  const InvalidEmailAndPasswordCombination._() : super();
+}
+
+class ServerError extends AuthFailure {
+  const ServerError._() : super();
+}
