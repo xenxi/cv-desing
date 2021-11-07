@@ -29,3 +29,9 @@ class SignInWithEmailAndPasswordPressed extends SignInFormEvent {
   @override
   List<Object> get props => [];
 }
+
+class SignInWithGooglePressed extends SignInFormEvent {
+  const SignInWithGooglePressed();
+  @override
+  List<Object> get props => [];
+}

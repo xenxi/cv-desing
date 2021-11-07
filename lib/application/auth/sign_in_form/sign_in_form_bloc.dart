@@ -33,6 +33,13 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
           emit(state.copyWith(
               showErrorMessages: true, failureOrSuccessOption: none()));
         }
+      } else if (event is SignInWithGooglePressed) {
+        emit(state.copyWith(showLoader: true));
+        final failureOrSuccess = await _authFacade.signInWithGoogle();
+        emit(state.copyWith(
+            showErrorMessages: true,
+            showLoader: false,
+            failureOrSuccessOption: some(failureOrSuccess)));
       }
     });
   }

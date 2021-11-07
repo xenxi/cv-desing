@@ -84,6 +84,27 @@ void main() {
                   showLoader: false,
                   failureOrSuccessOption: some(right(unit)))
             ]);
+    blocTest<SignInFormBloc, SignInFormState>('signIn user with google',
+        build: () => SignInFormBloc(authFacade),
+        setUp: () => when(
+              () => authFacade.signInWithGoogle(),
+            ).thenAnswer((_) => Future.value(right(unit))),
+        act: (bloc) => bloc.add(const SignInWithGooglePressed()),
+        verify: (_) => verify(() => authFacade.signInWithGoogle()).called(1),
+        expect: () => <SignInFormState>[
+              SignInFormState(
+                  password: Password.empty(),
+                  email: EmailAddress.empty(),
+                  showErrorMessages: false,
+                  showLoader: true,
+                  failureOrSuccessOption: none()),
+              SignInFormState(
+                  password: Password.empty(),
+                  email: EmailAddress.empty(),
+                  showErrorMessages: true,
+                  showLoader: false,
+                  failureOrSuccessOption: some(right(unit)))
+            ]);
     blocTest<SignInFormBloc, SignInFormState>(
         'show error on signIn when email is invalid',
         build: () => SignInFormBloc(authFacade),
