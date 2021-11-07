@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
+import 'package:flutter/material.dart';
 
 class DetailMockUp extends StatelessWidget {
   const DetailMockUp({
@@ -17,25 +16,26 @@ class DetailMockUp extends StatelessWidget {
   Widget _buildImage() {
     return Container(
       decoration: const BoxDecoration(
-          color: CustomTheme.secondaryColor,
-          image: DecorationImage(
-            image: AssetImage(
-              ImagePath.bg11,
-            ),
-            fit: BoxFit.cover,
-          )),
+        color: CustomTheme.secondaryColor,
+        image: DecorationImage(
+          image: AssetImage(
+            ImagePath.bg11,
+          ),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Center(
         child: Container(
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black,
-                  offset: Offset(2.0, 1.0), //(x,y)
-                  blurRadius: 8.0,
-                ),
-              ],
-            ),
-            child: child),
+          decoration: const BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(2.0, 1.0), //(x,y)
+                blurRadius: 8.0,
+              ),
+            ],
+          ),
+          child: child,
+        ),
       ),
     );
   }

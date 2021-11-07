@@ -4,9 +4,9 @@ import 'package:equatable/equatable.dart';
 import 'errors.dart';
 
 class Failure<T> extends Equatable {
-  final T failedValue;
-
   const Failure(this.failedValue);
+
+  final T failedValue;
 
   @override
   List<Object?> get props => [failedValue];

@@ -1,28 +1,33 @@
 import 'package:cv_desing_website_flutter/domain/auth/failures/auth_failures.dart';
 import 'package:cv_desing_website_flutter/domain/auth/i_auth_facade.dart';
-import 'package:dartz/dartz.dart';
-import 'package:cv_desing_website_flutter/domain/auth/value_objects/password.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
+import 'package:cv_desing_website_flutter/domain/auth/value_objects/password.dart';
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
+  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
+
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
 
-  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
   @override
-  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(
-      {required EmailAddress email, required Password password}) {
+  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
+    required EmailAddress email,
+    required Password password,
+  }) {
     // TODO: implement registerWithEmailAndPassword
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword(
-      {required EmailAddress email, required Password password}) async {
+  Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword({
+    required EmailAddress email,
+    required Password password,
+  }) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
         email: email.value,

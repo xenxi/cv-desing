@@ -27,38 +27,40 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      return Scaffold(
-        appBar: _buildNavBar(sizingInformation) as PreferredSizeWidget,
-        drawer: sizingInformation.isMobile
-            ? CustomDrawer(
-                menuList: navItems,
-                color: CustomTheme.secondaryColor,
-              )
-            : null,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              HomeSection(
-                key: homeKey,
-                goToProjectSection: () =>
-                    scrollToSection(desingsKey.currentContext),
-              ),
-              PortfolioSection(
-                key: desingsKey,
-              ),
-              const Padding(
-                padding: EdgeInsets.all(CustomTheme.defaultPadding),
-                child: Footer(
-                  textColor: CustomTheme.primaryText2,
-                  textLinkColor: CustomTheme.primaryColor,
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        return Scaffold(
+          appBar: _buildNavBar(sizingInformation) as PreferredSizeWidget,
+          drawer: sizingInformation.isMobile
+              ? CustomDrawer(
+                  menuList: navItems,
+                  color: CustomTheme.secondaryColor,
+                )
+              : null,
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                HomeSection(
+                  key: homeKey,
+                  goToProjectSection: () =>
+                      scrollToSection(desingsKey.currentContext),
                 ),
-              ),
-            ],
+                PortfolioSection(
+                  key: desingsKey,
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(CustomTheme.defaultPadding),
+                  child: Footer(
+                    textColor: CustomTheme.primaryText2,
+                    textLinkColor: CustomTheme.primaryColor,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 
   Widget _buildNavBar(SizingInformation sizingInformation) {

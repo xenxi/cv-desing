@@ -8,11 +8,12 @@ import 'nav_item.dart';
 import 'navbar_item_data.dart';
 
 class NavbarItems extends HookWidget {
-  final List<NavItemData> navItems;
   const NavbarItems({
     Key? key,
     required this.navItems,
   }) : super(key: key);
+
+  final List<NavItemData> navItems;
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +21,17 @@ class NavbarItems extends HookWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: items.value
-          .map((dataItem) => Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: NavItem(
-                  title: dataItem.name,
-                  isSelected: dataItem.isSelected,
-                  onTap: () =>
-                      _onTapNavItem(context, selected: dataItem, items: items),
-                ),
-              ))
+          .map(
+            (dataItem) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: NavItem(
+                title: dataItem.name,
+                isSelected: dataItem.isSelected,
+                onTap: () =>
+                    _onTapNavItem(context, selected: dataItem, items: items),
+              ),
+            ),
+          )
           .toList(),
     );
   }
@@ -41,9 +44,9 @@ class NavbarItems extends HookWidget {
     if (selected.name == Location.blog) {
       Navigator.of(context).pushNamed(AppRouter.blog);
     } else {
-      for (var item in items.value) {
+      for (final item in items.value) {
         if (selected.name == item.name) {
-          scrollToSection(item.key.currentContext!);
+          scrollToSection(item.key.currentContext);
           item.isSelected = true;
         } else {
           item.isSelected = false;

@@ -1,19 +1,11 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/widgets/price_chip.dart';
-import 'package:flutter/material.dart';
-
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/launcher_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/email_address.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/widgets/price_chip.dart';
+import 'package:flutter/material.dart';
 
 class DesingMobileItem extends StatelessWidget {
-  static final BorderRadius _cardBorderRadius = BorderRadius.circular(10);
-  final String reference;
-  final String imageUrl;
-  final double price;
-  final void Function() onTap;
-  final double? height;
-
   const DesingMobileItem({
     Key? key,
     required this.reference,
@@ -22,6 +14,13 @@ class DesingMobileItem extends StatelessWidget {
     required this.onTap,
     this.height,
   }) : super(key: key);
+
+  static final BorderRadius _cardBorderRadius = BorderRadius.circular(10);
+  final String reference;
+  final String imageUrl;
+  final double price;
+  final void Function() onTap;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -35,26 +34,27 @@ class DesingMobileItem extends StatelessWidget {
   }
 
   Widget _buildDismissibleItem(BuildContext context) => Dismissible(
-      key: Key(reference),
-      direction: DismissDirection.endToStart,
-      confirmDismiss: (_) async => requestDesing(),
-      background: Container(
-        color: CustomTheme.secondaryColor,
-        padding: const EdgeInsets.only(right: CustomTheme.defaultPadding),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            ZoomIn(
-              child: const Icon(
-                Icons.shopping_cart_outlined,
-                size: 40,
-                color: CustomTheme.primaryColor,
+        key: Key(reference),
+        direction: DismissDirection.endToStart,
+        confirmDismiss: (_) async => requestDesing(),
+        background: Container(
+          color: CustomTheme.secondaryColor,
+          padding: const EdgeInsets.only(right: CustomTheme.defaultPadding),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ZoomIn(
+                child: const Icon(
+                  Icons.shopping_cart_outlined,
+                  size: 40,
+                  color: CustomTheme.primaryColor,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-      child: _buildItem(context));
+        child: _buildItem(context),
+      );
 
   Widget _buildItem(BuildContext context) {
     return Container(
@@ -71,7 +71,6 @@ class DesingMobileItem extends StatelessWidget {
         ],
       ),
       child: Stack(
-        clipBehavior: Clip.hardEdge,
         children: [
           _buildProjectImage(context),
           Align(

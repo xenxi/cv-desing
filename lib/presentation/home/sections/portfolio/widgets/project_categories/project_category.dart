@@ -54,7 +54,7 @@ class _ProjectCategoryState extends State<ProjectCategory>
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
+    final TextTheme textTheme = Theme.of(context).textTheme;
     return MouseRegion(
       onEnter: (e) => _mouseEnter(true),
       onExit: (e) => _mouseEnter(false),
@@ -90,12 +90,12 @@ class _ProjectCategoryState extends State<ProjectCategory>
   }
 
   Widget numberOfProjectItems() {
-    TextTheme textTheme = Theme.of(context).textTheme;
+    final TextTheme textTheme = Theme.of(context).textTheme;
 
     return Transform.translate(
       offset: const Offset(2, -8),
       child: Text(
-        "(${widget.number})",
+        '(${widget.number})',
         textScaleFactor: 0.7,
         style: widget.numberStyle?.copyWith(
               color: widget.hoverColor,

@@ -17,60 +17,71 @@ import 'widgets/project_categories/project_categories.dart';
 import 'widgets/project_categories/project_category_data.dart';
 
 class PortfolioSection extends HookWidget {
+  PortfolioSection({Key? key}) : super(key: key);
+
   final categoriesData = Category.values
-      .map((category) => ProjectCategoryData(
+      .map(
+        (category) => ProjectCategoryData(
           category: category,
           number:
               DesingData.desings.where((e) => e.category == category).length,
           title: category.displayName,
-          isSelected: category == Category.curriculum))
+          isSelected: category == Category.curriculum,
+        ),
+      )
       .toList();
-
-  PortfolioSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final desings = useState(DesingData.desings
-        .where((e) => e.category == Category.curriculum)
-        .toList());
+    final desings = useState(
+      DesingData.desings
+          .where((e) => e.category == Category.curriculum)
+          .toList(),
+    );
     final categories = useState(categoriesData);
     final controller = usePageController();
 
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      return Section(
-        isMobile: sizingInformation.isMobile,
-        decoration: _buildSectionDecoration(),
-        padding: const EdgeInsets.only(
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        return Section(
+          isMobile: sizingInformation.isMobile,
+          decoration: _buildSectionDecoration(),
+          padding: const EdgeInsets.only(
             bottom: CustomTheme.footerPadding,
             left: CustomTheme.defaultPadding,
-            right: CustomTheme.defaultPadding),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SectionTitle(
-              title: Location.portfolioSectionTitle,
-              subTitle: Location.portfolioSectionSubtitle,
-              color: CustomTheme.primaryColor,
-            ),
-            ProjectCategories(
-              categories: categories.value,
-              onCategoryTap: (c) {
-                categories.value = categoriesData
-                    .map((e) => e.copyWith(isSelected: e.category == c))
-                    .toList();
-                desings.value =
-                    DesingData.desings.where((e) => e.category == c).toList();
-              },
-            ),
-            const SizedBox(
-              height: 40.0,
-            ),
-            _buildItems(desings.value,
-                sizingInformation: sizingInformation, controller: controller)
-          ],
-        ),
-      );
-    });
+            right: CustomTheme.defaultPadding,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SectionTitle(
+                title: Location.portfolioSectionTitle,
+                subTitle: Location.portfolioSectionSubtitle,
+                color: CustomTheme.primaryColor,
+              ),
+              ProjectCategories(
+                categories: categories.value,
+                onCategoryTap: (c) {
+                  categories.value = categoriesData
+                      .map((e) => e.copyWith(isSelected: e.category == c))
+                      .toList();
+                  desings.value =
+                      DesingData.desings.where((e) => e.category == c).toList();
+                },
+              ),
+              const SizedBox(
+                height: 40.0,
+              ),
+              _buildItems(
+                desings.value,
+                sizingInformation: sizingInformation,
+                controller: controller,
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 
   BoxDecoration _buildSectionDecoration() {
@@ -83,9 +94,11 @@ class PortfolioSection extends HookWidget {
     );
   }
 
-  Widget _buildItems(List<Desing> items,
-      {required SizingInformation sizingInformation,
-      required PageController controller}) {
+  Widget _buildItems(
+    List<Desing> items, {
+    required SizingInformation sizingInformation,
+    required PageController controller,
+  }) {
     if (sizingInformation.isMobile) {
       return DesingMobileItems(
         desings: items,

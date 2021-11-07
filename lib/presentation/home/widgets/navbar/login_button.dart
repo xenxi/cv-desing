@@ -8,7 +8,10 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () => Navigator.of(context).pushNamed(AppRouter.login),
-      icon: const Icon(Icons.login),
+      icon: const Icon(
+        Icons.login,
+        color: Colors.black,
+      ),
     );
   }
 }

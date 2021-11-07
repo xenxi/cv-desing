@@ -4,12 +4,11 @@ import 'package:dartz/dartz.dart';
 abstract class AuthFailure extends Failure<Unit> {
   const AuthFailure() : super(unit);
 
-  static ServerError serverError() => const ServerError._();
-  static CancelledByUser cancelledByUser() => const CancelledByUser._();
+  factory AuthFailure.serverError() => const ServerError._();
+  factory AuthFailure.cancelledByUser() => const CancelledByUser._();
 
-  static InvalidEmailAndPasswordCombination
-      invalidEmailAndPasswordCombination() =>
-          const InvalidEmailAndPasswordCombination._();
+  factory AuthFailure.invalidEmailAndPasswordCombination() =>
+      const InvalidEmailAndPasswordCombination._();
 }
 
 class CancelledByUser extends AuthFailure {

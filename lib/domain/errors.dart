@@ -1,9 +1,9 @@
 import 'package:cv_desing_website_flutter/domain/failure.dart';
 
 class UnexpectedValueError extends Error {
-  final Failure valueFailure;
-
   UnexpectedValueError(this.valueFailure);
+
+  final Failure valueFailure;
 
   @override
   String toString() {

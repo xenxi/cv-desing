@@ -9,19 +9,21 @@ class SocialData {
     SocialButtonData(
       tag: 'EMAIL_ADDRESS',
       iconData: FontAwesomeIcons.envelope,
-      onPressed: () async => await openMail(EmailAddress.defaultAccount,
-          subject: 'Información web'),
+      onPressed: () => openMail(
+        EmailAddress.defaultAccount,
+        subject: 'Información web',
+      ),
     ),
     SocialButtonData(
       tag: 'INSTAGRAM_URL',
       iconData: FontAwesomeIcons.instagram,
-      onPressed: () async =>
-          await openUrlLink('https://www.instagram.com/dscurriculumvitae'),
+      onPressed: () =>
+          openUrlLink('https://www.instagram.com/dscurriculumvitae'),
     ),
     SocialButtonData(
-        tag: 'TIKTOK_URL',
-        iconData: FontAwesomeIcons.tiktok,
-        onPressed: () async =>
-            await openUrlLink('https://www.tiktok.com/@dscurriculumvitae')),
+      tag: 'TIKTOK_URL',
+      iconData: FontAwesomeIcons.tiktok,
+      onPressed: () => openUrlLink('https://www.tiktok.com/@dscurriculumvitae'),
+    ),
   ];
 }

@@ -10,7 +10,8 @@ class SectionTitle extends StatelessWidget {
     required this.color,
   }) : super(key: key);
 
-  final String title, subTitle;
+  final String title;
+  final String subTitle;
   final Color color;
 
   @override

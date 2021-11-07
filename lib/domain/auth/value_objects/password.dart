@@ -4,9 +4,9 @@ import 'package:cv_desing_website_flutter/domain/value_object.dart';
 import 'package:dartz/dartz.dart';
 
 class Password extends ValueObject {
-  final String value;
-
   Password._(this.value);
+
+  final String value;
 
   static Either<Failure, Password> create(String value) {
     return _validatePassword(value).bind((a) => right(Password._(a)));

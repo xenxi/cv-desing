@@ -1,12 +1,13 @@
 part of 'sign_in_form_bloc.dart';
 
 class SignInFormState extends Equatable {
-  final Either<Failure, EmailAddress> email;
-  final Either<Failure, Password> password;
-  final Option<Either<AuthFailure, Unit>> failureOrSuccessOption;
-  final bool showErrorMessages;
-  final bool showLoader;
-
+  factory SignInFormState.initial() => SignInFormState(
+        email: EmailAddress.empty(),
+        password: Password.empty(),
+        showErrorMessages: false,
+        showLoader: false,
+        failureOrSuccessOption: none(),
+      );
   const SignInFormState({
     required this.email,
     required this.password,
@@ -15,16 +16,15 @@ class SignInFormState extends Equatable {
     required this.showLoader,
   });
 
+  final Either<Failure, EmailAddress> email;
+  final Either<Failure, Password> password;
+  final Option<Either<AuthFailure, Unit>> failureOrSuccessOption;
+  final bool showErrorMessages;
+  final bool showLoader;
+
   @override
   List<Object> get props =>
       [email, password, failureOrSuccessOption, showErrorMessages, showLoader];
-
-  factory SignInFormState.initial() => SignInFormState(
-      email: EmailAddress.empty(),
-      password: Password.empty(),
-      showErrorMessages: false,
-      showLoader: false,
-      failureOrSuccessOption: none());
 
   SignInFormState copyWith({
     Either<Failure, EmailAddress>? email,

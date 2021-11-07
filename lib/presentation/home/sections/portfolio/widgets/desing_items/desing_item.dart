@@ -1,20 +1,12 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/components/launcher_funtions.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/email_address.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/price_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/components/launcher_funtions.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/values/email_address.dart';
-
 class DesingItem extends HookWidget {
-  static final BorderRadius _cardBorderRadius = BorderRadius.circular(10);
-  static const Color _textColor = Colors.white;
-  final String title;
-  final String subtitle;
-  final String imageUrl;
-  final double price;
-  final void Function() onTap;
   const DesingItem({
     Key? key,
     required this.title,
@@ -23,6 +15,14 @@ class DesingItem extends HookWidget {
     required this.price,
     required this.onTap,
   }) : super(key: key);
+
+  static final BorderRadius _cardBorderRadius = BorderRadius.circular(10);
+  static const Color _textColor = Colors.white;
+  final String title;
+  final String subtitle;
+  final String imageUrl;
+  final double price;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,6 @@ class DesingItem extends HookWidget {
         ],
       ),
       child: Stack(
-        clipBehavior: Clip.hardEdge,
         children: [
           _buildProjectImage(context),
           Align(
@@ -63,23 +62,24 @@ class DesingItem extends HookWidget {
           ),
           if (isHover) ...[
             Align(
-              alignment: Alignment.center,
               child: FlipInX(
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
                   decoration: BoxDecoration(
-                      borderRadius: _cardBorderRadius,
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            CustomTheme.secondaryColor.withOpacity(.2),
-                            CustomTheme.secondaryColor.withOpacity(.7),
-                            CustomTheme.secondaryColor.withOpacity(.8),
-                            CustomTheme.secondaryColor.withOpacity(.7),
-                            CustomTheme.secondaryColor.withOpacity(.2),
-                          ])),
+                    borderRadius: _cardBorderRadius,
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        CustomTheme.secondaryColor.withOpacity(.2),
+                        CustomTheme.secondaryColor.withOpacity(.7),
+                        CustomTheme.secondaryColor.withOpacity(.8),
+                        CustomTheme.secondaryColor.withOpacity(.7),
+                        CustomTheme.secondaryColor.withOpacity(.2),
+                      ],
+                    ),
+                  ),
                   child: _buildTextInfo(context),
                 ),
               ),
@@ -92,7 +92,6 @@ class DesingItem extends HookWidget {
 
   Widget _buildTextInfo(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
@@ -114,9 +113,10 @@ class DesingItem extends HookWidget {
         ),
         const SizedBox(height: CustomTheme.defaultPadding),
         ElevatedButton.icon(
-            onPressed: openEmail,
-            icon: const Icon(Icons.info),
-            label: const Text("Solicitar"))
+          onPressed: openEmail,
+          icon: const Icon(Icons.info),
+          label: const Text('Solicitar'),
+        )
       ],
     );
   }

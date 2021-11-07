@@ -4,13 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class NavItem extends HookWidget {
-  static const double indicatorWidth = 60;
-  final String title;
-  final TextStyle? titleStyle;
-  final Color titleColor;
-  final bool isSelected;
-  final GestureTapCallback? onTap;
-
   const NavItem({
     Key? key,
     required this.title,
@@ -19,6 +12,13 @@ class NavItem extends HookWidget {
     required this.isSelected,
     this.onTap,
   }) : super(key: key);
+
+  static const double indicatorWidth = 60;
+  final String title;
+  final TextStyle? titleStyle;
+  final Color titleColor;
+  final bool isSelected;
+  final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -30,20 +30,21 @@ class NavItem extends HookWidget {
         onTap: onTap,
         child: Stack(
           children: [
-            isSelected
-                ? const Positioned(
-                    top: 12,
-                    child: SelectedIndicator(
-                      width: indicatorWidth,
-                    ),
-                  )
-                : Positioned(
-                    top: 12,
-                    child: AnimatedHoverIndicator(
-                      isHover: isHover.value,
-                      width: indicatorWidth,
-                    ),
-                  ),
+            if (isSelected)
+              const Positioned(
+                top: 12,
+                child: SelectedIndicator(
+                  width: indicatorWidth,
+                ),
+              )
+            else
+              Positioned(
+                top: 12,
+                child: AnimatedHoverIndicator(
+                  isHover: isHover.value,
+                  width: indicatorWidth,
+                ),
+              ),
             Text(
               title,
               style: titleStyle ??

@@ -9,17 +9,19 @@ abstract class SignInFormEvent extends Equatable {
 }
 
 class EmailChanged extends SignInFormEvent {
+  const EmailChanged(this.email);
+
   final String email;
 
-  const EmailChanged(this.email);
   @override
   List<Object> get props => [email];
 }
 
 class PasswordChanged extends SignInFormEvent {
+  const PasswordChanged(this.password);
+
   final String password;
 
-  const PasswordChanged(this.password);
   @override
   List<Object> get props => [password];
 }

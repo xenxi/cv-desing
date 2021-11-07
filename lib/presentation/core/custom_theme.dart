@@ -18,10 +18,11 @@ class CustomTheme {
 
   static ThemeData get lightTheme {
     return ThemeData.light().copyWith(
-        primaryColor: primaryColor,
-        textTheme: _lightTextTheme,
-        colorScheme: const ColorScheme.light()
-            .copyWith(primary: primaryColor, secondary: secondaryColor));
+      primaryColor: primaryColor,
+      textTheme: _lightTextTheme,
+      colorScheme: const ColorScheme.light()
+          .copyWith(primary: primaryColor, secondary: secondaryColor),
+    );
   }
 
   static final TextTheme _lightTextTheme = ThemeData.light().textTheme.copyWith(

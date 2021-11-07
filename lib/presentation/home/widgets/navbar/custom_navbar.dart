@@ -1,23 +1,24 @@
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
-import 'package:flutter/material.dart';
-
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/home/widgets/navbar/login_button.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button_data.dart';
+import 'package:flutter/material.dart';
 
 import 'navbar_divider.dart';
 import 'navbar_item_data.dart';
 import 'navbar_items.dart';
 
 class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
-  final List<SocialButtonData> socialData;
-  final List<NavItemData> navItems;
   const CustomNavBar({
     Key? key,
     required this.socialData,
     required this.navItems,
   }) : super(key: key);
+
+  final List<SocialButtonData> socialData;
+  final List<NavItemData> navItems;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,9 @@ class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
             Logo(
               height: 80,
               onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
-                  AppRouter.home, (Route<dynamic> route) => false),
+                AppRouter.home,
+                (Route<dynamic> route) => false,
+              ),
             ),
             const SizedBox(width: 20),
             const NavbarDivider(),
@@ -39,7 +42,7 @@ class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
                 navItems: navItems,
               ),
             ),
-            const Spacer(flex: 1),
+            const Spacer(),
             Row(
               children: [
                 ..._buildSocialIcons(socialData),
@@ -50,6 +53,7 @@ class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
             ),
             const NavbarDivider(),
             const SizedBox(width: 20),
+            const LoginButton()
           ],
         ),
       ),
@@ -57,9 +61,9 @@ class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   List<Widget> _buildSocialIcons(List<SocialButtonData> socialItems) {
-    List<Widget> items = [];
+    final List<Widget> items = [];
 
-    for (var item in socialItems) {
+    for (final item in socialItems) {
       items.add(
         SocialButton(
           tag: item.tag,
@@ -67,9 +71,11 @@ class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
           onPressed: item.onPressed,
         ),
       );
-      items.add(const SizedBox(
-        width: 16,
-      ));
+      items.add(
+        const SizedBox(
+          width: 16,
+        ),
+      );
     }
 
     return items;

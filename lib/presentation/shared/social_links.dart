@@ -11,16 +11,15 @@ class SocialLinks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: _buildSocialIcons(SocialData.links),
     );
   }
 
   List<Widget> _buildSocialIcons(List<SocialButtonData> socialItems) {
-    List<Widget> items = [];
+    final List<Widget> items = [];
     var delay = 1000;
-    for (var item in socialItems) {
+    for (final item in socialItems) {
       items.add(
         ElasticIn(
           delay: Duration(milliseconds: delay),
@@ -35,9 +34,11 @@ class SocialLinks extends StatelessWidget {
           ),
         ),
       );
-      items.add(const SizedBox(
-        width: 16,
-      ));
+      items.add(
+        const SizedBox(
+          width: 16,
+        ),
+      );
 
       delay += 500;
     }

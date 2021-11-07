@@ -38,25 +38,27 @@ class ComingSoonPage extends StatelessWidget {
 
   List<Widget> _buildText(BuildContext context) => [
         Center(
-            child: FadeInLeft(
-          child: Text(
-            'Oops...',
-            style: Theme.of(context)
-                .textTheme
-                .headline1!
-                .copyWith(color: Theme.of(context).colorScheme.primary),
+          child: FadeInLeft(
+            child: Text(
+              'Oops...',
+              style: Theme.of(context)
+                  .textTheme
+                  .headline1!
+                  .copyWith(color: Theme.of(context).colorScheme.primary),
+            ),
           ),
-        )),
+        ),
         Center(
-            child: FadeInRight(
-          delay: const Duration(milliseconds: 500),
-          child: Text(
-            'En construcción',
-            style: Theme.of(context)
-                .textTheme
-                .headline5!
-                .copyWith(color: Theme.of(context).colorScheme.primary),
+          child: FadeInRight(
+            delay: const Duration(milliseconds: 500),
+            child: Text(
+              'En construcción',
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5!
+                  .copyWith(color: Theme.of(context).colorScheme.primary),
+            ),
           ),
-        )),
+        ),
       ];
 }
