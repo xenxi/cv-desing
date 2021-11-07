@@ -13,8 +13,11 @@ class MockIAuthFacade extends Mock implements IAuthFacade {}
 void main() {
   const anyValidEmail = 'anyValidEmail@test.com';
   final anyValidEmailOrFailure = EmailAddress.create(anyValidEmail);
+  final anyInvalidEmailOrFailure = EmailAddress.empty();
+
   const anyValidPassword = 'anyValidPassword';
   final anyValidPasswordOrFailure = Password.create(anyValidPassword);
+  final anyInvalidPasswordOrFailure = Password.empty();
 
   late MockIAuthFacade authFacade;
 
@@ -76,12 +79,12 @@ void main() {
         expect: () => <SignInFormState>[
               SignInFormState(
                   password: anyValidPasswordOrFailure,
-                  email: EmailAddress.empty(),
+                  email: anyInvalidEmailOrFailure,
                   showErrorMessages: false,
                   failureOrSuccessOption: none()),
               SignInFormState(
                   password: anyValidPasswordOrFailure,
-                  email: EmailAddress.empty(),
+                  email: anyInvalidEmailOrFailure,
                   showErrorMessages: true,
                   failureOrSuccessOption: none())
             ]);
@@ -94,12 +97,12 @@ void main() {
         },
         expect: () => <SignInFormState>[
               SignInFormState(
-                  password: Password.empty(),
+                  password: anyInvalidPasswordOrFailure,
                   email: anyValidEmailOrFailure,
                   showErrorMessages: false,
                   failureOrSuccessOption: none()),
               SignInFormState(
-                  password: Password.empty(),
+                  password: anyInvalidPasswordOrFailure,
                   email: anyValidEmailOrFailure,
                   showErrorMessages: true,
                   failureOrSuccessOption: none())
