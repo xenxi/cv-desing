@@ -11,8 +11,10 @@ import 'package:cv_desing_website_flutter/domain/failure.dart';
 class MockIAuthFacade extends Mock implements IAuthFacade {}
 
 void main() {
-  final anyValidEmailOrFailure = EmailAddress.create('anyValidEmail@test.com');
-  final anyValidPasswordOrFailure = Password.create('anyValidPassword');
+  const anyValidEmail = 'anyValidEmail@test.com';
+  final anyValidEmailOrFailure = EmailAddress.create(anyValidEmail);
+  const anyValidPassword = 'anyValidPassword';
+  final anyValidPasswordOrFailure = Password.create(anyValidPassword);
 
   late MockIAuthFacade authFacade;
 
@@ -46,11 +48,11 @@ void main() {
         'update password when password changed',
         build: () => SignInFormBloc(authFacade),
         act: (bloc) {
-          bloc.add(const PasswordChanged('anyPassword'));
+          bloc.add(const PasswordChanged(anyValidPassword));
         },
         expect: () => <SignInFormState>[
               SignInFormState(
-                  password: Password.create('anyPassword'),
+                  password: Password.create(anyValidPassword),
                   email: EmailAddress.empty(),
                   failureOrSuccessOption: none())
             ]);
@@ -66,8 +68,8 @@ void main() {
           ).thenAnswer((_) => Future.value(right(unit)));
         },
         act: (bloc) {
-          bloc.add(const EmailChanged('anyValidEmail@test.com'));
-          bloc.add(const PasswordChanged('anyValidPassword'));
+          bloc.add(const EmailChanged(anyValidEmail));
+          bloc.add(const PasswordChanged(anyValidPassword));
           bloc.add(const SignInWithEmailAndPasswordPressed());
         },
         expect: () => <SignInFormState>[
