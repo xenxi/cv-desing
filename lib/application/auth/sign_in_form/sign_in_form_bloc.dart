@@ -16,20 +16,11 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   SignInFormBloc(this._authFacade) : super(SignInFormState.initial()) {
     on<SignInFormEvent>((event, emit) {
       if (event is EmailChanged) {
-        emit(SignInFormState(
-            email: EmailAddress.create(event.email),
-            password: state.password,
-            failureOrSuccessOption: none()));
+        emit(state.copyWith(email: EmailAddress.create(event.email)));
       } else if (event is PasswordChanged) {
-        emit(SignInFormState(
-            email: state.email,
-            password: Password.create(event.password),
-            failureOrSuccessOption: none()));
+        emit(state.copyWith(password: Password.create(event.password)));
       } else if (event is SignInWithEmailAndPasswordPressed) {
-        emit(SignInFormState(
-            email: state.email,
-            password: state.password,
-            failureOrSuccessOption: some(right(unit))));
+        emit(state.copyWith(failureOrSuccessOption: some(right(unit))));
       }
     });
   }

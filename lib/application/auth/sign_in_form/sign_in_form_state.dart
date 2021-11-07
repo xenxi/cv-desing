@@ -18,4 +18,17 @@ class SignInFormState extends Equatable {
       email: EmailAddress.empty(),
       password: Password.empty(),
       failureOrSuccessOption: none());
+
+  SignInFormState copyWith({
+    Either<Failure, EmailAddress>? email,
+    Either<Failure, Password>? password,
+    Option<Either<AuthFailure, Unit>>? failureOrSuccessOption,
+  }) {
+    return SignInFormState(
+      email: email ?? this.email,
+      password: password ?? this.password,
+      failureOrSuccessOption:
+          failureOrSuccessOption ?? this.failureOrSuccessOption,
+    );
+  }
 }
