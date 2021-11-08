@@ -2,6 +2,7 @@ import 'package:cv_desing_website_flutter/application/auth/sign_in_form/sign_in_
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -45,6 +46,18 @@ class SignInForm extends StatelessWidget {
                     .fold((l) => '$l', (r) => null),
                 onChanged: (val) => BlocProvider.of<SignInFormBloc>(context)
                     .add(PasswordChanged(val)),
+              ),
+              ElevatedButton.icon(
+                onPressed: () => BlocProvider.of<SignInFormBloc>(context)
+                    .add(const SignInWithEmailAndPasswordPressed()),
+                icon: const Icon(Icons.login_outlined),
+                label: const Text(Location.signIn),
+              ),
+              ElevatedButton.icon(
+                onPressed: () => BlocProvider.of<SignInFormBloc>(context)
+                    .add(const SignInWithGooglePressed()),
+                icon: const FaIcon(FontAwesomeIcons.google),
+                label: const Text(Location.signInWithGoogle),
               ),
             ],
           ),

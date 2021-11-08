@@ -27,4 +27,7 @@ class Location {
   static const start = 'Empezar';
   static const email = 'Email';
   static const password = 'Contraseña';
+
+  static const signIn = 'Acceder';
+  static const signInWithGoogle = 'Acreditarse con la cuenta de Google';
 }
