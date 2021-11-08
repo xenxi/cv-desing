@@ -13,15 +13,41 @@ class SignInForm extends StatelessWidget {
         // TODO: implement listener
       },
       builder: (context, state) {
-        return Column(
-          children: [
-            TextFormField(
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.email),
-                labelText: Location.email,
+        return Form(
+          autovalidateMode: state.showErrorMessages
+              ? AutovalidateMode.always
+              : AutovalidateMode.disabled,
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.email_outlined),
+                  labelText: Location.email,
+                ),
+                autocorrect: false,
+                validator: (_) => BlocProvider.of<SignInFormBloc>(context)
+                    .state
+                    .email
+                    .fold((l) => '$l', (r) => null),
+                onChanged: (val) => BlocProvider.of<SignInFormBloc>(context)
+                    .add(EmailChanged(val)),
               ),
-            )
-          ],
+              TextFormField(
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.lock_outline),
+                  labelText: Location.password,
+                ),
+                obscureText: true,
+                autocorrect: false,
+                validator: (_) => BlocProvider.of<SignInFormBloc>(context)
+                    .state
+                    .password
+                    .fold((l) => '$l', (r) => null),
+                onChanged: (val) => BlocProvider.of<SignInFormBloc>(context)
+                    .add(PasswordChanged(val)),
+              ),
+            ],
+          ),
         );
       },
     );
