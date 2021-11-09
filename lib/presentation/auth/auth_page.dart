@@ -1,5 +1,5 @@
 import 'package:cv_desing_website_flutter/application/auth/sign_in_form/sign_in_form_bloc.dart';
-import 'package:cv_desing_website_flutter/presentation/auth/sections/login/login_section.dart';
+import 'package:cv_desing_website_flutter/presentation/auth/sections/login/sign_in_section.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
@@ -26,7 +26,7 @@ class AuthPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: const [
-                LoginSection(),
+                SignInSection(),
               ],
             ),
           ),

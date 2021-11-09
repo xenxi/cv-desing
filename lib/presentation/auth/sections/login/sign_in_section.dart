@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/presentation/auth/sections/login/signin_form.dart';
+import 'package:cv_desing_website_flutter/presentation/auth/sections/login/sign_in_form.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +9,8 @@ import 'package:cv_desing_website_flutter/application/auth/sign_in_form/sign_in_
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
 
-class LoginSection extends StatelessWidget {
-  const LoginSection({
+class SignInSection extends StatelessWidget {
+  const SignInSection({
     Key? key,
   }) : super(key: key);
 
