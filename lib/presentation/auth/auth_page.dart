@@ -24,10 +24,8 @@ class AuthPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
-              children: [
-                LoginSection(
-                  isMobile: sizingInformation.isMobile,
-                ),
+              children: const [
+                LoginSection(),
               ],
             ),
           ),
