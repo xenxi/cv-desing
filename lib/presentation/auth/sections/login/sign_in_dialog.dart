@@ -25,7 +25,7 @@ class SignInDialog extends StatelessWidget {
           constraints: const BoxConstraints(
             maxWidth: 550,
           ),
-          height: 680,
+          height: 720,
           child: _buildBody(),
         ),
       ),
