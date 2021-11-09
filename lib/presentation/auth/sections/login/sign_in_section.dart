@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/presentation/auth/sections/login/sign_in_form.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
@@ -44,14 +45,16 @@ class SignInSection extends StatelessWidget {
 
   Widget _buildBody({required bool isMobile, required Widget child}) => Section(
         isMobile: isMobile,
-        child: Container(
-          padding: const EdgeInsets.all(CustomTheme.defaultPadding),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius:
-                BorderRadius.circular(CustomTheme.defaultBorderRadius),
+        child: FadeInDown(
+          child: Container(
+            padding: const EdgeInsets.all(CustomTheme.defaultPadding),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius:
+                  BorderRadius.circular(CustomTheme.defaultBorderRadius),
+            ),
+            child: child,
           ),
-          child: child,
         ),
       );
 }
