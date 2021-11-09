@@ -1,11 +1,11 @@
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
-import 'package:cv_desing_website_flutter/presentation/home/widgets/navbar/login_button.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button_data.dart';
 import 'package:flutter/material.dart';
 
+import 'login_button.dart';
 import 'navbar_divider.dart';
 import 'navbar_item_data.dart';
 import 'navbar_items.dart';
@@ -25,6 +25,7 @@ class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       toolbarHeight: CustomTheme.navbarHeight,
       backgroundColor: Colors.white,
+      foregroundColor: Colors.black,
       title: IntrinsicHeight(
         child: Row(
           children: [
