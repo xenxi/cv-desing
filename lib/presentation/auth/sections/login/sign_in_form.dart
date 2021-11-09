@@ -26,33 +26,8 @@ class SignInForm extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              TextFormField(
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.email_outlined),
-                  labelText: Location.email,
-                ),
-                autocorrect: false,
-                validator: (_) => BlocProvider.of<SignInFormBloc>(context)
-                    .state
-                    .email
-                    .fold((l) => '$l', (r) => null),
-                onChanged: (val) => BlocProvider.of<SignInFormBloc>(context)
-                    .add(EmailChanged(val)),
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.lock_outline),
-                  labelText: Location.password,
-                ),
-                obscureText: true,
-                autocorrect: false,
-                validator: (_) => BlocProvider.of<SignInFormBloc>(context)
-                    .state
-                    .password
-                    .fold((l) => '$l', (r) => null),
-                onChanged: (val) => BlocProvider.of<SignInFormBloc>(context)
-                    .add(PasswordChanged(val)),
-              ),
+              _buildEmailField(context),
+              _buildPasswordField(context),
               const SizedBox(
                 height: CustomTheme.defaultPadding,
               ),
@@ -60,38 +35,78 @@ class SignInForm extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(
-                    child: ElevatedButton.icon(
-                      onPressed: () => BlocProvider.of<SignInFormBloc>(context)
-                          .add(const SignInWithEmailAndPasswordPressed()),
-                      icon: const Icon(Icons.login_outlined),
-                      label: const Text(Location.signIn),
-                    ),
+                    child: _buildSignInButton(context),
                   ),
                   const SizedBox(
                     width: CustomTheme.defaultPadding,
                   ),
                   Expanded(
-                    child: ElevatedButton.icon(
-                      onPressed: () {},
-                      icon: const Icon(Icons.app_registration_outlined),
-                      label: const Text(Location.signUp),
-                    ),
+                    child: _buildSignUpButton(),
                   ),
                 ],
               ),
               const SizedBox(
                 height: CustomTheme.defaultPadding,
               ),
-              ElevatedButton.icon(
-                onPressed: () => BlocProvider.of<SignInFormBloc>(context)
-                    .add(const SignInWithGooglePressed()),
-                icon: const FaIcon(FontAwesomeIcons.google),
-                label: const Text(Location.signInWithGoogle),
-              ),
+              _buildSignInWithGoogleButton(context),
             ],
           ),
         );
       },
+    );
+  }
+
+  Widget _buildSignInWithGoogleButton(BuildContext context) =>
+      ElevatedButton.icon(
+        onPressed: () => BlocProvider.of<SignInFormBloc>(context)
+            .add(const SignInWithGooglePressed()),
+        icon: const FaIcon(FontAwesomeIcons.google),
+        label: const Text(Location.signInWithGoogle),
+      );
+
+  Widget _buildSignUpButton() => ElevatedButton.icon(
+        onPressed: () {},
+        icon: const Icon(Icons.app_registration_outlined),
+        label: const Text(Location.signUp),
+      );
+
+  Widget _buildSignInButton(BuildContext context) => ElevatedButton.icon(
+        onPressed: () => BlocProvider.of<SignInFormBloc>(context)
+            .add(const SignInWithEmailAndPasswordPressed()),
+        icon: const Icon(Icons.login_outlined),
+        label: const Text(Location.signIn),
+      );
+
+  TextFormField _buildPasswordField(BuildContext context) {
+    return TextFormField(
+      decoration: const InputDecoration(
+        prefixIcon: Icon(Icons.lock_outline),
+        labelText: Location.password,
+      ),
+      obscureText: true,
+      autocorrect: false,
+      validator: (_) => BlocProvider.of<SignInFormBloc>(context)
+          .state
+          .password
+          .fold((l) => '$l', (r) => null),
+      onChanged: (val) =>
+          BlocProvider.of<SignInFormBloc>(context).add(PasswordChanged(val)),
+    );
+  }
+
+  TextFormField _buildEmailField(BuildContext context) {
+    return TextFormField(
+      decoration: const InputDecoration(
+        prefixIcon: Icon(Icons.email_outlined),
+        labelText: Location.email,
+      ),
+      autocorrect: false,
+      validator: (_) => BlocProvider.of<SignInFormBloc>(context)
+          .state
+          .email
+          .fold((l) => '$l', (r) => null),
+      onChanged: (val) =>
+          BlocProvider.of<SignInFormBloc>(context).add(EmailChanged(val)),
     );
   }
 }
