@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/auth/sections/login/sign_in_form.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
@@ -45,12 +46,14 @@ class SignInDialog extends StatelessWidget {
   Positioned _buildAvatar(double avatarRadius) => Positioned(
         left: CustomTheme.defaultPadding,
         right: CustomTheme.defaultPadding,
-        child: CircleAvatar(
-          backgroundColor: Colors.transparent,
-          radius: avatarRadius,
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(avatarRadius)),
-            child: Image.asset(ImagePath.signInMain),
+        child: FlipInX(
+          child: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: avatarRadius,
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(avatarRadius)),
+              child: Image.asset(ImagePath.signInMain),
+            ),
           ),
         ),
       );
