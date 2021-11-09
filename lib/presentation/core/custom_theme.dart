@@ -15,7 +15,7 @@ class CustomTheme {
   static const Color primaryText2 = Color(0xFF717171);
 
   static const footerPadding = 80.0;
-  static const paddingBigButton = 18.0;
+  static const paddingBigButton = 14.0;
 
   static ThemeData get lightTheme {
     return ThemeData.light().copyWith(

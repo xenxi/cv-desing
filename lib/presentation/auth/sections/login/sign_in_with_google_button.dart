@@ -19,8 +19,9 @@ class SignInWithGoogleButton extends StatelessWidget {
         style: OutlinedButton.styleFrom(
           side: const BorderSide(width: 2, color: Colors.grey),
           shape: RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular(CustomTheme.defaultBorderRadius)),
+            borderRadius:
+                BorderRadius.circular(CustomTheme.defaultBorderRadius),
+          ),
           padding: const EdgeInsets.symmetric(
             vertical: CustomTheme.paddingBigButton,
           ),

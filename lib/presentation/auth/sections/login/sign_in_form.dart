@@ -62,11 +62,21 @@ class SignInForm extends StatelessWidget {
 
   Widget _buildSignUpButton() => ElevatedButton.icon(
         onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(
+            vertical: CustomTheme.paddingBigButton,
+          ),
+        ),
         icon: const Icon(Icons.app_registration_outlined),
         label: const Text(Location.signUp),
       );
 
   Widget _buildSignInButton(BuildContext context) => ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(
+            vertical: CustomTheme.paddingBigButton,
+          ),
+        ),
         onPressed: () => BlocProvider.of<SignInFormBloc>(context)
             .add(const SignInWithEmailAndPasswordPressed()),
         icon: const Icon(Icons.login_outlined),
