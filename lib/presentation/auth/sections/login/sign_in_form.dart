@@ -1,9 +1,10 @@
 import 'package:cv_desing_website_flutter/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'sign_in_with_google_button.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -48,43 +49,16 @@ class SignInForm extends StatelessWidget {
               const SizedBox(
                 height: CustomTheme.defaultPadding,
               ),
-              _buildSignInWithGoogleButton(context),
+              SignInWithGoogleButton(
+                onPressed: () => BlocProvider.of<SignInFormBloc>(context)
+                    .add(const SignInWithGooglePressed()),
+              ),
             ],
           ),
         );
       },
     );
   }
-
-  Widget _buildSignInWithGoogleButton(BuildContext context) =>
-      OutlinedButton.icon(
-        style: OutlinedButton.styleFrom(
-          side: const BorderSide(width: 2, color: Colors.grey),
-          shape: RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular(CustomTheme.defaultBorderRadius)),
-          padding: const EdgeInsets.symmetric(
-            vertical: CustomTheme.paddingBigButton,
-          ),
-        ),
-        onPressed: () => BlocProvider.of<SignInFormBloc>(context)
-            .add(const SignInWithGooglePressed()),
-        icon: Image.asset(
-          ImagePath.googleIcon,
-          height: 35,
-          fit: BoxFit.contain,
-        ),
-        label: const Text(
-          Location.signInWithGoogle,
-          style: TextStyle(color: CustomTheme.primaryText1),
-        ),
-      );
-  // ElevatedButton.icon(
-  //   onPressed: () => BlocProvider.of<SignInFormBloc>(context)
-  //       .add(const SignInWithGooglePressed()),
-  //   icon: const FaIcon(FontAwesomeIcons.google),
-  //   label: const Text(Location.signInWithGoogle),
-  // );
 
   Widget _buildSignUpButton() => ElevatedButton.icon(
         onPressed: () {},
