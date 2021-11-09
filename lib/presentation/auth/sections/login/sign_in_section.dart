@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/presentation/auth/sections/login/sign_in_form.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -53,7 +54,22 @@ class SignInSection extends StatelessWidget {
               borderRadius:
                   BorderRadius.circular(CustomTheme.defaultBorderRadius),
             ),
-            child: child,
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(
+                    left: CustomTheme.defaultPadding * 2,
+                    right: CustomTheme.defaultPadding * 2,
+                    bottom: CustomTheme.defaultPadding,
+                  ),
+                  child: Image(
+                    image: AssetImage(ImagePath.signInMain),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                child,
+              ],
+            ),
           ),
         ),
       );
