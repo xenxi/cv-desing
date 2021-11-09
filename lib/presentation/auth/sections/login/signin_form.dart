@@ -1,5 +1,6 @@
 import 'package:cv_desing_website_flutter/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +25,19 @@ class SignInForm extends StatelessWidget {
               ? AutovalidateMode.always
               : AutovalidateMode.disabled,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: CustomTheme.defaultPadding * 2,
+                  right: CustomTheme.defaultPadding * 2,
+                  bottom: CustomTheme.defaultPadding,
+                ),
+                child: Image(
+                  image: AssetImage(ImagePath.signInMain),
+                  fit: BoxFit.contain,
+                ),
+              ),
               TextFormField(
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.email_outlined),

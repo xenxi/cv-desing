@@ -33,7 +33,7 @@ class LoginSection extends StatelessWidget {
           return _buildBody(
             isMobile: false,
             child: const SizedBox(
-              width: 500,
+              width: 550,
               child: SignInForm(),
             ),
           );
@@ -44,6 +44,14 @@ class LoginSection extends StatelessWidget {
 
   Widget _buildBody({required bool isMobile, required Widget child}) => Section(
         isMobile: isMobile,
-        child: child,
+        child: Container(
+          padding: const EdgeInsets.all(CustomTheme.defaultPadding),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius:
+                BorderRadius.circular(CustomTheme.defaultBorderRadius),
+          ),
+          child: child,
+        ),
       );
 }

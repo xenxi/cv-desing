@@ -19,6 +19,7 @@ class AuthPage extends StatelessWidget {
                   backgroundColor: CustomTheme.secondaryColor,
                 )
               : null,
+          backgroundColor: CustomTheme.secondaryColor,
           body: SingleChildScrollView(
             padding: const EdgeInsets.all(CustomTheme.defaultPadding),
             child: Column(
