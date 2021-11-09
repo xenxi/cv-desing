@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
@@ -27,8 +28,14 @@ class SignInForm extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _buildEmailField(context),
-              _buildPasswordField(context),
+              BounceInDown(
+                delay: const Duration(milliseconds: 200),
+                child: _buildEmailField(context),
+              ),
+              BounceInDown(
+                delay: const Duration(milliseconds: 400),
+                child: _buildPasswordField(context),
+              ),
               const SizedBox(
                 height: CustomTheme.defaultPadding,
               ),
@@ -36,22 +43,29 @@ class SignInForm extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(
-                    child: _buildSignInButton(context),
+                    child: BounceInLeft(
+                        delay: const Duration(milliseconds: 700),
+                        child: _buildSignInButton(context)),
                   ),
                   const SizedBox(
                     width: CustomTheme.defaultPadding,
                   ),
                   Expanded(
-                    child: _buildSignUpButton(),
+                    child: BounceInRight(
+                        delay: const Duration(milliseconds: 900),
+                        child: _buildSignUpButton()),
                   ),
                 ],
               ),
               const SizedBox(
                 height: CustomTheme.defaultPadding,
               ),
-              SignInWithGoogleButton(
-                onPressed: () => BlocProvider.of<SignInFormBloc>(context)
-                    .add(const SignInWithGooglePressed()),
+              BounceInUp(
+                delay: const Duration(milliseconds: 900),
+                child: SignInWithGoogleButton(
+                  onPressed: () => BlocProvider.of<SignInFormBloc>(context)
+                      .add(const SignInWithGooglePressed()),
+                ),
               ),
             ],
           ),
