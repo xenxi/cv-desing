@@ -29,5 +29,6 @@ class Location {
   static const password = 'Contraseña';
 
   static const signIn = 'Acceder';
+  static const signUp = 'Registrarse';
   static const signInWithGoogle = 'Acreditarse con la cuenta de Google';
 }

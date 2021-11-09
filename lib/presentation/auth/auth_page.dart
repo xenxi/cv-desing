@@ -19,8 +19,17 @@ class AuthPage extends StatelessWidget {
                   backgroundColor: CustomTheme.secondaryColor,
                 )
               : null,
-          body: LoginSection(
-            isMobile: sizingInformation.isMobile,
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(CustomTheme.defaultPadding),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                LoginSection(
+                  isMobile: sizingInformation.isMobile,
+                ),
+              ],
+            ),
           ),
         );
       },

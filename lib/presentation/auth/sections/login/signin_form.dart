@@ -1,4 +1,5 @@
 import 'package:cv_desing_website_flutter/application/auth/sign_in_form/sign_in_form_bloc.dart';
+import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +12,11 @@ class SignInForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<SignInFormBloc, SignInFormState>(
       listener: (context, state) {
-        // TODO: implement listener
+        state.failureOrSuccessOption.fold(
+          () => {},
+          (either) =>
+              either.fold((l) => null, (r) => Navigator.of(context).pop()),
+        );
       },
       builder: (context, state) {
         return Form(
@@ -47,11 +52,34 @@ class SignInForm extends StatelessWidget {
                 onChanged: (val) => BlocProvider.of<SignInFormBloc>(context)
                     .add(PasswordChanged(val)),
               ),
-              ElevatedButton.icon(
-                onPressed: () => BlocProvider.of<SignInFormBloc>(context)
-                    .add(const SignInWithEmailAndPasswordPressed()),
-                icon: const Icon(Icons.login_outlined),
-                label: const Text(Location.signIn),
+              const SizedBox(
+                height: CustomTheme.defaultPadding,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: () => BlocProvider.of<SignInFormBloc>(context)
+                          .add(const SignInWithEmailAndPasswordPressed()),
+                      icon: const Icon(Icons.login_outlined),
+                      label: const Text(Location.signIn),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: CustomTheme.defaultPadding,
+                  ),
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.app_registration_outlined),
+                      label: const Text(Location.signUp),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: CustomTheme.defaultPadding,
               ),
               ElevatedButton.icon(
                 onPressed: () => BlocProvider.of<SignInFormBloc>(context)
