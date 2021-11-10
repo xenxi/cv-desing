@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/application/auth/sign_in_form/sign_in_form_bloc.dart';
+import 'package:cv_desing_website_flutter/application/auth_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,10 @@ class SignInForm extends StatelessWidget {
       listener: (context, state) {
         state.failureOrSuccessOption.fold(
           () => {},
-          (either) =>
-              either.fold((l) => null, (r) => Navigator.of(context).pop()),
+          (either) => either.fold(
+            (l) => print(l),
+            (r) => _onSignInSuccessfully(context),
+          ),
         );
       },
       builder: (context, state) {
@@ -74,6 +77,11 @@ class SignInForm extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _onSignInSuccessfully(BuildContext context) {
+    Navigator.of(context).pop();
+    BlocProvider.of<AuthBloc>(context).add(AuthCheckRequested());
   }
 
   Widget _buildSignUpButton() => ElevatedButton.icon(
