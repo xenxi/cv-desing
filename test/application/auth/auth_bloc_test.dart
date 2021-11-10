@@ -16,5 +16,11 @@ void main() {
       act: (bloc) => bloc.add(AuthCheckRequested()),
       expect: () => <AuthState>[Authenticated()],
     );
+    blocTest<AuthBloc, AuthState>(
+      'emits Unauthenticated when AuthCheckRequested is added and user is not authenticated',
+      build: () => AuthBloc(),
+      act: (bloc) => bloc.add(AuthCheckRequested()),
+      expect: () => <AuthState>[Unauthenticated()],
+    );
   });
 }
