@@ -118,7 +118,7 @@ class SignInForm extends StatelessWidget {
       validator: (_) => BlocProvider.of<SignInFormBloc>(context)
           .state
           .password
-          .fold((l) => '$l', (r) => null),
+          .fold((l) => Location.invalidPassword, (r) => null),
       onChanged: (val) =>
           BlocProvider.of<SignInFormBloc>(context).add(PasswordChanged(val)),
     );
@@ -134,7 +134,7 @@ class SignInForm extends StatelessWidget {
       validator: (_) => BlocProvider.of<SignInFormBloc>(context)
           .state
           .email
-          .fold((l) => '$l', (r) => null),
+          .fold((l) => Location.invalidEmail, (r) => null),
       onChanged: (val) =>
           BlocProvider.of<SignInFormBloc>(context).add(EmailChanged(val)),
     );
