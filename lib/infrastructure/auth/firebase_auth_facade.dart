@@ -17,7 +17,7 @@ class FirebaseAuthFacade implements IAuthFacade {
   final GoogleSignIn _googleSignIn;
 
   @override
-  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
+  Future<Either<AuthFailure, Unit>> signUpWithEmailAndPassword({
     required EmailAddress email,
     required Password password,
   }) async {
@@ -97,11 +97,4 @@ class FirebaseAuthFacade implements IAuthFacade {
         _googleSignIn.signOut(),
         _firebaseAuth.signOut(),
       ]);
-
-  @override
-  Future<Either<AuthFailure, Unit>> signUpWithEmailAndPassword(
-      {required EmailAddress email, required Password password}) {
-    // TODO: implement signUpWithEmailAndPassword
-    throw UnimplementedError();
-  }
 }
