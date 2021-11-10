@@ -43,5 +43,17 @@ void main() {
       act: (bloc) => bloc.add(AuthCheckRequested()),
       expect: () => <AuthState>[Unauthenticated()],
     );
+    blocTest<AuthBloc, AuthState>(
+      'emits Unauthenticated when SignOut is added and signout current user',
+      build: () => AuthBloc(authFacade),
+      setUp: () => when(
+        () => authFacade.signOut(),
+      ).thenAnswer((_) => Future.value()),
+      act: (bloc) => bloc.add(SignOut()),
+      verify: (_) => verify(
+        () => authFacade.signOut(),
+      ).called(1),
+      expect: () => <AuthState>[Unauthenticated()],
+    );
   });
 }

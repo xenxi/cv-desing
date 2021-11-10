@@ -15,6 +15,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final authState =
             userOption.fold(() => Unauthenticated(), (a) => Authenticated());
         emit(authState);
+      } else if (event is SignOut) {
+        await _authFacade.signOut();
+        emit(Unauthenticated());
       }
     });
   }

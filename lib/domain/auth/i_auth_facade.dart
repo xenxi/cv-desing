@@ -18,4 +18,6 @@ abstract class IAuthFacade {
   Future<Either<AuthFailure, Unit>> signInWithGoogle();
 
   Future<Option<User>> getSignedInUser();
+
+  Future<void> signOut();
 }
