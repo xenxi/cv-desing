@@ -24,22 +24,18 @@ void main() {
     blocTest<AuthBloc, AuthState>(
       'emits Authenticated when AuthCheckRequested is added and user is authenticated',
       build: () => AuthBloc(authFacade),
-      setUp: () {
-        when(
-          () => authFacade.getSignedInUser(),
-        ).thenAnswer((_) => Future.value(some(User())));
-      },
+      setUp: () => when(
+        () => authFacade.getSignedInUser(),
+      ).thenAnswer((_) => Future.value(some(User()))),
       act: (bloc) => bloc.add(AuthCheckRequested()),
       expect: () => <AuthState>[Authenticated()],
     );
     blocTest<AuthBloc, AuthState>(
       'emits Unauthenticated when AuthCheckRequested is added and user is not authenticated',
       build: () => AuthBloc(authFacade),
-      setUp: () {
-        when(
-          () => authFacade.getSignedInUser(),
-        ).thenAnswer((_) => Future.value(none()));
-      },
+      setUp: () => when(
+        () => authFacade.getSignedInUser(),
+      ).thenAnswer((_) => Future.value(none())),
       act: (bloc) => bloc.add(AuthCheckRequested()),
       expect: () => <AuthState>[Unauthenticated()],
     );
