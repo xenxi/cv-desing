@@ -44,16 +44,18 @@ class SignInForm extends StatelessWidget {
                 children: [
                   Expanded(
                     child: BounceInLeft(
-                        delay: const Duration(milliseconds: 700),
-                        child: _buildSignInButton(context)),
+                      delay: const Duration(milliseconds: 700),
+                      child: _buildSignInButton(context),
+                    ),
                   ),
                   const SizedBox(
                     width: CustomTheme.defaultPadding,
                   ),
                   Expanded(
                     child: BounceInRight(
-                        delay: const Duration(milliseconds: 900),
-                        child: _buildSignUpButton()),
+                      delay: const Duration(milliseconds: 900),
+                      child: _buildSignUpButton(),
+                    ),
                   ),
                 ],
               ),
