@@ -20,9 +20,20 @@ class FirebaseAuthFacade implements IAuthFacade {
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
     required EmailAddress email,
     required Password password,
-  }) {
-    // TODO: implement registerWithEmailAndPassword
-    throw UnimplementedError();
+  }) async {
+    try {
+      await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email.value,
+        password: password.value,
+      );
+      return right(unit);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'ERROR_EMAIL_ALREADY_IN_USE') {
+        return left(AuthFailure.emailAlreadyInUse());
+      } else {
+        return left(AuthFailure.serverError());
+      }
+    }
   }
 
   @override
@@ -86,4 +97,11 @@ class FirebaseAuthFacade implements IAuthFacade {
         _googleSignIn.signOut(),
         _firebaseAuth.signOut(),
       ]);
+
+  @override
+  Future<Either<AuthFailure, Unit>> signUpWithEmailAndPassword(
+      {required EmailAddress email, required Password password}) {
+    // TODO: implement signUpWithEmailAndPassword
+    throw UnimplementedError();
+  }
 }

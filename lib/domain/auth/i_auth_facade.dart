@@ -14,6 +14,10 @@ abstract class IAuthFacade {
     required EmailAddress email,
     required Password password,
   });
+  Future<Either<AuthFailure, Unit>> signUpWithEmailAndPassword({
+    required EmailAddress email,
+    required Password password,
+  });
 
   Future<Either<AuthFailure, Unit>> signInWithGoogle();
 

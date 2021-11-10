@@ -5,6 +5,7 @@ abstract class AuthFailure extends Failure<Unit> {
   const AuthFailure() : super(unit);
 
   factory AuthFailure.serverError() => const ServerError._();
+  factory AuthFailure.emailAlreadyInUse() => const EmailAlreadyInUse._();
   factory AuthFailure.cancelledByUser() => const CancelledByUser._();
 
   factory AuthFailure.invalidEmailAndPasswordCombination() =>
@@ -21,4 +22,8 @@ class InvalidEmailAndPasswordCombination extends AuthFailure {
 
 class ServerError extends AuthFailure {
   const ServerError._() : super();
+}
+
+class EmailAlreadyInUse extends AuthFailure {
+  const EmailAlreadyInUse._() : super();
 }

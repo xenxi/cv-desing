@@ -95,6 +95,61 @@ void main() {
       ],
     );
     blocTest<SignInFormBloc, SignInFormState>(
+      'signUp user with email and password',
+      build: () => SignInFormBloc(authFacade),
+      setUp: () {
+        when(
+          () => authFacade.signUpWithEmailAndPassword(
+            email: anyValidEmailOrFailure.getOrCrash(),
+            password: anyValidPasswordOrFailure.getOrCrash(),
+          ),
+        ).thenAnswer((_) => Future.value(right(unit)));
+      },
+      act: (bloc) {
+        bloc.add(const EmailChanged(anyValidEmail));
+        bloc.add(const PasswordChanged(anyValidPassword));
+        bloc.add(const SignUpWithEmailAndPasswordPressed());
+      },
+      verify: (_) {
+        verify(
+          () => authFacade.signUpWithEmailAndPassword(
+            email: anyValidEmailOrFailure.getOrCrash(),
+            password: anyValidPasswordOrFailure.getOrCrash(),
+          ),
+        ).called(1);
+      },
+      expect: () => <SignInFormState>[
+        SignInFormState(
+          email: anyValidEmailOrFailure,
+          password: Password.empty(),
+          showErrorMessages: false,
+          showLoader: false,
+          failureOrSuccessOption: none(),
+        ),
+        SignInFormState(
+          password: anyValidPasswordOrFailure,
+          email: anyValidEmailOrFailure,
+          showErrorMessages: false,
+          showLoader: false,
+          failureOrSuccessOption: none(),
+        ),
+        SignInFormState(
+          password: anyValidPasswordOrFailure,
+          email: anyValidEmailOrFailure,
+          showErrorMessages: false,
+          showLoader: true,
+          failureOrSuccessOption: none(),
+        ),
+        SignInFormState(
+          password: anyValidPasswordOrFailure,
+          email: anyValidEmailOrFailure,
+          showErrorMessages: true,
+          showLoader: false,
+          failureOrSuccessOption: some(right(unit)),
+        )
+      ],
+    );
+    blocTest<SignInFormBloc, SignInFormState>(
       'signIn user with google',
       build: () => SignInFormBloc(authFacade),
       setUp: () => when(

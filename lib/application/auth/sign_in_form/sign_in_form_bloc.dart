@@ -52,6 +52,28 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
             failureOrSuccessOption: some(failureOrSuccess),
           ),
         );
+      } else if (event is SignUpWithEmailAndPasswordPressed) {
+        if (state.email.isValid() && state.password.isValid()) {
+          emit(state.copyWith(showLoader: true));
+          final failureOrSuccess = await _authFacade.signUpWithEmailAndPassword(
+            email: state.email.getOrCrash(),
+            password: state.password.getOrCrash(),
+          );
+          emit(
+            state.copyWith(
+              showErrorMessages: true,
+              showLoader: false,
+              failureOrSuccessOption: some(failureOrSuccess),
+            ),
+          );
+        } else {
+          emit(
+            state.copyWith(
+              showErrorMessages: true,
+              failureOrSuccessOption: none(),
+            ),
+          );
+        }
       }
     });
   }
