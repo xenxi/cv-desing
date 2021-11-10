@@ -32,20 +32,29 @@ dependencies:
   dartz: ^0.10.0
   equatable: ^2.0.3
   firebase_analytics: ^8.3.4
+  firebase_auth: ^3.2.0
   firebase_core: ^1.8.0
   flutter:
     sdk: flutter
   flutter_bloc: ^7.3.2
   flutter_hooks: ^0.18.0
   font_awesome_flutter: ^9.1.0
+  get_it: ^7.2.0
   google_fonts: ^2.1.0
+  google_sign_in: ^5.2.1
+  injectable: ^1.5.0
   responsive_builder: ^0.4.1
   url_launcher: ^6.0.12
 
 dev_dependencies:
+  bloc_test: ^8.5.0
+  build_runner: ^2.1.4
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
+  injectable_generator: ^1.5.2
+  lint: ^1.7.2
+  mocktail: ^0.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,8 +1,7 @@
 import '../../failure.dart';
 
-class InvalidEmailFailure implements Failure {
-  final String failedValue;
-  InvalidEmailFailure({
-    required this.failedValue,
-  });
+class InvalidEmailFailure extends Failure<String> {
+  const InvalidEmailFailure({
+    required String failedValue,
+  }) : super(failedValue);
 }

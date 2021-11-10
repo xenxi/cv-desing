@@ -4,13 +4,18 @@ import '../../failure.dart';
 import '../../value_object.dart';
 
 class EmailAddress extends ValueObject {
-  final String value;
   EmailAddress._(
     this.value,
   );
 
+  final String value;
+
   static Either<Failure, EmailAddress> create(String input) {
     return _validateEmailAddress(input).bind((a) => right(EmailAddress._(a)));
+  }
+
+  static Either<Failure, EmailAddress> empty() {
+    return create('');
   }
 
   @override

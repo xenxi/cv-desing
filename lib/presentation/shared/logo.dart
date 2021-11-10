@@ -2,10 +2,6 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.
 import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {
-  final double height;
-  final double minHeight;
-  final Color? color;
-  final void Function()? onTap;
   const Logo({
     Key? key,
     required this.height,
@@ -13,6 +9,11 @@ class Logo extends StatelessWidget {
     this.color,
     this.onTap,
   }) : super(key: key);
+
+  final double height;
+  final double minHeight;
+  final Color? color;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {

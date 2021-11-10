@@ -8,11 +8,13 @@ class BlogSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      return Section(
-        child: const ComingSoonPage(),
-        isMobile: sizingInformation.isMobile,
-      );
-    });
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        return Section(
+          isMobile: sizingInformation.isMobile,
+          child: const ComingSoonPage(),
+        );
+      },
+    );
   }
 }

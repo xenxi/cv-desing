@@ -1,7 +1,6 @@
 import '../../failure.dart';
 
-class InvalidPasswordFailure implements Failure {
-  final String failedValue;
-
-  InvalidPasswordFailure({required this.failedValue});
+class InvalidPasswordFailure extends Failure<String> {
+  const InvalidPasswordFailure({required String failedValue})
+      : super(failedValue);
 }

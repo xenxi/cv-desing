@@ -8,8 +8,9 @@ class PageNotFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: heightOfScreen(context),
-        width: widthOfScreen(context),
-        child: const NotFound());
+      height: heightOfScreen(context),
+      width: widthOfScreen(context),
+      child: const NotFound(),
+    );
   }
 }

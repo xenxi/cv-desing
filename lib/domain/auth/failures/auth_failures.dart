@@ -1,11 +1,29 @@
 import 'package:cv_desing_website_flutter/domain/failure.dart';
+import 'package:dartz/dartz.dart';
 
-abstract class AuthFailure implements Failure {}
+abstract class AuthFailure extends Failure<Unit> {
+  const AuthFailure() : super(unit);
 
-class CancelledByUser implements AuthFailure {}
+  factory AuthFailure.serverError() => const ServerError._();
+  factory AuthFailure.emailAlreadyInUse() => const EmailAlreadyInUse._();
+  factory AuthFailure.cancelledByUser() => const CancelledByUser._();
 
-class ServerError implements AuthFailure {}
+  factory AuthFailure.invalidEmailAndPasswordCombination() =>
+      const InvalidEmailAndPasswordCombination._();
+}
 
-class EmailAlreadyInUse implements AuthFailure {}
+class CancelledByUser extends AuthFailure {
+  const CancelledByUser._() : super();
+}
 
-class InvalidEmailAndPasswordCombination implements AuthFailure {}
+class InvalidEmailAndPasswordCombination extends AuthFailure {
+  const InvalidEmailAndPasswordCombination._() : super();
+}
+
+class ServerError extends AuthFailure {
+  const ServerError._() : super();
+}
+
+class EmailAlreadyInUse extends AuthFailure {
+  const EmailAlreadyInUse._() : super();
+}

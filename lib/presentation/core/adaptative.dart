@@ -10,7 +10,7 @@ double assignHeight({
   double additions = 0,
   double subs = 0,
 }) =>
-    (heightOfScreen(context) - (subs) + (additions)) * fraction;
+    (heightOfScreen(context) - subs + additions) * fraction;
 
 double assignWidth({
   required BuildContext context,
@@ -18,4 +18,4 @@ double assignWidth({
   double additions = 0,
   double subs = 0,
 }) =>
-    (widthOfScreen(context) - (subs) + (additions)) * fraction;
+    (widthOfScreen(context) - subs + additions) * fraction;

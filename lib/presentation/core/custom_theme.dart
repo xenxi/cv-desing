@@ -15,13 +15,15 @@ class CustomTheme {
   static const Color primaryText2 = Color(0xFF717171);
 
   static const footerPadding = 80.0;
+  static const paddingBigButton = 14.0;
 
   static ThemeData get lightTheme {
     return ThemeData.light().copyWith(
-        primaryColor: primaryColor,
-        textTheme: _lightTextTheme,
-        colorScheme: const ColorScheme.light()
-            .copyWith(primary: primaryColor, secondary: secondaryColor));
+      primaryColor: primaryColor,
+      textTheme: _lightTextTheme,
+      colorScheme: const ColorScheme.light()
+          .copyWith(primary: primaryColor, secondary: secondaryColor),
+    );
   }
 
   static final TextTheme _lightTextTheme = ThemeData.light().textTheme.copyWith(
