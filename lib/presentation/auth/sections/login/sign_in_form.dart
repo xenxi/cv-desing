@@ -57,7 +57,7 @@ class SignInForm extends StatelessWidget {
                   Expanded(
                     child: BounceInRight(
                       delay: const Duration(milliseconds: 900),
-                      child: _buildSignUpButton(),
+                      child: _buildSignUpButton(context),
                     ),
                   ),
                 ],
@@ -84,8 +84,9 @@ class SignInForm extends StatelessWidget {
     BlocProvider.of<AuthBloc>(context).add(AuthCheckRequested());
   }
 
-  Widget _buildSignUpButton() => ElevatedButton.icon(
-        onPressed: () {},
+  Widget _buildSignUpButton(BuildContext context) => ElevatedButton.icon(
+        onPressed: () => BlocProvider.of<SignInFormBloc>(context)
+            .add(const SignUpWithEmailAndPasswordPressed()),
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(
             vertical: CustomTheme.paddingBigButton,
