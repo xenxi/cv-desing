@@ -30,8 +30,11 @@ class Location {
 
   static const signIn = 'Acceder';
   static const signUp = 'Registrarse';
+  static const signOut = 'Salir';
   static const signInWithGoogle = 'Acreditarse con la cuenta de Google';
 
   static const invalidPassword = 'Contraseña erronea';
   static const invalidEmail = 'Email erroneo';
+
+  static const showMenu = 'Mostrar menu';
 }
