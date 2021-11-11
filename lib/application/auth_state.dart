@@ -9,6 +9,12 @@ abstract class AuthState extends Equatable {
 
 class Initial extends AuthState {}
 
-class Authenticated extends AuthState {}
+class Authenticated extends AuthState {
+  const Authenticated(this.user);
+
+  final User user;
+  @override
+  List<Object> get props => [user];
+}
 
 class Unauthenticated extends AuthState {}

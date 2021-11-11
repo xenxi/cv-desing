@@ -10,7 +10,7 @@ class MockIAuthFacade extends Mock implements IAuthFacade {}
 
 void main() {
   late MockIAuthFacade authFacade;
-
+  final anyAuthUser = User();
   setUp(() {
     authFacade = MockIAuthFacade();
   });
@@ -26,9 +26,9 @@ void main() {
       build: () => AuthBloc(authFacade),
       setUp: () => when(
         () => authFacade.getSignedInUser(),
-      ).thenAnswer((_) => Future.value(some(User()))),
+      ).thenAnswer((_) => Future.value(some(anyAuthUser))),
       act: (bloc) => bloc.add(AuthCheckRequested()),
-      expect: () => <AuthState>[Authenticated()],
+      expect: () => <AuthState>[Authenticated(anyAuthUser)],
     );
     blocTest<AuthBloc, AuthState>(
       'emits Unauthenticated when AuthCheckRequested is added and user is not authenticated',
