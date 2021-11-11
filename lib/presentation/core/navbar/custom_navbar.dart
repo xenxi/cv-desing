@@ -5,7 +5,7 @@ import 'package:cv_desing_website_flutter/presentation/shared/social_links/socia
 import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button_data.dart';
 import 'package:flutter/material.dart';
 
-import 'login_button.dart';
+import 'login_button/login_button.dart';
 import 'navbar_divider.dart';
 import 'navbar_item_data.dart';
 import 'navbar_items.dart';

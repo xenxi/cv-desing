@@ -1,4 +1,5 @@
 import 'package:cv_desing_website_flutter/application/auth_bloc.dart';
+import 'package:cv_desing_website_flutter/domain/auth/user.dart';
 import 'package:cv_desing_website_flutter/presentation/auth/sections/login/sign_in_dialog.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
@@ -17,7 +18,7 @@ class LoginButton extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is Authenticated) {
-          return _buildAuthMenu(context);
+          return _buildAuthMenu(context, user: state.user);
         }
 
         return IconButton(
@@ -38,24 +39,25 @@ class LoginButton extends StatelessWidget {
     );
   }
 
-  Widget _buildAuthMenu(BuildContext context) {
+  Widget _buildAuthMenu(BuildContext context, {required User user}) {
     return PopupMenuButton<int>(
       iconSize: 50,
       tooltip: Location.showMenu,
-      icon: CircleAvatar(
+      icon: const CircleAvatar(
         // radius: 80,
         backgroundColor: CustomTheme.secondaryColor,
         child: Icon(Icons.person),
       ),
       itemBuilder: (context) => [
-        PopupMenuItem(
+        PopupMenuItem(child: _buildUserAvatar(user)),
+        const PopupMenuItem(
           value: 1,
           child: Text(
             "Editar",
             style: TextStyle(color: Colors.red, fontWeight: FontWeight.w700),
           ),
         ),
-        PopupMenuDivider(),
+        const PopupMenuDivider(),
         PopupMenuItem(
           value: 2,
           onTap: () => BlocProvider.of<AuthBloc>(context).add(SignOut()),
@@ -80,5 +82,16 @@ class LoginButton extends StatelessWidget {
         leading: Icon(iconData),
         title: Text(text),
         onTap: onTap,
+      );
+
+  Widget _buildUserAvatar(User user) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            color: Colors.red,
+            width: 100,
+            height: 100,
+          ),
+        ],
       );
 }
