@@ -2,9 +2,12 @@ import 'package:cv_desing_website_flutter/application/auth_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/auth/user.dart';
 import 'package:cv_desing_website_flutter/presentation/auth/sections/login/sign_in_dialog.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'user_avatar.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({Key? key}) : super(key: key);
@@ -43,13 +46,20 @@ class LoginButton extends StatelessWidget {
     return PopupMenuButton<int>(
       iconSize: 50,
       tooltip: Location.showMenu,
-      icon: const CircleAvatar(
-        // radius: 80,
-        backgroundColor: CustomTheme.secondaryColor,
-        child: Icon(Icons.person),
+      icon: UserAvatar(
+        avatarUrl: user.avatarUrl,
       ),
       itemBuilder: (context) => [
-        PopupMenuItem(child: _buildUserAvatar(user)),
+        PopupMenuItem(
+          enabled: false,
+          child: Center(
+            child: UserAvatar(
+              avatarUrl: user.avatarUrl,
+              radius: 35,
+            ),
+          ),
+        ),
+        const PopupMenuDivider(),
         const PopupMenuItem(
           value: 1,
           child: Text(
@@ -82,16 +92,5 @@ class LoginButton extends StatelessWidget {
         leading: Icon(iconData),
         title: Text(text),
         onTap: onTap,
-      );
-
-  Widget _buildUserAvatar(User user) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            color: Colors.red,
-            width: 100,
-            height: 100,
-          ),
-        ],
       );
 }
