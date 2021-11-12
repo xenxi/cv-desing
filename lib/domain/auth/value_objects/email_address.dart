@@ -4,7 +4,7 @@ import '../../failure.dart';
 import '../../value_object.dart';
 
 class EmailAddress extends ValueObject {
-  EmailAddress._(
+  const EmailAddress._(
     this.value,
   );
 

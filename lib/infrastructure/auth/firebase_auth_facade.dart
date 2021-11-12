@@ -4,6 +4,7 @@ import 'package:cv_desing_website_flutter/domain/auth/user.dart'
     as domain_model;
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/password.dart';
+import 'package:cv_desing_website_flutter/domain/url.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -86,8 +87,7 @@ class FirebaseAuthFacade implements IAuthFacade {
   @override
   Future<Option<domain_model.User>> getSignedInUser() {
     final currentUser = _firebaseAuth.currentUser;
-    final userOption =
-        optionOf(currentUser).bind((a) => some(domain_model.User()));
+    final userOption = optionOf(currentUser).bind((a) => some(_mapFrom(a)));
 
     return Future.value(userOption);
   }
@@ -97,4 +97,9 @@ class FirebaseAuthFacade implements IAuthFacade {
         _googleSignIn.signOut(),
         _firebaseAuth.signOut(),
       ]);
+
+  domain_model.User _mapFrom(User user) => domain_model.User(
+        avatarUrl:
+            Url.create(user.photoURL ?? '').fold((l) => none(), (r) => some(r)),
+      );
 }

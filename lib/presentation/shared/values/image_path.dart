@@ -21,5 +21,7 @@ class ImagePath {
   static const String homeMainImage2 = '$imageDir/home_02.png';
   static const String googleIcon = '$imageDir/google.png';
 
-  static String spainFlag = '$imageDir/spain.png';
+  static const spainFlag = '$imageDir/spain.png';
+
+  static const loader = '$imageDir/loader.gif';
 }
