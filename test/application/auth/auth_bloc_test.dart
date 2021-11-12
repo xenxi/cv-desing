@@ -10,7 +10,7 @@ class MockIAuthFacade extends Mock implements IAuthFacade {}
 
 void main() {
   late MockIAuthFacade authFacade;
-  final anyAuthUser = User();
+  final anyAuthUser = User(avatarUrl: none());
   setUp(() {
     authFacade = MockIAuthFacade();
   });

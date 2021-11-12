@@ -54,7 +54,9 @@ class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
             ),
             const NavbarDivider(),
             const SizedBox(width: 20),
-            const LoginButton()
+            const LoginButton(
+              isMobile: false,
+            )
           ],
         ),
       ),
