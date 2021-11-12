@@ -45,7 +45,9 @@ class AuthPage extends StatelessWidget {
 
   Widget _buildNavBar(SizingInformation sizingInformation) {
     return sizingInformation.isMobile
-        ? const CustomMobileNavBar()
+        ? const CustomMobileNavBar(
+            loginButtonVisible: false,
+          )
         : CustomNavBar(
             socialData: SocialData.links,
             navItems: navItems,

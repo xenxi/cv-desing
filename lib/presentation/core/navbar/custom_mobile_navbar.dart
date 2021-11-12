@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {
   const CustomMobileNavBar({
     Key? key,
+    this.loginButtonVisible = true,
   }) : super(key: key);
+  final bool loginButtonVisible;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +28,15 @@ class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {
               ),
             ),
             const Spacer(),
-            const SizedBox(
-              width: 20,
-            ),
-            const LoginButton(iconColor: Colors.white),
+            if (loginButtonVisible) ...[
+              const SizedBox(
+                width: 20,
+              ),
+              const LoginButton(
+                iconColor: Colors.white,
+                isMobile: true,
+              ),
+            ]
           ],
         ),
       ),
