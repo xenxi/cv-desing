@@ -90,6 +90,7 @@ class SignInForm extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(
             vertical: CustomTheme.paddingBigButton,
+            horizontal: CustomTheme.paddingBigButton / 2,
           ),
         ),
         icon: const Icon(Icons.app_registration_outlined),
@@ -100,6 +101,7 @@ class SignInForm extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(
             vertical: CustomTheme.paddingBigButton,
+            horizontal: CustomTheme.paddingBigButton / 2,
           ),
         ),
         onPressed: () => BlocProvider.of<SignInFormBloc>(context)

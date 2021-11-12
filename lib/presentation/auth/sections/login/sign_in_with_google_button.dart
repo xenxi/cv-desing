@@ -24,6 +24,7 @@ class SignInWithGoogleButton extends StatelessWidget {
           ),
           padding: const EdgeInsets.symmetric(
             vertical: CustomTheme.paddingBigButton,
+            horizontal: CustomTheme.paddingBigButton / 2,
           ),
         ),
         onPressed: onPressed,
@@ -34,7 +35,10 @@ class SignInWithGoogleButton extends StatelessWidget {
         ),
         label: const Text(
           Location.signInWithGoogle,
-          style: TextStyle(color: CustomTheme.primaryText1),
+          style: TextStyle(
+            color: CustomTheme.primaryText1,
+          ),
+          textAlign: TextAlign.center,
         ),
       );
 }
