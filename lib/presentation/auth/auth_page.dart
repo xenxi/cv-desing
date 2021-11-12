@@ -9,6 +9,8 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/social_data
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import 'sections/login/sign_in_mobile_section.dart';
+
 final List<NavItemData> navItems = [
   NavItemData(
     name: Location.home,
@@ -29,12 +31,14 @@ class AuthPage extends StatelessWidget {
           appBar: _buildNavBar(sizingInformation) as PreferredSizeWidget,
           backgroundColor: CustomTheme.secondaryColor,
           body: SingleChildScrollView(
-            padding: const EdgeInsets.all(CustomTheme.defaultPadding),
+            padding: sizingInformation.isMobile
+                ? null
+                : const EdgeInsets.all(CustomTheme.defaultPadding),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
-              children: const [
-                SignInSection(),
+              children: [
+                _buildMobileSection(sizingInformation),
               ],
             ),
           ),
@@ -53,4 +57,9 @@ class AuthPage extends StatelessWidget {
             navItems: navItems,
           );
   }
+
+  Widget _buildMobileSection(SizingInformation sizingInformation) =>
+      sizingInformation.isMobile
+          ? const SignInMobileSection()
+          : const SignInSection();
 }

@@ -8,8 +8,8 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignInSection extends StatelessWidget {
-  const SignInSection({
+class SignInMobileSection extends StatelessWidget {
+  const SignInMobileSection({
     Key? key,
   }) : super(key: key);
 
@@ -18,16 +18,13 @@ class SignInSection extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<SignInFormBloc>(),
       child: _buildBody(
-        child: const SizedBox(
-          width: 550,
-          child: SignInForm(),
-        ),
+        child: const SignInForm(),
       ),
     );
   }
 
   Widget _buildBody({required Widget child}) => Section(
-        isMobile: false,
+        isMobile: true,
         child: FadeInDown(
           child: Container(
             padding: const EdgeInsets.all(CustomTheme.defaultPadding),
@@ -38,16 +35,10 @@ class SignInSection extends StatelessWidget {
             ),
             child: Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(
-                    left: CustomTheme.defaultPadding * 2,
-                    right: CustomTheme.defaultPadding * 2,
-                    bottom: CustomTheme.defaultPadding,
-                  ),
-                  child: Image(
-                    image: AssetImage(ImagePath.signInMain),
-                    fit: BoxFit.contain,
-                  ),
+                const Image(
+                  image: AssetImage(ImagePath.signInMain),
+                  fit: BoxFit.contain,
+                  height: 260,
                 ),
                 child,
               ],
