@@ -1,8 +1,6 @@
 import 'package:cv_desing_website_flutter/application/auth_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/auth/user.dart';
 import 'package:cv_desing_website_flutter/presentation/auth/sections/login/sign_in_dialog.dart';
-import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,8 +8,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'user_avatar.dart';
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({Key? key}) : super(key: key);
-  static const iconColor = Colors.black;
+  const LoginButton({
+    Key? key,
+    this.iconColor = Colors.black,
+  }) : super(key: key);
+  final Color iconColor;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class LoginButton extends StatelessWidget {
               },
             );
           },
-          icon: const Icon(
+          icon: Icon(
             Icons.login,
             color: iconColor,
           ),
@@ -57,14 +58,6 @@ class LoginButton extends StatelessWidget {
               avatarUrl: user.avatarUrl,
               radius: 35,
             ),
-          ),
-        ),
-        const PopupMenuDivider(),
-        const PopupMenuItem(
-          value: 1,
-          child: Text(
-            "Editar",
-            style: TextStyle(color: Colors.red, fontWeight: FontWeight.w700),
           ),
         ),
         const PopupMenuDivider(),

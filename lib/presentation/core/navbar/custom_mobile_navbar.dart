@@ -1,5 +1,6 @@
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/core/navbar/login_button/login_button.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 import 'package:flutter/material.dart';
 
@@ -24,10 +25,11 @@ class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {
                 (Route<dynamic> route) => false,
               ),
             ),
+            const Spacer(),
             const SizedBox(
-              width: 35,
+              width: 20,
             ),
-            // const Spacer(),
+            const LoginButton(iconColor: Colors.white),
           ],
         ),
       ),
