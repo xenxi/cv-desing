@@ -34,12 +34,13 @@ class SignInDialog extends StatelessWidget {
 
   Widget _buildBody() {
     const avatarRadius = 200.0;
-    return Stack(
-      fit: StackFit.passthrough,
-      children: <Widget>[
-        _buildForm(avatarRadius),
-        _buildAvatar(avatarRadius),
-      ],
+    return SingleChildScrollView(
+      child: Stack(
+        children: <Widget>[
+          _buildForm(avatarRadius),
+          _buildAvatar(avatarRadius),
+        ],
+      ),
     );
   }
 
