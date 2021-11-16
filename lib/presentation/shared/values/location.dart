@@ -20,7 +20,7 @@ class Location {
   static const goBack = 'Volver';
   static const close = 'Cerrar';
   static const requestDesing = 'Solicitar';
-  static const homeTitle = 'Impulsa el potencial de CV y destácate';
+  static const homeTitle = 'Impulsa el potencial de tu CV y destácate';
   static const homeSubtitle1 = 'Elimina la molestia de escribir un CV';
   static const homeSubtitle2 = 'Gran cantidad de diseños';
   static const homeSubtitle3 = 'Obten tu CV en poco tiempo';
