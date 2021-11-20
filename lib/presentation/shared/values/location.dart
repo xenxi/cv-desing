@@ -20,10 +20,10 @@ class Location {
   static const goBack = 'Volver';
   static const close = 'Cerrar';
   static const requestDesing = 'Solicitar';
-  static const homeTitle = 'Impulsa el potencial de tu CV y destácate';
-  static const homeSubtitle1 = 'Elimina la molestia de escribir un CV';
+  static const homeTitle = 'Realizamos tu Currículum';
+  static const homeSubtitle1 = 'Impulsa el potencial de tu CV y destácate';
   static const homeSubtitle2 = 'Gran cantidad de diseños';
-  static const homeSubtitle3 = 'Obten tu CV en poco tiempo';
+  static const homeSubtitle3 = 'Obten tu CV actualizado en poco tiempo';
   static const start = 'Empezar';
   static const email = 'Email';
   static const password = 'Contraseña';
