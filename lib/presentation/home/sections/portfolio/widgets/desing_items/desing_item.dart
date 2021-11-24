@@ -14,6 +14,7 @@ class DesingItem extends HookWidget {
     required this.imageUrl,
     required this.price,
     required this.onTap,
+    this.priceWithDiscount,
   }) : super(key: key);
 
   static final BorderRadius _cardBorderRadius = BorderRadius.circular(10);
@@ -22,6 +23,7 @@ class DesingItem extends HookWidget {
   final String subtitle;
   final String imageUrl;
   final double price;
+  final double? priceWithDiscount;
   final void Function() onTap;
 
   @override

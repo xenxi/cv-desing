@@ -13,6 +13,7 @@ class DesingMobileItem extends StatelessWidget {
     required this.price,
     required this.onTap,
     this.height,
+    priceWithDiscount,
   }) : super(key: key);
 
   static final BorderRadius _cardBorderRadius = BorderRadius.circular(10);

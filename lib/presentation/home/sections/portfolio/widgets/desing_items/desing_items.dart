@@ -34,6 +34,7 @@ class DesingItems extends StatelessWidget {
               title: desing.reference,
               subtitle: desing.category.displayName,
               imageUrl: desing.thumbnail(),
+              priceWithDiscount: desing.priceWithDiscount,
               price: desing.price,
               onTap: () => onItemTap(context, desing: desing),
             ),
