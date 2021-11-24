@@ -59,6 +59,7 @@ class DesingItem extends HookWidget {
             alignment: Alignment.topRight,
             child: PriceChip(
               price: price,
+              priceWithDiscount: priceWithDiscount,
               padding: const EdgeInsets.all(CustomTheme.defaultPadding * .5),
             ),
           ),

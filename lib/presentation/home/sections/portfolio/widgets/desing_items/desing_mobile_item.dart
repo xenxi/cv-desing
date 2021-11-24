@@ -13,13 +13,14 @@ class DesingMobileItem extends StatelessWidget {
     required this.price,
     required this.onTap,
     this.height,
-    priceWithDiscount,
+    this.priceWithDiscount,
   }) : super(key: key);
 
   static final BorderRadius _cardBorderRadius = BorderRadius.circular(10);
   final String reference;
   final String imageUrl;
   final double price;
+  final double? priceWithDiscount;
   final void Function() onTap;
   final double? height;
 
@@ -78,6 +79,7 @@ class DesingMobileItem extends StatelessWidget {
             alignment: Alignment.topRight,
             child: PriceChip(
               price: price,
+              priceWithDiscount: priceWithDiscount,
               padding: const EdgeInsets.all(CustomTheme.defaultPadding * .5),
             ),
           ),
