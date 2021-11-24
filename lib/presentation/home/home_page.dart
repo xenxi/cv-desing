@@ -2,6 +2,7 @@ import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_mobile_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_data.dart';
+import 'package:cv_desing_website_flutter/presentation/home/sections/home/widgets/black_friday_banner.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/drawer/custom_drawer.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/footer.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/scroller_funtions.dart';
@@ -27,6 +28,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(
+      const Duration(seconds: 2),
+      () => showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const BlackFridayBanner();
+        },
+      ),
+    );
+
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         return Scaffold(

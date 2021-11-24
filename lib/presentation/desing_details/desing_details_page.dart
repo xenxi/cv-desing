@@ -1,7 +1,7 @@
 import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
-import 'package:cv_desing_website_flutter/presentation/desing_details/widgets/close_button.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/widgets/close_button.dart';
 import 'package:cv_desing_website_flutter/presentation/desing_details/widgets/details_mockup.dart';
 import 'package:cv_desing_website_flutter/presentation/desing_details/widgets/request_button.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/not_found.dart';
