@@ -42,36 +42,43 @@ class BlackFridayBanner extends StatelessWidget {
         child: Column(
           children: [
             const Spacer(),
-            Text(
-              'Black'.toUpperCase(),
-              style: Theme.of(context)
-                  .textTheme
-                  .headline1!
-                  .copyWith(color: Colors.white),
-            ),
-            Text(
-              'Friday'.toUpperCase(),
-              style: Theme.of(context)
-                  .textTheme
-                  .headline1!
-                  .copyWith(color: Colors.white),
+            FittedBox(
+              child: RichText(
+                text: TextSpan(
+                  text: 'Black'.toUpperCase(),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline1!
+                      .copyWith(color: Colors.white),
+                  children: [
+                    TextSpan(
+                      text: '\nFriday'.toUpperCase(),
+                    )
+                  ],
+                ),
+              ),
             ),
             const SizedBox(
               height: 30,
             ),
-            Text(
-              'Hasta un 45% de descuento en nuestros curriculums'.toUpperCase(),
-              style: Theme.of(context)
-                  .textTheme
-                  .caption!
-                  .copyWith(color: Colors.white),
+            FittedBox(
+              child: Text(
+                'Hasta un 45% de descuento en nuestros curriculums'
+                    .toUpperCase(),
+                style: Theme.of(context)
+                    .textTheme
+                    .caption!
+                    .copyWith(color: Colors.white),
+              ),
             ),
-            Text(
-              'No te lo pierdas'.toUpperCase(),
-              style: Theme.of(context)
-                  .textTheme
-                  .caption!
-                  .copyWith(color: Colors.white),
+            FittedBox(
+              child: Text(
+                'No te lo pierdas'.toUpperCase(),
+                style: Theme.of(context)
+                    .textTheme
+                    .caption!
+                    .copyWith(color: Colors.white),
+              ),
             ),
             const Spacer(),
             _buildMainButton(context),
@@ -80,16 +87,19 @@ class BlackFridayBanner extends StatelessWidget {
         ),
       );
 
-  Widget _buildMainButton(BuildContext context) => TextButton(
-        style: TextButton.styleFrom(
+  Widget _buildMainButton(BuildContext context) => FittedBox(
+        child: TextButton(
+          style: TextButton.styleFrom(
             backgroundColor: CustomTheme.primaryColor,
-            padding: const EdgeInsets.all(CustomTheme.paddingBigButton * 2)),
-        onPressed: () => Navigator.of(context).pop(),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Text(
-            'Entrar'.toUpperCase(),
-            style: const TextStyle(color: Colors.black),
+            padding: const EdgeInsets.all(CustomTheme.paddingBigButton * 2),
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Text(
+              'Entrar'.toUpperCase(),
+              style: const TextStyle(color: Colors.black),
+            ),
           ),
         ),
       );
