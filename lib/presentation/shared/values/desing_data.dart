@@ -9,7 +9,6 @@ class DesingData {
       fileName: 'CV10A.jpg',
       category: Category.curriculum,
       price: 10,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 2,
@@ -17,7 +16,6 @@ class DesingData {
       fileName: 'CV10B.jpg',
       category: Category.curriculum,
       price: 10,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 3,
@@ -25,7 +23,6 @@ class DesingData {
       fileName: 'CV10C.jpg',
       category: Category.curriculum,
       price: 10,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 4,
@@ -33,7 +30,6 @@ class DesingData {
       fileName: 'CV12A.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 5,
@@ -41,7 +37,6 @@ class DesingData {
       fileName: 'CV12B.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 6,
@@ -49,7 +44,6 @@ class DesingData {
       fileName: 'CV12C.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 7,
@@ -57,7 +51,6 @@ class DesingData {
       fileName: 'CV12D.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 8,
@@ -65,7 +58,6 @@ class DesingData {
       fileName: 'CV12E.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 9,
@@ -73,7 +65,6 @@ class DesingData {
       fileName: 'CV12F.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 10,
@@ -81,7 +72,6 @@ class DesingData {
       fileName: 'CV12G.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 11,
@@ -89,7 +79,6 @@ class DesingData {
       fileName: 'CV12H.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 12,
@@ -97,7 +86,6 @@ class DesingData {
       fileName: 'CV12J.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 13,
@@ -105,7 +93,6 @@ class DesingData {
       fileName: 'CV12K.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 14,
@@ -113,7 +100,6 @@ class DesingData {
       fileName: 'CV12L.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 15,
@@ -121,7 +107,6 @@ class DesingData {
       fileName: 'CV12M.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 16,
@@ -129,7 +114,6 @@ class DesingData {
       fileName: 'CV12N.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 17,
@@ -137,7 +121,6 @@ class DesingData {
       fileName: 'CV12O.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 18,
@@ -145,7 +128,6 @@ class DesingData {
       fileName: 'CV12P.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 19,
@@ -153,7 +135,6 @@ class DesingData {
       fileName: 'CV12Q.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 20,
@@ -161,7 +142,6 @@ class DesingData {
       fileName: 'CV12R.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 21,
@@ -169,7 +149,6 @@ class DesingData {
       fileName: 'CV12S.jpg',
       category: Category.curriculum,
       price: 12,
-      priceWithDiscount: 7,
     ),
     Desing(
       id: 22,
