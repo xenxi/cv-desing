@@ -28,16 +28,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(
-      const Duration(seconds: 2),
-      () => showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const BlackFridayBanner();
-        },
-      ),
-    );
-
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         return Scaffold(
