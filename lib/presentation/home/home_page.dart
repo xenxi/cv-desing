@@ -60,26 +60,24 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          HomeSection(
-            key: homeKey,
-            goToProjectSection: () =>
-                scrollToSection(desingsKey.currentContext),
+    return PageView(
+      scrollDirection: Axis.vertical,
+      children: [
+        HomeSection(
+          key: homeKey,
+          goToProjectSection: () => scrollToSection(desingsKey.currentContext),
+        ),
+        PortfolioSection(
+          key: desingsKey,
+        ),
+        const Padding(
+          padding: EdgeInsets.all(CustomTheme.defaultPadding),
+          child: Footer(
+            textColor: CustomTheme.primaryText2,
+            textLinkColor: CustomTheme.primaryColor,
           ),
-          PortfolioSection(
-            key: desingsKey,
-          ),
-          const Padding(
-            padding: EdgeInsets.all(CustomTheme.defaultPadding),
-            child: Footer(
-              textColor: CustomTheme.primaryText2,
-              textLinkColor: CustomTheme.primaryColor,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
