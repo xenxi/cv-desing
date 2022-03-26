@@ -4,8 +4,6 @@ import 'package:cv_desing_website_flutter/presentation/desing_details/desing_det
 import 'package:cv_desing_website_flutter/presentation/home/home_page.dart';
 import 'package:flutter/material.dart';
 
-import '../auth/sections/login/sign_in_section.dart';
-
 class AppRouter {
   static String blog = '/blog';
   static String home = '/preview';
