@@ -37,27 +37,7 @@ class HomePage extends StatelessWidget {
                   color: CustomTheme.secondaryColor,
                 )
               : null,
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                HomeSection(
-                  key: homeKey,
-                  goToProjectSection: () =>
-                      scrollToSection(desingsKey.currentContext),
-                ),
-                PortfolioSection(
-                  key: desingsKey,
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(CustomTheme.defaultPadding),
-                  child: Footer(
-                    textColor: CustomTheme.primaryText2,
-                    textLinkColor: CustomTheme.primaryColor,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          body: const _Body(),
         );
       },
     );
@@ -70,5 +50,36 @@ class HomePage extends StatelessWidget {
             socialData: SocialData.links,
             navItems: navItems,
           );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          HomeSection(
+            key: homeKey,
+            goToProjectSection: () =>
+                scrollToSection(desingsKey.currentContext),
+          ),
+          PortfolioSection(
+            key: desingsKey,
+          ),
+          const Padding(
+            padding: EdgeInsets.all(CustomTheme.defaultPadding),
+            child: Footer(
+              textColor: CustomTheme.primaryText2,
+              textLinkColor: CustomTheme.primaryColor,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
