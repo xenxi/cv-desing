@@ -2,7 +2,8 @@ import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_mobile_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_data.dart';
-import 'package:cv_desing_website_flutter/presentation/home/sections/home/widgets/black_friday_banner.dart';
+import 'package:cv_desing_website_flutter/presentation/home/sections/home/home_section.dart';
+import 'package:cv_desing_website_flutter/presentation/home/sections/portfolio/portfolio_section.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/drawer/custom_drawer.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/footer.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/scroller_funtions.dart';
@@ -10,8 +11,6 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/location.da
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'sections/home/home_section.dart';
-import 'sections/portfolio/portfolio_section.dart';
 
 final GlobalKey desingsKey = GlobalKey();
 final GlobalKey homeKey = GlobalKey();
