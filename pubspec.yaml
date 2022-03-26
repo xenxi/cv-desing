@@ -27,34 +27,34 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  animate_do: ^2.0.0
-  cupertino_icons: ^1.0.2
-  dartz: ^0.10.0
+  animate_do: ^2.1.0
+  cupertino_icons: ^1.0.4
+  dartz: ^0.10.1
   equatable: ^2.0.3
-  firebase_analytics: ^8.3.4
-  firebase_auth: ^3.2.0
-  firebase_core: ^1.8.0
+  firebase_analytics: ^9.1.2
+  firebase_auth: ^3.3.11
+  firebase_core: ^1.13.1
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.0.0
-  flutter_hooks: ^0.18.0
-  font_awesome_flutter: ^9.1.0
+  flutter_bloc: ^8.0.1
+  flutter_hooks: ^0.18.2+1
+  font_awesome_flutter: ^10.1.0
   get_it: ^7.2.0
-  google_fonts: ^2.1.0
-  google_sign_in: ^5.2.1
-  injectable: ^1.5.0
-  responsive_builder: ^0.4.1
-  url_launcher: ^6.0.12
+  google_fonts: ^2.3.1
+  google_sign_in: ^5.2.4
+  injectable: ^1.5.3
+  responsive_builder: ^0.4.2
+  url_launcher: ^6.0.20
 
 dev_dependencies:
-  bloc_test: ^9.0.1
-  build_runner: ^2.1.4
-  flutter_lints: ^1.0.0
+  bloc_test: ^9.0.3
+  build_runner: ^2.1.8
+  flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
-  injectable_generator: ^1.5.2
-  lint: ^1.7.2
-  mocktail: ^0.2.0
+  injectable_generator: ^1.5.3
+  lint: ^1.8.2
+  mocktail: ^0.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
