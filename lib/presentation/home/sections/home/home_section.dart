@@ -77,7 +77,7 @@ class HomeSection extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(CustomTheme.defaultBorderRadius),
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+        filter: ImageFilter.blur(sigmaX: 6, sigmaY: 2),
         child: Padding(
           padding: const EdgeInsets.all(CustomTheme.defaultPadding * 2),
           child: children,
