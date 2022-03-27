@@ -61,6 +61,8 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView(
+      pageSnapping: false,
+      allowImplicitScrolling: true,
       scrollDirection: Axis.vertical,
       children: [
         HomeSection(
