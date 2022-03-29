@@ -34,7 +34,6 @@ class HomeSection extends StatelessWidget {
           isMobile: sizingInformation.isMobile,
           child: Container(
             constraints: const BoxConstraints(maxWidth: 1200),
-            width: sizingInformation.screenSize.width,
             child: _buildGlassContainer(
               context,
               children: Row(
@@ -74,10 +73,12 @@ class HomeSection extends StatelessWidget {
     BuildContext context, {
     required Widget children,
   }) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(CustomTheme.defaultBorderRadius),
+    return Container(
+      clipBehavior: Clip.hardEdge,
+      decoration: const BoxDecoration(),
+      margin: const EdgeInsets.all(CustomTheme.defaultPadding),
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 6, sigmaY: 2),
+        filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
         child: Padding(
           padding: const EdgeInsets.all(CustomTheme.defaultPadding * 2),
           child: children,
