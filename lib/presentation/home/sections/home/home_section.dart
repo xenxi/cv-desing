@@ -39,11 +39,11 @@ class HomeSection extends StatelessWidget {
               children: Row(
                 children: [
                   Expanded(
-                    child: sizingInformation.isMobile
-                        ? TextMobileBanner(
+                    child: sizingInformation.isDesktop
+                        ? TextBanner(
                             onButtonTap: goToProjectSection,
                           )
-                        : TextBanner(
+                        : TextMobileBanner(
                             onButtonTap: goToProjectSection,
                           ),
                   ),

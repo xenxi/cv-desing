@@ -19,13 +19,15 @@ class TextBanner extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         FadeInDown(
-          child: const Text(
-            Location.homeTitle,
-            style: TextStyle(
-              fontSize: 60,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              height: 1.5,
+          child: const FittedBox(
+            child: Text(
+              Location.homeTitle,
+              style: TextStyle(
+                fontSize: 60,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                height: 1.5,
+              ),
             ),
           ),
         ),

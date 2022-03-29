@@ -12,6 +12,7 @@ class TextCheck extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         const Icon(
           Icons.check,
@@ -20,14 +21,12 @@ class TextCheck extends StatelessWidget {
         const SizedBox(
           width: 10,
         ),
-        Expanded(
-          child: Text(
-            label,
-            style: Theme.of(context)
-                .textTheme
-                .headline6
-                ?.copyWith(color: Colors.white),
-          ),
+        Text(
+          label,
+          style: Theme.of(context)
+              .textTheme
+              .headline6
+              ?.copyWith(color: Colors.white),
         )
       ],
     );
