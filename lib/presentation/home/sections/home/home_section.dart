@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/sections/home/widgets/text_banner.dart';
-import 'package:cv_desing_website_flutter/presentation/home/sections/home/widgets/text_mobile_banner.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
