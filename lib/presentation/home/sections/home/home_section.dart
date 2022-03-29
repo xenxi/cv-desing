@@ -32,9 +32,9 @@ class HomeSection extends StatelessWidget {
             ),
           ),
           isMobile: sizingInformation.isMobile,
-          child: SizedBox(
-            width: sizingInformation.screenSize.width *
-                (sizingInformation.isDesktop ? .7 : 1),
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 1200),
+            width: sizingInformation.screenSize.width,
             child: _buildGlassContainer(
               context,
               children: Row(
