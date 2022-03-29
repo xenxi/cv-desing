@@ -34,17 +34,17 @@ class TextBanner extends StatelessWidget {
         const SizedBox(
           height: CustomTheme.defaultPadding,
         ),
-        FadeInLeft(
-          delay: const Duration(milliseconds: 300),
-          child: const TextCheck(label: Location.homeSubtitle1),
+        _buildDetailsText(
+          milliseconds: 300,
+          text: Location.homeSubtitle1,
         ),
-        FadeInLeft(
-          delay: const Duration(milliseconds: 500),
-          child: const TextCheck(label: Location.homeSubtitle2),
+        _buildDetailsText(
+          milliseconds: 500,
+          text: Location.homeSubtitle2,
         ),
-        FadeInLeft(
-          delay: const Duration(milliseconds: 700),
-          child: const TextCheck(label: Location.homeSubtitle3),
+        _buildDetailsText(
+          milliseconds: 700,
+          text: Location.homeSubtitle3,
         ),
         const SizedBox(
           height: CustomTheme.defaultPadding * 2,
@@ -65,4 +65,10 @@ class TextBanner extends StatelessWidget {
       ],
     );
   }
+
+  Widget _buildDetailsText({required int milliseconds, required String text}) =>
+      FadeInLeft(
+        delay: Duration(milliseconds: milliseconds),
+        child: TextCheck(label: text),
+      );
 }
