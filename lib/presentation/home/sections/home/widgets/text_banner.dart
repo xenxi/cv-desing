@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 class TextBanner extends StatelessWidget {
   const TextBanner({
     Key? key,
+    this.titleFontSize = 60,
     required this.onButtonTap,
   }) : super(key: key);
+  final double titleFontSize;
 
   final VoidCallback onButtonTap;
 
@@ -19,11 +21,11 @@ class TextBanner extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         FadeInDown(
-          child: const FittedBox(
+          child: FittedBox(
             child: Text(
               Location.homeTitle,
               style: TextStyle(
-                fontSize: 60,
+                fontSize: titleFontSize,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
                 height: 1.5,
