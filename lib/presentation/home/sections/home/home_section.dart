@@ -39,13 +39,9 @@ class HomeSection extends StatelessWidget {
               children: Row(
                 children: [
                   Expanded(
-                    child: sizingInformation.isDesktop
-                        ? TextBanner(
-                            onButtonTap: goToProjectSection,
-                          )
-                        : TextMobileBanner(
-                            onButtonTap: goToProjectSection,
-                          ),
+                    child: TextBanner(
+                      onButtonTap: goToProjectSection,
+                    ),
                   ),
                   if (sizingInformation.isDesktop) ...[
                     const SizedBox(
