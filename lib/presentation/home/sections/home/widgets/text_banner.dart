@@ -34,25 +34,7 @@ class TextBanner extends StatelessWidget {
         const SizedBox(
           height: CustomTheme.defaultPadding,
         ),
-        FittedBox(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              FadeInLeft(
-                delay: const Duration(milliseconds: 300),
-                child: const TextCheck(label: Location.homeSubtitle1),
-              ),
-              FadeInLeft(
-                delay: const Duration(milliseconds: 500),
-                child: const TextCheck(label: Location.homeSubtitle2),
-              ),
-              FadeInLeft(
-                delay: const Duration(milliseconds: 700),
-                child: const TextCheck(label: Location.homeSubtitle3),
-              ),
-            ],
-          ),
-        ),
+        _buildCheckList(),
         const SizedBox(
           height: CustomTheme.defaultPadding * 2,
         ),
@@ -70,6 +52,28 @@ class TextBanner extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+
+  FittedBox _buildCheckList() {
+    return FittedBox(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FadeInLeft(
+            delay: const Duration(milliseconds: 300),
+            child: const TextCheck(label: Location.homeSubtitle1),
+          ),
+          FadeInLeft(
+            delay: const Duration(milliseconds: 500),
+            child: const TextCheck(label: Location.homeSubtitle2),
+          ),
+          FadeInLeft(
+            delay: const Duration(milliseconds: 700),
+            child: const TextCheck(label: Location.homeSubtitle3),
+          ),
+        ],
+      ),
     );
   }
 }
