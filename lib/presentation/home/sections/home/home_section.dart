@@ -69,13 +69,17 @@ class HomeSection extends StatelessWidget {
   Widget _buildGlassContainer(
     BuildContext context, {
     required Widget children,
-  }) {
-    return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-      child: Padding(
+  }) =>
+      Container(
         padding: const EdgeInsets.all(CustomTheme.defaultPadding * 2),
-        child: children,
-      ),
-    );
-  }
+        margin: const EdgeInsets.all(CustomTheme.defaultPadding),
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+          child: children,
+        ),
+      );
 }
