@@ -18,19 +18,7 @@ class TextBanner extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        FadeInDown(
-          child: const FittedBox(
-            child: Text(
-              Location.homeTitle,
-              style: TextStyle(
-                fontSize: 60,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                height: 1.5,
-              ),
-            ),
-          ),
-        ),
+        _buildTitle(),
         const SizedBox(
           height: CustomTheme.defaultPadding,
         ),
@@ -43,41 +31,51 @@ class TextBanner extends StatelessWidget {
     );
   }
 
-  JelloIn _buildStartButton() {
-    return JelloIn(
-      delay: const Duration(milliseconds: 1000),
-      child: TextButton.icon(
-        style: TextButton.styleFrom(
-          backgroundColor: Colors.white,
-          primary: CustomTheme.secondaryColor,
-          fixedSize: const Size(double.infinity, 50),
+  Widget _buildTitle() => FadeInDown(
+        child: const FittedBox(
+          child: Text(
+            Location.homeTitle,
+            style: TextStyle(
+              fontSize: 60,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              height: 1.5,
+            ),
+          ),
         ),
-        onPressed: onButtonTap,
-        icon: const Icon(Icons.design_services),
-        label: const Text(Location.start),
-      ),
-    );
-  }
+      );
 
-  FittedBox _buildCheckList() {
-    return FittedBox(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          FadeInLeft(
-            delay: const Duration(milliseconds: 300),
-            child: const TextCheck(label: Location.homeSubtitle1),
+  Widget _buildStartButton() => JelloIn(
+        delay: const Duration(milliseconds: 1000),
+        child: TextButton.icon(
+          style: TextButton.styleFrom(
+            backgroundColor: Colors.white,
+            primary: CustomTheme.secondaryColor,
+            fixedSize: const Size(double.infinity, 50),
           ),
-          FadeInLeft(
-            delay: const Duration(milliseconds: 500),
-            child: const TextCheck(label: Location.homeSubtitle2),
-          ),
-          FadeInLeft(
-            delay: const Duration(milliseconds: 700),
-            child: const TextCheck(label: Location.homeSubtitle3),
-          ),
-        ],
-      ),
-    );
-  }
+          onPressed: onButtonTap,
+          icon: const Icon(Icons.design_services),
+          label: const Text(Location.start),
+        ),
+      );
+
+  Widget _buildCheckList() => FittedBox(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            FadeInLeft(
+              delay: const Duration(milliseconds: 300),
+              child: const TextCheck(label: Location.homeSubtitle1),
+            ),
+            FadeInLeft(
+              delay: const Duration(milliseconds: 500),
+              child: const TextCheck(label: Location.homeSubtitle2),
+            ),
+            FadeInLeft(
+              delay: const Duration(milliseconds: 700),
+              child: const TextCheck(label: Location.homeSubtitle3),
+            ),
+          ],
+        ),
+      );
 }
