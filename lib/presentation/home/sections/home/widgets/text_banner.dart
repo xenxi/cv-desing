@@ -38,20 +38,24 @@ class TextBanner extends StatelessWidget {
         const SizedBox(
           height: CustomTheme.defaultPadding * 2,
         ),
-        JelloIn(
-          delay: const Duration(milliseconds: 1000),
-          child: TextButton.icon(
-            style: TextButton.styleFrom(
-              backgroundColor: Colors.white,
-              primary: CustomTheme.secondaryColor,
-              fixedSize: const Size(double.infinity, 50),
-            ),
-            onPressed: onButtonTap,
-            icon: const Icon(Icons.design_services),
-            label: const Text(Location.start),
-          ),
-        )
+        _buildStartButton()
       ],
+    );
+  }
+
+  JelloIn _buildStartButton() {
+    return JelloIn(
+      delay: const Duration(milliseconds: 1000),
+      child: TextButton.icon(
+        style: TextButton.styleFrom(
+          backgroundColor: Colors.white,
+          primary: CustomTheme.secondaryColor,
+          fixedSize: const Size(double.infinity, 50),
+        ),
+        onPressed: onButtonTap,
+        icon: const Icon(Icons.design_services),
+        label: const Text(Location.start),
+      ),
     );
   }
 
