@@ -32,7 +32,9 @@ class HomeSection extends StatelessWidget {
           ),
           isMobile: sizingInformation.isMobile,
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 1200),
+            constraints: BoxConstraints(
+              maxWidth: sizingInformation.isTablet ? 600 : 1200,
+            ),
             child: _buildGlassContainer(
               context,
               children: Row(
