@@ -31,7 +31,7 @@ class HomeSection extends StatelessWidget {
             ),
           ),
           isMobile: sizingInformation.isMobile,
-          child: Container(
+          child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 1200),
             child: _buildGlassContainer(
               context,
@@ -68,16 +68,11 @@ class HomeSection extends StatelessWidget {
     BuildContext context, {
     required Widget children,
   }) {
-    return Container(
-      clipBehavior: Clip.hardEdge,
-      decoration: const BoxDecoration(),
-      margin: const EdgeInsets.all(CustomTheme.defaultPadding),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-        child: Padding(
-          padding: const EdgeInsets.all(CustomTheme.defaultPadding * 2),
-          child: children,
-        ),
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+      child: Padding(
+        padding: const EdgeInsets.all(CustomTheme.defaultPadding * 2),
+        child: children,
       ),
     );
   }
