@@ -12,6 +12,8 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/social_data
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import 'sections/resumes/resumes_section.dart';
+
 final GlobalKey desingsKey = GlobalKey();
 final GlobalKey homeKey = GlobalKey();
 final GlobalKey blogKey = GlobalKey();
@@ -71,6 +73,7 @@ class _Body extends StatelessWidget {
           PortfolioSection(
             key: desingsKey,
           ),
+          ResumesSection(),
           const Padding(
             padding: EdgeInsets.all(CustomTheme.defaultPadding),
             child: Footer(

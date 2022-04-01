@@ -7,6 +7,7 @@ class Location {
   static const portfolioSectionSubtitle = 'Escoge tu preferido';
 
   static const curriculum = 'Curriculum';
+  static const curriculums = 'Curriculums';
   static const flyer = 'Flyer';
   static const businessCard = 'Tarjeta visita';
   static const rightsReserved = 'All rights reserved';
