@@ -20,17 +20,9 @@ class HomePage extends StatelessWidget {
             goToProjectSection: () => Navigator.of(navigator.currentContext!)
                 .pushNamed(AppRouter.desings),
           ),
-          // PortfolioSection(),
           ResumesSection(),
           BusinessCardsSection(),
           FlyersSection(),
-          const Padding(
-            padding: EdgeInsets.all(CustomTheme.defaultPadding),
-            child: Footer(
-              textColor: CustomTheme.primaryText2,
-              textLinkColor: CustomTheme.primaryColor,
-            ),
-          ),
         ],
       ),
     );
