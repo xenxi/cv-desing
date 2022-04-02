@@ -30,6 +30,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const _Body();
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         return Scaffold(
@@ -71,7 +72,7 @@ class _Body extends StatelessWidget {
             goToProjectSection: () =>
                 scrollToSection(desingsKey.currentContext),
           ),
-          PortfolioSection(),
+          // PortfolioSection(),
           ResumesSection(),
           BusinessCardsSection(),
           FlyersSection(),

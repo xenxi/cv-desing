@@ -2,6 +2,7 @@ import 'package:cv_desing_website_flutter/application/auth_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
+import 'package:cv_desing_website_flutter/presentation/layouts/public_layout.dart';
 import 'package:cv_desing_website_flutter/presentation/page_not_found.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class CvDesingApp extends StatelessWidget {
         title: 'Diseños CV',
         initialRoute: '/',
         routes: AppRouter.routes,
+        builder: (context, child) => PublicLayout(child: child!),
         onUnknownRoute: (settings) =>
             MaterialPageRoute(builder: (_) => const PageNotFound()),
         theme: CustomTheme.lightTheme,
