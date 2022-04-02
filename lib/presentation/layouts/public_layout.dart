@@ -24,22 +24,31 @@ class PublicLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
-        return Scaffold(
-          appBar: _buildNavBar(sizingInformation) as PreferredSizeWidget,
-          drawer: sizingInformation.isMobile
-              ? CustomDrawer(
-                  menuList: navItems,
-                  color: CustomTheme.secondaryColor,
-                )
-              : null,
-          body: child,
+        return Overlay(
+          initialEntries: [
+            OverlayEntry(builder: (context) => _buildBody(context)),
+          ],
         );
       },
     );
   }
 
-  Widget _buildNavBar(SizingInformation sizingInformation) {
-    return sizingInformation.isMobile
+  Widget _buildBody(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 600;
+    return Scaffold(
+      appBar: _buildNavBar(isMobile) as PreferredSizeWidget,
+      drawer: isMobile
+          ? CustomDrawer(
+              menuList: navItems,
+              color: CustomTheme.secondaryColor,
+            )
+          : null,
+      body: child,
+    );
+  }
+
+  Widget _buildNavBar(bool isMobile) {
+    return isMobile
         ? const CustomMobileNavBar()
         : CustomNavBar(
             socialData: SocialData.links,
