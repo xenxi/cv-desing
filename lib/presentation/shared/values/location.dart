@@ -11,6 +11,7 @@ class Location {
   static const flyer = 'Flyer';
   static const flyers = 'Flyers';
   static const businessCard = 'Tarjeta visita';
+  static const businessCards = 'Tarjeta visita';
   static const rightsReserved = 'All rights reserved';
   static const designedBy = 'Designed by';
   static const dsCurriculum = 'Diseños Currículum Vitae';

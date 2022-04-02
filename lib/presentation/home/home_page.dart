@@ -2,6 +2,7 @@ import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_mobile_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_data.dart';
+import 'package:cv_desing_website_flutter/presentation/home/sections/business_cards_section.dart';
 import 'package:cv_desing_website_flutter/presentation/home/sections/flyers_section.dart';
 import 'package:cv_desing_website_flutter/presentation/home/sections/home/home_section.dart';
 import 'package:cv_desing_website_flutter/presentation/home/sections/portfolio/portfolio_section.dart';
@@ -70,13 +71,10 @@ class _Body extends StatelessWidget {
             goToProjectSection: () =>
                 scrollToSection(desingsKey.currentContext),
           ),
-          PortfolioSection(
-            key: desingsKey,
-          ),
-          FlyersSection(
-            key: desingsKey,
-          ),
+          PortfolioSection(),
           ResumesSection(),
+          BusinessCardsSection(),
+          FlyersSection(),
           const Padding(
             padding: EdgeInsets.all(CustomTheme.defaultPadding),
             child: Footer(
