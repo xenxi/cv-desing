@@ -9,6 +9,7 @@ class Location {
   static const curriculum = 'Curriculum';
   static const curriculums = 'Curriculums';
   static const flyer = 'Flyer';
+  static const flyers = 'Flyers';
   static const businessCard = 'Tarjeta visita';
   static const rightsReserved = 'All rights reserved';
   static const designedBy = 'Designed by';

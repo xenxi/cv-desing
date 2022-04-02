@@ -12,8 +12,8 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/location.da
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class ResumesSection extends StatelessWidget {
-  ResumesSection({Key? key}) : super(key: key);
+class FlyersSection extends StatelessWidget {
+  FlyersSection({Key? key}) : super(key: key);
   final desings = DesingData.desings
       .where((e) => e.category == Category.curriculum)
       .take(5)
@@ -27,7 +27,7 @@ class ResumesSection extends StatelessWidget {
       child: Column(
         children: [
           const SectionTitle(
-            title: Location.curriculums,
+            title: Location.flyers,
             subTitle: Location.portfolioSectionSubtitle,
             color: CustomTheme.primaryColor,
           ),
