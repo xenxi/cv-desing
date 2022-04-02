@@ -1,6 +1,6 @@
 import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
-import 'package:cv_desing_website_flutter/presentation/home/widgets/feature_item.dart';
+import 'package:cv_desing_website_flutter/presentation/home/widgets/featured_desings/feature_item.dart';
 import 'package:flutter/material.dart';
 
 class FeaturedDesingsList extends StatelessWidget {
