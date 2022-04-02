@@ -18,6 +18,6 @@ class AppRouter {
     blog: (context) => const ComingSoonPage(),
     auth: (context) => const AuthPage(),
     details: (context) => const DesingDetailsPage(),
-    desings: (context) => const DesingsPage(),
+    desings: (context) => DesingsPage(),
   };
 }
