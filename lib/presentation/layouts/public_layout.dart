@@ -7,7 +7,6 @@ import 'package:cv_desing_website_flutter/presentation/home/widgets/drawer/custo
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class PublicLayout extends StatelessWidget {
   PublicLayout({
@@ -22,14 +21,10 @@ class PublicLayout extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
-      builder: (context, sizingInformation) {
-        return Overlay(
-          initialEntries: [
-            OverlayEntry(builder: (context) => _buildBody(context)),
-          ],
-        );
-      },
+    return Overlay(
+      initialEntries: [
+        OverlayEntry(builder: (context) => _buildBody(context)),
+      ],
     );
   }
 
