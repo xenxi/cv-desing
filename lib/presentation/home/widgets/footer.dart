@@ -1,5 +1,7 @@
+import 'package:cv_desing_website_flutter/presentation/shared/components/launcher_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -37,6 +39,9 @@ class Footer extends StatelessWidget {
               style: footerTextStyle,
               children: [
                 TextSpan(
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => openUrlLink(
+                        'https://www.instagram.com/dscurriculumvitae/'),
                   text: '${Location.dsCurriculum}.',
                   style: footerTextStyle?.copyWith(
                     decoration: TextDecoration.underline,
@@ -61,6 +66,8 @@ class Footer extends StatelessWidget {
                 style: footerTextStyle,
                 children: [
                   TextSpan(
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => openUrlLink('https://antoniomdm.dev/'),
                     text: '${Location.amdiaz}. ',
                     style: footerTextStyle?.copyWith(
                       decoration: TextDecoration.underline,
