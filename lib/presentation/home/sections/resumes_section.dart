@@ -35,10 +35,7 @@ class ResumesSection extends StatelessWidget {
               ),
               scrollDirection: Axis.horizontal,
               itemCount: desings.length,
-              itemBuilder: (context, index) {
-                final desing = desings[index];
-                return FeatureItem(desing);
-              },
+              itemBuilder: (context, index) => FeatureItem(desings[index]),
             ),
           ),
         ],
