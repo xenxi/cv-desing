@@ -4,6 +4,7 @@ import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_navbar
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_data.dart';
 import 'package:cv_desing_website_flutter/presentation/home/home_page.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/drawer/custom_drawer.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class PublicLayout extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < 600;
+    final isMobile = isMobileScreen(context);
     return Scaffold(
       appBar: _buildNavBar(isMobile) as PreferredSizeWidget,
       drawer: isMobile
