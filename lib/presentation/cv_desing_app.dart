@@ -8,6 +8,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+final navigator = GlobalKey<NavigatorState>();
+
 class CvDesingApp extends StatelessWidget {
   const CvDesingApp({Key? key}) : super(key: key);
 
@@ -16,6 +18,7 @@ class CvDesingApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<AuthBloc>(),
       child: MaterialApp(
+        navigatorKey: navigator,
         scrollBehavior: _MyCustomScrollBehavior(),
         debugShowCheckedModeBanner: false,
         title: 'Diseños CV',

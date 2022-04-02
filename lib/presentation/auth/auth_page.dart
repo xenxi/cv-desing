@@ -4,6 +4,7 @@ import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_mobile_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_data.dart';
+import 'package:cv_desing_website_flutter/presentation/cv_desing_app.dart';
 import 'package:cv_desing_website_flutter/presentation/home/home_page.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
@@ -51,12 +52,14 @@ class AuthPage extends StatelessWidget {
             navItems: [
               NavItemData(
                 name: Location.home,
-                onTap: () => Navigator.of(context).pushNamed(AppRouter.home),
+                onTap: () => Navigator.of(navigator.currentContext!)
+                    .pushNamed(AppRouter.home),
                 isSelected: true,
               ),
               NavItemData(
                 name: Location.desings,
-                onTap: () => Navigator.of(context).pushNamed(AppRouter.desings),
+                onTap: () => Navigator.of(navigator.currentContext!)
+                    .pushNamed(AppRouter.desings),
               ),
             ],
           );
