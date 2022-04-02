@@ -25,39 +25,37 @@ class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
       toolbarHeight: CustomTheme.navbarHeight,
       backgroundColor: Colors.white,
       foregroundColor: Colors.black,
-      title: IntrinsicHeight(
-        child: Row(
-          children: [
-            Logo(
-              height: 80,
-              onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
-                AppRouter.home,
-                (Route<dynamic> route) => false,
-              ),
+      title: Row(
+        children: [
+          Logo(
+            height: 80,
+            onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
+              AppRouter.home,
+              (Route<dynamic> route) => false,
             ),
-            const SizedBox(width: 20),
-            const NavbarDivider(),
-            Expanded(
-              child: NavbarItems(
-                navItems: navItems,
-              ),
+          ),
+          const SizedBox(width: 20),
+          const NavbarDivider(),
+          Expanded(
+            child: NavbarItems(
+              navItems: navItems,
             ),
-            const Spacer(),
-            Row(
-              children: [
-                ..._buildSocialIcons(socialData),
-                const SizedBox(
-                  width: 20.0,
-                )
-              ],
-            ),
-            const NavbarDivider(),
-            const SizedBox(width: 20),
-            const LoginButton(
-              isMobile: false,
-            )
-          ],
-        ),
+          ),
+          const Spacer(),
+          Row(
+            children: [
+              ..._buildSocialIcons(socialData),
+              const SizedBox(
+                width: 20.0,
+              )
+            ],
+          ),
+          const NavbarDivider(),
+          const SizedBox(width: 20),
+          const LoginButton(
+            isMobile: false,
+          )
+        ],
       ),
     );
   }

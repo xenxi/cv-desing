@@ -16,29 +16,27 @@ class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       toolbarHeight: CustomTheme.navbarHeight,
       backgroundColor: CustomTheme.secondaryColor,
-      title: IntrinsicHeight(
-        child: Row(
-          children: [
-            const Spacer(),
-            Logo(
-              height: 50,
-              onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
-                AppRouter.home,
-                (Route<dynamic> route) => false,
-              ),
+      title: Row(
+        children: [
+          const Spacer(),
+          Logo(
+            height: 50,
+            onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
+              AppRouter.home,
+              (Route<dynamic> route) => false,
             ),
-            const Spacer(),
-            if (loginButtonVisible) ...[
-              const SizedBox(
-                width: 20,
-              ),
-              const LoginButton(
-                iconColor: Colors.white,
-                isMobile: true,
-              ),
-            ]
-          ],
-        ),
+          ),
+          const Spacer(),
+          if (loginButtonVisible) ...[
+            const SizedBox(
+              width: 20,
+            ),
+            const LoginButton(
+              iconColor: Colors.white,
+              isMobile: true,
+            ),
+          ]
+        ],
       ),
     );
   }
