@@ -46,6 +46,9 @@ class DesingsPage extends HookWidget {
         builder: (context, sizingInformation) {
           return Container(
             decoration: _buildSectionDecoration(),
+            constraints: BoxConstraints(
+              minHeight: sizingInformation.screenSize.height,
+            ),
             padding: const EdgeInsets.only(
               bottom: CustomTheme.footerPadding,
               left: CustomTheme.defaultPadding,
