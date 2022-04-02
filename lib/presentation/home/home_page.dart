@@ -13,18 +13,18 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          HomeSection(
-            goToProjectSection: () => Navigator.of(navigator.currentContext!)
-                .pushNamed(AppRouter.desings),
-          ),
-          ResumesSection(),
-          BusinessCardsSection(),
-          FlyersSection(),
-        ],
-      ),
+    return PageView(
+      scrollDirection: Axis.vertical,
+      pageSnapping: false,
+      children: [
+        HomeSection(
+          goToProjectSection: () => Navigator.of(navigator.currentContext!)
+              .pushNamed(AppRouter.desings),
+        ),
+        ResumesSection(),
+        BusinessCardsSection(),
+        FlyersSection(),
+      ],
     );
   }
 }
