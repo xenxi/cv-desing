@@ -1,6 +1,6 @@
 import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
-import 'package:cv_desing_website_flutter/presentation/home/widgets/feature_item.dart';
+import 'package:cv_desing_website_flutter/presentation/home/widgets/featured_desings_list.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
@@ -27,16 +27,7 @@ class ResumesSection extends StatelessWidget {
             color: CustomTheme.primaryColor,
           ),
           Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.only(
-                bottom: CustomTheme.defaultPadding,
-                left: CustomTheme.defaultPadding,
-                right: CustomTheme.defaultPadding,
-              ),
-              scrollDirection: Axis.horizontal,
-              itemCount: desings.length,
-              itemBuilder: (context, index) => FeatureItem(desings[index]),
-            ),
+            child: FeaturedDesingsList(desings: desings),
           ),
         ],
       ),
