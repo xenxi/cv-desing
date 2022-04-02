@@ -16,17 +16,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _Body();
-  }
-}
-
-class _Body extends StatelessWidget {
-  const _Body({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
