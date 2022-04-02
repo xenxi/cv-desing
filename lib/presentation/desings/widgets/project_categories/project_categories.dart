@@ -1,8 +1,7 @@
 import 'package:cv_desing_website_flutter/domain/category.dart';
-import 'package:cv_desing_website_flutter/presentation/home/sections/portfolio/widgets/project_categories/project_category_data.dart';
+import 'package:cv_desing_website_flutter/presentation/desings/widgets/project_categories/project_category.dart';
+import 'package:cv_desing_website_flutter/presentation/desings/widgets/project_categories/project_category_data.dart';
 import 'package:flutter/material.dart';
-
-import 'project_category.dart';
 
 class ProjectCategories extends StatelessWidget {
   const ProjectCategories({
