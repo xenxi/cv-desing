@@ -45,11 +45,19 @@ class ResumesSection extends StatelessWidget {
                 return Hero(
                   tag: desing.id,
                   child: Container(
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.grey,
+                          offset: Offset(1.0, .5), //(x,y)
+                          blurRadius: 2.0,
+                        ),
+                      ],
+                    ),
                     clipBehavior: Clip.hardEdge,
                     margin: const EdgeInsets.all(20),
-                    child: GestureDetector(
+                    child: InkWell(
                       onTap: () => openDetailView(context, desing: desing),
                       child: Image(
                         image: AssetImage(
