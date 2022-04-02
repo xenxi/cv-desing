@@ -52,20 +52,22 @@ class PublicLayout extends StatelessWidget {
               color: CustomTheme.secondaryColor,
             )
           : null,
-      body: Column(
-        children: [
-          Expanded(child: child),
-          const Padding(
-            padding: EdgeInsets.all(CustomTheme.defaultPadding),
-            child: Expanded(
-              child: Footer(
-                textColor: CustomTheme.primaryText2,
-                textLinkColor: CustomTheme.primaryColor,
-              ),
+      body: isMobile
+          ? child
+          : Column(
+              children: [
+                Expanded(child: child),
+                const Padding(
+                  padding: EdgeInsets.all(CustomTheme.defaultPadding),
+                  child: Expanded(
+                    child: Footer(
+                      textColor: CustomTheme.primaryText2,
+                      textLinkColor: CustomTheme.primaryColor,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 
