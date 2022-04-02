@@ -44,14 +44,11 @@ class NavbarItems extends HookWidget {
       Navigator.of(context).pushNamed(AppRouter.blog);
     } else {
       for (final item in items.value) {
-        if (selected.name == item.name) {
-          scrollToSection(item.key.currentContext);
-          item.isSelected = true;
-        } else {
-          item.isSelected = false;
-        }
+        item.isSelected = selected.name == item.name;
       }
       items.value = List.from(navItems);
+
+      selected.onTap();
     }
   }
 }

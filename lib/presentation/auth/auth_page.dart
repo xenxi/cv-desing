@@ -1,4 +1,5 @@
 import 'package:cv_desing_website_flutter/presentation/auth/sections/login/sign_in_section.dart';
+import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_mobile_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_navbar.dart';
@@ -11,15 +12,6 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import 'sections/login/sign_in_mobile_section.dart';
 
-final List<NavItemData> navItems = [
-  NavItemData(
-    name: Location.home,
-    key: homeKey,
-  ),
-  NavItemData(name: Location.desings, key: desingsKey),
-  // NavItemData(name: Location.blog, key: blogKey),
-];
-
 class AuthPage extends StatelessWidget {
   const AuthPage({Key? key}) : super(key: key);
 
@@ -28,7 +20,8 @@ class AuthPage extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         return Scaffold(
-          appBar: _buildNavBar(sizingInformation) as PreferredSizeWidget,
+          appBar: _buildNavBar(context, sizingInformation: sizingInformation)
+              as PreferredSizeWidget,
           backgroundColor: CustomTheme.secondaryColor,
           body: SingleChildScrollView(
             padding: sizingInformation.isMobile
@@ -47,14 +40,25 @@ class AuthPage extends StatelessWidget {
     );
   }
 
-  Widget _buildNavBar(SizingInformation sizingInformation) {
+  Widget _buildNavBar(BuildContext context,
+      {required SizingInformation sizingInformation}) {
     return sizingInformation.isMobile
         ? const CustomMobileNavBar(
             loginButtonVisible: false,
           )
         : CustomNavBar(
             socialData: SocialData.links,
-            navItems: navItems,
+            navItems: [
+              NavItemData(
+                name: Location.home,
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.home),
+                isSelected: true,
+              ),
+              NavItemData(
+                name: Location.desings,
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.desings),
+              ),
+            ],
           );
   }
 

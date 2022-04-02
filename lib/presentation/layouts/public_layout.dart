@@ -1,8 +1,8 @@
+import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_mobile_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_data.dart';
-import 'package:cv_desing_website_flutter/presentation/home/home_page.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/drawer/custom_drawer.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
@@ -10,16 +10,12 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/social_data
 import 'package:flutter/material.dart';
 
 class PublicLayout extends StatelessWidget {
-  PublicLayout({
+  const PublicLayout({
     Key? key,
     required this.child,
   }) : super(key: key);
   final Widget child;
-  final List<NavItemData> navItems = [
-    NavItemData(name: Location.home, key: homeKey, isSelected: true),
-    NavItemData(name: Location.desings, key: desingsKey),
-    // NavItemData(name: Location.blog, key: blogKey),
-  ];
+
   @override
   Widget build(BuildContext context) {
     return Overlay(
@@ -31,8 +27,21 @@ class PublicLayout extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     final isMobile = isMobileScreen(context);
+
+    final List<NavItemData> navItems = [
+      NavItemData(
+        name: Location.home,
+        onTap: () => Navigator.of(context).pushNamed(AppRouter.home),
+        isSelected: true,
+      ),
+      NavItemData(
+        name: Location.desings,
+        onTap: () => Navigator.of(context).pushNamed(AppRouter.desings),
+      ),
+    ];
+
     return Scaffold(
-      appBar: _buildNavBar(isMobile) as PreferredSizeWidget,
+      appBar: _buildNavBar(isMobile, navItems) as PreferredSizeWidget,
       drawer: isMobile
           ? CustomDrawer(
               menuList: navItems,
@@ -43,7 +52,7 @@ class PublicLayout extends StatelessWidget {
     );
   }
 
-  Widget _buildNavBar(bool isMobile) {
+  Widget _buildNavBar(bool isMobile, List<NavItemData> navItems) {
     return isMobile
         ? const CustomMobileNavBar()
         : CustomNavBar(

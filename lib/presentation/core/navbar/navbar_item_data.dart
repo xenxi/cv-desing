@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
-
 class NavItemData {
   NavItemData({
     required this.name,
-    required this.key,
+    required this.onTap,
     this.isSelected = false,
   });
 
   final String name;
-  final GlobalKey key;
+  final void Function() onTap;
   bool isSelected;
 }
