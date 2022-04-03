@@ -34,6 +34,7 @@ dependencies:
   firebase_analytics: ^9.1.2
   firebase_auth: ^3.3.11
   firebase_core: ^1.13.1
+  fluro: ^2.0.3
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
