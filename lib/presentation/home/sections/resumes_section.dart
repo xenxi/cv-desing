@@ -1,5 +1,7 @@
 import 'package:cv_desing_website_flutter/domain/category.dart';
+import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/cv_desing_app.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/featured_desings/featured_desings_list.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/show_more_button.dart';
@@ -28,7 +30,8 @@ class ResumesSection extends StatelessWidget {
             subTitle: Location.portfolioSectionSubtitle,
             color: CustomTheme.primaryColor,
             trailing: ShowMoreButton(
-              onPressed: () {},
+              onPressed: () => Navigator.of(navigator.currentContext!)
+                  .pushNamed(AppRouter.desings),
             ),
           ),
           Expanded(
