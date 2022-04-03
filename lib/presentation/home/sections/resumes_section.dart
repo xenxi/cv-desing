@@ -27,7 +27,9 @@ class ResumesSection extends StatelessWidget {
             title: Location.curriculums,
             subTitle: Location.portfolioSectionSubtitle,
             color: CustomTheme.primaryColor,
-            trailing: ShowMoreButton(),
+            trailing: ShowMoreButton(
+              onPressed: () {},
+            ),
           ),
           Expanded(
             child: FeaturedDesingsList(desings: desings),
