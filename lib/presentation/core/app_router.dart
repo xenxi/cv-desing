@@ -20,4 +20,12 @@ class AppRouter {
     details: (context) => const DesingDetailsPage(),
     desings: (context) => DesingsPage(),
   };
+  static Map<String, Widget Function()> routesMap = {
+    '/': () => const HomePage(),
+    home: () => const HomePage(),
+    blog: () => const ComingSoonPage(),
+    auth: () => const AuthPage(),
+    details: () => const DesingDetailsPage(),
+    desings: () => DesingsPage(),
+  };
 }
