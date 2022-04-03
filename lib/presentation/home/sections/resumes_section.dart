@@ -22,17 +22,11 @@ class ResumesSection extends StatelessWidget {
       expandable: false,
       child: Column(
         children: [
-          Row(
-            children: [
-              const SectionTitle(
-                title: Location.curriculums,
-                subTitle: Location.portfolioSectionSubtitle,
-                color: CustomTheme.primaryColor,
-              ),
-              const Spacer(),
-              _buildShowMoreButton(),
-              const SizedBox(width: CustomTheme.defaultPadding * 2),
-            ],
+          SectionTitle(
+            title: Location.curriculums,
+            subTitle: Location.portfolioSectionSubtitle,
+            color: CustomTheme.primaryColor,
+            trailing: _buildShowMoreButton(),
           ),
           Expanded(
             child: FeaturedDesingsList(desings: desings),
