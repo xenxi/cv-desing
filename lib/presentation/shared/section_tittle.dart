@@ -23,6 +23,7 @@ class SectionTitle extends StatelessWidget {
       ),
       height: 100,
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             margin: const EdgeInsets.only(right: CustomTheme.defaultPadding),
