@@ -8,12 +8,13 @@ class SectionTitle extends StatelessWidget {
     required this.title,
     required this.subTitle,
     required this.color,
+    this.trailing,
   }) : super(key: key);
 
   final String title;
   final String subTitle;
   final Color color;
-
+  final Widget? trailing;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,7 +56,9 @@ class SectionTitle extends StatelessWidget {
                     ?.copyWith(fontWeight: FontWeight.bold),
               )
             ],
-          )
+          ),
+          const Spacer(),
+          trailing ?? Container(),
         ],
       ),
     );
