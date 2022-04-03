@@ -92,8 +92,9 @@ class DesingsPage extends HookWidget {
     return BoxDecoration(
       color: CustomTheme.primaryColor.withOpacity(.35),
       image: const DecorationImage(
-        fit: BoxFit.cover,
-        image: AssetImage(ImagePath.bg2),
+        fit: BoxFit.none,
+        image: AssetImage(ImagePath.bg12),
+        repeat: ImageRepeat.repeat,
       ),
     );
   }
