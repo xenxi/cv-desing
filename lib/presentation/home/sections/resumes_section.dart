@@ -2,6 +2,7 @@ import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/featured_desings/featured_desings_list.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
+import 'package:cv_desing_website_flutter/presentation/home/widgets/show_more_button.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
@@ -36,18 +37,7 @@ class ResumesSection extends StatelessWidget {
     );
   }
 
-  TextButton _buildShowMoreButton() {
-    return TextButton(
-      onPressed: () {},
-      child: Row(
-        children: const [
-          Text(
-            'Ver todos',
-          ),
-          SizedBox(width: 5),
-          FaIcon(FontAwesomeIcons.angleRight),
-        ],
-      ),
-    );
+  Widget _buildShowMoreButton() {
+    return ShowMoreButton();
   }
 }
