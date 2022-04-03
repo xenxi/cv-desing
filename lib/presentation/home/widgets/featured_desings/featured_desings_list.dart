@@ -15,7 +15,8 @@ class FeaturedDesingsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: const EdgeInsets.only(
-        bottom: CustomTheme.defaultPadding,
+        bottom: 100,
+        top: 20,
         left: CustomTheme.defaultPadding,
         right: CustomTheme.defaultPadding,
       ),
