@@ -6,6 +6,7 @@ import 'package:cv_desing_website_flutter/presentation/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
+  static String none = '/';
   static String blog = '/blog';
   static String home = '/preview';
   static String desings = '/desings';
@@ -13,7 +14,7 @@ class AppRouter {
   static String auth = '/auth';
   static Map<String, WidgetBuilder> routes = {
     // '': (context) => const ComingSoonPage(),
-    '/': (context) => const HomePage(),
+    none: (context) => const HomePage(),
     home: (context) => const HomePage(),
     blog: (context) => const ComingSoonPage(),
     auth: (context) => const AuthPage(),
