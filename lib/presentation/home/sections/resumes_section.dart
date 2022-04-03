@@ -30,24 +30,28 @@ class ResumesSection extends StatelessWidget {
                 color: CustomTheme.primaryColor,
               ),
               const Spacer(),
-              TextButton(
-                onPressed: () {},
-                child: Row(
-                  children: const [
-                    Text(
-                      'Ver todos',
-                    ),
-                    SizedBox(width: 5),
-                    FaIcon(FontAwesomeIcons.angleRight),
-                  ],
-                ),
-              ),
+              _buildShowMoreButton(),
               const SizedBox(width: CustomTheme.defaultPadding * 2),
             ],
           ),
           Expanded(
             child: FeaturedDesingsList(desings: desings),
           ),
+        ],
+      ),
+    );
+  }
+
+  TextButton _buildShowMoreButton() {
+    return TextButton(
+      onPressed: () {},
+      child: Row(
+        children: const [
+          Text(
+            'Ver todos',
+          ),
+          SizedBox(width: 5),
+          FaIcon(FontAwesomeIcons.angleRight),
         ],
       ),
     );
