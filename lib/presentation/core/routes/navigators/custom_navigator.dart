@@ -1,6 +1,8 @@
 import 'package:cv_desing_website_flutter/presentation/core/routes/navigators/i_navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class CustomNavigator implements INavigator {
   CustomNavigator(this.key);
   final GlobalKey<NavigatorState> key;
