@@ -59,6 +59,7 @@ class SectionTitle extends StatelessWidget {
           ),
           const Spacer(),
           trailing ?? Container(),
+          const SizedBox(width: CustomTheme.defaultPadding),
         ],
       ),
     );
