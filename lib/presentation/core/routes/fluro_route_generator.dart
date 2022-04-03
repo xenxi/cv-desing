@@ -1,4 +1,5 @@
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
+import 'package:cv_desing_website_flutter/presentation/page_not_found.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
@@ -19,5 +20,9 @@ class FluroRouteGenerator {
         ),
       );
     });
+
+    _router.notFoundHandler = Handler(
+      handlerFunc: (context, parameters) => const PageNotFound(),
+    );
   }
 }
