@@ -1,5 +1,5 @@
-import 'package:cv_desing_website_flutter/presentation/core/adaptative.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:flutter/material.dart';
 
 class SectionTitle extends StatelessWidget {
