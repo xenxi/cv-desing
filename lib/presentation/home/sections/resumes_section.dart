@@ -27,7 +27,7 @@ class ResumesSection extends StatelessWidget {
             title: Location.curriculums,
             subTitle: Location.portfolioSectionSubtitle,
             color: CustomTheme.primaryColor,
-            trailing: _buildShowMoreButton(),
+            trailing: ShowMoreButton(),
           ),
           Expanded(
             child: FeaturedDesingsList(desings: desings),
@@ -35,9 +35,5 @@ class ResumesSection extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Widget _buildShowMoreButton() {
-    return ShowMoreButton();
   }
 }
