@@ -6,6 +6,7 @@ import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dar
 import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ResumesSection extends StatelessWidget {
   ResumesSection({Key? key}) : super(key: key);
@@ -21,10 +22,28 @@ class ResumesSection extends StatelessWidget {
       expandable: false,
       child: Column(
         children: [
-          const SectionTitle(
-            title: Location.curriculums,
-            subTitle: Location.portfolioSectionSubtitle,
-            color: CustomTheme.primaryColor,
+          Row(
+            children: [
+              const SectionTitle(
+                title: Location.curriculums,
+                subTitle: Location.portfolioSectionSubtitle,
+                color: CustomTheme.primaryColor,
+              ),
+              const Spacer(),
+              TextButton(
+                onPressed: () {},
+                child: Row(
+                  children: const [
+                    Text(
+                      'Ver todos',
+                    ),
+                    SizedBox(width: 5),
+                    FaIcon(FontAwesomeIcons.angleRight),
+                  ],
+                ),
+              ),
+              const SizedBox(width: CustomTheme.defaultPadding * 2),
+            ],
           ),
           Expanded(
             child: FeaturedDesingsList(desings: desings),
