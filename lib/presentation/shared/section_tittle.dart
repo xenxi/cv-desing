@@ -19,6 +19,7 @@ class SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: CustomTheme.defaultPadding),
+      padding: const EdgeInsets.only(right: CustomTheme.defaultPadding),
       constraints: BoxConstraints(
         maxWidth: widthOfScreen(context),
       ),
@@ -29,7 +30,6 @@ class SectionTitle extends StatelessWidget {
           _buildTitle(context),
           const Spacer(),
           trailing ?? Container(),
-          const SizedBox(width: CustomTheme.defaultPadding),
         ],
       ),
     );
