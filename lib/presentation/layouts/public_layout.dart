@@ -59,11 +59,9 @@ class PublicLayout extends StatelessWidget {
                 Expanded(child: child),
                 const Padding(
                   padding: EdgeInsets.all(CustomTheme.defaultPadding),
-                  child: Expanded(
-                    child: Footer(
-                      textColor: CustomTheme.primaryText2,
-                      textLinkColor: CustomTheme.primaryColor,
-                    ),
+                  child: Footer(
+                    textColor: CustomTheme.primaryText2,
+                    textLinkColor: CustomTheme.primaryColor,
                   ),
                 ),
               ],
