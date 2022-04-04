@@ -7,6 +7,7 @@ import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart
 import 'package:cv_desing_website_flutter/presentation/home/widgets/show_more_button.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 
@@ -19,21 +20,31 @@ class BusinessCardsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SectionTitle(
-          title: Location.businessCards,
-          subTitle: Location.portfolioSectionSubtitle,
-          color: CustomTheme.primaryColor,
-          trailing: ShowMoreButton(
-            onPressed: () => Navigator.of(navigator.currentContext!)
-                .pushNamed(AppRouter.desings),
+    return Container(
+      decoration: BoxDecoration(
+        color: CustomTheme.primaryColor.withOpacity(.35),
+        image: const DecorationImage(
+          fit: BoxFit.none,
+          image: AssetImage(ImagePath.bg2),
+          repeat: ImageRepeat.repeat,
+        ),
+      ),
+      child: Column(
+        children: [
+          SectionTitle(
+            title: Location.businessCards,
+            subTitle: Location.portfolioSectionSubtitle,
+            color: CustomTheme.primaryColor,
+            trailing: ShowMoreButton(
+              onPressed: () => Navigator.of(navigator.currentContext!)
+                  .pushNamed(AppRouter.desings),
+            ),
           ),
-        ),
-        Expanded(
-          child: FeaturedDesingsList(desings: desings),
-        ),
-      ],
+          Expanded(
+            child: FeaturedDesingsList(desings: desings),
+          ),
+        ],
+      ),
     );
   }
 }

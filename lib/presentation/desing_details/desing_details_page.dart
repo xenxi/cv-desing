@@ -6,7 +6,6 @@ import 'package:cv_desing_website_flutter/presentation/shared/components/adaptat
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/close_button.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/not_found.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class DesingDetailsPage extends StatelessWidget {
   const DesingDetailsPage({Key? key}) : super(key: key);
