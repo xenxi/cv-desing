@@ -4,6 +4,7 @@ import 'package:cv_desing_website_flutter/presentation/core/navbar/login_button/
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_divider.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_data.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_items.dart';
+import 'package:cv_desing_website_flutter/presentation/cv_desing_app.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links/social_button_data.dart';
@@ -29,7 +30,7 @@ class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
         children: [
           Logo(
             height: 80,
-            onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
+            onTap: () => Navigator.of(navigator.currentContext!).pushNamedAndRemoveUntil(
               AppRouter.home,
               (Route<dynamic> route) => false,
             ),
