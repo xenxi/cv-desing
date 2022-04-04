@@ -19,43 +19,31 @@ class DesingDetailsPage extends StatelessWidget {
 
     if (desing == null) return const NotFound();
 
-    return ResponsiveBuilder(
-      builder: (context, sizingInformation) {
-        return Scaffold(
-          appBar: sizingInformation.isMobile
-              ? AppBar(
-                  backgroundColor: CustomTheme.secondaryColor,
-                )
-              : null,
-          body: SizedBox(
-            height: heightOfScreen(context),
-            child: Stack(
-              children: [
-                DetailMockUp(child: _buildImage(desing)),
-                if (!sizingInformation.isMobile)
-                  const Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: EdgeInsets.all(CustomTheme.defaultPadding),
-                      child: RoundedCloseButton(),
-                    ),
-                  ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: CustomTheme.defaultPadding,
-                    ),
-                    child: RequestButton(
-                      reference: desing.reference,
-                    ),
-                  ),
-                )
-              ],
+    return SizedBox(
+      height: heightOfScreen(context),
+      child: Stack(
+        children: [
+          DetailMockUp(child: _buildImage(desing)),
+          const Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: EdgeInsets.all(CustomTheme.defaultPadding),
+              child: RoundedCloseButton(),
             ),
           ),
-        );
-      },
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                bottom: CustomTheme.defaultPadding,
+              ),
+              child: RequestButton(
+                reference: desing.reference,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 
