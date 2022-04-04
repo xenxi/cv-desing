@@ -1,6 +1,7 @@
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/login_button/login_button.dart';
+import 'package:cv_desing_website_flutter/presentation/cv_desing_app.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 import 'package:flutter/material.dart';
 
@@ -21,9 +22,8 @@ class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {
           const Spacer(),
           Logo(
             height: 50,
-            onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
+            onTap: () => Navigator.of(navigator.currentContext!).pushNamed(
               AppRouter.home,
-              (Route<dynamic> route) => false,
             ),
           ),
           const Spacer(),
