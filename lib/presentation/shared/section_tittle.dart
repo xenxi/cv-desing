@@ -26,46 +26,48 @@ class SectionTitle extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            children: [
-              Container(
-                margin:
-                    const EdgeInsets.only(right: CustomTheme.defaultPadding),
-                padding: const EdgeInsets.only(bottom: 72),
-                width: 8,
-                height: 100,
-                color: Theme.of(context).textTheme.headline1?.color,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: color,
-                  ),
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    subTitle,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w200,
-                    ),
-                  ),
-                  Text(
-                    title,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline2
-                        ?.copyWith(fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-            ],
-          ),
+          _buildTitle(context),
+          const Spacer(),
           trailing ?? Container(),
           const SizedBox(width: CustomTheme.defaultPadding),
         ],
       ),
     );
   }
+
+  Widget _buildTitle(BuildContext context) => Row(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(right: CustomTheme.defaultPadding),
+            padding: const EdgeInsets.only(bottom: 72),
+            width: 8,
+            height: 100,
+            color: Theme.of(context).textTheme.headline1?.color,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: color,
+              ),
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                subTitle,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w200,
+                ),
+              ),
+              Text(
+                title,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline2
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+        ],
+      );
 }
