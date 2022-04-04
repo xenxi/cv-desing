@@ -19,25 +19,21 @@ class BusinessCardsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Section(
-      isMobile: false,
-      expandable: false,
-      child: Column(
-        children: [
-          SectionTitle(
-            title: Location.businessCards,
-            subTitle: Location.portfolioSectionSubtitle,
-            color: CustomTheme.primaryColor,
-            trailing: ShowMoreButton(
-              onPressed: () => Navigator.of(navigator.currentContext!)
-                  .pushNamed(AppRouter.desings),
-            ),
+    return Column(
+      children: [
+        SectionTitle(
+          title: Location.businessCards,
+          subTitle: Location.portfolioSectionSubtitle,
+          color: CustomTheme.primaryColor,
+          trailing: ShowMoreButton(
+            onPressed: () => Navigator.of(navigator.currentContext!)
+                .pushNamed(AppRouter.desings),
           ),
-          Expanded(
-            child: FeaturedDesingsList(desings: desings),
-          ),
-        ],
-      ),
+        ),
+        Expanded(
+          child: FeaturedDesingsList(desings: desings),
+        ),
+      ],
     );
   }
 }

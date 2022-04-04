@@ -1,11 +1,9 @@
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
-import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/cv_desing_app.dart';
 import 'package:cv_desing_website_flutter/presentation/home/sections/business_cards_section.dart';
 import 'package:cv_desing_website_flutter/presentation/home/sections/flyers_section.dart';
 import 'package:cv_desing_website_flutter/presentation/home/sections/home/home_section.dart';
 import 'package:cv_desing_website_flutter/presentation/home/sections/resumes_section.dart';
-import 'package:cv_desing_website_flutter/presentation/home/widgets/footer.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
