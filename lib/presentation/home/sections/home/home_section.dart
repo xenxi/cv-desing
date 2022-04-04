@@ -5,6 +5,7 @@ import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/home/sections/home/widgets/text_banner.dart';
 import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -29,6 +30,8 @@ class HomeSection extends StatelessWidget {
               image: AssetImage(ImagePath.bg7),
             ),
           ),
+          width: sizingInformation.screenSize.width,
+          alignment: Alignment.center,
           child: ConstrainedBox(
             constraints: BoxConstraints(
               maxWidth: sizingInformation.isTablet ? 600 : 1200,
