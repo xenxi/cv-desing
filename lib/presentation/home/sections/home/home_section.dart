@@ -20,8 +20,7 @@ class HomeSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
-        return Section(
-          expandable: false,
+        return Container(
           decoration: const BoxDecoration(
             color: CustomTheme.secondaryColor,
             image: DecorationImage(
@@ -30,7 +29,6 @@ class HomeSection extends StatelessWidget {
               image: AssetImage(ImagePath.bg7),
             ),
           ),
-          isMobile: sizingInformation.isMobile,
           child: ConstrainedBox(
             constraints: BoxConstraints(
               maxWidth: sizingInformation.isTablet ? 600 : 1200,
