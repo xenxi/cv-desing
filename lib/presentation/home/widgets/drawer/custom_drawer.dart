@@ -39,8 +39,7 @@ class CustomDrawer extends HookWidget {
                   const Logo(height: 52),
                   const Spacer(),
                   IconButton(
-                    onPressed: () =>
-                        Navigator.of(navigator.currentContext!).pop(),
+                    onPressed: () => Scaffold.of(context).closeDrawer(),
                     iconSize: 30,
                     color: Colors.white,
                     icon: const Icon(
