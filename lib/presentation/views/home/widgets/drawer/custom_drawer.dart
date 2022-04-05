@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
+import 'package:cv_desing_website_flutter/presentation/core/routes/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/nav_item.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_data.dart';

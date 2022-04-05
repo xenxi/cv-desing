@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
+import 'package:cv_desing_website_flutter/presentation/core/routes/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/cv_desing_app.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/sections/business_cards_section.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/sections/flyers_section.dart';

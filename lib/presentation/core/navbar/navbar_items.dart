@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
+import 'package:cv_desing_website_flutter/presentation/core/routes/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/nav_item.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_data.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/scroller_funtions.dart';

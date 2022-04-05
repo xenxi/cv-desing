@@ -1,6 +1,6 @@
 import 'package:cv_desing_website_flutter/application/auth_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/auth/user.dart';
-import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
+import 'package:cv_desing_website_flutter/presentation/core/routes/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/views/auth/sections/login/sign_in_dialog.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
+import 'package:cv_desing_website_flutter/presentation/core/routes/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/views/page_not_found_view.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/foundation.dart';

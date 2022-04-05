@@ -1,5 +1,5 @@
 import 'package:cv_desing_website_flutter/domain/desing.dart';
-import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
+import 'package:cv_desing_website_flutter/presentation/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 
 class FeatureItem extends StatelessWidget {
