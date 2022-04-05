@@ -7,8 +7,8 @@ import 'package:cv_desing_website_flutter/presentation/shared/widgets/close_butt
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/not_found.dart';
 import 'package:flutter/material.dart';
 
-class DesingDetailsPage extends StatelessWidget {
-  const DesingDetailsPage({Key? key}) : super(key: key);
+class DesingDetailsView extends StatelessWidget {
+  const DesingDetailsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

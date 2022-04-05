@@ -1,6 +1,6 @@
 import 'package:cv_desing_website_flutter/presentation/auth/auth_page.dart';
 import 'package:cv_desing_website_flutter/presentation/coming_soon/coming_soon_page.dart';
-import 'package:cv_desing_website_flutter/presentation/desing_details/desing_details_page.dart';
+import 'package:cv_desing_website_flutter/presentation/desing_details/desing_details_view.dart';
 import 'package:cv_desing_website_flutter/presentation/desings/desings_view.dart';
 import 'package:cv_desing_website_flutter/presentation/home/home_view.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class AppRouter {
     home: (context) => const HomeView(),
     blog: (context) => const ComingSoonPage(),
     auth: (context) => const AuthPage(),
-    details: (context) => const DesingDetailsPage(),
+    details: (context) => const DesingDetailsView(),
     desings: (context) => DesingsView(),
   };
   static Map<String, Widget Function()> routesMap = {
@@ -26,7 +26,7 @@ class AppRouter {
     home: () => const HomeView(),
     blog: () => const ComingSoonPage(),
     auth: () => const AuthPage(),
-    details: () => const DesingDetailsPage(),
+    details: () => const DesingDetailsView(),
     desings: () => DesingsView(),
   };
 }
