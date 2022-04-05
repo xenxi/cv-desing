@@ -1,7 +1,6 @@
 import 'package:cv_desing_website_flutter/domain/desing.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desings/widgets/desing_items/desing_mobile_item.dart';
 import 'package:flutter/material.dart';
-
-import 'desing_mobile_item.dart';
 
 class DesingMobileItems extends StatelessWidget {
   const DesingMobileItems({

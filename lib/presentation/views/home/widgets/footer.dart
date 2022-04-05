@@ -41,7 +41,8 @@ class Footer extends StatelessWidget {
                 TextSpan(
                   recognizer: TapGestureRecognizer()
                     ..onTap = () => openUrlLink(
-                        'https://www.instagram.com/dscurriculumvitae/'),
+                          'https://www.instagram.com/dscurriculumvitae/',
+                        ),
                   text: '${Location.dsCurriculum}.',
                   style: footerTextStyle?.copyWith(
                     decoration: TextDecoration.underline,

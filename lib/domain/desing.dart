@@ -1,6 +1,5 @@
+import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
-
-import 'category.dart';
 
 class Desing {
   Desing({

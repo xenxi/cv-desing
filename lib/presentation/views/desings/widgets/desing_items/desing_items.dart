@@ -2,9 +2,8 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/category_extensions.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desings/widgets/desing_items/desing_item.dart';
 import 'package:flutter/material.dart';
-
-import 'desing_item.dart';
 
 class DesingItems extends StatelessWidget {
   const DesingItems({

@@ -1,7 +1,6 @@
+import 'package:cv_desing_website_flutter/domain/errors.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-
-import 'errors.dart';
 
 class Failure<T> extends Equatable {
   const Failure(this.failedValue);

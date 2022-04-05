@@ -1,8 +1,7 @@
+import 'package:cv_desing_website_flutter/domain/auth/failures/url_failure.dart';
+import 'package:cv_desing_website_flutter/domain/failure.dart';
+import 'package:cv_desing_website_flutter/domain/value_object.dart';
 import 'package:dartz/dartz.dart';
-
-import 'auth/failures/url_failure.dart';
-import 'failure.dart';
-import 'value_object.dart';
 
 class Url extends ValueObject {
   @override
