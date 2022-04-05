@@ -2,8 +2,8 @@ import 'package:cv_desing_website_flutter/presentation/shared/components/adaptat
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/not_found.dart';
 import 'package:flutter/material.dart';
 
-class PageNotFound extends StatelessWidget {
-  const PageNotFound({Key? key}) : super(key: key);
+class PageNotFoundView extends StatelessWidget {
+  const PageNotFoundView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
