@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cv_desing_website_flutter/presentation/coming_soon/widgets/comin_soon_logo.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/social_links.dart';
+import 'package:cv_desing_website_flutter/presentation/views/coming_soon/widgets/comin_soon_logo.dart';
 import 'package:flutter/material.dart';
 
 class ComingSoonView extends StatelessWidget {
