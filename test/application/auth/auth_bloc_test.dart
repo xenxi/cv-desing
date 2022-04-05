@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:cv_desing_website_flutter/application/auth_bloc.dart';
+import 'package:cv_desing_website_flutter/application/auth/auth_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/auth/i_auth_facade.dart';
 import 'package:cv_desing_website_flutter/domain/auth/user.dart';
 import 'package:dartz/dartz.dart';
