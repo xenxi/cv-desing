@@ -15,8 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class DesingsPage extends HookWidget {
-  DesingsPage({Key? key}) : super(key: key);
+class DesingsView extends HookWidget {
+  DesingsView({Key? key}) : super(key: key);
 
   final categoriesData = Category.values
       .map(
