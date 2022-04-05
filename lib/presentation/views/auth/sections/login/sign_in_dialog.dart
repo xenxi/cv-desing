@@ -1,9 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/application/auth/sign_in_form/sign_in_form_bloc.dart';
-import 'package:cv_desing_website_flutter/presentation/auth/sections/login/sign_in_form.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
+import 'package:cv_desing_website_flutter/presentation/views/auth/sections/login/sign_in_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

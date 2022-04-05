@@ -1,5 +1,3 @@
-import 'package:cv_desing_website_flutter/presentation/auth/sections/login/sign_in_mobile_section.dart';
-import 'package:cv_desing_website_flutter/presentation/auth/sections/login/sign_in_section.dart';
 import 'package:cv_desing_website_flutter/presentation/core/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_mobile_navbar.dart';
@@ -8,6 +6,8 @@ import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_d
 import 'package:cv_desing_website_flutter/presentation/cv_desing_app.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
+import 'package:cv_desing_website_flutter/presentation/views/auth/sections/login/sign_in_mobile_section.dart';
+import 'package:cv_desing_website_flutter/presentation/views/auth/sections/login/sign_in_section.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
