@@ -4,11 +4,11 @@ import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_mobile
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_data.dart';
 import 'package:cv_desing_website_flutter/presentation/cv_desing_app.dart';
-import 'package:cv_desing_website_flutter/presentation/home/widgets/drawer/custom_drawer.dart';
-import 'package:cv_desing_website_flutter/presentation/home/widgets/footer.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
+import 'package:cv_desing_website_flutter/presentation/views/home/widgets/drawer/custom_drawer.dart';
+import 'package:cv_desing_website_flutter/presentation/views/home/widgets/footer.dart';
 import 'package:flutter/material.dart';
 
 final List<NavItemData> navItems = [

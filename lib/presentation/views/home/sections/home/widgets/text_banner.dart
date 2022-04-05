@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
-import 'package:cv_desing_website_flutter/presentation/home/sections/home/widgets/text_check.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
+import 'package:cv_desing_website_flutter/presentation/views/home/sections/home/widgets/text_check.dart';
 import 'package:flutter/material.dart';
 
 class TextBanner extends StatelessWidget {

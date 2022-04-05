@@ -2,10 +2,8 @@ import 'dart:ui';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
-import 'package:cv_desing_website_flutter/presentation/home/sections/home/widgets/text_banner.dart';
-import 'package:cv_desing_website_flutter/presentation/home/widgets/section.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
-import 'package:flutter/foundation.dart';
+import 'package:cv_desing_website_flutter/presentation/views/home/sections/home/widgets/text_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
