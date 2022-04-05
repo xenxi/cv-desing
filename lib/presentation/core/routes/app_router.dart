@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class AppRouter {
   static const String initial = '/';
   static const String blog = '/blog';
-  static const String home = '/preview';
+  static const String home = '/home';
   static const String desings = '/desings';
   static const String details = '/details';
   static const String auth = '/auth';

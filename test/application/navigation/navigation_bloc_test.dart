@@ -1,12 +1,34 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/navigation/bloc/navigation_bloc.dart';
+import 'package:cv_desing_website_flutter/presentation/core/routes/navigators/i_navigator.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockINavigator extends Mock implements INavigator {}
 
 void main() {
+  late MockINavigator navigator;
+
+  setUp(() {
+    navigator = MockINavigator();
+  });
   group('NavigationBloc should', () {
     test('has default route in initial state', () {
       final bloc = NavigationBloc();
 
       expect(bloc.state.routeName, equals('/'));
     });
+
+    blocTest<NavigationBloc, NavigationState>(
+      'navigate to home page',
+      build: () => NavigationBloc(),
+      act: (bloc) => bloc.add(const NavigateToHomeSelected()),
+      verify: (_) => verify(
+        () => navigator.navigateTo('/home'),
+      ).called(1),
+      expect: () => const <NavigationState>[
+        NavigationState(routeName: '/home'),
+      ],
+    );
   });
 }
