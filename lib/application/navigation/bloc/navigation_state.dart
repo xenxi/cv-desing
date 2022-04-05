@@ -2,7 +2,7 @@ part of 'navigation_bloc.dart';
 
 class NavigationState extends Equatable {
   factory NavigationState.initial() =>
-      NavigationState(routeName: AppRouter.none);
+      NavigationState(routeName: AppRouter.initial);
   const NavigationState({
     required this.routeName,
   });
