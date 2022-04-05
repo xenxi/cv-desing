@@ -6,12 +6,12 @@ import 'package:cv_desing_website_flutter/presentation/views/home/home_view.dart
 import 'package:flutter/material.dart';
 
 class AppRouter {
-  static String initial = '/';
-  static String blog = '/blog';
-  static String home = '/preview';
-  static String desings = '/desings';
-  static String details = '/details';
-  static String auth = '/auth';
+  static const String initial = '/';
+  static const String blog = '/blog';
+  static const String home = '/preview';
+  static const String desings = '/desings';
+  static const String details = '/details';
+  static const String auth = '/auth';
   static Map<String, WidgetBuilder> routes = {
     // '': (context) => const ComingSoonPage(),
     initial: (context) => const HomeView(),
