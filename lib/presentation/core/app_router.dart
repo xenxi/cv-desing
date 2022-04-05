@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/presentation/auth/auth_page.dart';
+import 'package:cv_desing_website_flutter/presentation/auth/auth_view.dart';
 import 'package:cv_desing_website_flutter/presentation/coming_soon/coming_soon_view.dart';
 import 'package:cv_desing_website_flutter/presentation/desing_details/desing_details_view.dart';
 import 'package:cv_desing_website_flutter/presentation/desings/desings_view.dart';
@@ -17,7 +17,7 @@ class AppRouter {
     none: (context) => const HomeView(),
     home: (context) => const HomeView(),
     blog: (context) => const ComingSoonView(),
-    auth: (context) => const AuthPage(),
+    auth: (context) => const AuthView(),
     details: (context) => const DesingDetailsView(),
     desings: (context) => DesingsView(),
   };
@@ -25,7 +25,7 @@ class AppRouter {
     '/': () => const HomeView(),
     home: () => const HomeView(),
     blog: () => const ComingSoonView(),
-    auth: () => const AuthPage(),
+    auth: () => const AuthView(),
     details: () => const DesingDetailsView(),
     desings: () => DesingsView(),
   };
