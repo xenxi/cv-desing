@@ -22,7 +22,7 @@ class AppRouter {
     desings: (context) => DesingsView(),
   };
   static Map<String, Widget Function()> routesMap = {
-    '/': () => const HomeView(),
+    initial: () => const HomeView(),
     home: () => const HomeView(),
     blog: () => const ComingSoonView(),
     auth: () => const AuthView(),
