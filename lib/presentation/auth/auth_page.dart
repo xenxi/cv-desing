@@ -5,7 +5,7 @@ import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_mobile
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_data.dart';
 import 'package:cv_desing_website_flutter/presentation/cv_desing_app.dart';
-import 'package:cv_desing_website_flutter/presentation/home/home_page.dart';
+import 'package:cv_desing_website_flutter/presentation/home/home_view.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
 import 'package:flutter/material.dart';

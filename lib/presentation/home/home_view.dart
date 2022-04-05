@@ -6,8 +6,8 @@ import 'package:cv_desing_website_flutter/presentation/home/sections/home/home_s
 import 'package:cv_desing_website_flutter/presentation/home/sections/resumes_section.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomeView extends StatelessWidget {
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
