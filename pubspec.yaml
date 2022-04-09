@@ -56,7 +56,8 @@ dev_dependencies:
   injectable_generator: ^1.5.3
   lint: ^1.8.2
   mocktail: ^0.3.0
-
+dependency_overrides:
+  platform: ^3.1.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.

@@ -9,4 +9,12 @@ class NavigationState extends Equatable {
   final String routeName;
   @override
   List<Object> get props => [routeName];
+
+  NavigationState copyWith({
+    String? routeName,
+  }) {
+    return NavigationState(
+      routeName: routeName ?? this.routeName,
+    );
+  }
 }

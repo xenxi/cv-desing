@@ -11,17 +11,18 @@ void main() {
 
   setUp(() {
     navigator = MockINavigator();
+    when(() => navigator.navigateTo(any())).thenAnswer((_) => Future.value());
   });
   group('NavigationBloc should', () {
     test('has default route in initial state', () {
-      final bloc = NavigationBloc();
+      final bloc = NavigationBloc(navigator);
 
       expect(bloc.state.routeName, equals('/'));
     });
 
     blocTest<NavigationBloc, NavigationState>(
       'navigate to home page',
-      build: () => NavigationBloc(),
+      build: () => NavigationBloc(navigator),
       act: (bloc) => bloc.add(const NavigateToHomeSelected()),
       verify: (_) => verify(
         () => navigator.navigateTo('/home'),
