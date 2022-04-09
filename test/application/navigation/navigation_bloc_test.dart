@@ -31,5 +31,16 @@ void main() {
         NavigationState(routeName: '/home'),
       ],
     );
+    blocTest<NavigationBloc, NavigationState>(
+      'navigate to desings page',
+      build: () => NavigationBloc(navigator),
+      act: (bloc) => bloc.add(const NavigateToDesingsSelected()),
+      verify: (_) => verify(
+        () => navigator.navigateTo('/desings'),
+      ).called(1),
+      expect: () => const <NavigationState>[
+        NavigationState(routeName: '/desings'),
+      ],
+    );
   });
 }

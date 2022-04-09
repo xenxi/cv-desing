@@ -13,3 +13,7 @@ abstract class NavigationEvent extends Equatable {
 class NavigateToHomeSelected extends NavigationEvent {
   const NavigateToHomeSelected() : super(AppRouter.home);
 }
+
+class NavigateToDesingsSelected extends NavigationEvent {
+  const NavigateToDesingsSelected() : super(AppRouter.desings);
+}
