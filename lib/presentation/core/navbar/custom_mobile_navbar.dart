@@ -1,9 +1,9 @@
+import 'package:cv_desing_website_flutter/application/navigation/bloc/navigation_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/login_button/login_button.dart';
-import 'package:cv_desing_website_flutter/presentation/core/routes/app_router.dart';
-import 'package:cv_desing_website_flutter/presentation/cv_desing_app.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {
   const CustomMobileNavBar({
@@ -29,9 +29,8 @@ class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {
       title: Center(
         child: Logo(
           height: 50,
-          onTap: () => Navigator.of(navigator.currentContext!).pushNamed(
-            AppRouter.home,
-          ),
+          onTap: () => BlocProvider.of<NavigationBloc>(context)
+              .add(const NavigateToHomeSelected()),
         ),
       ),
     );

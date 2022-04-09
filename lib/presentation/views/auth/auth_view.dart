@@ -1,14 +1,14 @@
+import 'package:cv_desing_website_flutter/application/navigation/bloc/navigation_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_mobile_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_data.dart';
-import 'package:cv_desing_website_flutter/presentation/core/routes/app_router.dart';
-import 'package:cv_desing_website_flutter/presentation/cv_desing_app.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
 import 'package:cv_desing_website_flutter/presentation/views/auth/sections/login/sign_in_mobile_section.dart';
 import 'package:cv_desing_website_flutter/presentation/views/auth/sections/login/sign_in_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class AuthView extends StatelessWidget {
@@ -52,14 +52,14 @@ class AuthView extends StatelessWidget {
             navItems: [
               NavItemData(
                 name: Location.home,
-                onTap: () => Navigator.of(navigator.currentContext!)
-                    .pushNamed(AppRouter.home),
+                onTap: () => BlocProvider.of<NavigationBloc>(context)
+                    .add(const NavigateToHomeSelected()),
                 isSelected: true,
               ),
               NavItemData(
                 name: Location.desings,
-                onTap: () => Navigator.of(navigator.currentContext!)
-                    .pushNamed(AppRouter.desings),
+                onTap: () => BlocProvider.of<NavigationBloc>(context)
+                    .add(const NavigateToDesingsSelected()),
               ),
             ],
           );

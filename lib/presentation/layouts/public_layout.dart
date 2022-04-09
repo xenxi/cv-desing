@@ -1,29 +1,15 @@
+import 'package:cv_desing_website_flutter/application/navigation/bloc/navigation_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_mobile_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_data.dart';
-import 'package:cv_desing_website_flutter/presentation/core/routes/app_router.dart';
-import 'package:cv_desing_website_flutter/presentation/cv_desing_app.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/widgets/drawer/custom_drawer.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/widgets/footer.dart';
 import 'package:flutter/material.dart';
-
-final List<NavItemData> navItems = [
-  NavItemData(
-    name: Location.home,
-    onTap: () =>
-        Navigator.of(navigator.currentContext!).pushNamed(AppRouter.home),
-    isSelected: true,
-  ),
-  NavItemData(
-    name: Location.desings,
-    onTap: () =>
-        Navigator.of(navigator.currentContext!).pushNamed(AppRouter.desings),
-  ),
-];
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PublicLayout extends StatelessWidget {
   const PublicLayout({
@@ -43,7 +29,19 @@ class PublicLayout extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     final isMobile = isMobileScreen(context);
-
+    final List<NavItemData> navItems = [
+      NavItemData(
+        name: Location.home,
+        onTap: () => BlocProvider.of<NavigationBloc>(context)
+            .add(const NavigateToHomeSelected()),
+        isSelected: true,
+      ),
+      NavItemData(
+        name: Location.desings,
+        onTap: () => BlocProvider.of<NavigationBloc>(context)
+            .add(const NavigateToDesingsSelected()),
+      ),
+    ];
     return Scaffold(
       appBar: _buildNavBar(isMobile, navItems) as PreferredSizeWidget,
       drawer: isMobile

@@ -1,10 +1,10 @@
-import 'package:cv_desing_website_flutter/presentation/core/routes/app_router.dart';
-import 'package:cv_desing_website_flutter/presentation/cv_desing_app.dart';
+import 'package:cv_desing_website_flutter/application/navigation/bloc/navigation_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/sections/business_cards_section.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/sections/flyers_section.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/sections/home/home_section.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/sections/resumes_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -16,8 +16,8 @@ class HomeView extends StatelessWidget {
       pageSnapping: false,
       children: [
         HomeSection(
-          goToProjectSection: () => Navigator.of(navigator.currentContext!)
-              .pushNamed(AppRouter.desings),
+          goToProjectSection: () => BlocProvider.of<NavigationBloc>(context)
+              .add(const NavigateToDesingsSelected()),
         ),
         ResumesSection(),
         BusinessCardsSection(),

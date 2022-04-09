@@ -1,7 +1,6 @@
+import 'package:cv_desing_website_flutter/application/navigation/bloc/navigation_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
-import 'package:cv_desing_website_flutter/presentation/core/routes/app_router.dart';
-import 'package:cv_desing_website_flutter/presentation/cv_desing_app.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
@@ -9,6 +8,7 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/location.da
 import 'package:cv_desing_website_flutter/presentation/views/home/widgets/featured_desings/featured_desings_list.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/widgets/show_more_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BusinessCardsSection extends StatelessWidget {
   BusinessCardsSection({Key? key}) : super(key: key);
@@ -35,8 +35,8 @@ class BusinessCardsSection extends StatelessWidget {
             subTitle: Location.portfolioSectionSubtitle,
             color: CustomTheme.primaryColor,
             trailing: ShowMoreButton(
-              onPressed: () => Navigator.of(navigator.currentContext!)
-                  .pushNamed(AppRouter.desings),
+              onPressed: () => BlocProvider.of<NavigationBloc>(context)
+                  .add(const NavigateToHomeSelected()),
             ),
           ),
           Expanded(

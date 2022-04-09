@@ -2,7 +2,7 @@ import 'package:cv_desing_website_flutter/presentation/core/routes/navigators/i_
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@Injectable(as: INavigator)
 class CustomNavigator implements INavigator {
   CustomNavigator(this.key);
   final GlobalKey<NavigatorState> key;
