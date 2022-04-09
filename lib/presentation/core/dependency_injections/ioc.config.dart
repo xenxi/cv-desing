@@ -4,6 +4,8 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+// ignore_for_file: type=lint
+
 import 'package:firebase_auth/firebase_auth.dart' as _i3;
 import 'package:flutter/material.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;

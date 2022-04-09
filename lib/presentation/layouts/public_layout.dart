@@ -9,7 +9,6 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/social_data
 import 'package:cv_desing_website_flutter/presentation/views/home/widgets/drawer/custom_drawer.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/widgets/footer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PublicLayout extends StatelessWidget {
   const PublicLayout({
