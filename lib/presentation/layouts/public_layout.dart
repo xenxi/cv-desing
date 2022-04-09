@@ -32,14 +32,11 @@ class PublicLayout extends StatelessWidget {
     final List<NavItemData> navItems = [
       NavItemData(
         name: Location.home,
-        onTap: () => BlocProvider.of<NavigationBloc>(context)
-            .add(const NavigateToHomeSelected()),
-        isSelected: true,
+        onTapEvent: const NavigateToHomeSelected(),
       ),
       NavItemData(
         name: Location.desings,
-        onTap: () => BlocProvider.of<NavigationBloc>(context)
-            .add(const NavigateToDesingsSelected()),
+        onTapEvent: const NavigateToDesingsSelected(),
       ),
     ];
     return Scaffold(

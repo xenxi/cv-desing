@@ -106,7 +106,7 @@ class CustomDrawer extends HookWidget {
       }
       items.value = List.from(menuList);
 
-      selected.onTap();
+      // selected.onTap();
     }
 
     Navigator.of(context).pop();

@@ -52,14 +52,12 @@ class AuthView extends StatelessWidget {
             navItems: [
               NavItemData(
                 name: Location.home,
-                onTap: () => BlocProvider.of<NavigationBloc>(context)
-                    .add(const NavigateToHomeSelected()),
+                onTapEvent: const NavigateToHomeSelected(),
                 isSelected: true,
               ),
               NavItemData(
                 name: Location.desings,
-                onTap: () => BlocProvider.of<NavigationBloc>(context)
-                    .add(const NavigateToDesingsSelected()),
+                onTapEvent: const NavigateToDesingsSelected(),
               ),
             ],
           );
