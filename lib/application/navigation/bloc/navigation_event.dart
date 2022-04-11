@@ -2,14 +2,14 @@ part of 'navigation_bloc.dart';
 
 abstract class NavigationEvent extends Equatable {
   const NavigationEvent(
-    this.routeName,
+    this.routePath,
     this.displayName,
   );
-  final String routeName;
+  final String routePath;
   final String displayName;
 
   @override
-  List<Object> get props => [routeName, displayName];
+  List<Object> get props => [routePath, displayName];
 }
 
 class NavigateToHomeSelected extends NavigationEvent {

@@ -15,8 +15,8 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
   ) : super(NavigationState.initial()) {
     on<NavigationEvent>((event, emit) async {
       emit(state.copyWith(
-          path: event.routeName, displayName: event.displayName));
-      await navigator.navigateTo(event.routeName);
+          path: event.routePath, displayName: event.displayName));
+      await navigator.navigateTo(event.routePath);
     });
   }
   final INavigator navigator;
