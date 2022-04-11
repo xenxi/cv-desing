@@ -24,8 +24,7 @@ class NavbarItems extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: NavItem(
                     title: dataItem.name,
-                    isSelected:
-                        state.routeName == dataItem.onTapEvent.routeName,
+                    isSelected: state.path == dataItem.onTapEvent.routeName,
                     onTap: () => BlocProvider.of<NavigationBloc>(context)
                         .add(dataItem.onTapEvent),
                   ),

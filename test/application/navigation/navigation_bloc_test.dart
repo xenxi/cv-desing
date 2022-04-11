@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/navigation/bloc/navigation_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/routes/navigators/i_navigator.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -17,7 +18,12 @@ void main() {
     test('has default route in initial state', () {
       final bloc = NavigationBloc(navigator);
 
-      expect(bloc.state.path, equals('/'));
+      expect(
+        bloc.state,
+        equals(
+          const NavigationState(path: '/', displayName: Location.home),
+        ),
+      );
     });
 
     blocTest<NavigationBloc, NavigationState>(
@@ -28,7 +34,7 @@ void main() {
         () => navigator.navigateTo('/home'),
       ).called(1),
       expect: () => const <NavigationState>[
-        NavigationState(path: '/home'),
+        NavigationState(path: '/home', displayName: Location.home),
       ],
     );
     blocTest<NavigationBloc, NavigationState>(
@@ -39,7 +45,7 @@ void main() {
         () => navigator.navigateTo('/desings'),
       ).called(1),
       expect: () => const <NavigationState>[
-        NavigationState(path: '/desings'),
+        NavigationState(path: '/desings', displayName: Location.desings),
       ],
     );
   });
