@@ -17,7 +17,7 @@ void main() {
     test('has default route in initial state', () {
       final bloc = NavigationBloc(navigator);
 
-      expect(bloc.state.routeName, equals('/'));
+      expect(bloc.state.path, equals('/'));
     });
 
     blocTest<NavigationBloc, NavigationState>(
@@ -28,7 +28,7 @@ void main() {
         () => navigator.navigateTo('/home'),
       ).called(1),
       expect: () => const <NavigationState>[
-        NavigationState(routeName: '/home'),
+        NavigationState(path: '/home'),
       ],
     );
     blocTest<NavigationBloc, NavigationState>(
@@ -39,7 +39,7 @@ void main() {
         () => navigator.navigateTo('/desings'),
       ).called(1),
       expect: () => const <NavigationState>[
-        NavigationState(routeName: '/desings'),
+        NavigationState(path: '/desings'),
       ],
     );
   });

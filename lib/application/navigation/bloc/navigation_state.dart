@@ -2,19 +2,19 @@ part of 'navigation_bloc.dart';
 
 class NavigationState extends Equatable {
   factory NavigationState.initial() =>
-      const NavigationState(routeName: AppRouter.initial);
+      const NavigationState(path: AppRouter.initial);
   const NavigationState({
-    required this.routeName,
+    required this.path,
   });
-  final String routeName;
+  final String path;
   @override
-  List<Object> get props => [routeName];
+  List<Object> get props => [path];
 
   NavigationState copyWith({
-    String? routeName,
+    String? path,
   }) {
     return NavigationState(
-      routeName: routeName ?? this.routeName,
+      path: path ?? this.path,
     );
   }
 }
