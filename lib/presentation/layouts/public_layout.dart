@@ -6,7 +6,7 @@ import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_d
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
-import 'package:cv_desing_website_flutter/presentation/views/home/widgets/drawer/custom_drawer.dart';
+import 'package:cv_desing_website_flutter/presentation/core/custom_drawer.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/widgets/footer.dart';
 import 'package:flutter/material.dart';
 
