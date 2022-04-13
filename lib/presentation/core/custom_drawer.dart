@@ -73,19 +73,17 @@ class CustomDrawer extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final List<Widget> menuItems = [];
     for (var i = 0; i < menuList.length; i++) {
+      final item = menuList[i];
       menuItems.add(
         NavItem(
-          onTap: () => BlocProvider.of<NavigationBloc>(context)
-              .add(menuList[i].onTapEvent),
-          title: menuList[i].name,
-          isSelected: selectedDisplayName == menuList[i].name,
+          onTap: () =>
+              BlocProvider.of<NavigationBloc>(context).add(item.onTapEvent),
+          title: item.name,
+          isSelected: selectedDisplayName == item.name,
           titleStyle: textTheme.bodyText1?.copyWith(
-            color: menuList[i].isSelected
-                ? CustomTheme.primaryColor
-                : Colors.white,
+            color: item.isSelected ? CustomTheme.primaryColor : Colors.white,
             fontSize: 16,
-            fontWeight:
-                menuList[i].isSelected ? FontWeight.bold : FontWeight.normal,
+            fontWeight: item.isSelected ? FontWeight.bold : FontWeight.normal,
           ),
         ),
       );
