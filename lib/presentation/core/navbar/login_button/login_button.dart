@@ -1,4 +1,5 @@
 import 'package:cv_desing_website_flutter/application/auth/auth_bloc.dart';
+import 'package:cv_desing_website_flutter/application/navigation/bloc/navigation_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/auth/user.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/login_button/user_avatar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/routes/app_router.dart';
@@ -27,18 +28,8 @@ class LoginButton extends StatelessWidget {
         }
 
         return IconButton(
-          onPressed: () {
-            if (isMobile) {
-              Navigator.of(context).pushNamed(AppRouter.auth);
-            } else {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return const SignInDialog();
-                },
-              );
-            }
-          },
+          onPressed: () => BlocProvider.of<NavigationBloc>(context)
+              .add(const NavigateToAuthSelected()),
           icon: Icon(
             Icons.login,
             color: iconColor,
