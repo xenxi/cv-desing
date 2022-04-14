@@ -18,10 +18,7 @@ class SignInSection extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<SignInFormBloc>(),
       child: _buildBody(
-        child: const SizedBox(
-          width: 550,
-          child: SignInForm(),
-        ),
+        child: const SignInForm(),
       ),
     );
   }
