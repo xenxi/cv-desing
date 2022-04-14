@@ -23,32 +23,22 @@ class SignInSection extends StatelessWidget {
     );
   }
 
-  Widget _buildBody({required Widget child}) => Section(
-        isMobile: false,
-        child: FadeInDown(
-          child: Container(
-            padding: const EdgeInsets.all(CustomTheme.defaultPadding),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius:
-                  BorderRadius.circular(CustomTheme.defaultBorderRadius),
-            ),
-            child: Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(
-                    left: CustomTheme.defaultPadding * 2,
-                    right: CustomTheme.defaultPadding * 2,
-                    bottom: CustomTheme.defaultPadding,
-                  ),
-                  child: Image(
-                    image: AssetImage(ImagePath.signInMain),
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                child,
-              ],
-            ),
+  Widget _buildBody({required Widget child}) => FadeInDown(
+        child: Container(
+          padding: const EdgeInsets.all(CustomTheme.defaultPadding),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius:
+                BorderRadius.circular(CustomTheme.defaultBorderRadius),
+          ),
+          child: Column(
+            children: [
+              const Image(
+                image: AssetImage(ImagePath.signInMain),
+                fit: BoxFit.contain,
+              ),
+              child,
+            ],
           ),
         ),
       );
