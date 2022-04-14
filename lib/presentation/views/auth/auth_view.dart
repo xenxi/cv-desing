@@ -17,21 +17,16 @@ class AuthView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
-        return Scaffold(
-          appBar: _buildNavBar(context, sizingInformation: sizingInformation)
-              as PreferredSizeWidget,
-          backgroundColor: CustomTheme.secondaryColor,
-          body: SingleChildScrollView(
-            padding: sizingInformation.isMobile
-                ? null
-                : const EdgeInsets.all(CustomTheme.defaultPadding),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _buildMobileSection(sizingInformation),
-              ],
-            ),
+        return SingleChildScrollView(
+          padding: sizingInformation.isMobile
+              ? null
+              : const EdgeInsets.all(CustomTheme.defaultPadding),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildMobileSection(sizingInformation),
+            ],
           ),
         );
       },
