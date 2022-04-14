@@ -65,31 +65,27 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildMenuList(
+  Iterable<Widget> _buildMenuList(
     BuildContext context, {
     required List<NavItemData> menuList,
     required String selectedDisplayName,
-  }) {
-    return menuList
-        .map(
-          (item) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 14),
-            child: NavItem(
-              onTap: () =>
-                  BlocProvider.of<NavigationBloc>(context).add(item.onTapEvent),
-              title: item.name,
-              isSelected: selectedDisplayName == item.name,
-              titleStyle: Theme.of(context).textTheme.bodyText1?.copyWith(
-                    color: item.isSelected
-                        ? CustomTheme.primaryColor
-                        : Colors.white,
-                    fontSize: 16,
-                    fontWeight:
-                        item.isSelected ? FontWeight.bold : FontWeight.normal,
-                  ),
-            ),
+  }) =>
+      menuList.map(
+        (item) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          child: NavItem(
+            onTap: () =>
+                BlocProvider.of<NavigationBloc>(context).add(item.onTapEvent),
+            title: item.name,
+            isSelected: selectedDisplayName == item.name,
+            titleStyle: Theme.of(context).textTheme.bodyText1?.copyWith(
+                  color:
+                      item.isSelected ? CustomTheme.primaryColor : Colors.white,
+                  fontSize: 16,
+                  fontWeight:
+                      item.isSelected ? FontWeight.bold : FontWeight.normal,
+                ),
           ),
-        )
-        .toList();
-  }
+        ),
+      );
 }
