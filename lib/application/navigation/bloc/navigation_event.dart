@@ -20,3 +20,7 @@ class NavigateToDesingsSelected extends NavigationEvent {
   const NavigateToDesingsSelected()
       : super(AppRouter.desings, Location.desings);
 }
+
+class NavigateToAuthSelected extends NavigationEvent {
+  const NavigateToAuthSelected() : super(AppRouter.auth, Location.auth);
+}

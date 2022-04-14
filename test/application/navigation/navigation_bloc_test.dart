@@ -48,5 +48,16 @@ void main() {
         NavigationState(path: '/desings', displayName: Location.desings),
       ],
     );
+    blocTest<NavigationBloc, NavigationState>(
+      'navigate to auth page',
+      build: () => NavigationBloc(navigator),
+      act: (bloc) => bloc.add(const NavigateToAuthSelected()),
+      verify: (_) => verify(
+        () => navigator.navigateTo('/auth'),
+      ).called(1),
+      expect: () => const <NavigationState>[
+        NavigationState(path: '/auth', displayName: Location.auth),
+      ],
+    );
   });
 }
