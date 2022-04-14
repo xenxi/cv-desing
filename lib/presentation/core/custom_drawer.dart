@@ -70,7 +70,6 @@ class CustomDrawer extends StatelessWidget {
     required List<NavItemData> menuList,
     required String selectedDisplayName,
   }) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
     return menuList
         .map(
           (item) => Padding(
@@ -80,13 +79,14 @@ class CustomDrawer extends StatelessWidget {
                   BlocProvider.of<NavigationBloc>(context).add(item.onTapEvent),
               title: item.name,
               isSelected: selectedDisplayName == item.name,
-              titleStyle: textTheme.bodyText1?.copyWith(
-                color:
-                    item.isSelected ? CustomTheme.primaryColor : Colors.white,
-                fontSize: 16,
-                fontWeight:
-                    item.isSelected ? FontWeight.bold : FontWeight.normal,
-              ),
+              titleStyle: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    color: item.isSelected
+                        ? CustomTheme.primaryColor
+                        : Colors.white,
+                    fontSize: 16,
+                    fontWeight:
+                        item.isSelected ? FontWeight.bold : FontWeight.normal,
+                  ),
             ),
           ),
         )
