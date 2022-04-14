@@ -21,7 +21,6 @@ class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {
         if (loginButtonVisible) ...[
           const LoginButton(
             iconColor: Colors.white,
-            isMobile: true,
           ),
           const SizedBox(width: 10),
         ]
