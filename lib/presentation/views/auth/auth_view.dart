@@ -1,4 +1,3 @@
-import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/views/auth/sections/login/sign_in_mobile_section.dart';
 import 'package:cv_desing_website_flutter/presentation/views/auth/sections/login/sign_in_section.dart';
 import 'package:flutter/material.dart';
@@ -11,15 +10,12 @@ class AuthView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
-        return SingleChildScrollView(
-          padding: sizingInformation.isMobile
-              ? null
-              : const EdgeInsets.all(CustomTheme.defaultPadding),
+        return FittedBox(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
-            children: [
-              _buildMobileSection(sizingInformation),
+            children: const [
+              SignInSection(),
             ],
           ),
         );
