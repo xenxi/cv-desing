@@ -20,12 +20,17 @@ class BusinessCardsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: CustomTheme.primaryColor.withOpacity(.35),
-        image: const DecorationImage(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
           fit: BoxFit.none,
           image: AssetImage(ImagePath.bg2),
           repeat: ImageRepeat.repeat,
+          opacity: .4,
+        ),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: CustomTheme.snowGradient,
         ),
       ),
       child: Column(
