@@ -18,7 +18,12 @@ void main() {
     category: Category.curriculum,
     price: 1,
   );
+  final anyFailure = Failure('anyFailure');
   late MockIDesings desings;
+
+  void aFailedGetByReferenceRequest() =>
+      when(() => desings.getByReference(any()))
+          .thenAnswer((_) => Future.value(left(anyFailure)));
 
   setUp(() {
     desings = MockIDesings();
@@ -51,10 +56,7 @@ void main() {
     blocTest<DesingDetailsBloc, DesingDetailsState>(
       'not load a non-existent desing',
       build: () => DesingDetailsBloc(desings),
-      setUp: () {
-        when(() => desings.getByReference('anyReference'))
-            .thenAnswer((_) => Future.value(left(const Failure('anyError'))));
-      },
+      setUp: () => aFailedGetByReferenceRequest(),
       act: (bloc) => bloc.add(const DesingOpened(reference: 'anyReference')),
       expect: () => <DesingDetailsState>[
         const LoadFailure(Failure('anyError')),
