@@ -1,9 +1,11 @@
+import 'dart:html';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/close_button.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_details/widgets/details_mockup.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_details/widgets/request_button.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_details/widgets/share_button.dart';
 import 'package:flutter/material.dart';
 
 class DetailsBody extends StatelessWidget {
@@ -37,6 +39,11 @@ class DetailsBody extends StatelessWidget {
                   children: [
                     RequestButton(
                       reference: desing.reference,
+                    ),
+                    const SizedBox(width: CustomTheme.defaultPadding),
+                    ShareButton(
+                      category: desing.category,
+                      url: window.location.href,
                     ),
                   ],
                 ),

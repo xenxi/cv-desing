@@ -25,6 +25,7 @@ class Location {
   static const goBack = 'Volver';
   static const close = 'Cerrar';
   static const requestDesing = 'Solicitar';
+  static const share = 'Compartir';
   static const homeTitle = 'Realizamos tu Currículum';
   static const homeSubtitle1 = 'Impulsa el potencial de tu CV y destácate';
   static const homeSubtitle2 = 'Gran cantidad de diseños';
