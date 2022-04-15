@@ -16,9 +16,8 @@ class NavigateToHomeSelected extends NavigationEvent {
   const NavigateToHomeSelected() : super(AppRouter.home, Location.home);
 }
 
-class NavigateToDesingsSelected extends NavigationEvent {
-  const NavigateToDesingsSelected()
-      : super(AppRouter.desings, Location.desings);
+class DesingsOpened extends NavigationEvent {
+  const DesingsOpened() : super(AppRouter.desings, Location.desings);
 }
 
 class AuthenticationOpened extends NavigationEvent {

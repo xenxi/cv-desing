@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
       children: [
         HomeSection(
           goToProjectSection: () => BlocProvider.of<NavigationBloc>(context)
-              .add(const NavigateToDesingsSelected()),
+              .add(const DesingsOpened()),
         ),
         ResumesSection(),
         BusinessCardsSection(),

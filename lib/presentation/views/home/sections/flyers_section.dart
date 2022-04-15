@@ -26,7 +26,7 @@ class FlyersSection extends StatelessWidget {
           color: CustomTheme.primaryColor,
           trailing: ShowMoreButton(
             onPressed: () => BlocProvider.of<NavigationBloc>(context)
-                .add(const NavigateToDesingsSelected()),
+                .add(const DesingsOpened()),
           ),
         ),
         Expanded(

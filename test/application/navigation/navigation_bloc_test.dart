@@ -40,7 +40,7 @@ void main() {
     blocTest<NavigationBloc, NavigationState>(
       'navigate to desings page',
       build: () => NavigationBloc(navigator),
-      act: (bloc) => bloc.add(const NavigateToDesingsSelected()),
+      act: (bloc) => bloc.add(const DesingsOpened()),
       verify: (_) => verify(
         () => navigator.navigateTo('/desings'),
       ).called(1),

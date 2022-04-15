@@ -35,7 +35,7 @@ class PublicLayout extends StatelessWidget {
       ),
       NavItemData(
         name: Location.desings,
-        onTapEvent: const NavigateToDesingsSelected(),
+        onTapEvent: const DesingsOpened(),
       ),
     ];
     return Scaffold(
