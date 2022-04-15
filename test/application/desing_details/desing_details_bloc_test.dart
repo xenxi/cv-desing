@@ -21,9 +21,13 @@ void main() {
   final anyFailure = Failure('anyFailure');
   late MockIDesings desings;
 
-  void aFailedGetByReferenceRequest() =>
+  void aFailedGetByReferenceRequest(Failure failure) =>
       when(() => desings.getByReference(any()))
-          .thenAnswer((_) => Future.value(left(anyFailure)));
+          .thenAnswer((_) => Future.value(left(failure)));
+
+  void shouldFindByReference(Desing desing) =>
+      when(() => desings.getByReference(desing.reference))
+          .thenAnswer((_) => Future.value(right(desing)));
 
   setUp(() {
     desings = MockIDesings();
@@ -43,11 +47,8 @@ void main() {
     blocTest<DesingDetailsBloc, DesingDetailsState>(
       'load desing',
       build: () => DesingDetailsBloc(desings),
-      setUp: () {
-        when(() => desings.getByReference('anyReference'))
-            .thenAnswer((_) => Future.value(right(anyDesing)));
-      },
-      act: (bloc) => bloc.add(const DesingOpened(reference: 'anyReference')),
+      setUp: () => shouldFindByReference(anyDesing),
+      act: (bloc) => bloc.add(DesingOpened(reference: anyDesing.reference)),
       expect: () => <DesingDetailsState>[
         LoadSuccess(anyDesing),
       ],
@@ -56,8 +57,9 @@ void main() {
     blocTest<DesingDetailsBloc, DesingDetailsState>(
       'not load a non-existent desing',
       build: () => DesingDetailsBloc(desings),
-      setUp: () => aFailedGetByReferenceRequest(),
-      act: (bloc) => bloc.add(DesingOpened(reference: anyDesing.reference)),
+      setUp: () => aFailedGetByReferenceRequest(anyFailure),
+      act: (bloc) =>
+          bloc.add(const DesingOpened(reference: 'anyNonExistentReference')),
       expect: () => <DesingDetailsState>[
         LoadFailure(anyFailure),
       ],
