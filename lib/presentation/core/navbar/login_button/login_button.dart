@@ -1,5 +1,5 @@
 import 'package:cv_desing_website_flutter/application/auth/auth_bloc.dart';
-import 'package:cv_desing_website_flutter/application/navigation/bloc/navigation_bloc.dart';
+import 'package:cv_desing_website_flutter/application/navigation/navigation_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/auth/user.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/login_button/user_avatar.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';

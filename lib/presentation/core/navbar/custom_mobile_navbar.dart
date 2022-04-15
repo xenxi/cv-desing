@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/application/navigation/bloc/navigation_bloc.dart';
+import 'package:cv_desing_website_flutter/application/navigation/navigation_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/login_button/login_button.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';

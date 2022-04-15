@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:cv_desing_website_flutter/application/navigation/bloc/navigation_bloc.dart';
+import 'package:cv_desing_website_flutter/application/navigation/navigation_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/routes/navigators/i_navigator.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter_test/flutter_test.dart';

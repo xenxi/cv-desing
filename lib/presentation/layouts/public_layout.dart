@@ -1,4 +1,5 @@
-import 'package:cv_desing_website_flutter/application/navigation/bloc/navigation_bloc.dart';
+import 'package:cv_desing_website_flutter/application/navigation/navigation_bloc.dart';
+import 'package:cv_desing_website_flutter/presentation/core/custom_drawer.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_mobile_navbar.dart';
 import 'package:cv_desing_website_flutter/presentation/core/navbar/custom_navbar.dart';
@@ -6,7 +7,6 @@ import 'package:cv_desing_website_flutter/presentation/core/navbar/navbar_item_d
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
-import 'package:cv_desing_website_flutter/presentation/core/custom_drawer.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/widgets/footer.dart';
 import 'package:flutter/material.dart';
 

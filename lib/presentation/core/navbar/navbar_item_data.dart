@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/application/navigation/bloc/navigation_bloc.dart';
+import 'package:cv_desing_website_flutter/application/navigation/navigation_bloc.dart';
 
 class NavItemData {
   NavItemData({
