@@ -62,8 +62,7 @@ void main() {
 
     group('navigate to details page with ', () {
       final references = ['anyReference', 'otherReference'];
-
-      references.forEach((reference) {
+      for (final reference in references) {
         blocTest<NavigationBloc, NavigationState>(
           'reference: $reference',
           build: () => NavigationBloc(navigator),
@@ -80,7 +79,7 @@ void main() {
             ),
           ],
         );
-      });
+      }
     });
   });
 }
