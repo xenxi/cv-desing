@@ -19,13 +19,11 @@ class DesingDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (context) => getIt<DesingDetailsBloc>(),
+        create: (context) =>
+            getIt<DesingDetailsBloc>()..add(DesingOpened(reference: reference)),
         child: BlocConsumer<DesingDetailsBloc, DesingDetailsState>(
           listener: (context, state) {
-            if (state is Loading) {
-              BlocProvider.of<DesingDetailsBloc>(context)
-                  .add(DesingOpened(reference: reference));
-            } else if (state is LoadFailure) {
+            if (state is LoadFailure) {
               BlocProvider.of<NavigationBloc>(context)
                   .add(const DesingsOpened());
             }

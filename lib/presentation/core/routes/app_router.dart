@@ -3,6 +3,7 @@ import 'package:cv_desing_website_flutter/presentation/views/coming_soon/coming_
 import 'package:cv_desing_website_flutter/presentation/views/desing_details/desing_details_view.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desings/desings_view.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/home_view.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -10,7 +11,7 @@ class AppRouter {
   static const String blog = '/blog';
   static const String home = '/home';
   static const String desings = '/desings';
-  static const String details = '/details';
+  static const String details = '/desings/:reference';
   static const String auth = '/auth';
   static Map<String, WidgetBuilder> routes = {
     // '': (context) => const ComingSoonPage(),
@@ -21,14 +22,22 @@ class AppRouter {
     details: (context) => const DesingDetailsView(reference: ''),
     desings: (context) => DesingsView(),
   };
-  static Map<String, Widget Function()> routesMap = {
-    initial: () => const HomeView(),
-    home: () => const HomeView(),
-    blog: () => const ComingSoonView(),
-    auth: () => const AuthView(),
-    details: () => const DesingDetailsView(
-          reference: '',
+  static Map<String, Widget Function(Map<String, List<String>> params)>
+      routesMap = {
+    initial: (_) => const HomeView(),
+    home: (_) => const HomeView(),
+    blog: (_) => const ComingSoonView(),
+    auth: (_) => const AuthView(),
+    details: (params) {
+      final referenceOption = optionOf(params['reference']?.first);
+      print(referenceOption);
+      return referenceOption.fold(
+        () => DesingsView(),
+        (reference) => DesingDetailsView(
+          reference: reference,
         ),
-    desings: () => DesingsView(),
+      );
+    },
+    desings: (_) => DesingsView(),
   };
 }

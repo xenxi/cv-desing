@@ -18,7 +18,7 @@ class FluroRouteGenerator {
         key,
         transitionType: kIsWeb ? TransitionType.fadeIn : TransitionType.fadeIn,
         handler: Handler(
-          handlerFunc: (context, parameters) => value(),
+          handlerFunc: (context, parameters) => value(parameters),
         ),
       );
     });
