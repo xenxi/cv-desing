@@ -28,8 +28,8 @@ class CustomMobileNavBar extends StatelessWidget with PreferredSizeWidget {
       title: Center(
         child: Logo(
           height: 50,
-          onTap: () => BlocProvider.of<NavigationBloc>(context)
-              .add(const NavigateToHomeSelected()),
+          onTap: () =>
+              BlocProvider.of<NavigationBloc>(context).add(const HomeOpened()),
         ),
       ),
     );

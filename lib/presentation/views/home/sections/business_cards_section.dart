@@ -41,7 +41,7 @@ class BusinessCardsSection extends StatelessWidget {
             color: CustomTheme.primaryColor,
             trailing: ShowMoreButton(
               onPressed: () => BlocProvider.of<NavigationBloc>(context)
-                  .add(const NavigateToHomeSelected()),
+                  .add(const HomeOpened()),
             ),
           ),
           Expanded(

@@ -29,7 +29,7 @@ void main() {
     blocTest<NavigationBloc, NavigationState>(
       'navigate to home page',
       build: () => NavigationBloc(navigator),
-      act: (bloc) => bloc.add(const NavigateToHomeSelected()),
+      act: (bloc) => bloc.add(const HomeOpened()),
       verify: (_) => verify(
         () => navigator.navigateTo('/home'),
       ).called(1),

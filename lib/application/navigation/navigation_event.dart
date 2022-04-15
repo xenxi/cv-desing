@@ -12,8 +12,8 @@ abstract class NavigationEvent extends Equatable {
   List<Object> get props => [routePath, displayName];
 }
 
-class NavigateToHomeSelected extends NavigationEvent {
-  const NavigateToHomeSelected() : super(AppRouter.home, Location.home);
+class HomeOpened extends NavigationEvent {
+  const HomeOpened() : super(AppRouter.home, Location.home);
 }
 
 class DesingsOpened extends NavigationEvent {

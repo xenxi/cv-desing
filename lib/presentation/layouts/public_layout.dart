@@ -31,7 +31,7 @@ class PublicLayout extends StatelessWidget {
     final List<NavItemData> navItems = [
       NavItemData(
         name: Location.home,
-        onTapEvent: const NavigateToHomeSelected(),
+        onTapEvent: const HomeOpened(),
       ),
       NavItemData(
         name: Location.desings,

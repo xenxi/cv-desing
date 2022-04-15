@@ -31,7 +31,7 @@ class CustomNavBar extends StatelessWidget with PreferredSizeWidget {
           Logo(
             height: 80,
             onTap: () => BlocProvider.of<NavigationBloc>(context)
-                .add(const NavigateToHomeSelected()),
+                .add(const HomeOpened()),
           ),
           const SizedBox(width: 20),
           const NavbarDivider(),
