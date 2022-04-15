@@ -4,10 +4,12 @@ import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/domain/failure.dart';
 import 'package:cv_desing_website_flutter/domain/i_desings.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 
 part 'desing_details_event.dart';
 part 'desing_details_state.dart';
 
+@injectable
 class DesingDetailsBloc extends Bloc<DesingDetailsEvent, DesingDetailsState> {
   DesingDetailsBloc(this.desings) : super(Loading()) {
     on<DesingDetailsEvent>((event, emit) {
