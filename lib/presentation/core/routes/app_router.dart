@@ -18,7 +18,7 @@ class AppRouter {
     home: (context) => const HomeView(),
     blog: (context) => const ComingSoonView(),
     auth: (context) => const AuthView(),
-    details: (context) => const DesingDetailsView(),
+    details: (context) => const DesingDetailsView(reference: ''),
     desings: (context) => DesingsView(),
   };
   static Map<String, Widget Function()> routesMap = {
@@ -26,7 +26,9 @@ class AppRouter {
     home: () => const HomeView(),
     blog: () => const ComingSoonView(),
     auth: () => const AuthView(),
-    details: () => const DesingDetailsView(),
+    details: () => const DesingDetailsView(
+          reference: '',
+        ),
     desings: () => DesingsView(),
   };
 }
