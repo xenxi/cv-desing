@@ -25,7 +25,7 @@ class BusinessCardsSection extends StatelessWidget {
           fit: BoxFit.none,
           image: AssetImage(ImagePath.bg2),
           repeat: ImageRepeat.repeat,
-          opacity: .4,
+          opacity: .2,
         ),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
