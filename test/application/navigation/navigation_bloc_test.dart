@@ -67,7 +67,7 @@ void main() {
           'reference: $reference',
           build: () => NavigationBloc(navigator),
           act: (bloc) => bloc.add(
-            NavigateToDesingDetailsSelected(reference: reference),
+            DesingDetailsOpened(reference: reference),
           ),
           verify: (_) => verify(
             () => navigator.navigateTo('/desings/$reference'),

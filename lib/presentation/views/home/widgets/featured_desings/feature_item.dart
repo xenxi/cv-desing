@@ -1,6 +1,5 @@
 import 'package:cv_desing_website_flutter/application/navigation/navigation_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
-import 'package:cv_desing_website_flutter/presentation/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -40,6 +39,6 @@ class FeatureItem extends StatelessWidget {
 
   void openDetailView(BuildContext context, {required Desing desing}) {
     BlocProvider.of<NavigationBloc>(context)
-        .add(NavigateToDesingDetailsSelected(reference: desing.reference));
+        .add(DesingDetailsOpened(reference: desing.reference));
   }
 }
