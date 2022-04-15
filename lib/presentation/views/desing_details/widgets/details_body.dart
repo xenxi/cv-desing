@@ -32,8 +32,13 @@ class DetailsBody extends StatelessWidget {
                 padding: const EdgeInsets.only(
                   bottom: CustomTheme.defaultPadding,
                 ),
-                child: RequestButton(
-                  reference: desing.reference,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RequestButton(
+                      reference: desing.reference,
+                    ),
+                  ],
                 ),
               ),
             )
