@@ -49,4 +49,7 @@ class Location {
 
   static String shareMessage(Category category, String url) =>
       '${category == Category.businessCard ? 'Esta' : 'Este'} ${category.displayName} te puede venir bien $url';
+
+  static String shareSubject(Category category) =>
+      'Te puede interesar ${category == Category.businessCard ? 'esta' : 'este'} ${category.displayName}';
 }
