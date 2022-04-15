@@ -25,7 +25,7 @@ class LoginButton extends StatelessWidget {
 
         return IconButton(
           onPressed: () => BlocProvider.of<NavigationBloc>(context)
-              .add(const NavigateToAuthSelected()),
+              .add(const AuthenticationOpened()),
           icon: Icon(
             Icons.login,
             color: iconColor,

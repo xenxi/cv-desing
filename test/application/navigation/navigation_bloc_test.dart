@@ -51,7 +51,7 @@ void main() {
     blocTest<NavigationBloc, NavigationState>(
       'navigate to auth page',
       build: () => NavigationBloc(navigator),
-      act: (bloc) => bloc.add(const NavigateToAuthSelected()),
+      act: (bloc) => bloc.add(const AuthenticationOpened()),
       verify: (_) => verify(
         () => navigator.navigateTo('/auth'),
       ).called(1),

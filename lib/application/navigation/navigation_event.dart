@@ -21,8 +21,8 @@ class NavigateToDesingsSelected extends NavigationEvent {
       : super(AppRouter.desings, Location.desings);
 }
 
-class NavigateToAuthSelected extends NavigationEvent {
-  const NavigateToAuthSelected() : super(AppRouter.auth, Location.auth);
+class AuthenticationOpened extends NavigationEvent {
+  const AuthenticationOpened() : super(AppRouter.auth, Location.auth);
 }
 
 class DesingDetailsOpened extends NavigationEvent {
