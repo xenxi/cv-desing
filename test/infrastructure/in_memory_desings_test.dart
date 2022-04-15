@@ -22,6 +22,21 @@ void main() {
 
       expect(result, const Right(anyDesing));
     });
+    test('search by reference case insensitive', () async {
+      const anyDesing = Desing(
+        id: 1,
+        reference: 'anyReference',
+        fileName: 'anyFileName',
+        category: Category.curriculum,
+        price: 1,
+      );
+      final desings = InMemoryDesings([anyDesing]);
+
+      final result =
+          await desings.getByReference(anyDesing.reference.toUpperCase());
+
+      expect(result, const Right(anyDesing));
+    });
     test('return failure when not found desing by reference', () async {
       const anyDesing = Desing(
         id: 1,

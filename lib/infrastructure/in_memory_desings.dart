@@ -13,7 +13,8 @@ class InMemoryDesings implements IDesings {
   @override
   Future<Either<Failure, Desing>> getByReference(String reference) {
     final desing = _desings.cast<Desing?>().firstWhere(
-          (desing) => desing!.reference == reference,
+          (desing) =>
+              desing!.reference.toLowerCase() == reference.toLowerCase(),
           orElse: () => null,
         );
 
