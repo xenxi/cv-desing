@@ -57,9 +57,9 @@ void main() {
       'not load a non-existent desing',
       build: () => DesingDetailsBloc(desings),
       setUp: () => aFailedGetByReferenceRequest(),
-      act: (bloc) => bloc.add(const DesingOpened(reference: 'anyReference')),
+      act: (bloc) => bloc.add(DesingOpened(reference: anyDesing.reference)),
       expect: () => <DesingDetailsState>[
-        const LoadFailure(Failure('anyError')),
+        LoadFailure(anyFailure),
       ],
     );
   });
