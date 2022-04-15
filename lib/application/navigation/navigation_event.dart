@@ -24,3 +24,11 @@ class NavigateToDesingsSelected extends NavigationEvent {
 class NavigateToAuthSelected extends NavigationEvent {
   const NavigateToAuthSelected() : super(AppRouter.auth, Location.auth);
 }
+
+class NavigateToDesingDetailsSelected extends NavigationEvent {
+  const NavigateToDesingDetailsSelected({required String reference})
+      : super(
+          '${AppRouter.desings}/anyReference',
+          '${Location.desings}/anyReference',
+        );
+}
