@@ -30,7 +30,7 @@ class ShareButton extends StatelessWidget {
   }
 
   Future<void> shareDesing() => Share.share(
-        'Este ${category.displayName} te puede venir bien $url',
+        Location.shareMessage(category, url),
         subject: 'Te puede interesar este ${category.displayName}',
       );
 }

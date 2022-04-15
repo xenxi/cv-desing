@@ -1,3 +1,6 @@
+import 'package:cv_desing_website_flutter/domain/category.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/components/category_extensions.dart';
+
 class Location {
   static const appTitle = 'Diseños CV';
   static const home = 'Inicio';
@@ -43,4 +46,7 @@ class Location {
   static const invalidEmail = 'Email erroneo';
 
   static const showMenu = 'Mostrar menu';
+
+  static String shareMessage(Category category, String url) =>
+      '${category == Category.businessCard ? 'Esta' : 'Este'} ${category.displayName} te puede venir bien $url';
 }
