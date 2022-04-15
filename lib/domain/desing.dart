@@ -2,7 +2,7 @@ import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 
 class Desing {
-  Desing({
+  const Desing({
     required this.id,
     required this.reference,
     required String fileName,

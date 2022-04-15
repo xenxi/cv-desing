@@ -11,14 +11,14 @@ import 'package:mocktail/mocktail.dart';
 class MockIDesings extends Mock implements IDesings {}
 
 void main() {
-  final anyDesing = Desing(
+  const anyDesing = Desing(
     id: 1,
     reference: 'anyReference',
     fileName: 'anyFileName',
     category: Category.curriculum,
     price: 1,
   );
-  final anyFailure = Failure('anyFailure');
+  const anyFailure = Failure('anyFailure');
   late MockIDesings desings;
 
   void aFailedGetByReferenceRequest(Failure failure) =>
@@ -50,7 +50,7 @@ void main() {
       setUp: () => shouldFindByReference(anyDesing),
       act: (bloc) => bloc.add(DesingOpened(reference: anyDesing.reference)),
       expect: () => <DesingDetailsState>[
-        LoadSuccess(anyDesing),
+        const LoadSuccess(anyDesing),
       ],
     );
 
@@ -61,7 +61,7 @@ void main() {
       act: (bloc) =>
           bloc.add(const DesingOpened(reference: 'anyNonExistentReference')),
       expect: () => <DesingDetailsState>[
-        LoadFailure(anyFailure),
+        const LoadFailure(anyFailure),
       ],
     );
   });
