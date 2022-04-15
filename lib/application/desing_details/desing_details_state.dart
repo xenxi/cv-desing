@@ -9,6 +9,14 @@ abstract class DesingDetailsState extends Equatable {
 
 class Loading extends DesingDetailsState {}
 
+class LoadFailure extends DesingDetailsState {
+  const LoadFailure(this.failure);
+  final Failure failure;
+
+  @override
+  List<Object> get props => [failure];
+}
+
 class LoadSuccess extends DesingDetailsState {
   const LoadSuccess(this.desing);
 

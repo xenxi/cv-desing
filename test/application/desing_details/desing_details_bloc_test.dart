@@ -2,7 +2,9 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/desing_details/desing_details_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
+import 'package:cv_desing_website_flutter/domain/failure.dart';
 import 'package:cv_desing_website_flutter/domain/i_desings.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -38,11 +40,24 @@ void main() {
       build: () => DesingDetailsBloc(desings),
       setUp: () {
         when(() => desings.getByReference('anyReference'))
-            .thenAnswer((_) => Future.value(anyDesing));
+            .thenAnswer((_) => Future.value(right(anyDesing)));
       },
       act: (bloc) => bloc.add(const DesingOpened(reference: 'anyReference')),
       expect: () => <DesingDetailsState>[
         LoadSuccess(anyDesing),
+      ],
+    );
+
+    blocTest<DesingDetailsBloc, DesingDetailsState>(
+      'not load a non-existent desing',
+      build: () => DesingDetailsBloc(desings),
+      setUp: () {
+        when(() => desings.getByReference('anyReference'))
+            .thenAnswer((_) => Future.value(left(const Failure('anyError'))));
+      },
+      act: (bloc) => bloc.add(const DesingOpened(reference: 'anyReference')),
+      expect: () => <DesingDetailsState>[
+        const LoadFailure(Failure('anyError')),
       ],
     );
   });
