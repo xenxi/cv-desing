@@ -59,21 +59,28 @@ void main() {
         NavigationState(path: '/auth', displayName: Location.auth),
       ],
     );
-    blocTest<NavigationBloc, NavigationState>(
-      'navigate to details page',
-      build: () => NavigationBloc(navigator),
-      act: (bloc) => bloc.add(
-        const NavigateToDesingDetailsSelected(reference: 'anyReference'),
-      ),
-      verify: (_) => verify(
-        () => navigator.navigateTo('/desings/anyReference'),
-      ).called(1),
-      expect: () => const <NavigationState>[
-        NavigationState(
-          path: '/desings/anyReference',
-          displayName: '${Location.desings}/anyReference',
-        ),
-      ],
-    );
+
+    group('navigate to details page with ', () {
+      final references = ['anyReference'];
+
+      references.forEach((reference) {
+        blocTest<NavigationBloc, NavigationState>(
+          'reference: $reference',
+          build: () => NavigationBloc(navigator),
+          act: (bloc) => bloc.add(
+            NavigateToDesingDetailsSelected(reference: reference),
+          ),
+          verify: (_) => verify(
+            () => navigator.navigateTo('/desings/$reference'),
+          ).called(1),
+          expect: () => <NavigationState>[
+            NavigationState(
+              path: '/desings/$reference',
+              displayName: '${Location.desings}/$reference',
+            ),
+          ],
+        );
+      });
+    });
   });
 }
