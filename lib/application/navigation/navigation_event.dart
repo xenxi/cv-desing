@@ -28,7 +28,7 @@ class NavigateToAuthSelected extends NavigationEvent {
 class NavigateToDesingDetailsSelected extends NavigationEvent {
   const NavigateToDesingDetailsSelected({required String reference})
       : super(
-          '${AppRouter.desings}/anyReference',
-          '${Location.desings}/anyReference',
+          '${AppRouter.desings}/$reference',
+          '${Location.desings}/$reference',
         );
 }

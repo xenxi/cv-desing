@@ -61,7 +61,7 @@ void main() {
     );
 
     group('navigate to details page with ', () {
-      final references = ['anyReference'];
+      final references = ['anyReference', 'otherReference'];
 
       references.forEach((reference) {
         blocTest<NavigationBloc, NavigationState>(
