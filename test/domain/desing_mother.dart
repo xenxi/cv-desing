@@ -10,4 +10,12 @@ class DesingMother {
         category: faker.randomGenerator.element(Category.values),
         price: faker.randomGenerator.decimal(),
       );
+  static List<Desing> randoms({int max = 10}) {
+    final desings = <Desing>[];
+    for (var i = 0; i < faker.randomGenerator.integer(max); i++) {
+      desings.add(random());
+    }
+
+    return desings;
+  }
 }

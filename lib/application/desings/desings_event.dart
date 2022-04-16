@@ -6,3 +6,11 @@ abstract class DesingsEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class FilterCategoryChanged extends DesingsEvent {
+  const FilterCategoryChanged({required this.category});
+  final Category category;
+
+  @override
+  List<Object> get props => [category];
+}

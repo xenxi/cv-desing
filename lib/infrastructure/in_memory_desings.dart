@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/domain/desing_failures.dart';
 import 'package:cv_desing_website_flutter/domain/failure.dart';
@@ -24,5 +25,11 @@ class InMemoryDesings implements IDesings {
         (desing) => Right(desing),
       ),
     );
+  }
+
+  @override
+  Future<Either<Failure, List<Desing>>> search({required Category category}) {
+    // TODO: implement search
+    throw UnimplementedError();
   }
 }
