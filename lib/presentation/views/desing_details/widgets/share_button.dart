@@ -1,5 +1,4 @@
 import 'package:cv_desing_website_flutter/domain/category.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/components/category_extensions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
@@ -31,6 +30,6 @@ class ShareButton extends StatelessWidget {
 
   Future<void> shareDesing() => Share.share(
         Location.shareMessage(category, url),
-        subject: 'Te puede interesar este ${category.displayName}',
+        subject: Location.shareSubject(category),
       );
 }
