@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/application/desing_details/desing_details_bloc.dart';
+import 'package:cv_desing_website_flutter/application/desings/details/desing_details_bloc.dart';
 import 'package:cv_desing_website_flutter/application/navigation/navigation_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_details/widgets/details_body.dart';

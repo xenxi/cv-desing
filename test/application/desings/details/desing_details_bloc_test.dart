@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:cv_desing_website_flutter/application/desing_details/desing_details_bloc.dart';
+import 'package:cv_desing_website_flutter/application/desings/details/desing_details_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/domain/failure.dart';

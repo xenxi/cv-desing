@@ -12,7 +12,7 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../../../application/auth/auth_bloc.dart' as _i13;
 import '../../../application/auth/sign_in_form/sign_in_form_bloc.dart' as _i12;
-import '../../../application/desing_details/desing_details_bloc.dart' as _i16;
+import '../../../application/desings/details/desing_details_bloc.dart' as _i16;
 import '../../../application/navigation/navigation_bloc.dart' as _i11;
 import '../../../domain/auth/i_auth_facade.dart' as _i6;
 import '../../../domain/desing.dart' as _i10;
