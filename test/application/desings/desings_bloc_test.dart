@@ -32,25 +32,28 @@ void main() {
       );
     });
 
-    blocTest<DesingsBloc, DesingsState>(
-      'search curriculums',
-      build: () => DesingsBloc(desings),
-      setUp: () => when(() => desings.search(category: Category.curriculum))
-          .thenAnswer((_) => Future.value(right(anyDesings))),
-      act: (bloc) =>
-          bloc.add(const FilterCategoryChanged(category: Category.curriculum)),
-      expect: () => <DesingsState>[
-        const DesingsState(
-          desings: [],
-          isLoading: true,
-          categoryOption: Some(Category.curriculum),
-        ),
-        DesingsState(
-          desings: anyDesings,
-          isLoading: false,
-          categoryOption: const Some(Category.curriculum),
-        ),
-      ],
-    );
+    group('search ', () {
+      for (final category in Category.values) {
+        blocTest<DesingsBloc, DesingsState>(
+          '$category',
+          build: () => DesingsBloc(desings),
+          setUp: () => when(() => desings.search(category: category))
+              .thenAnswer((_) => Future.value(right(anyDesings))),
+          act: (bloc) => bloc.add(FilterCategoryChanged(category: category)),
+          expect: () => <DesingsState>[
+            DesingsState(
+              desings: [],
+              isLoading: true,
+              categoryOption: Some(category),
+            ),
+            DesingsState(
+              desings: anyDesings,
+              isLoading: false,
+              categoryOption: Some(category),
+            ),
+          ],
+        );
+      }
+    });
   });
 }
