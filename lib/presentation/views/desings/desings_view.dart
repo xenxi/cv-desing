@@ -69,8 +69,10 @@ class DesingsView extends StatelessWidget {
     );
   }
 
-  void _onCategorySelected(BuildContext context,
-          {required Category category}) =>
+  void _onCategorySelected(
+    BuildContext context, {
+    required Category category,
+  }) =>
       BlocProvider.of<DesingsBloc>(context)
           .add(FilterCategoryChanged(category: category));
 

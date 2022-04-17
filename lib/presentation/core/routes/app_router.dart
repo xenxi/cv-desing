@@ -20,7 +20,7 @@ class AppRouter {
     blog: (context) => const ComingSoonView(),
     auth: (context) => const AuthView(),
     details: (context) => const DesingDetailsView(reference: ''),
-    desings: (context) => DesingsView(),
+    desings: (context) => const DesingsView(),
   };
   static Map<String, Widget Function(Map<String, List<String>> params)>
       routesMap = {
@@ -30,14 +30,13 @@ class AppRouter {
     auth: (_) => const AuthView(),
     details: (params) {
       final referenceOption = optionOf(params['reference']?.first);
-      print(referenceOption);
       return referenceOption.fold(
-        () => DesingsView(),
+        () => const DesingsView(),
         (reference) => DesingDetailsView(
           reference: reference,
         ),
       );
     },
-    desings: (_) => DesingsView(),
+    desings: (_) => const DesingsView(),
   };
 }

@@ -48,9 +48,11 @@ class CustomDrawer extends StatelessWidget {
                     ],
                   ),
                   const Spacer(flex: 2),
-                  ..._buildMenuList(context,
-                      menuList: menuList,
-                      selectedDisplayName: state.displayName),
+                  ..._buildMenuList(
+                    context,
+                    menuList: menuList,
+                    selectedDisplayName: state.displayName,
+                  ),
                   const Spacer(flex: 6),
                   const Footer(
                     textColor: CustomTheme.primaryText2,

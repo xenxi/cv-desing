@@ -42,7 +42,7 @@ void main() {
           act: (bloc) => bloc.add(FilterCategoryChanged(category: category)),
           expect: () => <DesingsState>[
             DesingsState(
-              desings: [],
+              desings: const [],
               isLoading: true,
               categoryOption: Some(category),
             ),
