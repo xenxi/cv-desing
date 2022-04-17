@@ -10,55 +10,45 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProjectCategories extends StatelessWidget {
   const ProjectCategories({
-    required this.categories,
     Key? key,
+    required this.currentCategoryOption,
+    required this.categories,
+    required this.onCategorySelected,
   }) : super(key: key);
+  final Option<Category> currentCategoryOption;
   final List<Category> categories;
-
+  final void Function(Category) onCategorySelected;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DesingsBloc, DesingsState>(
-      builder: (context, state) {
-        return Wrap(
-          spacing: 20,
-          runSpacing: 16,
-          children: [
-            ...categories.map(
-              (category) => _buildCategory(category, state, context),
-            )
-          ],
-        );
-      },
+    return Wrap(
+      spacing: 20,
+      runSpacing: 16,
+      children: [
+        ...categories.map(
+          (category) => _buildCategory(context, category: category),
+        )
+      ],
     );
   }
 
   Widget _buildCategory(
-    Category category,
-    DesingsState state,
-    BuildContext context,
-  ) =>
+    BuildContext context, {
+    required Category category,
+  }) =>
       ProjectCategory(
         title: category.displayName,
         number: DesingData.desings.where((e) => e.category == category).length,
-        isSelected: _isSelected(category, state.categoryOption),
-        onTap: (selectedCategory) => _onCategoryTap(context, selectedCategory),
+        isSelected: _isSelected(category),
+        onTap: onCategorySelected,
         category: category,
         hoverColor: CustomTheme.primaryColor,
       );
 
   bool _isSelected(
     Category category,
-    Option<Category> categoryOption,
   ) =>
-      categoryOption.fold(
+      currentCategoryOption.fold(
         () => false,
         (selectedCategory) => selectedCategory == category,
-      );
-
-  void _onCategoryTap(BuildContext context, Category category) =>
-      BlocProvider.of<DesingsBloc>(context).add(
-        FilterCategoryChanged(
-          category: category,
-        ),
       );
 }

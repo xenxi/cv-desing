@@ -45,8 +45,11 @@ class DesingsView extends StatelessWidget {
                         subTitle: Location.portfolioSectionSubtitle,
                         color: CustomTheme.primaryColor,
                       ),
-                      const ProjectCategories(
+                      ProjectCategories(
                         categories: Category.values,
+                        currentCategoryOption: state.categoryOption,
+                        onCategorySelected: (category) =>
+                            _onCategorySelected(context, category: category),
                       ),
                       const SizedBox(
                         height: 40.0,
@@ -65,6 +68,11 @@ class DesingsView extends StatelessWidget {
       ),
     );
   }
+
+  void _onCategorySelected(BuildContext context,
+          {required Category category}) =>
+      BlocProvider.of<DesingsBloc>(context)
+          .add(FilterCategoryChanged(category: category));
 
   BoxDecoration _buildSectionDecoration() {
     return BoxDecoration(
