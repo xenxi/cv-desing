@@ -33,8 +33,7 @@ class ProjectCategories extends StatelessWidget {
                   (selectedCategory) => selectedCategory == category,
                 ),
                 onTap: (selectedCategory) =>
-                    BlocProvider.of<DesingsBloc>(context)
-                        .add(FilterCategoryChanged(category: selectedCategory)),
+                    _onCategoryTap(context, selectedCategory),
                 category: category,
                 hoverColor: CustomTheme.primaryColor,
               ),
@@ -44,4 +43,11 @@ class ProjectCategories extends StatelessWidget {
       },
     );
   }
+
+  void _onCategoryTap(BuildContext context, Category category) =>
+      BlocProvider.of<DesingsBloc>(context).add(
+        FilterCategoryChanged(
+          category: category,
+        ),
+      );
 }
