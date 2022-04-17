@@ -15,16 +15,7 @@ class AppRouter {
   static const String details = '/desings/:reference';
   static const String auth = '/auth';
   static const String editor = '/editor';
-  static Map<String, WidgetBuilder> routes = {
-    // '': (context) => const ComingSoonPage(),
-    initial: (context) => const HomeView(),
-    home: (context) => const HomeView(),
-    blog: (context) => const ComingSoonView(),
-    auth: (context) => const AuthView(),
-    editor: (context) => const DesingEditorView(),
-    details: (context) => const DesingDetailsView(reference: ''),
-    desings: (context) => const DesingsView(),
-  };
+
   static Map<String, Widget Function(Map<String, List<String>> params)>
       routesMap = {
     initial: (_) => const HomeView(),
