@@ -4,6 +4,7 @@ import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/category_extensions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desings/widgets/project_categories/project_category.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,10 +29,7 @@ class ProjectCategories extends StatelessWidget {
                 number: DesingData.desings
                     .where((e) => e.category == category)
                     .length,
-                isSelected: state.categoryOption.fold(
-                  () => false,
-                  (selectedCategory) => selectedCategory == category,
-                ),
+                isSelected: _isSelected(category, state.categoryOption),
                 onTap: (selectedCategory) =>
                     _onCategoryTap(context, selectedCategory),
                 category: category,
@@ -43,6 +41,15 @@ class ProjectCategories extends StatelessWidget {
       },
     );
   }
+
+  bool _isSelected(
+    Category category,
+    Option<Category> categoryOption,
+  ) =>
+      categoryOption.fold(
+        () => false,
+        (selectedCategory) => selectedCategory == category,
+      );
 
   void _onCategoryTap(BuildContext context, Category category) =>
       BlocProvider.of<DesingsBloc>(context).add(
