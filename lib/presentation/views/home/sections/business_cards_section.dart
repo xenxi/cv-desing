@@ -21,15 +21,9 @@ class BusinessCardsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage(ImagePath.bg2),
-          repeat: ImageRepeat.repeat,
-          opacity: .05,
-        ),
         gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          begin: Alignment.bottomRight,
+          end: Alignment.topLeft,
           colors: CustomTheme.batmanGradient,
         ),
       ),
