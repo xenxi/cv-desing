@@ -24,23 +24,27 @@ class ProjectCategories extends StatelessWidget {
           runSpacing: 16,
           children: [
             ...categories.map(
-              (category) => ProjectCategory(
-                title: category.displayName,
-                number: DesingData.desings
-                    .where((e) => e.category == category)
-                    .length,
-                isSelected: _isSelected(category, state.categoryOption),
-                onTap: (selectedCategory) =>
-                    _onCategoryTap(context, selectedCategory),
-                category: category,
-                hoverColor: CustomTheme.primaryColor,
-              ),
+              (category) => _buildCategory(category, state, context),
             )
           ],
         );
       },
     );
   }
+
+  Widget _buildCategory(
+    Category category,
+    DesingsState state,
+    BuildContext context,
+  ) =>
+      ProjectCategory(
+        title: category.displayName,
+        number: DesingData.desings.where((e) => e.category == category).length,
+        isSelected: _isSelected(category, state.categoryOption),
+        onTap: (selectedCategory) => _onCategoryTap(context, selectedCategory),
+        category: category,
+        hoverColor: CustomTheme.primaryColor,
+      );
 
   bool _isSelected(
     Category category,
