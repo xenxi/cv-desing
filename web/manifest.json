@@ -1,11 +1,11 @@
 {
-    "name": "cv_desing_website_flutter",
-    "short_name": "cv_desing_website_flutter",
+    "name": "Diseños Currículum Vitae",
+    "short_name": "Diseños CV",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Diseñamos tu curriculum.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
