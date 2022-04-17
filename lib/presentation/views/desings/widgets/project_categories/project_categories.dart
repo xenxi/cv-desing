@@ -4,19 +4,15 @@ import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/category_extensions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desings/widgets/project_categories/project_category.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desings/widgets/project_categories/project_category_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProjectCategories extends StatelessWidget {
   const ProjectCategories({
-    Key? key,
     required this.categories,
-    required this.onCategoryTap,
+    Key? key,
   }) : super(key: key);
-
-  final List<ProjectCategoryData> categories;
-  final void Function(Category category) onCategoryTap;
+  final List<Category> categories;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +22,7 @@ class ProjectCategories extends StatelessWidget {
           spacing: 20,
           runSpacing: 16,
           children: [
-            ...Category.values.map(
+            ...categories.map(
               (category) => ProjectCategory(
                 title: category.displayName,
                 number: DesingData.desings
@@ -36,7 +32,9 @@ class ProjectCategories extends StatelessWidget {
                   () => false,
                   (selectedCategory) => selectedCategory == category,
                 ),
-                onTap: onCategoryTap,
+                onTap: (selectedCategory) =>
+                    BlocProvider.of<DesingsBloc>(context)
+                        .add(FilterCategoryChanged(category: selectedCategory)),
                 category: category,
                 hoverColor: CustomTheme.primaryColor,
               ),
@@ -45,27 +43,5 @@ class ProjectCategories extends StatelessWidget {
         );
       },
     );
-  }
-
-  List<Widget> _buildProjectCategories(
-    BuildContext context, {
-    required List<ProjectCategoryData> categories,
-  }) {
-    final List<Widget> items = [];
-    final hoverColor = Theme.of(context).primaryColor;
-
-    for (int index = 0; index < categories.length; index++) {
-      items.add(
-        ProjectCategory(
-          title: categories[index].title,
-          number: categories[index].number,
-          isSelected: categories[index].isSelected,
-          onTap: onCategoryTap,
-          category: categories[index].category,
-          hoverColor: hoverColor,
-        ),
-      );
-    }
-    return items;
   }
 }

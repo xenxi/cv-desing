@@ -4,38 +4,24 @@ import 'package:cv_desing_website_flutter/domain/category.dart';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/components/category_extensions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/section_tittle.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/values/desing_data.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desings/widgets/desing_items/desing_items.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desings/widgets/desing_items/desing_mobile_items.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desings/widgets/project_categories/project_categories.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desings/widgets/project_categories/project_category_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class DesingsView extends StatelessWidget {
-  DesingsView({Key? key}) : super(key: key);
-
-  final categoriesData = Category.values
-      .map(
-        (category) => ProjectCategoryData(
-          category: category,
-          number:
-              DesingData.desings.where((e) => e.category == category).length,
-          title: category.displayName,
-          isSelected: category == Category.curriculum,
-        ),
-      )
-      .toList();
+  const DesingsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<DesingsBloc>(),
+      create: (context) => getIt<DesingsBloc>()
+        ..add(const FilterCategoryChanged(category: Category.curriculum)),
       child: SingleChildScrollView(
         child: ResponsiveBuilder(
           builder: (context, sizingInformation) {
@@ -59,11 +45,8 @@ class DesingsView extends StatelessWidget {
                         subTitle: Location.portfolioSectionSubtitle,
                         color: CustomTheme.primaryColor,
                       ),
-                      ProjectCategories(
-                        categories: categoriesData,
-                        onCategoryTap: (c) =>
-                            BlocProvider.of<DesingsBloc>(context)
-                                .add(FilterCategoryChanged(category: c)),
+                      const ProjectCategories(
+                        categories: Category.values,
                       ),
                       const SizedBox(
                         height: 40.0,
