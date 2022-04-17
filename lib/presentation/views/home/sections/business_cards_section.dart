@@ -39,6 +39,7 @@ class BusinessCardsSection extends StatelessWidget {
             title: Location.businessCards,
             subTitle: Location.portfolioSectionSubtitle,
             color: CustomTheme.primaryColor,
+            fontColor: CustomTheme.primaryColor,
             trailing: ShowMoreButton(
               onPressed: () => BlocProvider.of<NavigationBloc>(context)
                   .add(const HomeOpened()),
