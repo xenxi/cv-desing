@@ -33,6 +33,11 @@ void main() {
 
       expect(result.getOrElse(() => []), [anyCurriculum]);
     });
+    test('search bussines cards', () async {
+      final result = await desings.search(category: Category.businessCard);
+
+      expect(result.getOrElse(() => []), [anyBussinesCard]);
+    });
     test('return failure when not found desing by reference', () async {
       final result = await desings.getByReference('unknownReference');
 
