@@ -12,13 +12,14 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../../../application/auth/auth_bloc.dart' as _i13;
 import '../../../application/auth/sign_in_form/sign_in_form_bloc.dart' as _i12;
+import '../../../application/desings/desings_bloc.dart' as _i17;
 import '../../../application/desings/details/desing_details_bloc.dart' as _i16;
 import '../../../application/navigation/navigation_bloc.dart' as _i11;
 import '../../../domain/auth/i_auth_facade.dart' as _i6;
 import '../../../domain/desing.dart' as _i10;
 import '../../../domain/i_desings.dart' as _i14;
 import '../../../infrastructure/auth/firebase_auth_facade.dart' as _i7;
-import '../../../infrastructure/core/register_module.dart' as _i17;
+import '../../../infrastructure/core/register_module.dart' as _i18;
 import '../../../infrastructure/in_memory_desings.dart' as _i15;
 import '../routes/navigators/custom_navigator.dart' as _i9;
 import '../routes/navigators/i_navigator.dart'
@@ -47,7 +48,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i15.InMemoryDesings(get<List<_i10.Desing>>()));
   gh.factory<_i16.DesingDetailsBloc>(
       () => _i16.DesingDetailsBloc(get<_i14.IDesings>()));
+  gh.factory<_i17.DesingsBloc>(() => _i17.DesingsBloc(get<_i14.IDesings>()));
   return get;
 }
 
-class _$RegisterModule extends _i17.RegisterModule {}
+class _$RegisterModule extends _i18.RegisterModule {}
