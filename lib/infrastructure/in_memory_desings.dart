@@ -29,7 +29,10 @@ class InMemoryDesings implements IDesings {
 
   @override
   Future<Either<Failure, List<Desing>>> search({required Category category}) {
-    // TODO: implement search
-    throw UnimplementedError();
+    final desings = _desings
+        .where((desing) => desing.category == Category.curriculum)
+        .toList();
+
+    return Future.value(Right(desings));
   }
 }

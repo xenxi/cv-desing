@@ -5,10 +5,12 @@ import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:cv_desing_website_flutter/domain/i_desings.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 
 part 'desings_event.dart';
 part 'desings_state.dart';
 
+@injectable
 class DesingsBloc extends Bloc<DesingsEvent, DesingsState> {
   DesingsBloc(
     this.desings,

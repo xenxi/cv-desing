@@ -3,11 +3,11 @@ import 'package:cv_desing_website_flutter/domain/desing.dart';
 import 'package:faker/faker.dart';
 
 class DesingMother {
-  static Desing random() => Desing(
+  static Desing random({Category? category}) => Desing(
         id: faker.randomGenerator.integer(1000),
-        reference: faker.guid.toString(),
+        reference: faker.guid.guid(),
         fileName: faker.randomGenerator.string(10),
-        category: faker.randomGenerator.element(Category.values),
+        category: category ?? faker.randomGenerator.element(Category.values),
         price: faker.randomGenerator.decimal(),
       );
   static List<Desing> randoms({int max = 10}) {
