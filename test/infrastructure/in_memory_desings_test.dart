@@ -11,11 +11,13 @@ void main() {
   group('InMemoryDesings should', () {
     late Desing anyBussinesCard;
     late Desing anyCurriculum;
+    late Desing anyFlyer;
     late InMemoryDesings desings;
     setUp(() {
       anyBussinesCard = DesingMother.random(category: Category.businessCard);
       anyCurriculum = DesingMother.random(category: Category.curriculum);
-      desings = InMemoryDesings([anyBussinesCard, anyCurriculum]);
+      anyFlyer = DesingMother.random(category: Category.flyer);
+      desings = InMemoryDesings([anyBussinesCard, anyCurriculum, anyFlyer]);
     });
     test('found desing by reference', () async {
       final result = await desings.getByReference(anyBussinesCard.reference);
@@ -37,6 +39,11 @@ void main() {
       final result = await desings.search(category: Category.businessCard);
 
       expect(result.getOrElse(() => []), [anyBussinesCard]);
+    });
+    test('search flyers', () async {
+      final result = await desings.search(category: Category.flyer);
+
+      expect(result.getOrElse(() => []), [anyFlyer]);
     });
     test('return failure when not found desing by reference', () async {
       final result = await desings.getByReference('unknownReference');
