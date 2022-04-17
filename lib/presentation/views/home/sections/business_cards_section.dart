@@ -22,15 +22,15 @@ class BusinessCardsSection extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          fit: BoxFit.none,
+          fit: BoxFit.cover,
           image: AssetImage(ImagePath.bg2),
           repeat: ImageRepeat.repeat,
-          opacity: .2,
+          opacity: .05,
         ),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: CustomTheme.snowGradient,
+          colors: CustomTheme.batmanGradient,
         ),
       ),
       child: Column(

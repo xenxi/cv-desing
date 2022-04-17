@@ -8,12 +8,14 @@ class SectionTitle extends StatelessWidget {
     required this.title,
     required this.subTitle,
     required this.color,
+    this.fontColor,
     this.trailing,
   }) : super(key: key);
 
   final String title;
   final String subTitle;
   final Color color;
+  final Color? fontColor;
   final Widget? trailing;
   @override
   Widget build(BuildContext context) {
@@ -57,8 +59,9 @@ class SectionTitle extends StatelessWidget {
           children: [
             Text(
               subTitle,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w200,
+                color: fontColor,
               ),
             ),
             Text(
@@ -66,6 +69,7 @@ class SectionTitle extends StatelessWidget {
               style: Theme.of(context).textTheme.headline2?.copyWith(
                     fontWeight: FontWeight.bold,
                     fontSize: hasToFixSize ? 40 : null,
+                    color: fontColor,
                   ),
             )
           ],
