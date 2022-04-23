@@ -64,5 +64,14 @@ void main() {
       expect: () =>
           <CveditorState>[const CveditorState(section: Section.softwareSkills)],
     );
+    blocTest<CveditorBloc, CveditorState>(
+      'change to skillsand aptitudes section',
+      build: () => CveditorBloc(),
+      act: (bloc) =>
+          bloc.add(const SectionChanged(section: Section.skillsandAptitudes)),
+      expect: () => <CveditorState>[
+        const CveditorState(section: Section.skillsandAptitudes)
+      ],
+    );
   });
 }
