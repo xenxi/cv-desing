@@ -348,7 +348,7 @@ packages:
       name: flutter_hooks
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.18.2+1"
+    version: "0.18.3"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -980,6 +980,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.0"
+  window_location_href:
+    dependency: "direct main"
+    description:
+      name: window_location_href
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   xdg_directories:
     dependency: transitive
     description:
