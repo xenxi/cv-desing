@@ -1,5 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
+import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:equatable/equatable.dart';
 
 part 'cv_editor_event.dart';
