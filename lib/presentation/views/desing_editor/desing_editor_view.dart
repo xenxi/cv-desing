@@ -1,6 +1,7 @@
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -20,33 +21,33 @@ class DesingEditorView extends HookWidget {
                   .add(SectionChanged(section: Section.values[index])),
               steps: [
                 Step(
-                  title: const Text('Información personal y contacto'),
+                  title: const Text(Location.personalInformation),
                   content: Container(
                       alignment: Alignment.centerLeft,
                       child: const Text('Content for Step 1')),
                 ),
                 const Step(
-                  title: Text('Formación académica'),
+                  title: Text(Location.academicTraining),
                   content: Text('Content for Step 2'),
                 ),
                 const Step(
-                  title: Text('Formaciones complementarias'),
+                  title: Text(Location.complementaryFormations),
                   content: Text('Content for Step 2'),
                 ),
                 const Step(
-                  title: Text('Experiencia laboral'),
+                  title: Text(Location.workExperience),
                   content: Text('Content for Step 2'),
                 ),
                 const Step(
-                  title: Text('Idiomas'),
+                  title: Text(Location.languages),
                   content: Text('Content for Step 2'),
                 ),
                 const Step(
-                  title: Text('Software y Tecnologías'),
+                  title: Text(Location.softwareSkills),
                   content: Text('Content for Step 2'),
                 ),
                 const Step(
-                  title: Text('Competencias y habilidades'),
+                  title: Text(Location.skillsandAptitudes),
                   content: Text('Content for Step 2'),
                 ),
               ]);
