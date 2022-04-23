@@ -49,5 +49,12 @@ void main() {
       expect: () =>
           <CveditorState>[const CveditorState(section: Section.workExperience)],
     );
+    blocTest<CveditorBloc, CveditorState>(
+      'change to languages section',
+      build: () => CveditorBloc(),
+      act: (bloc) => bloc.add(const SectionChanged(section: Section.languages)),
+      expect: () =>
+          <CveditorState>[const CveditorState(section: Section.languages)],
+    );
   });
 }
