@@ -29,7 +29,7 @@ class CvDesingApp extends StatelessWidget {
         scrollBehavior: _MyCustomScrollBehavior(),
         debugShowCheckedModeBanner: false,
         title: Location.appTitle,
-        initialRoute: AppRouter.initial,
+        initialRoute: AppRouter.editor,
         onGenerateRoute: FluroRouteGenerator().generateRoute,
         builder: (context, child) => PublicLayout(child: child!),
         theme: CustomTheme.lightTheme,
