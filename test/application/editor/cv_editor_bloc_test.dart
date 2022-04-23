@@ -22,5 +22,15 @@ void main() {
         const CveditorState(section: Section.academicTraining)
       ],
     );
+
+    blocTest<CveditorBloc, CveditorState>(
+      'change to complementary formations section',
+      build: () => CveditorBloc(),
+      act: (bloc) => bloc
+          .add(const SectionChanged(section: Section.complementaryFormations)),
+      expect: () => <CveditorState>[
+        const CveditorState(section: Section.complementaryFormations)
+      ],
+    );
   });
 }
