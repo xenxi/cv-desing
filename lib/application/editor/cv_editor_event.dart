@@ -6,3 +6,14 @@ abstract class CveditorEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class SectionChanged extends CveditorEvent {
+  const SectionChanged({required this.section});
+
+  final Section section;
+}
+
+enum Section {
+  personalInformation,
+  academicTraining,
+}

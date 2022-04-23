@@ -6,9 +6,11 @@ part 'cv_editor_event.dart';
 part 'cv_editor_state.dart';
 
 class CveditorBloc extends Bloc<CveditorEvent, CveditorState> {
-  CveditorBloc() : super(Empty()) {
+  CveditorBloc() : super(CveditorState.initial()) {
     on<CveditorEvent>((event, emit) {
-      // TODO: implement event handler
+      if (event is SectionChanged) {
+        emit(state.copyWith(section: event.section));
+      }
     });
   }
 }

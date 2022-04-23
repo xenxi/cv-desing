@@ -1,10 +1,21 @@
 part of 'cv_editor_bloc.dart';
 
-abstract class CveditorState extends Equatable {
-  const CveditorState();
+class CveditorState extends Equatable {
+  factory CveditorState.initial() =>
+      const CveditorState(section: Section.personalInformation);
+  const CveditorState({
+    required this.section,
+  });
+  final Section section;
 
   @override
-  List<Object> get props => [];
-}
+  List<Object> get props => [section];
 
-class Empty extends CveditorState {}
+  CveditorState copyWith({
+    Section? section,
+  }) {
+    return CveditorState(
+      section: section ?? this.section,
+    );
+  }
+}
