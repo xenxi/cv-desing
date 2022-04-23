@@ -13,4 +13,12 @@ class SectionChanged extends CveditorEvent {
   final Section section;
 }
 
-enum Section { personalInformation, academicTraining, complementaryFormations }
+enum Section {
+  personalInformation,
+  academicTraining,
+  complementaryFormations,
+  workExperience,
+  languages,
+  softwareSkills,
+  skillsandAptitudes,
+}

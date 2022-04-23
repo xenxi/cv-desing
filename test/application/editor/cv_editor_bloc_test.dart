@@ -32,5 +32,22 @@ void main() {
         const CveditorState(section: Section.complementaryFormations)
       ],
     );
+    blocTest<CveditorBloc, CveditorState>(
+      'change to complementary formations section',
+      build: () => CveditorBloc(),
+      act: (bloc) => bloc
+          .add(const SectionChanged(section: Section.complementaryFormations)),
+      expect: () => <CveditorState>[
+        const CveditorState(section: Section.complementaryFormations)
+      ],
+    );
+    blocTest<CveditorBloc, CveditorState>(
+      'change to work experience section',
+      build: () => CveditorBloc(),
+      act: (bloc) =>
+          bloc.add(const SectionChanged(section: Section.workExperience)),
+      expect: () =>
+          <CveditorState>[const CveditorState(section: Section.workExperience)],
+    );
   });
 }
