@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ class SkillsForm extends StatelessWidget {
     return BlocBuilder<CveditorBloc, CveditorState>(
       buildWhen: (previous, current) => previous.skills != current.skills,
       builder: (context, state) {
+        print('printing skills: ${state.skills}');
         return Row(
           children: [
             Expanded(
@@ -34,10 +36,13 @@ class SkillsForm extends StatelessWidget {
             Expanded(
               child: Wrap(
                 children: [
-                  ...state.skills.map(
-                    (skill) => InputChip(
-                      label: Text(skill),
-                      onDeleted: () {},
+                  ...state.skills.value.map(
+                    (skill) => FlipInX(
+                      child: InputChip(
+                        label: Text(skill),
+                        onDeleted: () => BlocProvider.of<CveditorBloc>(context)
+                            .add(SkillDeleted(skill: skill)),
+                      ),
                     ),
                   )
                 ],

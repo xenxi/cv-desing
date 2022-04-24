@@ -19,3 +19,11 @@ class SkillAdded extends CveditorEvent {
   @override
   List<Object> get props => [skill];
 }
+
+class SkillDeleted extends CveditorEvent {
+  const SkillDeleted({required this.skill});
+
+  final String skill;
+  @override
+  List<Object> get props => [skill];
+}

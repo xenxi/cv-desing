@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
+import 'package:cv_desing_website_flutter/domain/skills.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -11,9 +12,9 @@ void main() {
       expect(
         bloc.state,
         equals(
-          const CveditorState(
+          CveditorState(
             section: Section.personalInformation,
-            skills: [],
+            skills: Skills.empty(),
           ),
         ),
       );
@@ -25,7 +26,8 @@ void main() {
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.contactInformation)),
       expect: () => <CveditorState>[
-        const CveditorState(section: Section.contactInformation, skills: [])
+        CveditorState(
+            section: Section.contactInformation, skills: Skills.empty())
       ],
     );
 
@@ -35,7 +37,7 @@ void main() {
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.academicTraining)),
       expect: () => <CveditorState>[
-        const CveditorState(section: Section.academicTraining, skills: [])
+        CveditorState(section: Section.academicTraining, skills: Skills.empty())
       ],
     );
 
@@ -45,9 +47,9 @@ void main() {
       act: (bloc) => bloc
           .add(const SectionChanged(section: Section.complementaryFormations)),
       expect: () => <CveditorState>[
-        const CveditorState(
+        CveditorState(
           section: Section.complementaryFormations,
-          skills: [],
+          skills: Skills.empty(),
         )
       ],
     );
@@ -57,9 +59,9 @@ void main() {
       act: (bloc) => bloc
           .add(const SectionChanged(section: Section.complementaryFormations)),
       expect: () => <CveditorState>[
-        const CveditorState(
+        CveditorState(
           section: Section.complementaryFormations,
-          skills: [],
+          skills: Skills.empty(),
         )
       ],
     );
@@ -69,7 +71,7 @@ void main() {
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.workExperience)),
       expect: () => <CveditorState>[
-        const CveditorState(section: Section.workExperience, skills: [])
+        CveditorState(section: Section.workExperience, skills: Skills.empty())
       ],
     );
     blocTest<CveditorBloc, CveditorState>(
@@ -77,7 +79,7 @@ void main() {
       build: () => CveditorBloc(),
       act: (bloc) => bloc.add(const SectionChanged(section: Section.languages)),
       expect: () => <CveditorState>[
-        const CveditorState(section: Section.languages, skills: [])
+        CveditorState(section: Section.languages, skills: Skills.empty())
       ],
     );
     blocTest<CveditorBloc, CveditorState>(
@@ -86,7 +88,7 @@ void main() {
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.softwareSkills)),
       expect: () => <CveditorState>[
-        const CveditorState(section: Section.softwareSkills, skills: [])
+        CveditorState(section: Section.softwareSkills, skills: Skills.empty())
       ],
     );
     blocTest<CveditorBloc, CveditorState>(
@@ -95,23 +97,29 @@ void main() {
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.skillsandAptitudes)),
       expect: () => <CveditorState>[
-        const CveditorState(section: Section.skillsandAptitudes, skills: [])
+        CveditorState(
+            section: Section.skillsandAptitudes, skills: Skills.empty())
       ],
     );
     blocTest<CveditorBloc, CveditorState>(
-      'add skills',
+      'update skills',
       build: () => CveditorBloc(),
       act: (bloc) => bloc
         ..add(const SkillAdded(skill: 'anySkill'))
-        ..add(const SkillAdded(skill: 'otherSkill')),
+        ..add(const SkillAdded(skill: 'otherSkill'))
+        ..add(const SkillDeleted(skill: 'anySkill')),
       expect: () => <CveditorState>[
         const CveditorState(
           section: Section.personalInformation,
-          skills: ['anySkill'],
+          skills: Skills(['anySkill']),
         ),
         const CveditorState(
           section: Section.personalInformation,
-          skills: ['anySkill', 'otherSkill'],
+          skills: Skills(['anySkill', 'otherSkill']),
+        ),
+        const CveditorState(
+          section: Section.personalInformation,
+          skills: Skills(['otherSkill']),
         ),
       ],
     );

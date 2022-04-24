@@ -1,6 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
+import 'package:cv_desing_website_flutter/domain/skills.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
@@ -16,7 +17,17 @@ class CveditorBloc extends Bloc<CveditorEvent, CveditorState> {
       } else if (event is SkillAdded) {
         emit(
           state.copyWith(
-            skills: List.from(state.skills)..add(event.skill),
+            skills: state.skills.add(event.skill),
+          ),
+        );
+      } else if (event is SkillDeleted) {
+        print('current skills: ${state.skills}');
+
+        final updatedSkills = state.skills.remove(event.skill);
+        print('updated skills: $updatedSkills');
+        emit(
+          state.copyWith(
+            skills: state.skills.remove(event.skill),
           ),
         );
       }
