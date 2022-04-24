@@ -19,9 +19,9 @@ class SkillsForm extends StatelessWidget {
                 focusNode: focusNode,
                 controller: controller,
                 decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.featured_play_list_outlined),
-                  labelText: 'Competencia o habilidad',
-                ),
+                    prefixIcon: Icon(Icons.featured_play_list_outlined),
+                    labelText: 'Competencia o habilidad',
+                    helperText: 'Pulse enter para agregar'),
                 onSubmitted: (skill) {
                   controller.text = '';
                   FocusScope.of(context).requestFocus(focusNode);
