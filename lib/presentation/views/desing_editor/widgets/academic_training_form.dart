@@ -9,9 +9,10 @@ class AcademicTrainingForm extends StatelessWidget {
         child: Column(
       children: [
         ElevatedButton.icon(
-            onPressed: () {},
-            icon: const Icon(Icons.add),
-            label: const Text('Add')),
+          onPressed: () {},
+          icon: const Icon(Icons.add),
+          label: const Text('Añadir'),
+        ),
         TextFormField(
           decoration: const InputDecoration(
             prefixIcon: Icon(Icons.science_outlined),
