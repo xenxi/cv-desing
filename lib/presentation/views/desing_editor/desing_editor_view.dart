@@ -8,7 +8,6 @@ import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widge
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DesingEditorView extends HookWidget {
   const DesingEditorView({Key? key}) : super(key: key);
@@ -31,39 +30,64 @@ class DesingEditorView extends HookWidget {
   }
 
   List<Step> _buildStepForms() {
-    return [
-      Step(
-        title: Text(Location.personalInformation),
-        content: PersonalInfoForm(),
-      ),
-      Step(
-        title: Text(Location.conactInformation),
-        content: ContactInfoForm(),
-      ),
-      Step(
-        title: Text(Location.academicTraining),
-        content: AcademicTrainingForm(),
-      ),
-      Step(
-        title: Text(Location.complementaryFormations),
-        content: Text('Content for Step 2'),
-      ),
-      Step(
-        title: Text(Location.workExperience),
-        content: Text('Content for Step 2'),
-      ),
-      Step(
-        title: Text(Location.languages),
-        content: Text('Content for Step 2'),
-      ),
-      Step(
-        title: Text(Location.softwareSkills),
-        content: Text('Content for Step 2'),
-      ),
-      Step(
-        title: Text(Location.skillsandAptitudes),
-        content: Text('Content for Step 2'),
-      ),
-    ];
+    return Section.values
+        .map(
+          (section) => Step(
+            title: Text(_buildTitle(section)),
+            content: _buildStepContent(section),
+          ),
+        )
+        .toList();
+  }
+
+  String _buildTitle(Section section) {
+    switch (section) {
+      case Section.personalInformation:
+        return Location.personalInformation;
+      case Section.contactInformation:
+        return Location.conactInformation;
+      case Section.academicTraining:
+        return Location.academicTraining;
+      case Section.complementaryFormations:
+        return Location.complementaryFormations;
+      case Section.workExperience:
+        return Location.workExperience;
+      case Section.languages:
+        return Location.languages;
+      case Section.softwareSkills:
+        return Location.softwareSkills;
+      case Section.skillsandAptitudes:
+        return Location.skillsandAptitudes;
+      default:
+        return '';
+    }
+  }
+
+  Widget _buildStepContent(Section section) {
+    switch (section) {
+      case Section.personalInformation:
+        return const PersonalInfoForm();
+      case Section.contactInformation:
+        return const ContactInfoForm();
+      case Section.academicTraining:
+        return const AcademicTrainingForm();
+      case Section.complementaryFormations:
+        // TODO: Handle this case.
+        break;
+      case Section.workExperience:
+        // TODO: Handle this case.
+        break;
+      case Section.languages:
+        // TODO: Handle this case.
+        break;
+      case Section.softwareSkills:
+        // TODO: Handle this case.
+        break;
+      case Section.skillsandAptitudes:
+        // TODO: Handle this case.
+        break;
+    }
+
+    return const Text('TODO');
   }
 }
