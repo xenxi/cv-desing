@@ -15,6 +15,16 @@ void main() {
     });
 
     blocTest<CveditorBloc, CveditorState>(
+      'change to contact info section',
+      build: () => CveditorBloc(),
+      act: (bloc) =>
+          bloc.add(const SectionChanged(section: Section.contactInformation)),
+      expect: () => <CveditorState>[
+        const CveditorState(section: Section.contactInformation)
+      ],
+    );
+
+    blocTest<CveditorBloc, CveditorState>(
       'change to academic training section',
       build: () => CveditorBloc(),
       act: (bloc) =>
