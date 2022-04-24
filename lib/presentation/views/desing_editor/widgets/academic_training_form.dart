@@ -27,35 +27,30 @@ class AcademicTrainingForm extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: TextFormField(
-                enableInteractiveSelection: false,
-                keyboardType: TextInputType.datetime,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.date_range_rounded),
-                  labelText: 'Desde',
-                ),
-                onTap: () => _selectDate(context),
-              ),
+              child: _datePicker(context, text: 'Desde'),
             ),
             const SizedBox(
               width: 8,
             ),
             Expanded(
-              child: TextFormField(
-                enableInteractiveSelection: false,
-                keyboardType: TextInputType.datetime,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.date_range_rounded),
-                  labelText: 'Hasta',
-                ),
-                onTap: () => _selectDate(context),
-              ),
+              child: _datePicker(context, text: 'Hasta'),
             ),
           ],
         )
       ],
     ));
   }
+
+  Widget _datePicker(BuildContext context, {required String text}) =>
+      TextFormField(
+        enableInteractiveSelection: false,
+        keyboardType: TextInputType.datetime,
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.date_range_rounded),
+          labelText: text,
+        ),
+        onTap: () => _selectDate(context),
+      );
 
   Future<DateTime?> _selectDate(BuildContext context) => showDatePicker(
         // locale: const Locale('es', 'ES'),
