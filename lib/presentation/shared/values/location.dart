@@ -53,7 +53,8 @@ class Location {
   static String shareSubject(Category category) =>
       'Te puede interesar ${category == Category.businessCard ? 'esta' : 'este'} ${category.displayName}';
 
-  static const personalInformation = 'Información personal y contacto';
+  static const personalInformation = 'Información personal';
+  static const conactInformation = 'Información de contacto';
   static const academicTraining = 'Formación académica';
   static const complementaryFormations = 'Formaciones complementarias';
   static const workExperience = 'Experiencia laboral';

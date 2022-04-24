@@ -21,18 +21,6 @@ class PersonalInfoForm extends StatelessWidget {
         ),
         TextFormField(
           decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.email_outlined),
-            labelText: 'Tu email',
-          ),
-        ),
-        TextFormField(
-          decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.phone_outlined),
-            labelText: 'Tu teléfono',
-          ),
-        ),
-        TextFormField(
-          decoration: const InputDecoration(
             prefixIcon: Icon(Icons.location_on_outlined),
             labelText: 'Tu localidad',
           ),

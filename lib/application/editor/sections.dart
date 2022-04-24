@@ -1,5 +1,6 @@
 enum Section {
   personalInformation,
+  contactInformation,
   academicTraining,
   complementaryFormations,
   workExperience,

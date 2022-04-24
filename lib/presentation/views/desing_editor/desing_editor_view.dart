@@ -3,6 +3,7 @@ import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/academic_training_form.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/contact_info_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/personal_info_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,6 +27,10 @@ class DesingEditorView extends HookWidget {
               Step(
                 title: Text(Location.personalInformation),
                 content: PersonalInfoForm(),
+              ),
+              Step(
+                title: Text(Location.conactInformation),
+                content: ContactInfoForm(),
               ),
               Step(
                 title: Text(Location.academicTraining),
