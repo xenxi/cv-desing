@@ -17,14 +17,17 @@ class DesingEditorView extends HookWidget {
         builder: (context, state) {
           return Stepper(
             currentStep: _getCurrentStepFrom(state),
-            onStepTapped: (index) => BlocProvider.of<CveditorBloc>(context)
-                .add(SectionChanged(section: Section.values[index])),
+            onStepTapped: (index) => _updateSelectedSection(context, index),
             steps: _buildStepForms(),
           );
         },
       ),
     );
   }
+
+  void _updateSelectedSection(BuildContext context, int index) =>
+      BlocProvider.of<CveditorBloc>(context)
+          .add(SectionChanged(section: Section.values[index]));
 
   int _getCurrentStepFrom(CveditorState state) =>
       Section.values.indexOf(state.section);
