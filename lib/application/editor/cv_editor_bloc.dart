@@ -21,10 +21,6 @@ class CveditorBloc extends Bloc<CveditorEvent, CveditorState> {
           ),
         );
       } else if (event is SkillDeleted) {
-        print('current skills: ${state.skills}');
-
-        final updatedSkills = state.skills.remove(event.skill);
-        print('updated skills: $updatedSkills');
         emit(
           state.copyWith(
             skills: state.skills.remove(event.skill),

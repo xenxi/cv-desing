@@ -13,7 +13,6 @@ class SkillsForm extends StatelessWidget {
     return BlocBuilder<CveditorBloc, CveditorState>(
       buildWhen: (previous, current) => previous.skills != current.skills,
       builder: (context, state) {
-        print('printing skills: ${state.skills}');
         return Row(
           children: [
             Expanded(
