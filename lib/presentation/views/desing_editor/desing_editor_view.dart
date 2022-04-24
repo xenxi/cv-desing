@@ -16,7 +16,7 @@ class DesingEditorView extends HookWidget {
       child: BlocBuilder<CveditorBloc, CveditorState>(
         builder: (context, state) {
           return Stepper(
-            currentStep: Section.values.indexOf(state.section),
+            currentStep: _getCurrentStepFrom(state),
             onStepTapped: (index) => BlocProvider.of<CveditorBloc>(context)
                 .add(SectionChanged(section: Section.values[index])),
             steps: _buildStepForms(),
@@ -25,6 +25,9 @@ class DesingEditorView extends HookWidget {
       ),
     );
   }
+
+  int _getCurrentStepFrom(CveditorState state) =>
+      Section.values.indexOf(state.section);
 
   List<Step> _buildStepForms() => Section.values
       .map(
