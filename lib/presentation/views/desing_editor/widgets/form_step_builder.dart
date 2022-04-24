@@ -5,6 +5,7 @@ import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widge
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/contact_info_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/languages_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/personal_info_form.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/skills_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/work_experience_form.dart';
 import 'package:flutter/material.dart';
 
@@ -60,8 +61,7 @@ class FormStepBuilder extends Step {
         // TODO: Handle this case.
         break;
       case Section.skillsandAptitudes:
-        // TODO: Handle this case.
-        break;
+        return const SkillsForm();
     }
 
     return const Text('TODO');

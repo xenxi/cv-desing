@@ -13,6 +13,12 @@ class CveditorBloc extends Bloc<CveditorEvent, CveditorState> {
     on<CveditorEvent>((event, emit) {
       if (event is SectionChanged) {
         emit(state.copyWith(section: event.section));
+      } else if (event is SkillAdded) {
+        emit(
+          state.copyWith(
+            skills: List.from(state.skills)..add(event.skill),
+          ),
+        );
       }
     });
   }

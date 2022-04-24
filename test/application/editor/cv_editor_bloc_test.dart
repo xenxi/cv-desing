@@ -10,7 +10,12 @@ void main() {
       // assert
       expect(
         bloc.state,
-        equals(const CveditorState(section: Section.personalInformation)),
+        equals(
+          const CveditorState(
+            section: Section.personalInformation,
+            skills: [],
+          ),
+        ),
       );
     });
 
@@ -20,7 +25,7 @@ void main() {
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.contactInformation)),
       expect: () => <CveditorState>[
-        const CveditorState(section: Section.contactInformation)
+        const CveditorState(section: Section.contactInformation, skills: [])
       ],
     );
 
@@ -30,7 +35,7 @@ void main() {
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.academicTraining)),
       expect: () => <CveditorState>[
-        const CveditorState(section: Section.academicTraining)
+        const CveditorState(section: Section.academicTraining, skills: [])
       ],
     );
 
@@ -40,7 +45,10 @@ void main() {
       act: (bloc) => bloc
           .add(const SectionChanged(section: Section.complementaryFormations)),
       expect: () => <CveditorState>[
-        const CveditorState(section: Section.complementaryFormations)
+        const CveditorState(
+          section: Section.complementaryFormations,
+          skills: [],
+        )
       ],
     );
     blocTest<CveditorBloc, CveditorState>(
@@ -49,7 +57,10 @@ void main() {
       act: (bloc) => bloc
           .add(const SectionChanged(section: Section.complementaryFormations)),
       expect: () => <CveditorState>[
-        const CveditorState(section: Section.complementaryFormations)
+        const CveditorState(
+          section: Section.complementaryFormations,
+          skills: [],
+        )
       ],
     );
     blocTest<CveditorBloc, CveditorState>(
@@ -57,23 +68,26 @@ void main() {
       build: () => CveditorBloc(),
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.workExperience)),
-      expect: () =>
-          <CveditorState>[const CveditorState(section: Section.workExperience)],
+      expect: () => <CveditorState>[
+        const CveditorState(section: Section.workExperience, skills: [])
+      ],
     );
     blocTest<CveditorBloc, CveditorState>(
       'change to languages section',
       build: () => CveditorBloc(),
       act: (bloc) => bloc.add(const SectionChanged(section: Section.languages)),
-      expect: () =>
-          <CveditorState>[const CveditorState(section: Section.languages)],
+      expect: () => <CveditorState>[
+        const CveditorState(section: Section.languages, skills: [])
+      ],
     );
     blocTest<CveditorBloc, CveditorState>(
       'change to software skills section',
       build: () => CveditorBloc(),
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.softwareSkills)),
-      expect: () =>
-          <CveditorState>[const CveditorState(section: Section.softwareSkills)],
+      expect: () => <CveditorState>[
+        const CveditorState(section: Section.softwareSkills, skills: [])
+      ],
     );
     blocTest<CveditorBloc, CveditorState>(
       'change to skillsand aptitudes section',
@@ -81,7 +95,24 @@ void main() {
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.skillsandAptitudes)),
       expect: () => <CveditorState>[
-        const CveditorState(section: Section.skillsandAptitudes)
+        const CveditorState(section: Section.skillsandAptitudes, skills: [])
+      ],
+    );
+    blocTest<CveditorBloc, CveditorState>(
+      'add skills',
+      build: () => CveditorBloc(),
+      act: (bloc) => bloc
+        ..add(const SkillAdded(skill: 'anySkill'))
+        ..add(const SkillAdded(skill: 'otherSkill')),
+      expect: () => <CveditorState>[
+        const CveditorState(
+          section: Section.personalInformation,
+          skills: ['anySkill'],
+        ),
+        const CveditorState(
+          section: Section.personalInformation,
+          skills: ['anySkill', 'otherSkill'],
+        ),
       ],
     );
   });
