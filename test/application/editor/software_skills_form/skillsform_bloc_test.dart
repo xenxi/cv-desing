@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/application/editor/skills_form/skillsform_bloc.dart';
+import 'package:cv_desing_website_flutter/application/editor/software_skills_form/skillsform_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
