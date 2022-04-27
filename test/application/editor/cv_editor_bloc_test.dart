@@ -7,12 +7,12 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('CvEditorBloc should', () {
     test('has empty as initial state', () {
-      final bloc = CveditorBloc();
+      final bloc = CvEditorBloc();
       // assert
       expect(
         bloc.state,
         equals(
-          CveditorState(
+          CvEditorState(
             section: Section.personalInformation,
             skills: Skills.empty(),
           ),
@@ -20,104 +20,104 @@ void main() {
       );
     });
 
-    blocTest<CveditorBloc, CveditorState>(
+    blocTest<CvEditorBloc, CvEditorState>(
       'change to contact info section',
-      build: () => CveditorBloc(),
+      build: () => CvEditorBloc(),
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.contactInformation)),
-      expect: () => <CveditorState>[
-        CveditorState(
+      expect: () => <CvEditorState>[
+        CvEditorState(
             section: Section.contactInformation, skills: Skills.empty())
       ],
     );
 
-    blocTest<CveditorBloc, CveditorState>(
+    blocTest<CvEditorBloc, CvEditorState>(
       'change to academic training section',
-      build: () => CveditorBloc(),
+      build: () => CvEditorBloc(),
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.academicTraining)),
-      expect: () => <CveditorState>[
-        CveditorState(section: Section.academicTraining, skills: Skills.empty())
+      expect: () => <CvEditorState>[
+        CvEditorState(section: Section.academicTraining, skills: Skills.empty())
       ],
     );
 
-    blocTest<CveditorBloc, CveditorState>(
+    blocTest<CvEditorBloc, CvEditorState>(
       'change to complementary formations section',
-      build: () => CveditorBloc(),
+      build: () => CvEditorBloc(),
       act: (bloc) => bloc
           .add(const SectionChanged(section: Section.complementaryFormations)),
-      expect: () => <CveditorState>[
-        CveditorState(
+      expect: () => <CvEditorState>[
+        CvEditorState(
           section: Section.complementaryFormations,
           skills: Skills.empty(),
         )
       ],
     );
-    blocTest<CveditorBloc, CveditorState>(
+    blocTest<CvEditorBloc, CvEditorState>(
       'change to complementary formations section',
-      build: () => CveditorBloc(),
+      build: () => CvEditorBloc(),
       act: (bloc) => bloc
           .add(const SectionChanged(section: Section.complementaryFormations)),
-      expect: () => <CveditorState>[
-        CveditorState(
+      expect: () => <CvEditorState>[
+        CvEditorState(
           section: Section.complementaryFormations,
           skills: Skills.empty(),
         )
       ],
     );
-    blocTest<CveditorBloc, CveditorState>(
+    blocTest<CvEditorBloc, CvEditorState>(
       'change to work experience section',
-      build: () => CveditorBloc(),
+      build: () => CvEditorBloc(),
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.workExperience)),
-      expect: () => <CveditorState>[
-        CveditorState(section: Section.workExperience, skills: Skills.empty())
+      expect: () => <CvEditorState>[
+        CvEditorState(section: Section.workExperience, skills: Skills.empty())
       ],
     );
-    blocTest<CveditorBloc, CveditorState>(
+    blocTest<CvEditorBloc, CvEditorState>(
       'change to languages section',
-      build: () => CveditorBloc(),
+      build: () => CvEditorBloc(),
       act: (bloc) => bloc.add(const SectionChanged(section: Section.languages)),
-      expect: () => <CveditorState>[
-        CveditorState(section: Section.languages, skills: Skills.empty())
+      expect: () => <CvEditorState>[
+        CvEditorState(section: Section.languages, skills: Skills.empty())
       ],
     );
-    blocTest<CveditorBloc, CveditorState>(
+    blocTest<CvEditorBloc, CvEditorState>(
       'change to software skills section',
-      build: () => CveditorBloc(),
+      build: () => CvEditorBloc(),
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.softwareSkills)),
-      expect: () => <CveditorState>[
-        CveditorState(section: Section.softwareSkills, skills: Skills.empty())
+      expect: () => <CvEditorState>[
+        CvEditorState(section: Section.softwareSkills, skills: Skills.empty())
       ],
     );
-    blocTest<CveditorBloc, CveditorState>(
+    blocTest<CvEditorBloc, CvEditorState>(
       'change to skillsand aptitudes section',
-      build: () => CveditorBloc(),
+      build: () => CvEditorBloc(),
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.skillsandAptitudes)),
-      expect: () => <CveditorState>[
-        CveditorState(
+      expect: () => <CvEditorState>[
+        CvEditorState(
             section: Section.skillsandAptitudes, skills: Skills.empty())
       ],
     );
-    blocTest<CveditorBloc, CveditorState>(
+    blocTest<CvEditorBloc, CvEditorState>(
       'update skills',
-      build: () => CveditorBloc(),
+      build: () => CvEditorBloc(),
       act: (bloc) => bloc
         ..add(const SkillAdded(skill: 'anySkill'))
         ..add(const SkillAdded(skill: 'otherSkill'))
         ..add(const SkillDeleted(skill: 'anySkill')),
-      expect: () => <CveditorState>[
-        const CveditorState(
+      expect: () => <CvEditorState>[
+        const CvEditorState(
           section: Section.personalInformation,
           skills: Skills(['anySkill']),
         ),
-        const CveditorState(
+        const CvEditorState(
           section: Section.personalInformation,
           skills: Skills(['anySkill', 'otherSkill']),
         ),
-        const CveditorState(
+        const CvEditorState(
           section: Section.personalInformation,
           skills: Skills(['otherSkill']),
         ),

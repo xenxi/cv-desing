@@ -12,8 +12,8 @@ class DesingEditorView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<CveditorBloc>(),
-      child: BlocBuilder<CveditorBloc, CveditorState>(
+      create: (context) => getIt<CvEditorBloc>(),
+      child: BlocBuilder<CvEditorBloc, CvEditorState>(
         builder: (context, state) {
           return Stepper(
             currentStep: _getCurrentStepFrom(state),
@@ -26,10 +26,10 @@ class DesingEditorView extends HookWidget {
   }
 
   void _updateSelectedSection(BuildContext context, int index) =>
-      BlocProvider.of<CveditorBloc>(context)
+      BlocProvider.of<CvEditorBloc>(context)
           .add(SectionChanged(section: Section.values[index]));
 
-  int _getCurrentStepFrom(CveditorState state) =>
+  int _getCurrentStepFrom(CvEditorState state) =>
       Section.values.indexOf(state.section);
 
   List<Step> _buildStepForms() => Section.values

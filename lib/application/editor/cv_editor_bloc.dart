@@ -9,9 +9,9 @@ part 'cv_editor_event.dart';
 part 'cv_editor_state.dart';
 
 @injectable
-class CveditorBloc extends Bloc<CveditorEvent, CveditorState> {
-  CveditorBloc() : super(CveditorState.initial()) {
-    on<CveditorEvent>((event, emit) {
+class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
+  CvEditorBloc() : super(CvEditorState.initial()) {
+    on<CvEditorEvent>((event, emit) {
       if (event is SectionChanged) {
         emit(state.copyWith(section: event.section));
       } else if (event is SkillAdded) {

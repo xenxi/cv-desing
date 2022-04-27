@@ -1,11 +1,11 @@
 part of 'cv_editor_bloc.dart';
 
-class CveditorState extends Equatable {
-  factory CveditorState.initial() => CveditorState(
+class CvEditorState extends Equatable {
+  factory CvEditorState.initial() => CvEditorState(
         section: Section.personalInformation,
         skills: Skills.empty(),
       );
-  const CveditorState({
+  const CvEditorState({
     required this.section,
     required this.skills,
   });
@@ -15,11 +15,11 @@ class CveditorState extends Equatable {
   @override
   List<Object> get props => [section, skills];
 
-  CveditorState copyWith({
+  CvEditorState copyWith({
     Section? section,
     Skills? skills,
   }) {
-    return CveditorState(
+    return CvEditorState(
       section: section ?? this.section,
       skills: skills ?? this.skills,
     );

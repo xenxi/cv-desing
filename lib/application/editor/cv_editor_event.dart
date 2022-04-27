@@ -1,10 +1,10 @@
 part of 'cv_editor_bloc.dart';
 
-abstract class CveditorEvent extends Equatable {
-  const CveditorEvent();
+abstract class CvEditorEvent extends Equatable {
+  const CvEditorEvent();
 }
 
-class SectionChanged extends CveditorEvent {
+class SectionChanged extends CvEditorEvent {
   const SectionChanged({required this.section});
 
   final Section section;
@@ -12,7 +12,7 @@ class SectionChanged extends CveditorEvent {
   List<Object> get props => [section];
 }
 
-class SkillAdded extends CveditorEvent {
+class SkillAdded extends CvEditorEvent {
   const SkillAdded({required this.skill});
 
   final String skill;
@@ -20,7 +20,7 @@ class SkillAdded extends CveditorEvent {
   List<Object> get props => [skill];
 }
 
-class SkillDeleted extends CveditorEvent {
+class SkillDeleted extends CvEditorEvent {
   const SkillDeleted({required this.skill});
 
   final String skill;

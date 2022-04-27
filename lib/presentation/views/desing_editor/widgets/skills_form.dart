@@ -10,7 +10,7 @@ class SkillsForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = TextEditingController();
     final focusNode = FocusNode();
-    return BlocBuilder<CveditorBloc, CveditorState>(
+    return BlocBuilder<CvEditorBloc, CvEditorState>(
       buildWhen: (previous, current) => previous.skills != current.skills,
       builder: (context, state) {
         return Row(
@@ -26,7 +26,7 @@ class SkillsForm extends StatelessWidget {
                 onSubmitted: (skill) {
                   controller.text = '';
                   FocusScope.of(context).requestFocus(focusNode);
-                  BlocProvider.of<CveditorBloc>(context)
+                  BlocProvider.of<CvEditorBloc>(context)
                       .add(SkillAdded(skill: skill));
                 },
               ),
@@ -39,7 +39,7 @@ class SkillsForm extends StatelessWidget {
                     (skill) => FlipInX(
                       child: InputChip(
                         label: Text(skill),
-                        onDeleted: () => BlocProvider.of<CveditorBloc>(context)
+                        onDeleted: () => BlocProvider.of<CvEditorBloc>(context)
                             .add(SkillDeleted(skill: skill)),
                       ),
                     ),
