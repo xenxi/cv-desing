@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('SkillsForm should', () {
     test('has empty as initial state', () {
-      final bloc = SkillsformBloc();
+      final bloc = SkillsFormBloc();
       // assert
       expect(
         bloc.state,

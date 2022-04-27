@@ -5,9 +5,9 @@ import 'package:equatable/equatable.dart';
 part 'skillsform_event.dart';
 part 'skillsform_state.dart';
 
-class SkillsformBloc extends Bloc<SkillsformEvent, SkillsformState> {
-  SkillsformBloc() : super(SkillsformInitial()) {
-    on<SkillsformEvent>((event, emit) {
+class SkillsFormBloc extends Bloc<SkillsFormEvent, SkillsFormState> {
+  SkillsFormBloc() : super(SkillsformInitial()) {
+    on<SkillsFormEvent>((event, emit) {
       // TODO: implement event handler
     });
   }

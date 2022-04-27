@@ -1,10 +1,10 @@
 part of 'skillsform_bloc.dart';
 
-abstract class SkillsformState extends Equatable {
-  const SkillsformState();
-  
+abstract class SkillsFormState extends Equatable {
+  const SkillsFormState();
+
   @override
   List<Object> get props => [];
 }
 
-class SkillsformInitial extends SkillsformState {}
+class SkillsformInitial extends SkillsFormState {}
