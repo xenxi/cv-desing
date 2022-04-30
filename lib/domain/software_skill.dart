@@ -15,6 +15,7 @@ class SoftwareSkill extends ValueObject {
 }
 
 class SoftwareSkills extends ValueObject {
+  factory SoftwareSkills.empty() => const SoftwareSkills([]);
   const SoftwareSkills(this.value);
 
   final List<SoftwareSkill> value;

@@ -2,9 +2,15 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/domain/skills.dart';
+import 'package:cv_desing_website_flutter/domain/software_skill.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  final initialState = CvEditorState(
+    section: Section.personalInformation,
+    skills: Skills.empty(),
+    softwareSkills: SoftwareSkills.empty(),
+  );
   group('CvEditorBloc should', () {
     test('has empty as initial state', () {
       final bloc = CvEditorBloc();
@@ -12,10 +18,7 @@ void main() {
       expect(
         bloc.state,
         equals(
-          CvEditorState(
-            section: Section.personalInformation,
-            skills: Skills.empty(),
-          ),
+          initialState,
         ),
       );
     });
@@ -26,8 +29,7 @@ void main() {
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.contactInformation)),
       expect: () => <CvEditorState>[
-        CvEditorState(
-            section: Section.contactInformation, skills: Skills.empty())
+        initialState.copyWith(section: Section.contactInformation)
       ],
     );
 
@@ -37,7 +39,7 @@ void main() {
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.academicTraining)),
       expect: () => <CvEditorState>[
-        CvEditorState(section: Section.academicTraining, skills: Skills.empty())
+        initialState.copyWith(section: Section.academicTraining)
       ],
     );
 
@@ -47,10 +49,7 @@ void main() {
       act: (bloc) => bloc
           .add(const SectionChanged(section: Section.complementaryFormations)),
       expect: () => <CvEditorState>[
-        CvEditorState(
-          section: Section.complementaryFormations,
-          skills: Skills.empty(),
-        )
+        initialState.copyWith(section: Section.complementaryFormations)
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
@@ -59,10 +58,7 @@ void main() {
       act: (bloc) => bloc
           .add(const SectionChanged(section: Section.complementaryFormations)),
       expect: () => <CvEditorState>[
-        CvEditorState(
-          section: Section.complementaryFormations,
-          skills: Skills.empty(),
-        )
+        initialState.copyWith(section: Section.complementaryFormations)
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
@@ -71,16 +67,15 @@ void main() {
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.workExperience)),
       expect: () => <CvEditorState>[
-        CvEditorState(section: Section.workExperience, skills: Skills.empty())
+        initialState.copyWith(section: Section.workExperience)
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
       'change to languages section',
       build: () => CvEditorBloc(),
       act: (bloc) => bloc.add(const SectionChanged(section: Section.languages)),
-      expect: () => <CvEditorState>[
-        CvEditorState(section: Section.languages, skills: Skills.empty())
-      ],
+      expect: () =>
+          <CvEditorState>[initialState.copyWith(section: Section.languages)],
     );
     blocTest<CvEditorBloc, CvEditorState>(
       'change to software skills section',
@@ -88,7 +83,7 @@ void main() {
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.softwareSkills)),
       expect: () => <CvEditorState>[
-        CvEditorState(section: Section.softwareSkills, skills: Skills.empty())
+        initialState.copyWith(section: Section.softwareSkills)
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
@@ -97,8 +92,7 @@ void main() {
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.skillsandAptitudes)),
       expect: () => <CvEditorState>[
-        CvEditorState(
-            section: Section.skillsandAptitudes, skills: Skills.empty())
+        initialState.copyWith(section: Section.skillsandAptitudes)
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
@@ -109,17 +103,20 @@ void main() {
         ..add(const SkillAdded(skill: 'otherSkill'))
         ..add(const SkillDeleted(skill: 'anySkill')),
       expect: () => <CvEditorState>[
-        const CvEditorState(
-          section: Section.personalInformation,
-          skills: Skills(['anySkill']),
+        initialState.copyWith(
+          skills: const Skills(
+            ['anySkill'],
+          ),
         ),
-        const CvEditorState(
-          section: Section.personalInformation,
-          skills: Skills(['anySkill', 'otherSkill']),
+        initialState.copyWith(
+          skills: const Skills(
+            ['anySkill', 'otherSkill'],
+          ),
         ),
-        const CvEditorState(
-          section: Section.personalInformation,
-          skills: Skills(['otherSkill']),
+        initialState.copyWith(
+          skills: const Skills(
+            ['otherSkill'],
+          ),
         ),
       ],
     );
