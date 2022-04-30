@@ -2,6 +2,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
+import 'package:cv_desing_website_flutter/domain/languages.dart';
 import 'package:cv_desing_website_flutter/domain/percentage.dart';
 import 'package:cv_desing_website_flutter/domain/skills.dart';
 import 'package:cv_desing_website_flutter/domain/software_skill.dart';
@@ -81,6 +82,19 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
         emit(
           state.copyWith(
             phoneNumber: event.phoneNumber,
+          ),
+        );
+      } else if (event is LanguageAdded) {
+        emit(
+          state.copyWith(
+            languages: state.languages
+                .add(Language(event.language, level: event.level)),
+          ),
+        );
+      } else if (event is LanguageDeleted) {
+        emit(
+          state.copyWith(
+            languages: state.languages.remove(Language(event.language)),
           ),
         );
       }

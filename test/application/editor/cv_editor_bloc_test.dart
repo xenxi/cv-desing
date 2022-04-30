@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
+import 'package:cv_desing_website_flutter/domain/languages.dart';
 import 'package:cv_desing_website_flutter/domain/percentage.dart';
 import 'package:cv_desing_website_flutter/domain/skills.dart';
 import 'package:cv_desing_website_flutter/domain/software_skill.dart';
@@ -17,6 +18,7 @@ void main() {
     personalDescription: '',
     email: '',
     phoneNumber: '',
+    languages: Languages.empty(),
   );
   group('CvEditorBloc should', () {
     test('has empty as initial state', () {
@@ -157,6 +159,30 @@ void main() {
       expect: () => <CvEditorState>[
         initialState.copyWith(phoneNumber: 'anyPhoneNumber'),
         initialState.copyWith(phoneNumber: 'otherPhoneNumber'),
+      ],
+    );
+    blocTest<CvEditorBloc, CvEditorState>(
+      'update languages',
+      build: () => CvEditorBloc(),
+      act: (bloc) => bloc
+        ..add(const LanguageAdded('anyLanguage', level: 'anyLevel'))
+        ..add(const LanguageAdded('otherLanguage', level: 'otherLevel'))
+        ..add(const LanguageDeleted('otherLanguage')),
+      expect: () => <CvEditorState>[
+        initialState.copyWith(
+          languages:
+              const Languages([Language('anyLanguage', level: 'anyLevel')]),
+        ),
+        initialState.copyWith(
+          languages: const Languages([
+            Language('anyLanguage', level: 'anyLevel'),
+            Language('otherLanguage', level: 'otherLevel')
+          ]),
+        ),
+        initialState.copyWith(
+          languages:
+              const Languages([Language('anyLanguage', level: 'anyLevel')]),
+        ),
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(

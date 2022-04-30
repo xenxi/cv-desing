@@ -108,3 +108,25 @@ class PhoneNumberChanged extends CvEditorEvent {
   @override
   List<Object> get props => [phoneNumber];
 }
+
+class LanguageAdded extends CvEditorEvent {
+  const LanguageAdded(
+    this.language, {
+    required this.level,
+  });
+  final String language;
+  final String level;
+
+  @override
+  List<Object> get props => [language, level];
+}
+
+class LanguageDeleted extends CvEditorEvent {
+  const LanguageDeleted(
+    this.language,
+  );
+  final String language;
+
+  @override
+  List<Object> get props => [language];
+}
