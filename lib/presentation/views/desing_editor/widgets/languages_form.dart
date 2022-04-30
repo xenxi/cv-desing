@@ -8,11 +8,6 @@ class LanguagesForm extends StatelessWidget {
     return Form(
       child: Column(
         children: [
-          ElevatedButton.icon(
-            onPressed: () {},
-            icon: const Icon(Icons.add),
-            label: const Text('Añadir'),
-          ),
           Row(
             children: [
               Expanded(
