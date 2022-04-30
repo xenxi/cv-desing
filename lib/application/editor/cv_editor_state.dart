@@ -16,7 +16,7 @@ class CvEditorState extends Equatable {
   final SoftwareSkills softwareSkills;
 
   @override
-  List<Object> get props => [section, skills];
+  List<Object> get props => [section, skills, softwareSkills];
 
   CvEditorState copyWith({
     Section? section,

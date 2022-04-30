@@ -31,12 +31,8 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
       } else if (event is SoftwareSkillAdded) {
         emit(
           state.copyWith(
-            softwareSkills: const SoftwareSkills([
-              SoftwareSkill(
-                'anySoftwareSkillA',
-                Percentage(50),
-              ),
-            ]),
+            softwareSkills: state.softwareSkills
+                .add(SoftwareSkill(event.name, Percentage(event.percentage))),
           ),
         );
       }
