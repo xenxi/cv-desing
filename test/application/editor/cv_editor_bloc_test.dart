@@ -123,7 +123,7 @@ void main() {
     );
   });
   blocTest<CvEditorBloc, CvEditorState>(
-    'add software skills',
+    'update software skills',
     build: () => CvEditorBloc(),
     act: (bloc) => bloc
       ..add(
@@ -131,6 +131,9 @@ void main() {
       )
       ..add(
         const SoftwareSkillAdded(name: 'otherSoftwareSkillA', percentage: 10),
+      )
+      ..add(
+        const SoftwareSkillDeleted(name: 'otherSoftwareSkillA'),
       ),
     expect: () => <CvEditorState>[
       initialState.copyWith(
@@ -138,7 +141,7 @@ void main() {
           [
             SoftwareSkill(
               'anySoftwareSkillA',
-              Percentage(50),
+              percentage: Percentage(50),
             ),
           ],
         ),
@@ -148,11 +151,21 @@ void main() {
           [
             SoftwareSkill(
               'anySoftwareSkillA',
-              Percentage(50),
+              percentage: Percentage(50),
             ),
             SoftwareSkill(
               'otherSoftwareSkillA',
-              Percentage(10),
+              percentage: Percentage(10),
+            ),
+          ],
+        ),
+      ),
+      initialState.copyWith(
+        softwareSkills: const SoftwareSkills(
+          [
+            SoftwareSkill(
+              'anySoftwareSkillA',
+              percentage: Percentage(50),
             ),
           ],
         ),

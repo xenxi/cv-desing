@@ -38,3 +38,13 @@ class SoftwareSkillAdded extends CvEditorEvent {
   @override
   List<Object> get props => [name, percentage];
 }
+
+class SoftwareSkillDeleted extends CvEditorEvent {
+  const SoftwareSkillDeleted({
+    required this.name,
+  });
+  final String name;
+
+  @override
+  List<Object> get props => [name];
+}
