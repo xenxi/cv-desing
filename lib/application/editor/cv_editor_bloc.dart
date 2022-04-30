@@ -46,6 +46,12 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
                 state.softwareSkills.remove(SoftwareSkill(event.name)),
           ),
         );
+      } else if (event is NameChanged) {
+        emit(
+          state.copyWith(
+            name: 'anyName',
+          ),
+        );
       }
     });
   }

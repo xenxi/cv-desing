@@ -11,6 +11,7 @@ void main() {
     section: Section.personalInformation,
     skills: Skills.empty(),
     softwareSkills: SoftwareSkills.empty(),
+    name: '',
   );
   group('CvEditorBloc should', () {
     test('has empty as initial state', () {
@@ -86,6 +87,12 @@ void main() {
       expect: () => <CvEditorState>[
         initialState.copyWith(section: Section.skillsandAptitudes)
       ],
+    );
+    blocTest<CvEditorBloc, CvEditorState>(
+      'update name',
+      build: () => CvEditorBloc(),
+      act: (bloc) => bloc..add(const NameChanged(name: 'anyName')),
+      expect: () => <CvEditorState>[initialState.copyWith(name: 'anyName')],
     );
     blocTest<CvEditorBloc, CvEditorState>(
       'update skills',
