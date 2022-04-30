@@ -68,3 +68,13 @@ class LocalityChanged extends CvEditorEvent {
   @override
   List<Object> get props => [locality];
 }
+
+class ProfessionChanged extends CvEditorEvent {
+  const ProfessionChanged(
+    this.profession,
+  );
+  final String profession;
+
+  @override
+  List<Object> get props => [profession];
+}
