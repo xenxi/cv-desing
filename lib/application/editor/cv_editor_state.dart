@@ -10,6 +10,7 @@ class CvEditorState extends Equatable {
         profession: '',
         personalDescription: '',
         email: '',
+        phoneNumber: '',
       );
   const CvEditorState({
     required this.section,
@@ -20,6 +21,7 @@ class CvEditorState extends Equatable {
     required this.profession,
     required this.personalDescription,
     required this.email,
+    required this.phoneNumber,
   });
   final Section section;
   final Skills skills;
@@ -29,6 +31,7 @@ class CvEditorState extends Equatable {
   final String profession;
   final String personalDescription;
   final String email;
+  final String phoneNumber;
   @override
   List<Object> get props => [
         section,
@@ -39,6 +42,7 @@ class CvEditorState extends Equatable {
         profession,
         personalDescription,
         email,
+        phoneNumber,
       ];
 
   CvEditorState copyWith({
@@ -50,6 +54,7 @@ class CvEditorState extends Equatable {
     String? profession,
     String? personalDescription,
     String? email,
+    String? phoneNumber,
   }) {
     return CvEditorState(
       section: section ?? this.section,
@@ -60,6 +65,7 @@ class CvEditorState extends Equatable {
       profession: profession ?? this.profession,
       personalDescription: personalDescription ?? this.personalDescription,
       email: email ?? this.email,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
     );
   }
 }

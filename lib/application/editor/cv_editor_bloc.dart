@@ -77,6 +77,12 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
             email: event.email,
           ),
         );
+      } else if (event is PhoneNumberChanged) {
+        emit(
+          state.copyWith(
+            phoneNumber: event.phoneNumber,
+          ),
+        );
       }
     });
   }

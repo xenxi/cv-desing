@@ -16,6 +16,7 @@ void main() {
     profession: '',
     personalDescription: '',
     email: '',
+    phoneNumber: '',
   );
   group('CvEditorBloc should', () {
     test('has empty as initial state', () {
@@ -145,6 +146,17 @@ void main() {
       expect: () => <CvEditorState>[
         initialState.copyWith(email: 'anyEmail'),
         initialState.copyWith(email: 'otherEmail'),
+      ],
+    );
+    blocTest<CvEditorBloc, CvEditorState>(
+      'update phone number',
+      build: () => CvEditorBloc(),
+      act: (bloc) => bloc
+        ..add(const PhoneNumberChanged('anyPhoneNumber'))
+        ..add(const PhoneNumberChanged('otherPhoneNumber')),
+      expect: () => <CvEditorState>[
+        initialState.copyWith(phoneNumber: 'anyPhoneNumber'),
+        initialState.copyWith(phoneNumber: 'otherPhoneNumber'),
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(

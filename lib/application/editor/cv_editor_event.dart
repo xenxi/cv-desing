@@ -98,3 +98,13 @@ class EmailChanged extends CvEditorEvent {
   @override
   List<Object> get props => [email];
 }
+
+class PhoneNumberChanged extends CvEditorEvent {
+  const PhoneNumberChanged(
+    this.phoneNumber,
+  );
+  final String phoneNumber;
+
+  @override
+  List<Object> get props => [phoneNumber];
+}
