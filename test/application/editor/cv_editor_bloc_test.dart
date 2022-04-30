@@ -12,6 +12,7 @@ void main() {
     skills: Skills.empty(),
     softwareSkills: SoftwareSkills.empty(),
     name: '',
+    locality: '',
   );
   group('CvEditorBloc should', () {
     test('has empty as initial state', () {
@@ -92,11 +93,22 @@ void main() {
       'update name',
       build: () => CvEditorBloc(),
       act: (bloc) => bloc
-        ..add(const NameChanged(name: 'anyName'))
-        ..add(const NameChanged(name: 'otherName')),
+        ..add(const NameChanged('anyName'))
+        ..add(const NameChanged('otherName')),
       expect: () => <CvEditorState>[
         initialState.copyWith(name: 'anyName'),
         initialState.copyWith(name: 'otherName'),
+      ],
+    );
+    blocTest<CvEditorBloc, CvEditorState>(
+      'update locality',
+      build: () => CvEditorBloc(),
+      act: (bloc) => bloc
+        ..add(const LocalityChanged('anyLocality'))
+        ..add(const LocalityChanged('otherLocality')),
+      expect: () => <CvEditorState>[
+        initialState.copyWith(locality: 'anyLocality'),
+        initialState.copyWith(locality: 'otherLocality'),
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(

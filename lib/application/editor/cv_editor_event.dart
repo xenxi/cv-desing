@@ -50,11 +50,21 @@ class SoftwareSkillDeleted extends CvEditorEvent {
 }
 
 class NameChanged extends CvEditorEvent {
-  const NameChanged({
-    required this.name,
-  });
+  const NameChanged(
+    this.name,
+  );
   final String name;
 
   @override
   List<Object> get props => [name];
+}
+
+class LocalityChanged extends CvEditorEvent {
+  const LocalityChanged(
+    this.locality,
+  );
+  final String locality;
+
+  @override
+  List<Object> get props => [locality];
 }

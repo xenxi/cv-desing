@@ -52,6 +52,12 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
             name: event.name,
           ),
         );
+      } else if (event is LocalityChanged) {
+        emit(
+          state.copyWith(
+            locality: event.locality,
+          ),
+        );
       }
     });
   }
