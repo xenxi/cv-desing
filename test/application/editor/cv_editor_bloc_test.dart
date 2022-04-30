@@ -54,15 +54,6 @@ void main() {
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
-      'change to complementary formations section',
-      build: () => CvEditorBloc(),
-      act: (bloc) => bloc
-          .add(const SectionChanged(section: Section.complementaryFormations)),
-      expect: () => <CvEditorState>[
-        initialState.copyWith(section: Section.complementaryFormations)
-      ],
-    );
-    blocTest<CvEditorBloc, CvEditorState>(
       'change to work experience section',
       build: () => CvEditorBloc(),
       act: (bloc) =>
