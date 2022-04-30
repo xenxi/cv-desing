@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
+import 'package:cv_desing_website_flutter/domain/percentage.dart';
 import 'package:cv_desing_website_flutter/domain/skills.dart';
 import 'package:cv_desing_website_flutter/domain/software_skill.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -121,4 +122,24 @@ void main() {
       ],
     );
   });
+  blocTest<CvEditorBloc, CvEditorState>(
+    'add software skill',
+    build: () => CvEditorBloc(),
+    act: (bloc) => bloc
+      ..add(
+        const SoftwareSkillAdded(name: 'anySoftwareSkillA', percentage: 50),
+      ),
+    expect: () => <CvEditorState>[
+      initialState.copyWith(
+        softwareSkills: const SoftwareSkills(
+          [
+            SoftwareSkill(
+              'anySoftwareSkillA',
+              Percentage(50),
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
 }

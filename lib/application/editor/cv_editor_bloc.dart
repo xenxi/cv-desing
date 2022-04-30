@@ -1,8 +1,7 @@
 // ignore: depend_on_referenced_packages
-import 'dart:ffi';
-
 import 'package:bloc/bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
+import 'package:cv_desing_website_flutter/domain/percentage.dart';
 import 'package:cv_desing_website_flutter/domain/skills.dart';
 import 'package:cv_desing_website_flutter/domain/software_skill.dart';
 import 'package:equatable/equatable.dart';
@@ -27,6 +26,17 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
         emit(
           state.copyWith(
             skills: state.skills.remove(event.skill),
+          ),
+        );
+      } else if (event is SoftwareSkillAdded) {
+        emit(
+          state.copyWith(
+            softwareSkills: const SoftwareSkills([
+              SoftwareSkill(
+                'anySoftwareSkillA',
+                Percentage(50),
+              ),
+            ]),
           ),
         );
       }
