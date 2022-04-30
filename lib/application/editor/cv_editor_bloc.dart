@@ -1,6 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
+import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
 import 'package:cv_desing_website_flutter/domain/percentage.dart';
 import 'package:cv_desing_website_flutter/domain/skills.dart';
 import 'package:cv_desing_website_flutter/domain/software_skill.dart';
@@ -68,6 +69,12 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
         emit(
           state.copyWith(
             personalDescription: event.personalDescription,
+          ),
+        );
+      } else if (event is EmailChanged) {
+        emit(
+          state.copyWith(
+            email: event.email,
           ),
         );
       }

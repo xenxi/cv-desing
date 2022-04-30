@@ -88,3 +88,13 @@ class PersonalDescriptionChanged extends CvEditorEvent {
   @override
   List<Object> get props => [personalDescription];
 }
+
+class EmailChanged extends CvEditorEvent {
+  const EmailChanged(
+    this.email,
+  );
+  final String email;
+
+  @override
+  List<Object> get props => [email];
+}
