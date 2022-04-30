@@ -78,3 +78,13 @@ class ProfessionChanged extends CvEditorEvent {
   @override
   List<Object> get props => [profession];
 }
+
+class PersonalDescriptionChanged extends CvEditorEvent {
+  const PersonalDescriptionChanged(
+    this.personalDescription,
+  );
+  final String personalDescription;
+
+  @override
+  List<Object> get props => [personalDescription];
+}

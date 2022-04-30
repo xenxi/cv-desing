@@ -64,6 +64,12 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
             profession: event.profession,
           ),
         );
+      } else if (event is PersonalDescriptionChanged) {
+        emit(
+          state.copyWith(
+            personalDescription: event.personalDescription,
+          ),
+        );
       }
     });
   }
