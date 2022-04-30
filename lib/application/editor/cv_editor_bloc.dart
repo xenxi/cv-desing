@@ -49,7 +49,7 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
       } else if (event is NameChanged) {
         emit(
           state.copyWith(
-            name: 'anyName',
+            name: event.name,
           ),
         );
       }

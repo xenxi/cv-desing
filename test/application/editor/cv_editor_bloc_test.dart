@@ -91,8 +91,13 @@ void main() {
     blocTest<CvEditorBloc, CvEditorState>(
       'update name',
       build: () => CvEditorBloc(),
-      act: (bloc) => bloc..add(const NameChanged(name: 'anyName')),
-      expect: () => <CvEditorState>[initialState.copyWith(name: 'anyName')],
+      act: (bloc) => bloc
+        ..add(const NameChanged(name: 'anyName'))
+        ..add(const NameChanged(name: 'otherName')),
+      expect: () => <CvEditorState>[
+        initialState.copyWith(name: 'anyName'),
+        initialState.copyWith(name: 'otherName'),
+      ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
       'update skills',
