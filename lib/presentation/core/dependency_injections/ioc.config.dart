@@ -32,7 +32,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
     {String? environment, _i2.EnvironmentFilter? environmentFilter}) {
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final registerModule = _$RegisterModule();
-  gh.factory<_i3.CveditorBloc>(() => _i3.CveditorBloc());
+  gh.factory<_i3.CvEditorBloc>(() => _i3.CvEditorBloc());
   gh.lazySingleton<_i4.FirebaseAuth>(() => registerModule.firebaseAuth);
   gh.lazySingleton<_i5.GlobalKey<_i5.NavigatorState>>(() => registerModule.key);
   gh.lazySingleton<_i6.GoogleSignIn>(() => registerModule.googleSignIn);
