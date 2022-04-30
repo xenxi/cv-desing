@@ -16,6 +16,9 @@ class DesingEditorView extends HookWidget {
       child: BlocBuilder<CvEditorBloc, CvEditorState>(
         builder: (context, state) {
           return Stepper(
+            controlsBuilder: (context, details) {
+              return Container();
+            },
             currentStep: _getCurrentStepFrom(state),
             onStepTapped: (index) => _updateSelectedSection(context, index),
             steps: _buildStepForms(),
