@@ -32,21 +32,23 @@ class SkillsForm extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
-            Expanded(
-              child: Wrap(
-                children: [
-                  ...state.skills.value.map(
-                    (skill) => FlipInX(
-                      child: InputChip(
-                        label: Text(skill),
-                        onDeleted: () => BlocProvider.of<CvEditorBloc>(context)
-                            .add(SkillDeleted(skill: skill)),
+            if (state.skills.value.isNotEmpty)
+              Expanded(
+                child: Wrap(
+                  children: [
+                    ...state.skills.value.map(
+                      (skill) => FlipInX(
+                        child: InputChip(
+                          label: Text(skill),
+                          onDeleted: () =>
+                              BlocProvider.of<CvEditorBloc>(context)
+                                  .add(SkillDeleted(skill: skill)),
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              ),
-            )
+                    )
+                  ],
+                ),
+              )
           ],
         );
       },
