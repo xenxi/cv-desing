@@ -1,6 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
+import 'package:cv_desing_website_flutter/domain/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
 import 'package:cv_desing_website_flutter/domain/languages.dart';
 import 'package:cv_desing_website_flutter/domain/percentage.dart';
@@ -95,6 +96,19 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
         emit(
           state.copyWith(
             languages: state.languages.remove(Language(event.language)),
+          ),
+        );
+      } else if (event is AcademyTrainingAdded) {
+        emit(
+          state.copyWith(
+            academyTrainings: state.academyTrainings.add(event.academyTraining),
+          ),
+        );
+      } else if (event is AcademyTrainingDeleted) {
+        emit(
+          state.copyWith(
+            academyTrainings:
+                state.academyTrainings.remove(event.academyTraining),
           ),
         );
       }

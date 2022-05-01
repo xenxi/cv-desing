@@ -130,3 +130,23 @@ class LanguageDeleted extends CvEditorEvent {
   @override
   List<Object> get props => [language];
 }
+
+class AcademyTrainingAdded extends CvEditorEvent {
+  const AcademyTrainingAdded(
+    this.academyTraining,
+  );
+  final AcademyTraining academyTraining;
+
+  @override
+  List<Object> get props => [academyTraining];
+}
+
+class AcademyTrainingDeleted extends CvEditorEvent {
+  const AcademyTrainingDeleted(
+    this.academyTraining,
+  );
+  final AcademyTraining academyTraining;
+
+  @override
+  List<Object> get props => [academyTraining];
+}

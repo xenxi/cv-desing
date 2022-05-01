@@ -16,6 +16,8 @@ class AcademyTraining extends ValueObject {
   List<Object?> get props => [
         title,
         schoold,
+        since,
+        until,
       ];
 }
 

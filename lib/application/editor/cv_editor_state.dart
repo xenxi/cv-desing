@@ -12,6 +12,7 @@ class CvEditorState extends Equatable {
         email: '',
         phoneNumber: '',
         languages: Languages.empty(),
+        academyTrainings: AcademyTrainings.empty(),
       );
   const CvEditorState({
     required this.section,
@@ -24,6 +25,7 @@ class CvEditorState extends Equatable {
     required this.email,
     required this.phoneNumber,
     required this.languages,
+    required this.academyTrainings,
   });
   final Section section;
   final Skills skills;
@@ -35,6 +37,7 @@ class CvEditorState extends Equatable {
   final String email;
   final String phoneNumber;
   final Languages languages;
+  final AcademyTrainings academyTrainings;
   @override
   List<Object> get props => [
         section,
@@ -47,6 +50,7 @@ class CvEditorState extends Equatable {
         email,
         phoneNumber,
         languages,
+        academyTrainings,
       ];
 
   CvEditorState copyWith({
@@ -60,6 +64,7 @@ class CvEditorState extends Equatable {
     String? email,
     String? phoneNumber,
     Languages? languages,
+    AcademyTrainings? academyTrainings,
   }) {
     return CvEditorState(
       section: section ?? this.section,
@@ -72,6 +77,7 @@ class CvEditorState extends Equatable {
       email: email ?? this.email,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       languages: languages ?? this.languages,
+      academyTrainings: academyTrainings ?? this.academyTrainings,
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
+import 'package:cv_desing_website_flutter/domain/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/languages.dart';
 import 'package:cv_desing_website_flutter/domain/percentage.dart';
 import 'package:cv_desing_website_flutter/domain/skills.dart';
@@ -19,6 +20,7 @@ void main() {
     email: '',
     phoneNumber: '',
     languages: Languages.empty(),
+    academyTrainings: AcademyTrainings.empty(),
   );
   group('CvEditorBloc should', () {
     test('has empty as initial state', () {
@@ -210,55 +212,132 @@ void main() {
         ),
       ],
     );
+    blocTest<CvEditorBloc, CvEditorState>(
+      'update academy training',
+      build: () => CvEditorBloc(),
+      act: (bloc) => bloc
+        ..add(
+          AcademyTrainingAdded(
+            AcademyTraining(
+              schoold: 'anySchoold',
+              title: 'anyTitle',
+              since: DateTime(2020),
+              until: DateTime(2022),
+            ),
+          ),
+        )
+        ..add(
+          AcademyTrainingAdded(
+            AcademyTraining(
+              schoold: 'otherSchoold',
+              title: 'otherTitle',
+              since: DateTime(2021),
+            ),
+          ),
+        )
+        ..add(
+          AcademyTrainingDeleted(
+            AcademyTraining(
+              schoold: 'otherSchoold',
+              title: 'otherTitle',
+              since: DateTime(2021),
+            ),
+          ),
+        ),
+      expect: () => <CvEditorState>[
+        initialState.copyWith(
+          academyTrainings: AcademyTrainings(
+            [
+              AcademyTraining(
+                schoold: 'anySchoold',
+                title: 'anyTitle',
+                since: DateTime(2020),
+                until: DateTime(2022),
+              ),
+            ],
+          ),
+        ),
+        initialState.copyWith(
+          academyTrainings: AcademyTrainings(
+            [
+              AcademyTraining(
+                schoold: 'anySchoold',
+                title: 'anyTitle',
+                since: DateTime(2020),
+                until: DateTime(2022),
+              ),
+              AcademyTraining(
+                schoold: 'otherSchoold',
+                title: 'otherTitle',
+                since: DateTime(2021),
+              ),
+            ],
+          ),
+        ),
+        initialState.copyWith(
+          academyTrainings: AcademyTrainings(
+            [
+              AcademyTraining(
+                schoold: 'anySchoold',
+                title: 'anyTitle',
+                since: DateTime(2020),
+                until: DateTime(2022),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+
+    blocTest<CvEditorBloc, CvEditorState>(
+      'update software skills',
+      build: () => CvEditorBloc(),
+      act: (bloc) => bloc
+        ..add(
+          const SoftwareSkillAdded(name: 'anySoftwareSkillA', percentage: 50),
+        )
+        ..add(
+          const SoftwareSkillAdded(name: 'otherSoftwareSkillA', percentage: 10),
+        )
+        ..add(
+          const SoftwareSkillDeleted(name: 'otherSoftwareSkillA'),
+        ),
+      expect: () => <CvEditorState>[
+        initialState.copyWith(
+          softwareSkills: const SoftwareSkills(
+            [
+              SoftwareSkill(
+                'anySoftwareSkillA',
+                percentage: Percentage(50),
+              ),
+            ],
+          ),
+        ),
+        initialState.copyWith(
+          softwareSkills: const SoftwareSkills(
+            [
+              SoftwareSkill(
+                'anySoftwareSkillA',
+                percentage: Percentage(50),
+              ),
+              SoftwareSkill(
+                'otherSoftwareSkillA',
+                percentage: Percentage(10),
+              ),
+            ],
+          ),
+        ),
+        initialState.copyWith(
+          softwareSkills: const SoftwareSkills(
+            [
+              SoftwareSkill(
+                'anySoftwareSkillA',
+                percentage: Percentage(50),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   });
-  blocTest<CvEditorBloc, CvEditorState>(
-    'update software skills',
-    build: () => CvEditorBloc(),
-    act: (bloc) => bloc
-      ..add(
-        const SoftwareSkillAdded(name: 'anySoftwareSkillA', percentage: 50),
-      )
-      ..add(
-        const SoftwareSkillAdded(name: 'otherSoftwareSkillA', percentage: 10),
-      )
-      ..add(
-        const SoftwareSkillDeleted(name: 'otherSoftwareSkillA'),
-      ),
-    expect: () => <CvEditorState>[
-      initialState.copyWith(
-        softwareSkills: const SoftwareSkills(
-          [
-            SoftwareSkill(
-              'anySoftwareSkillA',
-              percentage: Percentage(50),
-            ),
-          ],
-        ),
-      ),
-      initialState.copyWith(
-        softwareSkills: const SoftwareSkills(
-          [
-            SoftwareSkill(
-              'anySoftwareSkillA',
-              percentage: Percentage(50),
-            ),
-            SoftwareSkill(
-              'otherSoftwareSkillA',
-              percentage: Percentage(10),
-            ),
-          ],
-        ),
-      ),
-      initialState.copyWith(
-        softwareSkills: const SoftwareSkills(
-          [
-            SoftwareSkill(
-              'anySoftwareSkillA',
-              percentage: Percentage(50),
-            ),
-          ],
-        ),
-      ),
-    ],
-  );
 }
