@@ -1,10 +1,22 @@
 part of 'academy_training_form_bloc.dart';
 
-abstract class AcademyTrainingFormState extends Equatable {
-  const AcademyTrainingFormState();
+class AcademyTrainingFormState extends Equatable {
+  factory AcademyTrainingFormState.initial() => AcademyTrainingFormState(
+        title: Title.empty(),
+      );
+  const AcademyTrainingFormState({
+    required this.title,
+  });
+  final Either<Failure<String>, Title> title;
 
   @override
-  List<Object> get props => [];
-}
+  List<Object> get props => [title];
 
-class AcademytrainingformInitial extends AcademyTrainingFormState {}
+  AcademyTrainingFormState copyWith({
+    Either<Failure<String>, Title>? title,
+  }) {
+    return AcademyTrainingFormState(
+      title: title ?? this.title,
+    );
+  }
+}
