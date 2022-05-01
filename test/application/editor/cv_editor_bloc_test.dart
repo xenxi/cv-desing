@@ -26,12 +26,12 @@ void main() {
   );
   final otherAcademyTraining = AcademyTraining(
     schoold: 'otherSchoold',
-    title: Title.create('otherTitle').getOrCrash(),
+    title: Title('otherTitle'),
     since: DateTime(2021),
   );
   final anyAcademyTraining = AcademyTraining(
     schoold: 'otherSchoold',
-    title: Title.create('otherTitle').getOrCrash(),
+    title: Title('otherTitle'),
     since: DateTime(2021),
   );
   group('CvEditorBloc should', () {
@@ -184,18 +184,16 @@ void main() {
         ..add(const LanguageDeleted('otherLanguage')),
       expect: () => <CvEditorState>[
         initialState.copyWith(
-          languages:
-              const Languages([Language('anyLanguage', level: 'anyLevel')]),
+          languages: Languages([Language('anyLanguage', level: 'anyLevel')]),
         ),
         initialState.copyWith(
-          languages: const Languages([
+          languages: Languages([
             Language('anyLanguage', level: 'anyLevel'),
             Language('otherLanguage', level: 'otherLevel')
           ]),
         ),
         initialState.copyWith(
-          languages:
-              const Languages([Language('anyLanguage', level: 'anyLevel')]),
+          languages: Languages([Language('anyLanguage', level: 'anyLevel')]),
         ),
       ],
     );
@@ -282,7 +280,7 @@ void main() {
         ),
       expect: () => <CvEditorState>[
         initialState.copyWith(
-          softwareSkills: const SoftwareSkills(
+          softwareSkills: SoftwareSkills(
             [
               SoftwareSkill(
                 'anySoftwareSkillA',
@@ -292,7 +290,7 @@ void main() {
           ),
         ),
         initialState.copyWith(
-          softwareSkills: const SoftwareSkills(
+          softwareSkills: SoftwareSkills(
             [
               SoftwareSkill(
                 'anySoftwareSkillA',
@@ -306,7 +304,7 @@ void main() {
           ),
         ),
         initialState.copyWith(
-          softwareSkills: const SoftwareSkills(
+          softwareSkills: SoftwareSkills(
             [
               SoftwareSkill(
                 'anySoftwareSkillA',

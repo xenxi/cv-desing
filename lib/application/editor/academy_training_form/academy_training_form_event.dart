@@ -12,3 +12,8 @@ class TitleChanged extends AcademyTrainingFormEvent {
   @override
   List<Object?> get props => [title];
 }
+
+class Saved extends AcademyTrainingFormEvent {
+  @override
+  List<Object?> get props => [];
+}

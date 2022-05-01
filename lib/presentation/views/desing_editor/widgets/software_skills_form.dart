@@ -15,15 +15,15 @@ class SoftwareSkillsForm extends StatelessWidget {
             const _Editor(),
             ...state.softwareSkills.value.map(
               (skill) => ListTile(
-                title: Text(skill.value),
+                title: Text(skill.getOrCrash()),
                 subtitle: LinearProgressIndicator(
-                  value: skill.percentage.value / 100,
+                  value: skill.percentage.getOrCrash() / 100,
                 ),
                 leading: const Icon(Icons.featured_play_list_outlined),
                 trailing: IconButton(
                   icon: const Icon(Icons.delete),
                   onPressed: () => BlocProvider.of<CvEditorBloc>(context)
-                      .add(SoftwareSkillDeleted(name: skill.value)),
+                      .add(SoftwareSkillDeleted(name: skill.getOrCrash())),
                 ),
               ),
             ),

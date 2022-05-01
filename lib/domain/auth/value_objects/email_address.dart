@@ -3,35 +3,19 @@ import 'package:cv_desing_website_flutter/domain/failure.dart';
 import 'package:cv_desing_website_flutter/domain/value_object.dart';
 import 'package:dartz/dartz.dart';
 
-class EmailAddress extends ValueObject {
-  const EmailAddress._(
-    this.value,
-  );
+class EmailAddress extends ValueObject<String> {
+  factory EmailAddress(String input) =>
+      EmailAddress._(_validateEmailAddress(input));
+  factory EmailAddress.empty() => EmailAddress('');
 
-  final String value;
-
-  static Either<Failure, EmailAddress> create(String input) {
-    return _validateEmailAddress(input).bind((a) => right(EmailAddress._(a)));
-  }
-
-  static Either<Failure, EmailAddress> empty() {
-    return create('');
-  }
-
+  const EmailAddress._(this.value);
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is EmailAddress && other.value == value;
-  }
-
-  @override
-  int get hashCode => value.hashCode;
+  final Either<Failure<String>, String> value;
 
   @override
   String toString() => 'EmailAddress($value)';
 
-  static Either<Failure, String> _validateEmailAddress(String input) {
+  static Either<Failure<String>, String> _validateEmailAddress(String input) {
     const emailRegex =
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
     if (!RegExp(emailRegex).hasMatch(input)) {
@@ -40,7 +24,4 @@ class EmailAddress extends ValueObject {
 
     return right(input);
   }
-
-  @override
-  List<Object?> get props => [value];
 }

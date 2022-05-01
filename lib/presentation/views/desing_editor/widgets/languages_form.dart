@@ -16,13 +16,13 @@ class LanguagesForm extends StatelessWidget {
               const _Editor(),
               ...state.languages.value.map(
                 (language) => ListTile(
-                  title: Text(language.value),
+                  title: Text(language.getOrCrash()),
                   subtitle: Chip(label: Text(language.level)),
                   leading: const Icon(Icons.language_outlined),
                   trailing: IconButton(
                     icon: const Icon(Icons.delete),
                     onPressed: () => BlocProvider.of<CvEditorBloc>(context)
-                        .add(LanguageDeleted(language.value)),
+                        .add(LanguageDeleted(language.getOrCrash())),
                   ),
                 ),
               ),

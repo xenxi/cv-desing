@@ -1,6 +1,7 @@
 import 'package:cv_desing_website_flutter/domain/value_object.dart';
+import 'package:equatable/equatable.dart';
 
-class Skills extends ValueObject {
+class Skills extends Equatable {
   factory Skills.empty() => const Skills(<String>[]);
   const Skills(this.value);
 

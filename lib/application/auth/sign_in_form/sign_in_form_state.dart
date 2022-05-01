@@ -16,8 +16,8 @@ class SignInFormState extends Equatable {
     required this.showLoader,
   });
 
-  final Either<Failure, EmailAddress> email;
-  final Either<Failure, Password> password;
+  final EmailAddress email;
+  final Password password;
   final Option<Either<AuthFailure, Unit>> failureOrSuccessOption;
   final bool showErrorMessages;
   final bool showLoader;
@@ -27,8 +27,8 @@ class SignInFormState extends Equatable {
       [email, password, failureOrSuccessOption, showErrorMessages, showLoader];
 
   SignInFormState copyWith({
-    Either<Failure, EmailAddress>? email,
-    Either<Failure, Password>? password,
+    EmailAddress? email,
+    Password? password,
     Option<Either<AuthFailure, Unit>>? failureOrSuccessOption,
     bool? showErrorMessages,
     bool? showLoader,

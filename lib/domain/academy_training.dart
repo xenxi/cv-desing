@@ -1,7 +1,8 @@
 import 'package:cv_desing_website_flutter/domain/title.dart';
 import 'package:cv_desing_website_flutter/domain/value_object.dart';
+import 'package:equatable/equatable.dart';
 
-class AcademyTraining extends ValueObject {
+class AcademyTraining extends Equatable {
   const AcademyTraining({
     required this.title,
     required this.schoold,
@@ -22,7 +23,7 @@ class AcademyTraining extends ValueObject {
       ];
 }
 
-class AcademyTrainings extends ValueObject {
+class AcademyTrainings extends Equatable {
   factory AcademyTrainings.empty() => const AcademyTrainings([]);
   const AcademyTrainings(this.value);
 

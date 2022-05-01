@@ -25,8 +25,8 @@ class FirebaseAuthFacade implements IAuthFacade {
   }) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email.value,
-        password: password.value,
+        email: email.getOrCrash(),
+        password: password.getOrCrash(),
       );
       return right(unit);
     } on FirebaseAuthException catch (e) {
@@ -45,8 +45,8 @@ class FirebaseAuthFacade implements IAuthFacade {
   }) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
-        email: email.value,
-        password: password.value,
+        email: email.getOrCrash(),
+        password: password.getOrCrash(),
       );
       return right(unit);
     } on FirebaseAuthException catch (e) {
@@ -102,7 +102,6 @@ class FirebaseAuthFacade implements IAuthFacade {
       ]);
 
   domain_model.User _mapFrom(User user) => domain_model.User(
-        avatarUrl:
-            Url.create(user.photoURL ?? '').fold((l) => none(), (r) => some(r)),
+        avatarUrl: Url(user.photoURL),
       );
 }

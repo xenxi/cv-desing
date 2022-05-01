@@ -1,17 +1,29 @@
+import 'package:cv_desing_website_flutter/domain/failure.dart';
 import 'package:cv_desing_website_flutter/domain/percentage.dart';
 import 'package:cv_desing_website_flutter/domain/value_object.dart';
+import 'package:cv_desing_website_flutter/domain/value_validators.dart';
+import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
 
-class SoftwareSkill extends ValueObject {
-  const SoftwareSkill(this.value, {this.percentage = const Percentage(0)});
-
-  final String value;
-  final Percentage percentage;
+class SoftwareSkill extends ValueObject<String> {
+  const SoftwareSkill._(
+    this.value, {
+    required this.percentage,
+  });
+  factory SoftwareSkill(String title, {Percentage? percentage}) =>
+      SoftwareSkill._(
+        validateStringIsNotEmpty(title),
+        percentage: percentage ?? Percentage.empty(),
+      );
+  factory SoftwareSkill.empty() => SoftwareSkill('');
 
   @override
-  List<Object?> get props => [value];
+  final Either<Failure<String>, String> value;
+
+  final Percentage percentage;
 }
 
-class SoftwareSkills extends ValueObject {
+class SoftwareSkills extends Equatable {
   factory SoftwareSkills.empty() => const SoftwareSkills([]);
   const SoftwareSkills(this.value);
 

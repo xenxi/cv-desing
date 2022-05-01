@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/auth/auth_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/auth/i_auth_facade.dart';
 import 'package:cv_desing_website_flutter/domain/auth/user.dart';
+import 'package:cv_desing_website_flutter/domain/url.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -10,7 +11,7 @@ class MockIAuthFacade extends Mock implements IAuthFacade {}
 
 void main() {
   late MockIAuthFacade authFacade;
-  final anyAuthUser = User(avatarUrl: none());
+  final anyAuthUser = User(avatarUrl: Url.empty());
   setUp(() {
     authFacade = MockIAuthFacade();
   });

@@ -3,7 +3,6 @@ import 'package:cv_desing_website_flutter/application/auth/sign_in_form/sign_in_
 import 'package:cv_desing_website_flutter/domain/auth/i_auth_facade.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/password.dart';
-import 'package:cv_desing_website_flutter/domain/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -12,11 +11,11 @@ class MockIAuthFacade extends Mock implements IAuthFacade {}
 
 void main() {
   const anyValidEmail = 'anyValidEmail@test.com';
-  final anyValidEmailOrFailure = EmailAddress.create(anyValidEmail);
+  final anyValidEmailOrFailure = EmailAddress(anyValidEmail);
   final anyInvalidEmailOrFailure = EmailAddress.empty();
 
   const anyValidPassword = 'anyValidPassword';
-  final anyValidPasswordOrFailure = Password.create(anyValidPassword);
+  final anyValidPasswordOrFailure = Password(anyValidPassword);
   final anyInvalidPasswordOrFailure = Password.empty();
 
   late MockIAuthFacade authFacade;
@@ -45,8 +44,8 @@ void main() {
       setUp: () {
         when(
           () => authFacade.signInWithEmailAndPassword(
-            email: anyValidEmailOrFailure.getOrCrash(),
-            password: anyValidPasswordOrFailure.getOrCrash(),
+            email: anyValidEmailOrFailure,
+            password: anyValidPasswordOrFailure,
           ),
         ).thenAnswer((_) => Future.value(right(unit)));
       },
@@ -58,8 +57,8 @@ void main() {
       verify: (_) {
         verify(
           () => authFacade.signInWithEmailAndPassword(
-            email: anyValidEmailOrFailure.getOrCrash(),
-            password: anyValidPasswordOrFailure.getOrCrash(),
+            email: anyValidEmailOrFailure,
+            password: anyValidPasswordOrFailure,
           ),
         ).called(1);
       },
@@ -100,8 +99,8 @@ void main() {
       setUp: () {
         when(
           () => authFacade.signUpWithEmailAndPassword(
-            email: anyValidEmailOrFailure.getOrCrash(),
-            password: anyValidPasswordOrFailure.getOrCrash(),
+            email: anyValidEmailOrFailure,
+            password: anyValidPasswordOrFailure,
           ),
         ).thenAnswer((_) => Future.value(right(unit)));
       },
@@ -113,8 +112,8 @@ void main() {
       verify: (_) {
         verify(
           () => authFacade.signUpWithEmailAndPassword(
-            email: anyValidEmailOrFailure.getOrCrash(),
-            password: anyValidPasswordOrFailure.getOrCrash(),
+            email: anyValidEmailOrFailure,
+            password: anyValidPasswordOrFailure,
           ),
         ).called(1);
       },

@@ -7,13 +7,13 @@ class AcademyTrainingFormState extends Equatable {
   const AcademyTrainingFormState({
     required this.title,
   });
-  final Either<Failure<String>, Title> title;
+  final Title title;
 
   @override
   List<Object> get props => [title];
 
   AcademyTrainingFormState copyWith({
-    Either<Failure<String>, Title>? title,
+    Title? title,
   }) {
     return AcademyTrainingFormState(
       title: title ?? this.title,

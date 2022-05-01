@@ -5,8 +5,18 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-abstract class ValueObject extends Equatable {
+abstract class ValueObject<T> extends Equatable {
   const ValueObject();
+  Either<Failure<T>, T> get value;
+  T getOrCrash() {
+    return value.fold((f) => throw UnexpectedValueError(f), id);
+  }
+
+  B fold<B>(B Function(Failure<T> l) ifLeft, B Function(T r) ifRight) =>
+      value.fold(ifLeft, ifRight);
+  bool isValid() => value.isRight();
+  @override
+  List<Object?> get props => [value];
 }
 
 extension ValueObjectExtension<T> on Either<Failure, T> {

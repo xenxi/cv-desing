@@ -3,20 +3,13 @@ import 'package:cv_desing_website_flutter/domain/value_object.dart';
 import 'package:cv_desing_website_flutter/domain/value_validators.dart';
 import 'package:dartz/dartz.dart';
 
-class Title extends ValueObject {
+class Title extends ValueObject<String> {
   const Title._(this.value);
 
-  factory Title(String input) {
-    return Title._(input);
+  factory Title(String title) {
+    return Title._(validateStringIsNotEmpty(title));
   }
-
-  static Either<Failure<String>, Title> create(String input) =>
-      validateStringIsNotEmpty(input).bind((a) => right(Title._(a)));
-
-  static Either<Failure<String>, Title> empty() => create('');
-
-  final String value;
-
+  factory Title.empty() => Title('');
   @override
-  List<Object?> get props => [value];
+  final Either<Failure<String>, String> value;
 }

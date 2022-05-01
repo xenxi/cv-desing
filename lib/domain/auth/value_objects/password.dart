@@ -3,22 +3,16 @@ import 'package:cv_desing_website_flutter/domain/failure.dart';
 import 'package:cv_desing_website_flutter/domain/value_object.dart';
 import 'package:dartz/dartz.dart';
 
-class Password extends ValueObject {
+class Password extends ValueObject<String> {
+  factory Password(String value) => Password._(_validatePassword(value));
+
   const Password._(this.value);
-
-  final String value;
-
-  static Either<Failure, Password> create(String value) {
-    return _validatePassword(value).bind((a) => right(Password._(a)));
-  }
-
+  factory Password.empty() => Password('');
   @override
-  List<Object?> get props => [value];
+  final Either<Failure<String>, String> value;
 
-  static Either<Failure, String> _validatePassword(String value) {
+  static Either<Failure<String>, String> _validatePassword(String value) {
     if (value.isEmpty) return left(InvalidPasswordFailure(failedValue: value));
     return right(value);
   }
-
-  static Either<Failure, Password> empty() => create('');
 }

@@ -23,8 +23,8 @@ void main() {
         ..add(const TitleChanged('anyTitle'))
         ..add(const TitleChanged('otherTitle')),
       expect: () => <AcademyTrainingFormState>[
-        AcademyTrainingFormState(title: Title.create('anyTitle')),
-        AcademyTrainingFormState(title: Title.create('otherTitle')),
+        AcademyTrainingFormState(title: Title('anyTitle')),
+        AcademyTrainingFormState(title: Title('otherTitle')),
       ],
     );
   });
