@@ -61,7 +61,7 @@ class FormStepBuilder extends Step {
       case Section.softwareSkills:
         return const SoftwareSkillsForm();
       case Section.skillsandAptitudes:
-        return const SkillsForm();
+        return SkillsForm();
     }
   }
 }

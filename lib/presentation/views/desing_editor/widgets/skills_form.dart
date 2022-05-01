@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SkillsForm extends StatelessWidget {
-  const SkillsForm({Key? key}) : super(key: key);
+  SkillsForm({Key? key}) : super(key: key);
+  final controller = TextEditingController();
+  final focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController();
-    final focusNode = FocusNode();
     return BlocBuilder<CvEditorBloc, CvEditorState>(
       buildWhen: (previous, current) => previous.skills != current.skills,
       builder: (context, state) {
@@ -20,24 +20,15 @@ class SkillsForm extends StatelessWidget {
                 focusNode: focusNode,
                 controller: controller,
                 decoration: InputDecoration(
-                    suffix: IconButton(
-                        onPressed: () {
-                          FocusScope.of(context).requestFocus(focusNode);
-                          BlocProvider.of<CvEditorBloc>(context)
-                              .add(SkillAdded(skill: controller.text));
-
-                          controller.text = '';
-                        },
-                        icon: const Icon(Icons.save)),
-                    prefixIcon: const Icon(Icons.featured_play_list_outlined),
-                    labelText: 'Competencia o habilidad',
-                    helperText: 'Pulse enter para agregar'),
-                onSubmitted: (skill) {
-                  controller.text = '';
-                  FocusScope.of(context).requestFocus(focusNode);
-                  BlocProvider.of<CvEditorBloc>(context)
-                      .add(SkillAdded(skill: skill));
-                },
+                  suffix: IconButton(
+                    onPressed: () => _saveSkill(context),
+                    icon: const Icon(Icons.save),
+                  ),
+                  prefixIcon: const Icon(Icons.featured_play_list_outlined),
+                  labelText: 'Competencia o habilidad',
+                  helperText: 'Pulse enter para agregar',
+                ),
+                onSubmitted: (_) => _saveSkill(context),
               ),
             ),
             const SizedBox(width: 8),
@@ -60,5 +51,15 @@ class SkillsForm extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _saveSkill(
+    BuildContext context,
+  ) {
+    FocusScope.of(context).requestFocus(focusNode);
+    BlocProvider.of<CvEditorBloc>(context)
+        .add(SkillAdded(skill: controller.text));
+
+    controller.clear();
   }
 }
