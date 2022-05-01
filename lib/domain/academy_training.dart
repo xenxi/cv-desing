@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/domain/title.dart';
 import 'package:cv_desing_website_flutter/domain/value_object.dart';
 
 class AcademyTraining extends ValueObject {
@@ -7,7 +8,7 @@ class AcademyTraining extends ValueObject {
     required this.since,
     this.until,
   });
-  final String title;
+  final Title title;
   final String schoold;
   final DateTime since;
   final DateTime? until;

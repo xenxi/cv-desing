@@ -6,6 +6,8 @@ import 'package:cv_desing_website_flutter/domain/languages.dart';
 import 'package:cv_desing_website_flutter/domain/percentage.dart';
 import 'package:cv_desing_website_flutter/domain/skills.dart';
 import 'package:cv_desing_website_flutter/domain/software_skill.dart';
+import 'package:cv_desing_website_flutter/domain/title.dart';
+import 'package:cv_desing_website_flutter/domain/value_object.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -24,12 +26,12 @@ void main() {
   );
   final otherAcademyTraining = AcademyTraining(
     schoold: 'otherSchoold',
-    title: 'otherTitle',
+    title: Title.create('otherTitle').getOrCrash(),
     since: DateTime(2021),
   );
   final anyAcademyTraining = AcademyTraining(
     schoold: 'otherSchoold',
-    title: 'otherTitle',
+    title: Title.create('otherTitle').getOrCrash(),
     since: DateTime(2021),
   );
   group('CvEditorBloc should', () {
