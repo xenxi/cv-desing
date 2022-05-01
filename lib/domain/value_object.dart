@@ -18,9 +18,3 @@ abstract class ValueObject<T> extends Equatable {
   @override
   List<Object?> get props => [value];
 }
-
-extension ValueObjectExtension<T> on Either<Failure, T> {
-  T getOrCrash() {
-    return fold((f) => throw UnexpectedValueError(f), id);
-  }
-}
