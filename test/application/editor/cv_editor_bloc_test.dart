@@ -22,6 +22,16 @@ void main() {
     languages: Languages.empty(),
     academyTrainings: AcademyTrainings.empty(),
   );
+  final otherAcademyTraining = AcademyTraining(
+    schoold: 'otherSchoold',
+    title: 'otherTitle',
+    since: DateTime(2021),
+  );
+  final anyAcademyTraining = AcademyTraining(
+    schoold: 'otherSchoold',
+    title: 'otherTitle',
+    since: DateTime(2021),
+  );
   group('CvEditorBloc should', () {
     test('has empty as initial state', () {
       final bloc = CvEditorBloc();
@@ -217,72 +227,38 @@ void main() {
       build: () => CvEditorBloc(),
       act: (bloc) => bloc
         ..add(
-          AcademyTrainingAdded(
-            AcademyTraining(
-              schoold: 'anySchoold',
-              title: 'anyTitle',
-              since: DateTime(2020),
-              until: DateTime(2022),
-            ),
-          ),
+          AcademyTrainingAdded(anyAcademyTraining),
         )
         ..add(
           AcademyTrainingAdded(
-            AcademyTraining(
-              schoold: 'otherSchoold',
-              title: 'otherTitle',
-              since: DateTime(2021),
-            ),
+            otherAcademyTraining,
           ),
         )
         ..add(
           AcademyTrainingDeleted(
-            AcademyTraining(
-              schoold: 'otherSchoold',
-              title: 'otherTitle',
-              since: DateTime(2021),
-            ),
+            otherAcademyTraining,
           ),
         ),
       expect: () => <CvEditorState>[
         initialState.copyWith(
           academyTrainings: AcademyTrainings(
             [
-              AcademyTraining(
-                schoold: 'anySchoold',
-                title: 'anyTitle',
-                since: DateTime(2020),
-                until: DateTime(2022),
-              ),
+              anyAcademyTraining,
             ],
           ),
         ),
         initialState.copyWith(
           academyTrainings: AcademyTrainings(
             [
-              AcademyTraining(
-                schoold: 'anySchoold',
-                title: 'anyTitle',
-                since: DateTime(2020),
-                until: DateTime(2022),
-              ),
-              AcademyTraining(
-                schoold: 'otherSchoold',
-                title: 'otherTitle',
-                since: DateTime(2021),
-              ),
+              anyAcademyTraining,
+              otherAcademyTraining,
             ],
           ),
         ),
         initialState.copyWith(
           academyTrainings: AcademyTrainings(
             [
-              AcademyTraining(
-                schoold: 'anySchoold',
-                title: 'anyTitle',
-                since: DateTime(2020),
-                until: DateTime(2022),
-              ),
+              anyAcademyTraining,
             ],
           ),
         ),
