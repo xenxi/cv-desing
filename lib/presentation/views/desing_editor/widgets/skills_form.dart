@@ -32,7 +32,7 @@ class SkillsForm extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
-            if (state.skills.value.isNotEmpty)
+            if (_hasAnySkill(state))
               Expanded(
                 child: Wrap(
                   children: [
@@ -54,6 +54,8 @@ class SkillsForm extends StatelessWidget {
       },
     );
   }
+
+  bool _hasAnySkill(CvEditorState state) => state.skills.value.isNotEmpty;
 
   void _saveSkill(
     BuildContext context,
