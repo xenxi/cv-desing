@@ -19,8 +19,17 @@ class SkillsForm extends StatelessWidget {
               child: TextField(
                 focusNode: focusNode,
                 controller: controller,
-                decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.featured_play_list_outlined),
+                decoration: InputDecoration(
+                    suffix: IconButton(
+                        onPressed: () {
+                          FocusScope.of(context).requestFocus(focusNode);
+                          BlocProvider.of<CvEditorBloc>(context)
+                              .add(SkillAdded(skill: controller.text));
+
+                          controller.text = '';
+                        },
+                        icon: const Icon(Icons.save)),
+                    prefixIcon: const Icon(Icons.featured_play_list_outlined),
                     labelText: 'Competencia o habilidad',
                     helperText: 'Pulse enter para agregar'),
                 onSubmitted: (skill) {
