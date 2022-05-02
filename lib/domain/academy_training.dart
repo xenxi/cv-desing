@@ -1,5 +1,4 @@
 import 'package:cv_desing_website_flutter/domain/title.dart';
-import 'package:cv_desing_website_flutter/domain/value_object.dart';
 import 'package:equatable/equatable.dart';
 
 class AcademyTraining extends Equatable {
@@ -9,6 +8,11 @@ class AcademyTraining extends Equatable {
     required this.since,
     this.until,
   });
+  factory AcademyTraining.empty() => AcademyTraining(
+        title: Title.empty(),
+        schoold: '',
+        since: DateTime(2022),
+      );
   final Title title;
   final String schoold;
   final DateTime since;
@@ -21,6 +25,20 @@ class AcademyTraining extends Equatable {
         since,
         until,
       ];
+
+  AcademyTraining copyWith({
+    Title? title,
+    String? schoold,
+    DateTime? since,
+    DateTime? until,
+  }) {
+    return AcademyTraining(
+      title: title ?? this.title,
+      schoold: schoold ?? this.schoold,
+      since: since ?? this.since,
+      until: until ?? this.until,
+    );
+  }
 }
 
 class AcademyTrainings extends Equatable {

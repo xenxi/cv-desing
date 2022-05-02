@@ -1,5 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
+import 'package:cv_desing_website_flutter/domain/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/title.dart';
 import 'package:equatable/equatable.dart';
 
@@ -11,7 +12,13 @@ class AcademyTrainingFormBloc
   AcademyTrainingFormBloc() : super(AcademyTrainingFormState.initial()) {
     on<AcademyTrainingFormEvent>((event, emit) {
       if (event is TitleChanged) {
-        emit(state.copyWith(title: Title(event.title)));
+        emit(
+          state.copyWith(
+            academyTraining: state.academyTraining.copyWith(
+              title: Title(event.title),
+            ),
+          ),
+        );
       }
     });
   }
