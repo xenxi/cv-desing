@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/domain/title.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
 import 'package:equatable/equatable.dart';
 
 class AcademyTraining extends Equatable {

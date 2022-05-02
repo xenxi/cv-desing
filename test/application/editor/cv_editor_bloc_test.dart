@@ -2,12 +2,12 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/domain/academy_training.dart';
-import 'package:cv_desing_website_flutter/domain/languages.dart';
-import 'package:cv_desing_website_flutter/domain/percentage.dart';
-import 'package:cv_desing_website_flutter/domain/skills.dart';
-import 'package:cv_desing_website_flutter/domain/software_skill.dart';
-import 'package:cv_desing_website_flutter/domain/title.dart';
-import 'package:cv_desing_website_flutter/domain/value_object.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/percentage.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/skills.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/value_object.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -4,7 +4,7 @@ import 'package:cv_desing_website_flutter/domain/auth/user.dart'
     as domain_model;
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/password.dart';
-import 'package:cv_desing_website_flutter/domain/url.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';

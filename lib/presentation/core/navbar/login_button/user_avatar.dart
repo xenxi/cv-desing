@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/domain/url.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:flutter/material.dart';
 

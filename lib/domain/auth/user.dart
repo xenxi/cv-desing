@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/domain/url.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {

@@ -3,10 +3,10 @@ import 'package:bloc/bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/domain/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
-import 'package:cv_desing_website_flutter/domain/languages.dart';
-import 'package:cv_desing_website_flutter/domain/percentage.dart';
-import 'package:cv_desing_website_flutter/domain/skills.dart';
-import 'package:cv_desing_website_flutter/domain/software_skill.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/percentage.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/skills.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
