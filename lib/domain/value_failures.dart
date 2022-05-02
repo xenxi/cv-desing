@@ -1,5 +1,13 @@
 import 'package:cv_desing_website_flutter/domain/failure.dart';
 
-class Empty extends Failure<String> {
-  const Empty() : super('');
+class Empty<T> extends Failure<T> {
+  const Empty() : super(null as T);
+}
+
+class ExceedingMaxDate extends Failure<DateTime> {
+  const ExceedingMaxDate(DateTime date) : super(date);
+}
+
+class ExceedingMinDate extends Failure<DateTime> {
+  const ExceedingMinDate(DateTime date) : super(date);
 }
