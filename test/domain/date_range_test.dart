@@ -15,11 +15,19 @@ void main() {
       expect(dateRange.value, right(expectedRange));
     });
 
-    test('return an invalid empty range', () {
-      final dateRange = DateRange(since: null, until: null);
+    for (final testCase in [
+      {'since': null, 'until': null},
+      {'since': null, 'until': DateTime(2020)},
+    ]) {
+      test('return an empty date range', () {
+        final since = testCase['since'];
+        final until = testCase['until'];
 
-      const expectedFailure = Empty<RangeOfDates>();
-      expect(dateRange.value, left(expectedFailure));
-    });
+        final dateRange = DateRange(since: since, until: until);
+
+        const expectedFailure = Empty<RangeOfDates>();
+        expect(dateRange.value, left(expectedFailure));
+      });
+    }
   });
 }
