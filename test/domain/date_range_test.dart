@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/domain/value_failures.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,6 +13,13 @@ void main() {
 
       final expectedRange = RangeOfDates(since, optionOf(until));
       expect(dateRange.value, right(expectedRange));
+    });
+
+    test('return an invalid empty range', () {
+      final dateRange = DateRange(since: null, until: null);
+
+      const expectedFailure = Empty<RangeOfDates>();
+      expect(dateRange.value, left(expectedFailure));
     });
   });
 }

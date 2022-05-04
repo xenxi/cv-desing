@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 class Failure<T> extends Equatable {
   const Failure(this.failedValue);
 
-  final T failedValue;
+  final T? failedValue;
 
   @override
   List<Object?> get props => [failedValue];

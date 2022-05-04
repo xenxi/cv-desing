@@ -1,4 +1,5 @@
 import 'package:cv_desing_website_flutter/domain/failure.dart';
+import 'package:cv_desing_website_flutter/domain/value_failures.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/value_object.dart';
 import 'package:cv_desing_website_flutter/domain/value_validators.dart';
 import 'package:dartz/dartz.dart';
@@ -28,6 +29,8 @@ class DateRange extends ValueObject<RangeOfDates> {
     DateTime? since,
     DateTime? until,
   ) {
-    return right(RangeOfDates(since!, optionOf(until)));
+    return validateDateIsNotEmpty(since).fold(
+        (_) => left(Empty<RangeOfDates>()),
+        (since) => right(RangeOfDates(since, optionOf(until))));
   }
 }
