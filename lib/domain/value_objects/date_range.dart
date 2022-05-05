@@ -29,9 +29,11 @@ class DateRange extends ValueObject<RangeOfDates> {
     DateTime? since,
     DateTime? until,
   ) {
-    return validateDateIsNotEmpty(since).fold(
-      (_) => left(const Empty<RangeOfDates>()),
-      (since) => validateMinInitialDateRangeValue(since, until, minDate),
+    return validateDateRangeIsNotEmpty(since, until).flatMap(
+      (range) => validateMinInitialDateRangeValue(
+        range,
+        minDate,
+      ),
     );
   }
 }

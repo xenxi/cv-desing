@@ -18,6 +18,15 @@ Either<Failure<DateTime>, DateTime> validateDateIsNotEmpty(DateTime? input) {
   return left(const Empty<DateTime>());
 }
 
+Either<Failure<RangeOfDates>, RangeOfDates> validateDateRangeIsNotEmpty(
+  DateTime? since,
+  DateTime? until,
+) =>
+    validateDateIsNotEmpty(since).fold(
+      (l) => left(const Empty<RangeOfDates>()),
+      (r) => right(RangeOfDates(r, until)),
+    );
+
 Either<Failure<DateTime>, DateTime> validateMaxDateValue(
   DateTime input,
   DateTime maxDate,
@@ -39,14 +48,11 @@ Either<Failure<RangeOfDates>, RangeOfDates> validateMaxInitialDateRangeValue(
 }
 
 Either<Failure<RangeOfDates>, RangeOfDates> validateMinInitialDateRangeValue(
-  DateTime since,
-  DateTime? until,
+  RangeOfDates range,
   DateTime maxDate,
-) {
-  final range = RangeOfDates(since, until);
-  return validateMinDateValue(since, maxDate)
-      .fold((_) => left(ExceedingMinStartDate(range)), (r) => right(range));
-}
+) =>
+    validateMinDateValue(range.since, maxDate)
+        .fold((_) => left(ExceedingMinStartDate(range)), (_) => right(range));
 
 Either<Failure<DateTime>, DateTime> validateMinDateValue(
   DateTime input,
