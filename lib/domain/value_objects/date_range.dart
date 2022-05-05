@@ -33,7 +33,10 @@ class DateRange extends ValueObject<RangeOfDates> {
       (range) => validateMinInitialDateRangeValue(
         range,
         minDate,
-      ),
+      ).flatMap((range) => validateMaxInitialDateRangeValue(
+            range,
+            maxDate,
+          )),
     );
   }
 }
