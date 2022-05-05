@@ -38,14 +38,11 @@ Either<Failure<DateTime>, DateTime> validateMaxDateValue(
 }
 
 Either<Failure<RangeOfDates>, RangeOfDates> validateMaxInitialDateRangeValue(
-  DateTime since,
-  DateTime? until,
+  RangeOfDates range,
   DateTime maxDate,
-) {
-  final range = RangeOfDates(since, until);
-  return validateMaxDateValue(since, maxDate)
-      .fold((_) => left(ExceedingMaxStartDate(range)), (r) => right(range));
-}
+) =>
+    validateMaxDateValue(range.since, maxDate)
+        .fold((_) => left(ExceedingMaxStartDate(range)), (r) => right(range));
 
 Either<Failure<RangeOfDates>, RangeOfDates> validateMinInitialDateRangeValue(
   RangeOfDates range,

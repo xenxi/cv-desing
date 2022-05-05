@@ -1,7 +1,6 @@
 import 'package:cv_desing_website_flutter/domain/value_failures.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:dartz/dartz.dart';
-import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'date_mother.dart';
@@ -32,7 +31,6 @@ void main() {
         expect(dateRange.value, left(expectedFailure));
       });
     }
-
     test(
         'return an invalid start date when start date is one hundred years ago',
         () {
@@ -41,6 +39,16 @@ void main() {
       final dateRange = DateRange(since: since, until: null);
 
       final expectedFailure = ExceedingMinStartDate(RangeOfDates(since, null));
+      expect(dateRange.value, left(expectedFailure));
+    });
+    test(
+        'return an invalid start date when the date is greater than today by one month',
+        () {
+      final since = DateTime.now().add(const Duration(days: 31));
+
+      final dateRange = DateRange(since: since, until: null);
+
+      final expectedFailure = ExceedingMaxStartDate(RangeOfDates(since, null));
       expect(dateRange.value, left(expectedFailure));
     });
   });
