@@ -11,7 +11,7 @@ void main() {
 
       final dateRange = DateRange(since: since, until: until);
 
-      final expectedRange = RangeOfDates(since, optionOf(until));
+      final expectedRange = RangeOfDates(since, until);
       expect(dateRange.value, right(expectedRange));
     });
 
@@ -19,7 +19,7 @@ void main() {
       {'since': null, 'until': null},
       {'since': null, 'until': DateTime(2020)},
     ]) {
-      test('return an empty date range', () {
+      test('return an invalid empty date range', () {
         final since = testCase['since'];
         final until = testCase['until'];
 
@@ -29,5 +29,16 @@ void main() {
         expect(dateRange.value, left(expectedFailure));
       });
     }
+
+    test(
+        'return an invalid start date when start date is one hundred years ago',
+        () {
+      final since = DateTime(DateTime.now().year - 101);
+
+      final dateRange = DateRange(since: since, until: null);
+
+      final expectedFailure = ExceedingMinStartDate(RangeOfDates(since, null));
+      expect(dateRange.value, left(expectedFailure));
+    });
   });
 }

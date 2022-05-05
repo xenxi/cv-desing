@@ -6,7 +6,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 class RangeOfDates extends Equatable {
-  const RangeOfDates(this.since, this.until);
+  RangeOfDates(this.since, DateTime? until) : until = optionOf(until);
 
   final DateTime since;
   final Option<DateTime> until;
@@ -30,7 +30,8 @@ class DateRange extends ValueObject<RangeOfDates> {
     DateTime? until,
   ) {
     return validateDateIsNotEmpty(since).fold(
-        (_) => left(Empty<RangeOfDates>()),
-        (since) => right(RangeOfDates(since, optionOf(until))));
+      (_) => left(const Empty<RangeOfDates>()),
+      (since) => validateMinInitialDateRangeValue(since, until, minDate),
+    );
   }
 }
