@@ -51,5 +51,16 @@ void main() {
       final expectedFailure = ExceedingMaxStartDate(RangeOfDates(since, null));
       expect(dateRange.value, left(expectedFailure));
     });
+    test(
+        'return an invalid end date when the end date is less than the start date',
+        () {
+      final since = DateMother.random();
+      final until = since.subtract(const Duration(days: 1));
+
+      final dateRange = DateRange(since: since, until: until);
+
+      final expectedFailure = InvalidEndDate(RangeOfDates(since, until));
+      expect(dateRange.value, left(expectedFailure));
+    });
   });
 }

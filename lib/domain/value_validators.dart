@@ -50,6 +50,14 @@ Either<Failure<RangeOfDates>, RangeOfDates> validateMinInitialDateRangeValue(
 ) =>
     validateMinDateValue(range.since, maxDate)
         .fold((_) => left(ExceedingMinStartDate(range)), (_) => right(range));
+Either<Failure<RangeOfDates>, RangeOfDates> validateMinEndDateRangeValue(
+  RangeOfDates range,
+) =>
+    range.until.fold(
+      () => right(range),
+      (u) => validateMinDateValue(u, range.since)
+          .fold((_) => left(InvalidEndDate(range)), (_) => right(range)),
+    );
 
 Either<Failure<DateTime>, DateTime> validateMinDateValue(
   DateTime input,
