@@ -1,13 +1,16 @@
 import 'package:cv_desing_website_flutter/domain/value_failures.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:dartz/dartz.dart';
+import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'date_mother.dart';
 
 void main() {
   group('DateRange should', () {
     test('return a valid date range', () {
-      final since = DateTime(2020);
-      final until = DateTime(2020, 1, 2);
+      final since = DateMother.random();
+      final until = since.add(const Duration(days: 20));
 
       final dateRange = DateRange(since: since, until: until);
 
@@ -17,7 +20,7 @@ void main() {
 
     for (final testCase in [
       {'since': null, 'until': null},
-      {'since': null, 'until': DateTime(2020)},
+      {'since': null, 'until': DateMother.random()},
     ]) {
       test('return an invalid empty date range', () {
         final since = testCase['since'];
