@@ -2,12 +2,12 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/domain/academy_training.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/percentage.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/skills.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
-import 'package:cv_desing_website_flutter/domain/value_objects/value_object.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -27,12 +27,18 @@ void main() {
   final otherAcademyTraining = AcademyTraining(
     schoold: 'otherSchoold',
     title: Title('otherTitle'),
-    since: DateTime(2021),
+    dateRange: DateRange(
+      since: DateTime.now().subtract(const Duration(days: 20)),
+      until: DateTime.now(),
+    ),
   );
   final anyAcademyTraining = AcademyTraining(
     schoold: 'otherSchoold',
     title: Title('otherTitle'),
-    since: DateTime(2021),
+    dateRange: DateRange(
+      since: DateTime.now().subtract(const Duration(days: 60)),
+      until: null,
+    ),
   );
   group('CvEditorBloc should', () {
     test('has empty as initial state', () {

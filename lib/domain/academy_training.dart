@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
 import 'package:equatable/equatable.dart';
 
@@ -5,38 +6,33 @@ class AcademyTraining extends Equatable {
   const AcademyTraining({
     required this.title,
     required this.schoold,
-    required this.since,
-    this.until,
+    required this.dateRange,
   });
   factory AcademyTraining.empty() => AcademyTraining(
         title: Title.empty(),
         schoold: '',
-        since: DateTime(2022),
+        dateRange: DateRange.empty(),
       );
   final Title title;
   final String schoold;
-  final DateTime since;
-  final DateTime? until;
+  final DateRange dateRange;
 
   @override
   List<Object?> get props => [
         title,
         schoold,
-        since,
-        until,
+        dateRange,
       ];
 
   AcademyTraining copyWith({
     Title? title,
     String? schoold,
-    DateTime? since,
-    DateTime? until,
+    DateRange? dateRange,
   }) {
     return AcademyTraining(
       title: title ?? this.title,
       schoold: schoold ?? this.schoold,
-      since: since ?? this.since,
-      until: until ?? this.until,
+      dateRange: dateRange ?? this.dateRange,
     );
   }
 }
