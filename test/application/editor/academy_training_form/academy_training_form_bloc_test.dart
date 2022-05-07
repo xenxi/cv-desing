@@ -43,5 +43,52 @@ void main() {
         ),
       ],
     );
+    blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
+      'update date range',
+      build: () => AcademyTrainingFormBloc(),
+      act: (bloc) => bloc
+        ..add(DateRangeChanged(since: DateTime(2020, 2, 3)))
+        ..add(
+          DateRangeChanged(
+            since: DateTime(2020, 2, 3),
+            until: DateTime(2020, 3, 5),
+          ),
+        )
+        ..add(DateRangeChanged(since: DateTime(2020, 2, 3)))
+        ..add(DateRangeChanged(since: DateTime(2021, 5, 11))),
+      expect: () => <AcademyTrainingFormState>[
+        AcademyTrainingFormState(
+          academyTraining: AcademyTraining(
+            title: Title.empty(),
+            schoold: '',
+            dateRange: DateRange(since: DateTime(2020, 2, 3), until: null),
+          ),
+        ),
+        AcademyTrainingFormState(
+          academyTraining: AcademyTraining(
+            title: Title.empty(),
+            schoold: '',
+            dateRange: DateRange(
+              since: DateTime(2020, 2, 3),
+              until: DateTime(2020, 3, 5),
+            ),
+          ),
+        ),
+        AcademyTrainingFormState(
+          academyTraining: AcademyTraining(
+            title: Title.empty(),
+            schoold: '',
+            dateRange: DateRange(since: DateTime(2020, 2, 3), until: null),
+          ),
+        ),
+        AcademyTrainingFormState(
+          academyTraining: AcademyTraining(
+            title: Title.empty(),
+            schoold: '',
+            dateRange: DateRange(since: DateTime(2021, 5, 11), until: null),
+          ),
+        ),
+      ],
+    );
   });
 }
