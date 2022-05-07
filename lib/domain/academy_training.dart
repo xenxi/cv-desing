@@ -1,4 +1,5 @@
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
 import 'package:equatable/equatable.dart';
 
@@ -10,11 +11,11 @@ class AcademyTraining extends Equatable {
   });
   factory AcademyTraining.empty() => AcademyTraining(
         title: Title.empty(),
-        schoold: '',
+        schoold: Schoold.empty(),
         dateRange: DateRange.empty(),
       );
   final Title title;
-  final String schoold;
+  final Schoold schoold;
   final DateRange dateRange;
 
   @override
@@ -26,7 +27,7 @@ class AcademyTraining extends Equatable {
 
   AcademyTraining copyWith({
     Title? title,
-    String? schoold,
+    Schoold? schoold,
     DateRange? dateRange,
   }) {
     return AcademyTraining(

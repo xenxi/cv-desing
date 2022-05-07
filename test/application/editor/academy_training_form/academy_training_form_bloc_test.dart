@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/academy_training_form/academy_training_form_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -30,14 +31,14 @@ void main() {
         AcademyTrainingFormState(
           academyTraining: AcademyTraining(
             title: Title('anyTitle'),
-            schoold: '',
+            schoold: Schoold.empty(),
             dateRange: DateRange.empty(),
           ),
         ),
         AcademyTrainingFormState(
           academyTraining: AcademyTraining(
             title: Title('otherTitle'),
-            schoold: '',
+            schoold: Schoold.empty(),
             dateRange: DateRange.empty(),
           ),
         ),
@@ -60,14 +61,14 @@ void main() {
         AcademyTrainingFormState(
           academyTraining: AcademyTraining(
             title: Title.empty(),
-            schoold: '',
+            schoold: Schoold.empty(),
             dateRange: DateRange(since: DateTime(2020, 2, 3), until: null),
           ),
         ),
         AcademyTrainingFormState(
           academyTraining: AcademyTraining(
             title: Title.empty(),
-            schoold: '',
+            schoold: Schoold.empty(),
             dateRange: DateRange(
               since: DateTime(2020, 2, 3),
               until: DateTime(2020, 3, 5),
@@ -77,14 +78,14 @@ void main() {
         AcademyTrainingFormState(
           academyTraining: AcademyTraining(
             title: Title.empty(),
-            schoold: '',
+            schoold: Schoold.empty(),
             dateRange: DateRange(since: DateTime(2020, 2, 3), until: null),
           ),
         ),
         AcademyTrainingFormState(
           academyTraining: AcademyTraining(
             title: Title.empty(),
-            schoold: '',
+            schoold: Schoold.empty(),
             dateRange: DateRange(since: DateTime(2021, 5, 11), until: null),
           ),
         ),
