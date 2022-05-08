@@ -5,6 +5,7 @@ import 'package:cv_desing_website_flutter/domain/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/percentage.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/skills.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
@@ -25,7 +26,7 @@ void main() {
     academyTrainings: AcademyTrainings.empty(),
   );
   final otherAcademyTraining = AcademyTraining(
-    schoold: 'otherSchoold',
+    schoold: Schoold('otherSchoold'),
     title: Title('otherTitle'),
     dateRange: DateRange(
       since: DateTime.now().subtract(const Duration(days: 20)),
@@ -33,7 +34,7 @@ void main() {
     ),
   );
   final anyAcademyTraining = AcademyTraining(
-    schoold: 'otherSchoold',
+    schoold: Schoold('otherSchoold'),
     title: Title('otherTitle'),
     dateRange: DateRange(
       since: DateTime.now().subtract(const Duration(days: 60)),
