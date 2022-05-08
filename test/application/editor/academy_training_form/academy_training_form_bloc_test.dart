@@ -50,6 +50,32 @@ void main() {
       ],
     );
     blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
+      'initialized with academyTraining',
+      build: () => AcademyTrainingFormBloc(),
+      act: (bloc) => bloc
+        ..add(
+          Initialized(
+            some(
+              AcademyTraining(
+                title: Title('anyTitle'),
+                schoold: Schoold('anySchoold'),
+                dateRange: DateRange(since: DateTime(2022), until: null),
+              ),
+            ),
+          ),
+        ),
+      expect: () => <AcademyTrainingFormState>[
+        AcademyTrainingFormState(
+          saveFailureOrSuccessOption: none(),
+          academyTraining: AcademyTraining(
+            title: Title('anyTitle'),
+            schoold: Schoold('anySchoold'),
+            dateRange: DateRange(since: DateTime(2022), until: null),
+          ),
+        ),
+      ],
+    );
+    blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
       'save academy training',
       build: () => AcademyTrainingFormBloc(),
       seed: () => AcademyTrainingFormState(

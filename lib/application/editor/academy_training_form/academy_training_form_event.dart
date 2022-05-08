@@ -13,6 +13,15 @@ class TitleChanged extends AcademyTrainingFormEvent {
   List<Object?> get props => [title];
 }
 
+class Initialized extends AcademyTrainingFormEvent {
+  const Initialized(this.ademyTraining);
+
+  final Option<AcademyTraining> ademyTraining;
+
+  @override
+  List<Object?> get props => [ademyTraining];
+}
+
 class SchooldChanged extends AcademyTrainingFormEvent {
   const SchooldChanged(this.shoold);
 

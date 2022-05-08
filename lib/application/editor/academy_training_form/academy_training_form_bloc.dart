@@ -49,6 +49,15 @@ class AcademyTrainingFormBloc
         emit(
           state.copyWith(saveFailureOrSuccessOption: some(failureOrSuccess)),
         );
+      } else if (event is Initialized) {
+        emit(
+          event.ademyTraining.fold(
+            () => state,
+            (academyTraining) => state.copyWith(
+              academyTraining: academyTraining,
+            ),
+          ),
+        );
       }
     });
   }
