@@ -42,8 +42,12 @@ class AcademyTrainingFormBloc
           ),
         );
       } else if (event is Saved) {
+        final Either<Failure, Unit> failureOrSuccess = state
+            .academyTraining.failureOption
+            .fold(() => right(unit), (a) => left(a));
+
         emit(
-          state.copyWith(saveFailureOrSuccessOption: some(right(unit))),
+          state.copyWith(saveFailureOrSuccessOption: some(failureOrSuccess)),
         );
       }
     });
