@@ -45,6 +45,29 @@ void main() {
       ],
     );
     blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
+      'update schoold',
+      build: () => AcademyTrainingFormBloc(),
+      act: (bloc) => bloc
+        ..add(const SchooldChanged('anySchoold'))
+        ..add(const SchooldChanged('otherSchoold')),
+      expect: () => <AcademyTrainingFormState>[
+        AcademyTrainingFormState(
+          academyTraining: AcademyTraining(
+            title: Title.empty(),
+            schoold: Schoold('anySchoold'),
+            dateRange: DateRange.empty(),
+          ),
+        ),
+        AcademyTrainingFormState(
+          academyTraining: AcademyTraining(
+            title: Title.empty(),
+            schoold: Schoold('otherSchoold'),
+            dateRange: DateRange.empty(),
+          ),
+        ),
+      ],
+    );
+    blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
       'update date range',
       build: () => AcademyTrainingFormBloc(),
       act: (bloc) => bloc

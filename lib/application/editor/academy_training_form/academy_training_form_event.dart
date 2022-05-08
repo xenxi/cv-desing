@@ -13,6 +13,15 @@ class TitleChanged extends AcademyTrainingFormEvent {
   List<Object?> get props => [title];
 }
 
+class SchooldChanged extends AcademyTrainingFormEvent {
+  const SchooldChanged(this.shoold);
+
+  final String shoold;
+
+  @override
+  List<Object?> get props => [shoold];
+}
+
 class DateRangeChanged extends AcademyTrainingFormEvent {
   const DateRangeChanged({this.since, this.until});
 
