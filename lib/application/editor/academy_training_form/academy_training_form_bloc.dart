@@ -1,9 +1,11 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:cv_desing_website_flutter/domain/academy_training.dart';
+import 'package:cv_desing_website_flutter/domain/failure.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
@@ -38,6 +40,10 @@ class AcademyTrainingFormBloc
               schoold: Schoold(event.shoold),
             ),
           ),
+        );
+      } else if (event is Saved) {
+        emit(
+          state.copyWith(saveFailureOrSuccessOption: some(right(unit))),
         );
       }
     });

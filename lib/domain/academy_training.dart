@@ -1,6 +1,8 @@
+import 'package:cv_desing_website_flutter/domain/failure.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 class AcademyTraining extends Equatable {
@@ -36,6 +38,12 @@ class AcademyTraining extends Equatable {
       dateRange: dateRange ?? this.dateRange,
     );
   }
+
+  Option<Failure> get failureOption => title.failureOrUnit
+      .andThen(schoold.failureOrUnit)
+      .andThen(dateRange.failureOrUnit)
+      .andThen(schoold.failureOrUnit)
+      .fold((l) => some(l), (_) => none());
 }
 
 class AcademyTrainings extends Equatable {

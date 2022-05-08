@@ -4,7 +4,10 @@ import 'package:cv_desing_website_flutter/domain/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import '../../../domain/date_mother.dart';
 
 void main() {
   group('AcademyTrainingFormBloc should', () {
@@ -15,6 +18,7 @@ void main() {
         bloc.state,
         equals(
           AcademyTrainingFormState(
+            saveFailureOrSuccessOption: none(),
             academyTraining: AcademyTraining.empty(),
           ),
         ),
@@ -29,6 +33,7 @@ void main() {
         ..add(const TitleChanged('otherTitle')),
       expect: () => <AcademyTrainingFormState>[
         AcademyTrainingFormState(
+          saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title('anyTitle'),
             schoold: Schoold.empty(),
@@ -36,10 +41,34 @@ void main() {
           ),
         ),
         AcademyTrainingFormState(
+          saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title('otherTitle'),
             schoold: Schoold.empty(),
             dateRange: DateRange.empty(),
+          ),
+        ),
+      ],
+    );
+    blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
+      'save academy training',
+      build: () => AcademyTrainingFormBloc(),
+      seed: () => AcademyTrainingFormState(
+        saveFailureOrSuccessOption: none(),
+        academyTraining: AcademyTraining(
+          title: Title('anyTitle'),
+          schoold: Schoold('anySchoold'),
+          dateRange: DateRange(since: DateTime(2022), until: null),
+        ),
+      ),
+      act: (bloc) => bloc..add(Saved()),
+      expect: () => <AcademyTrainingFormState>[
+        AcademyTrainingFormState(
+          saveFailureOrSuccessOption: some(right(unit)),
+          academyTraining: AcademyTraining(
+            title: Title('anyTitle'),
+            schoold: Schoold('anySchoold'),
+            dateRange: DateRange(since: DateTime(2022), until: null),
           ),
         ),
       ],
@@ -52,6 +81,7 @@ void main() {
         ..add(const SchooldChanged('otherSchoold')),
       expect: () => <AcademyTrainingFormState>[
         AcademyTrainingFormState(
+          saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title.empty(),
             schoold: Schoold('anySchoold'),
@@ -59,6 +89,7 @@ void main() {
           ),
         ),
         AcademyTrainingFormState(
+          saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title.empty(),
             schoold: Schoold('otherSchoold'),
@@ -82,6 +113,7 @@ void main() {
         ..add(DateRangeChanged(since: DateTime(2021, 5, 11))),
       expect: () => <AcademyTrainingFormState>[
         AcademyTrainingFormState(
+          saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title.empty(),
             schoold: Schoold.empty(),
@@ -89,6 +121,7 @@ void main() {
           ),
         ),
         AcademyTrainingFormState(
+          saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title.empty(),
             schoold: Schoold.empty(),
@@ -99,6 +132,7 @@ void main() {
           ),
         ),
         AcademyTrainingFormState(
+          saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title.empty(),
             schoold: Schoold.empty(),
@@ -106,6 +140,7 @@ void main() {
           ),
         ),
         AcademyTrainingFormState(
+          saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title.empty(),
             schoold: Schoold.empty(),

@@ -17,4 +17,11 @@ abstract class ValueObject<T> extends Equatable {
   bool isValid() => value.isRight();
   @override
   List<Object?> get props => [value];
+
+  Either<Failure, Unit> get failureOrUnit {
+    return value.fold(
+      (l) => left(l),
+      (r) => right(unit),
+    );
+  }
 }
