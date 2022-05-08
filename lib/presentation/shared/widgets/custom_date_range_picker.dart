@@ -14,13 +14,33 @@ class CustomDateRangePicker extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: _datePicker(context, text: 'Desde'),
+          child: TextFormField(
+            autocorrect: false,
+            enableInteractiveSelection: false,
+            keyboardType: TextInputType.datetime,
+            decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.date_range_rounded),
+              labelText: 'Desde',
+            ),
+            onTap: () {
+              _selectDate(context);
+            },
+          ),
         ),
         const SizedBox(
           width: 8,
         ),
         Expanded(
-          child: _datePicker(context, text: 'Hasta'),
+          child: TextFormField(
+            autocorrect: false,
+            enableInteractiveSelection: false,
+            keyboardType: TextInputType.datetime,
+            decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.date_range_rounded),
+              labelText: 'Hasta',
+            ),
+            onTap: () => _selectDate(context),
+          ),
         ),
       ],
     );
@@ -38,13 +58,10 @@ class CustomDateRangePicker extends StatelessWidget {
         onTap: () => _selectDate(context),
       );
 
-  Future<DateTime?> _selectDate(BuildContext context) async {
-    final selectedDate = await showDatePicker(
-      // locale: const Locale('es', 'ES'),
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(1850),
-      lastDate: DateTime.now(),
-    );
-  }
+  Future<DateTime?> _selectDate(BuildContext context) => showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1850),
+        lastDate: DateTime.now(),
+      );
 }
