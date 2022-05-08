@@ -5,10 +5,12 @@ import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 
 part 'academy_training_form_event.dart';
 part 'academy_training_form_state.dart';
 
+@injectable
 class AcademyTrainingFormBloc
     extends Bloc<AcademyTrainingFormEvent, AcademyTrainingFormState> {
   AcademyTrainingFormBloc() : super(AcademyTrainingFormState.initial()) {
