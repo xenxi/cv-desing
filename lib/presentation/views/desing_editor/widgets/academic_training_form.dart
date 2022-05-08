@@ -3,6 +3,7 @@ import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart
 import 'package:cv_desing_website_flutter/domain/academy_training.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_date_range_picker.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,17 +16,22 @@ class AcademicTrainingForm extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            _buildForm(),
+            _buildAcademyTraining(),
             ...state.academyTrainings.value.map(
-                (academyTraining) => _buildAcademyTraining(academyTraining)),
+              (academyTraining) => _buildAcademyTraining(
+                editedAcademicTraining: academyTraining,
+              ),
+            ),
           ],
         );
       },
     );
   }
 
-  Widget _buildForm() => BlocProvider(
-        create: (context) => AcademyTrainingFormBloc(),
+  Widget _buildAcademyTraining({AcademyTraining? editedAcademicTraining}) =>
+      BlocProvider(
+        create: (context) => AcademyTrainingFormBloc()
+          ..add(Initialized(optionOf(editedAcademicTraining))),
         child: BlocConsumer<AcademyTrainingFormBloc, AcademyTrainingFormState>(
           listenWhen: (previous, current) =>
               previous.saveFailureOrSuccessOption !=
@@ -81,6 +87,4 @@ class AcademicTrainingForm extends StatelessWidget {
           },
         ),
       );
-
-  Widget _buildAcademyTraining(AcademyTraining academyTraining) => _buildForm();
 }

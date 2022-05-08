@@ -24,4 +24,7 @@ abstract class ValueObject<T> extends Equatable {
       (r) => right(unit),
     );
   }
+
+  @override
+  String toString() => value.fold((l) => '$l', (r) => '$r');
 }

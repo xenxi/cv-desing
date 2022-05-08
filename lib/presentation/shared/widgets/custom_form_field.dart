@@ -14,13 +14,17 @@ class CustomFormField extends StatelessWidget {
   final String text;
   final IconData icon;
   @override
-  Widget build(BuildContext context) => TextFormField(
-        decoration: InputDecoration(
-          prefixIcon: Icon(icon),
-          labelText: text,
-        ),
-        autocorrect: false,
-        onChanged: onChanged,
-        validator: (_) => value.fold((l) => 'Titulo invalido', (r) => null),
-      );
+  Widget build(BuildContext context) {
+    return TextFormField(
+      // controller: controller,
+      decoration: InputDecoration(
+        prefixIcon: Icon(icon),
+        labelText: text,
+      ),
+      autocorrect: false,
+      initialValue: value.fold((l) => null, (r) => '$r'),
+      onChanged: onChanged,
+      validator: (_) => value.fold((l) => 'Titulo invalido', (r) => null),
+    );
+  }
 }
