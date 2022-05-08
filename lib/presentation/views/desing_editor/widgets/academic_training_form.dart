@@ -1,6 +1,9 @@
-import 'package:cv_desing_website_flutter/application/editor/academy_training_form/academy_training_form_bloc.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:cv_desing_website_flutter/application/editor/academy_training_form/academy_training_form_bloc.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/value_object.dart';
 
 class AcademicTrainingForm extends StatelessWidget {
   const AcademicTrainingForm({Key? key}) : super(key: key);
@@ -20,18 +23,14 @@ class AcademicTrainingForm extends StatelessWidget {
               icon: const Icon(Icons.add),
               label: const Text('Añadir'),
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.science_outlined),
-                labelText: 'Titulo',
-              ),
-              autocorrect: false,
+            CustomFormField(
+              text: 'Titulo',
+              icon: Icons.science_outlined,
+              value: state.academyTraining.title,
               onChanged: (val) =>
                   BlocProvider.of<AcademyTrainingFormBloc>(context).add(
                 TitleChanged(val),
               ),
-              validator: (_) => state.academyTraining.title
-                  .fold((l) => 'Titulo invalido', (r) => null),
             ),
             TextFormField(
               decoration: const InputDecoration(
