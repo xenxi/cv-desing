@@ -2,6 +2,7 @@ import 'package:cv_desing_website_flutter/domain/value_failures.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CustomDateRangePicker extends StatelessWidget {
   const CustomDateRangePicker({
@@ -23,13 +24,9 @@ class CustomDateRangePicker extends StatelessWidget {
     );
 
     final startController = TextEditingController(
-      text: sinceOption.fold(
-        () => '',
-        (r) => r.toString(),
-      ),
+      text: _formatDate(sinceOption),
     );
-    final endController = TextEditingController(
-        text: untilOption.fold(() => null, (r) => r.toString()));
+    final endController = TextEditingController(text: _formatDate(untilOption));
     return Row(
       children: [
         Expanded(
@@ -77,6 +74,8 @@ class CustomDateRangePicker extends StatelessWidget {
     );
   }
 
+  String _formatDate(Option<DateTime> dateOption) => dateOption.fold(
+      () => '', (date) => DateFormat('dd/MM/yyyy').format(date));
   Future<DateTime?> _selectDate(BuildContext context) => showDatePicker(
         context: context,
         initialDate: DateTime.now(),
