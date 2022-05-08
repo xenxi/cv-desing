@@ -1,4 +1,5 @@
 import 'package:cv_desing_website_flutter/application/editor/academy_training_form/academy_training_form_bloc.dart';
+import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_date_range_picker.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
 import 'package:flutter/material.dart';
@@ -12,15 +13,24 @@ class AcademicTrainingForm extends StatelessWidget {
     return BlocProvider(
       create: (context) => AcademyTrainingFormBloc(),
       child: BlocConsumer<AcademyTrainingFormBloc, AcademyTrainingFormState>(
+        listenWhen: (previous, current) =>
+            previous.saveFailureOrSuccessOption !=
+            current.saveFailureOrSuccessOption,
         listener: (context, state) {
-          // TODO: implement listener
+          state.saveFailureOrSuccessOption.fold(
+            () => {},
+            (a) => BlocProvider.of<CvEditorBloc>(context)
+                .add(AcademyTrainingAdded(state.academyTraining)),
+          );
         },
         builder: (context, state) {
           return Form(
               child: Column(
             children: [
               ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () =>
+                    BlocProvider.of<AcademyTrainingFormBloc>(context)
+                        .add(Saved()),
                 icon: const Icon(Icons.add),
                 label: const Text('Añadir'),
               ),
