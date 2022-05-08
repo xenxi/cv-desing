@@ -1,29 +1,51 @@
+import 'package:cv_desing_website_flutter/domain/value_failures.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
-import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
-
 class CustomDateRangePicker extends StatelessWidget {
-  final DateRange dateRange;
   const CustomDateRangePicker({
     Key? key,
     required this.dateRange,
+    required this.onChanged,
   }) : super(key: key);
+  final DateRange dateRange;
+  final void Function(DateTime? start, DateTime? end) onChanged;
 
   @override
   Widget build(BuildContext context) {
+    final Option<DateTime> untilOption =
+        dateRange.fold((_) => none(), (r) => r.until);
+
+    final Option<DateTime> sinceOption = dateRange.fold(
+      (f) => f is InvalidEndDate ? optionOf(f.failedValue?.since) : none(),
+      (r) => some(r.since),
+    );
+
+    final startController = TextEditingController(
+      text: sinceOption.fold(
+        () => '',
+        (r) => r.toString(),
+      ),
+    );
+    final endController = TextEditingController(
+        text: untilOption.fold(() => null, (r) => r.toString()));
     return Row(
       children: [
         Expanded(
           child: TextFormField(
+            controller: startController,
             autocorrect: false,
+            readOnly: true,
             enableInteractiveSelection: false,
             keyboardType: TextInputType.datetime,
-            decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.date_range_rounded),
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.date_range_rounded),
               labelText: 'Desde',
             ),
-            onTap: () {
-              _selectDate(context);
+            onTap: () async {
+              final selectedStartDate = await _selectDate(context);
+              onChanged(selectedStartDate, null);
             },
           ),
         ),
@@ -32,36 +54,33 @@ class CustomDateRangePicker extends StatelessWidget {
         ),
         Expanded(
           child: TextFormField(
+            controller: endController,
+            readOnly: true,
             autocorrect: false,
+            enabled: sinceOption.isSome(),
             enableInteractiveSelection: false,
             keyboardType: TextInputType.datetime,
-            decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.date_range_rounded),
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.date_range_rounded),
               labelText: 'Hasta',
             ),
-            onTap: () => _selectDate(context),
+            onTap: sinceOption.fold(
+              () => null,
+              (since) => () async {
+                final selectedStartDate = await _selectDate(context);
+                onChanged(since, selectedStartDate);
+              },
+            ),
           ),
         ),
       ],
     );
   }
 
-  Widget _datePicker(BuildContext context, {required String text}) =>
-      TextFormField(
-        autocorrect: false,
-        enableInteractiveSelection: false,
-        keyboardType: TextInputType.datetime,
-        decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.date_range_rounded),
-          labelText: text,
-        ),
-        onTap: () => _selectDate(context),
-      );
-
   Future<DateTime?> _selectDate(BuildContext context) => showDatePicker(
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(1850),
-        lastDate: DateTime.now(),
+        lastDate: DateTime.now().add(const Duration(days: 365)),
       );
 }
