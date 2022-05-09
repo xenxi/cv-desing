@@ -17,6 +17,7 @@ void main() {
         bloc.state,
         equals(
           AcademyTrainingFormState(
+            showErrorMessages: false,
             saveFailureOrSuccessOption: none(),
             academyTraining: AcademyTraining.empty(),
           ),
@@ -32,6 +33,7 @@ void main() {
         ..add(const TitleChanged('otherTitle')),
       expect: () => <AcademyTrainingFormState>[
         AcademyTrainingFormState(
+          showErrorMessages: false,
           saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title('anyTitle'),
@@ -40,6 +42,7 @@ void main() {
           ),
         ),
         AcademyTrainingFormState(
+          showErrorMessages: false,
           saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title('otherTitle'),
@@ -66,6 +69,7 @@ void main() {
         ),
       expect: () => <AcademyTrainingFormState>[
         AcademyTrainingFormState(
+          showErrorMessages: false,
           saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title('anyTitle'),
@@ -79,6 +83,7 @@ void main() {
       'save academy training',
       build: () => AcademyTrainingFormBloc(),
       seed: () => AcademyTrainingFormState(
+        showErrorMessages: false,
         saveFailureOrSuccessOption: none(),
         academyTraining: AcademyTraining(
           title: Title('anyTitle'),
@@ -89,6 +94,7 @@ void main() {
       act: (bloc) => bloc..add(Saved()),
       expect: () => <AcademyTrainingFormState>[
         AcademyTrainingFormState(
+          showErrorMessages: true,
           saveFailureOrSuccessOption: some(right(unit)),
           academyTraining: AcademyTraining(
             title: Title('anyTitle'),
@@ -102,12 +108,14 @@ void main() {
       'not allow save academy training is wrong',
       build: () => AcademyTrainingFormBloc(),
       seed: () => AcademyTrainingFormState(
+        showErrorMessages: false,
         saveFailureOrSuccessOption: none(),
         academyTraining: AcademyTraining.empty(),
       ),
       act: (bloc) => bloc..add(Saved()),
       expect: () => <AcademyTrainingFormState>[
         AcademyTrainingFormState(
+          showErrorMessages: true,
           saveFailureOrSuccessOption: some(left(const Empty<String>())),
           academyTraining: AcademyTraining.empty(),
         ),
@@ -121,6 +129,7 @@ void main() {
         ..add(const SchooldChanged('otherSchoold')),
       expect: () => <AcademyTrainingFormState>[
         AcademyTrainingFormState(
+          showErrorMessages: false,
           saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title.empty(),
@@ -129,6 +138,7 @@ void main() {
           ),
         ),
         AcademyTrainingFormState(
+          showErrorMessages: false,
           saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title.empty(),
@@ -153,6 +163,7 @@ void main() {
         ..add(DateRangeChanged(since: DateTime(2021, 5, 11))),
       expect: () => <AcademyTrainingFormState>[
         AcademyTrainingFormState(
+          showErrorMessages: false,
           saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title.empty(),
@@ -161,6 +172,7 @@ void main() {
           ),
         ),
         AcademyTrainingFormState(
+          showErrorMessages: false,
           saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title.empty(),
@@ -172,6 +184,7 @@ void main() {
           ),
         ),
         AcademyTrainingFormState(
+          showErrorMessages: false,
           saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title.empty(),
@@ -180,6 +193,7 @@ void main() {
           ),
         ),
         AcademyTrainingFormState(
+          showErrorMessages: false,
           saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title.empty(),

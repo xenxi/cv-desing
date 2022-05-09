@@ -1,5 +1,6 @@
 import 'package:cv_desing_website_flutter/domain/value_objects/value_object.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 class CustomFormField extends StatelessWidget {
   const CustomFormField({
@@ -16,13 +17,16 @@ class CustomFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      // controller: controller,
+      controller: value.fold(
+          (l) => null,
+          (r) => TextEditingController(text: '$r')
+            ..selection =
+                TextSelection.fromPosition(TextPosition(offset: '$r'.length))),
       decoration: InputDecoration(
         prefixIcon: Icon(icon),
         labelText: text,
       ),
       autocorrect: false,
-      initialValue: value.fold((l) => null, (r) => '$r'),
       onChanged: onChanged,
       validator: (_) => value.fold((l) => 'Titulo invalido', (r) => null),
     );

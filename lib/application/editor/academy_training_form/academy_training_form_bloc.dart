@@ -47,7 +47,10 @@ class AcademyTrainingFormBloc
             .fold(() => right(unit), (a) => left(a));
 
         emit(
-          state.copyWith(saveFailureOrSuccessOption: some(failureOrSuccess)),
+          state.copyWith(
+            saveFailureOrSuccessOption: some(failureOrSuccess),
+            showErrorMessages: true,
+          ),
         );
       } else if (event is Initialized) {
         emit(

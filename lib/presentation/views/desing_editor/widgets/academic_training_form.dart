@@ -47,43 +47,46 @@ class AcademicTrainingForm extends StatelessWidget {
           },
           builder: (context, state) {
             return Form(
+                autovalidateMode: state.showErrorMessages
+                    ? AutovalidateMode.always
+                    : AutovalidateMode.disabled,
                 child: Column(
-              children: [
-                CustomFormField(
-                  text: 'Titulo',
-                  icon: Icons.science_outlined,
-                  value: state.academyTraining.title,
-                  onChanged: (val) =>
-                      BlocProvider.of<AcademyTrainingFormBloc>(context).add(
-                    TitleChanged(val),
-                  ),
-                ),
-                CustomFormField(
-                  text: 'Escuela, instito o universidad',
-                  icon: Icons.school_outlined,
-                  value: state.academyTraining.schoold,
-                  onChanged: (val) =>
-                      BlocProvider.of<AcademyTrainingFormBloc>(context).add(
-                    SchooldChanged(val),
-                  ),
-                ),
-                CustomDateRangePicker(
-                  dateRange: state.academyTraining.dateRange,
-                  onChanged: (start, end) =>
-                      BlocProvider.of<AcademyTrainingFormBloc>(context).add(
-                    DateRangeChanged(since: start, until: end),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton.icon(
-                  onPressed: () =>
-                      BlocProvider.of<AcademyTrainingFormBloc>(context)
-                          .add(Saved()),
-                  icon: const Icon(Icons.add_outlined),
-                  label: const Text('Añadir'),
-                ),
-              ],
-            ));
+                  children: [
+                    CustomFormField(
+                      text: 'Titulo',
+                      icon: Icons.science_outlined,
+                      value: state.academyTraining.title,
+                      onChanged: (val) =>
+                          BlocProvider.of<AcademyTrainingFormBloc>(context).add(
+                        TitleChanged(val),
+                      ),
+                    ),
+                    CustomFormField(
+                      text: 'Escuela, instito o universidad',
+                      icon: Icons.school_outlined,
+                      value: state.academyTraining.schoold,
+                      onChanged: (val) =>
+                          BlocProvider.of<AcademyTrainingFormBloc>(context).add(
+                        SchooldChanged(val),
+                      ),
+                    ),
+                    CustomDateRangePicker(
+                      dateRange: state.academyTraining.dateRange,
+                      onChanged: (start, end) =>
+                          BlocProvider.of<AcademyTrainingFormBloc>(context).add(
+                        DateRangeChanged(since: start, until: end),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton.icon(
+                      onPressed: () =>
+                          BlocProvider.of<AcademyTrainingFormBloc>(context)
+                              .add(Saved()),
+                      icon: const Icon(Icons.add_outlined),
+                      label: const Text('Añadir'),
+                    ),
+                  ],
+                ));
           },
         ),
       );
