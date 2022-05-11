@@ -5,6 +5,7 @@ import 'package:cv_desing_website_flutter/domain/value_failures.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/unique_id.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -14,6 +15,7 @@ void main() {
     isLoaded: false,
     saveFailureOrSuccessOption: none(),
     academyTraining: AcademyTraining(
+      uniqueId: UniqueId(),
       title: Title(''),
       schoold: Schoold(''),
       dateRange: DateRange(since: null, until: null),
@@ -33,6 +35,7 @@ void main() {
     blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
       'update title',
       build: () => AcademyTrainingFormBloc(),
+      seed: () => initialState,
       act: (bloc) => bloc
         ..add(const TitleChanged('anyTitle'))
         ..add(const TitleChanged('otherTitle')),
@@ -50,12 +53,14 @@ void main() {
     blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
       'initialized with academyTraining',
       build: () => AcademyTrainingFormBloc(),
+      seed: () => initialState,
       wait: const Duration(seconds: 1),
       act: (bloc) => bloc
         ..add(
           Initialized(
             some(
               AcademyTraining(
+                uniqueId: UniqueId.fromString('anyId'),
                 title: Title('anyTitle'),
                 schoold: Schoold('anySchoold'),
                 dateRange: DateRange(since: DateTime(2022), until: null),
@@ -69,6 +74,7 @@ void main() {
           isLoaded: true,
           saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
+            uniqueId: UniqueId.fromString('anyId'),
             title: Title('anyTitle'),
             schoold: Schoold('anySchoold'),
             dateRange: DateRange(since: DateTime(2022), until: null),
@@ -79,6 +85,7 @@ void main() {
           isLoaded: false,
           saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
+            uniqueId: UniqueId.fromString('anyId'),
             title: Title('anyTitle'),
             schoold: Schoold('anySchoold'),
             dateRange: DateRange(since: DateTime(2022), until: null),
@@ -94,6 +101,7 @@ void main() {
         showErrorMessages: false,
         saveFailureOrSuccessOption: none(),
         academyTraining: AcademyTraining(
+          uniqueId: UniqueId.fromString('anyId'),
           title: Title('anyTitle'),
           schoold: Schoold('anySchoold'),
           dateRange: DateRange(since: DateTime(2022), until: null),
@@ -106,6 +114,7 @@ void main() {
           showErrorMessages: true,
           saveFailureOrSuccessOption: some(right(unit)),
           academyTraining: AcademyTraining(
+            uniqueId: UniqueId.fromString('anyId'),
             title: Title('anyTitle'),
             schoold: Schoold('anySchoold'),
             dateRange: DateRange(since: DateTime(2022), until: null),
@@ -116,25 +125,19 @@ void main() {
     blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
       'not allow save academy training is wrong',
       build: () => AcademyTrainingFormBloc(),
-      seed: () => AcademyTrainingFormState(
-        isLoaded: false,
-        showErrorMessages: false,
-        saveFailureOrSuccessOption: none(),
-        academyTraining: AcademyTraining.empty(),
-      ),
+      seed: () => initialState,
       act: (bloc) => bloc..add(Saved()),
       expect: () => <AcademyTrainingFormState>[
-        AcademyTrainingFormState(
-          isLoaded: false,
+        initialState.copyWith(
           showErrorMessages: true,
           saveFailureOrSuccessOption: some(left(const Empty<String>())),
-          academyTraining: AcademyTraining.empty(),
         ),
       ],
     );
     blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
       'update schoold',
       build: () => AcademyTrainingFormBloc(),
+      seed: () => initialState,
       act: (bloc) => bloc
         ..add(const SchooldChanged('anySchoold'))
         ..add(const SchooldChanged('otherSchoold')),
@@ -152,6 +155,7 @@ void main() {
     blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
       'update date range',
       build: () => AcademyTrainingFormBloc(),
+      seed: () => initialState,
       act: (bloc) => bloc
         ..add(DateRangeChanged(since: DateTime(2020, 2, 3)))
         ..add(

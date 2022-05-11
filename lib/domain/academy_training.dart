@@ -2,6 +2,7 @@ import 'package:cv_desing_website_flutter/domain/failure.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/unique_id.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
@@ -10,32 +11,38 @@ class AcademyTraining extends Equatable {
     required this.title,
     required this.schoold,
     required this.dateRange,
+    required this.uniqueId,
   });
   factory AcademyTraining.empty() => AcademyTraining(
         title: Title.empty(),
         schoold: Schoold.empty(),
         dateRange: DateRange.empty(),
+        uniqueId: UniqueId(),
       );
   final Title title;
   final Schoold schoold;
   final DateRange dateRange;
+  final UniqueId uniqueId;
 
   @override
   List<Object?> get props => [
         title,
         schoold,
         dateRange,
+        uniqueId,
       ];
 
   AcademyTraining copyWith({
     Title? title,
     Schoold? schoold,
     DateRange? dateRange,
+    UniqueId? uniqueId,
   }) {
     return AcademyTraining(
       title: title ?? this.title,
       schoold: schoold ?? this.schoold,
       dateRange: dateRange ?? this.dateRange,
+      uniqueId: uniqueId ?? this.uniqueId,
     );
   }
 
