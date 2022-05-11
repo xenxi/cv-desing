@@ -50,6 +50,7 @@ void main() {
     blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
       'initialized with academyTraining',
       build: () => AcademyTrainingFormBloc(),
+      wait: const Duration(seconds: 1),
       act: (bloc) => bloc
         ..add(
           Initialized(
@@ -66,6 +67,16 @@ void main() {
         AcademyTrainingFormState(
           showErrorMessages: false,
           isLoaded: true,
+          saveFailureOrSuccessOption: none(),
+          academyTraining: AcademyTraining(
+            title: Title('anyTitle'),
+            schoold: Schoold('anySchoold'),
+            dateRange: DateRange(since: DateTime(2022), until: null),
+          ),
+        ),
+        AcademyTrainingFormState(
+          showErrorMessages: false,
+          isLoaded: false,
           saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title('anyTitle'),

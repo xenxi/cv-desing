@@ -16,7 +16,7 @@ part 'academy_training_form_state.dart';
 class AcademyTrainingFormBloc
     extends Bloc<AcademyTrainingFormEvent, AcademyTrainingFormState> {
   AcademyTrainingFormBloc() : super(AcademyTrainingFormState.initial()) {
-    on<AcademyTrainingFormEvent>((event, emit) {
+    on<AcademyTrainingFormEvent>((event, emit) async {
       if (event is TitleChanged) {
         emit(
           state.copyWith(
@@ -62,6 +62,9 @@ class AcademyTrainingFormBloc
             ),
           ),
         );
+        await Future.delayed(const Duration(seconds: 1)).then((_) {
+          emit(state.copyWith(isLoaded: false));
+        });
       }
     });
   }

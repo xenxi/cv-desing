@@ -53,6 +53,7 @@ class AcademicTrainingForm extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomFormField(
+                      initialized: state.isLoaded,
                       text: 'Titulo',
                       icon: Icons.science_outlined,
                       value: state.academyTraining.title,
@@ -62,6 +63,7 @@ class AcademicTrainingForm extends StatelessWidget {
                       ),
                     ),
                     CustomFormField(
+                      initialized: state.isLoaded,
                       text: 'Escuela, instito o universidad',
                       icon: Icons.school_outlined,
                       value: state.academyTraining.schoold,
