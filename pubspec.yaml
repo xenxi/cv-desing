@@ -49,6 +49,7 @@ dependencies:
   responsive_builder: ^0.4.2
   share_plus: ^4.0.4
   url_launcher: ^6.0.20
+  uuid: ^3.0.6
   window_location_href: ^1.0.0
 
 dev_dependencies:
