@@ -57,6 +57,7 @@ class AcademyTrainingFormBloc
           event.ademyTraining.fold(
             () => state,
             (academyTraining) => state.copyWith(
+              isLoaded: true,
               academyTraining: academyTraining,
             ),
           ),

@@ -9,19 +9,24 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  final initialState = AcademyTrainingFormState(
+    showErrorMessages: false,
+    isLoaded: false,
+    saveFailureOrSuccessOption: none(),
+    academyTraining: AcademyTraining(
+      title: Title(''),
+      schoold: Schoold(''),
+      dateRange: DateRange(since: null, until: null),
+    ),
+  );
+
   group('AcademyTrainingFormBloc should', () {
     test('has empty as initial state', () {
       final bloc = AcademyTrainingFormBloc();
       // assert
       expect(
         bloc.state,
-        equals(
-          AcademyTrainingFormState(
-            showErrorMessages: false,
-            saveFailureOrSuccessOption: none(),
-            academyTraining: AcademyTraining.empty(),
-          ),
-        ),
+        equals(initialState),
       );
     });
 
@@ -32,23 +37,13 @@ void main() {
         ..add(const TitleChanged('anyTitle'))
         ..add(const TitleChanged('otherTitle')),
       expect: () => <AcademyTrainingFormState>[
-        AcademyTrainingFormState(
-          showErrorMessages: false,
-          saveFailureOrSuccessOption: none(),
-          academyTraining: AcademyTraining(
-            title: Title('anyTitle'),
-            schoold: Schoold.empty(),
-            dateRange: DateRange.empty(),
-          ),
+        initialState.copyWith(
+          academyTraining:
+              initialState.academyTraining.copyWith(title: Title('anyTitle')),
         ),
-        AcademyTrainingFormState(
-          showErrorMessages: false,
-          saveFailureOrSuccessOption: none(),
-          academyTraining: AcademyTraining(
-            title: Title('otherTitle'),
-            schoold: Schoold.empty(),
-            dateRange: DateRange.empty(),
-          ),
+        initialState.copyWith(
+          academyTraining:
+              initialState.academyTraining.copyWith(title: Title('otherTitle')),
         ),
       ],
     );
@@ -70,6 +65,7 @@ void main() {
       expect: () => <AcademyTrainingFormState>[
         AcademyTrainingFormState(
           showErrorMessages: false,
+          isLoaded: true,
           saveFailureOrSuccessOption: none(),
           academyTraining: AcademyTraining(
             title: Title('anyTitle'),
@@ -83,6 +79,7 @@ void main() {
       'save academy training',
       build: () => AcademyTrainingFormBloc(),
       seed: () => AcademyTrainingFormState(
+        isLoaded: false,
         showErrorMessages: false,
         saveFailureOrSuccessOption: none(),
         academyTraining: AcademyTraining(
@@ -94,6 +91,7 @@ void main() {
       act: (bloc) => bloc..add(Saved()),
       expect: () => <AcademyTrainingFormState>[
         AcademyTrainingFormState(
+          isLoaded: false,
           showErrorMessages: true,
           saveFailureOrSuccessOption: some(right(unit)),
           academyTraining: AcademyTraining(
@@ -108,6 +106,7 @@ void main() {
       'not allow save academy training is wrong',
       build: () => AcademyTrainingFormBloc(),
       seed: () => AcademyTrainingFormState(
+        isLoaded: false,
         showErrorMessages: false,
         saveFailureOrSuccessOption: none(),
         academyTraining: AcademyTraining.empty(),
@@ -115,6 +114,7 @@ void main() {
       act: (bloc) => bloc..add(Saved()),
       expect: () => <AcademyTrainingFormState>[
         AcademyTrainingFormState(
+          isLoaded: false,
           showErrorMessages: true,
           saveFailureOrSuccessOption: some(left(const Empty<String>())),
           academyTraining: AcademyTraining.empty(),
@@ -128,23 +128,13 @@ void main() {
         ..add(const SchooldChanged('anySchoold'))
         ..add(const SchooldChanged('otherSchoold')),
       expect: () => <AcademyTrainingFormState>[
-        AcademyTrainingFormState(
-          showErrorMessages: false,
-          saveFailureOrSuccessOption: none(),
-          academyTraining: AcademyTraining(
-            title: Title.empty(),
-            schoold: Schoold('anySchoold'),
-            dateRange: DateRange.empty(),
-          ),
+        initialState.copyWith(
+          academyTraining: initialState.academyTraining
+              .copyWith(schoold: Schoold('anySchoold')),
         ),
-        AcademyTrainingFormState(
-          showErrorMessages: false,
-          saveFailureOrSuccessOption: none(),
-          academyTraining: AcademyTraining(
-            title: Title.empty(),
-            schoold: Schoold('otherSchoold'),
-            dateRange: DateRange.empty(),
-          ),
+        initialState.copyWith(
+          academyTraining: initialState.academyTraining
+              .copyWith(schoold: Schoold('otherSchoold')),
         ),
       ],
     );
@@ -162,42 +152,25 @@ void main() {
         ..add(DateRangeChanged(since: DateTime(2020, 2, 3)))
         ..add(DateRangeChanged(since: DateTime(2021, 5, 11))),
       expect: () => <AcademyTrainingFormState>[
-        AcademyTrainingFormState(
-          showErrorMessages: false,
-          saveFailureOrSuccessOption: none(),
-          academyTraining: AcademyTraining(
-            title: Title.empty(),
-            schoold: Schoold.empty(),
-            dateRange: DateRange(since: DateTime(2020, 2, 3), until: null),
-          ),
+        initialState.copyWith(
+          academyTraining: initialState.academyTraining.copyWith(
+              dateRange: DateRange(since: DateTime(2020, 2, 3), until: null)),
         ),
-        AcademyTrainingFormState(
-          showErrorMessages: false,
-          saveFailureOrSuccessOption: none(),
-          academyTraining: AcademyTraining(
-            title: Title.empty(),
-            schoold: Schoold.empty(),
+        initialState.copyWith(
+          academyTraining: initialState.academyTraining.copyWith(
             dateRange: DateRange(
               since: DateTime(2020, 2, 3),
               until: DateTime(2020, 3, 5),
             ),
           ),
         ),
-        AcademyTrainingFormState(
-          showErrorMessages: false,
-          saveFailureOrSuccessOption: none(),
-          academyTraining: AcademyTraining(
-            title: Title.empty(),
-            schoold: Schoold.empty(),
+        initialState.copyWith(
+          academyTraining: initialState.academyTraining.copyWith(
             dateRange: DateRange(since: DateTime(2020, 2, 3), until: null),
           ),
         ),
-        AcademyTrainingFormState(
-          showErrorMessages: false,
-          saveFailureOrSuccessOption: none(),
-          academyTraining: AcademyTraining(
-            title: Title.empty(),
-            schoold: Schoold.empty(),
+        initialState.copyWith(
+          academyTraining: initialState.academyTraining.copyWith(
             dateRange: DateRange(since: DateTime(2021, 5, 11), until: null),
           ),
         ),
