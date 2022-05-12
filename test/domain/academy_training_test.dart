@@ -11,5 +11,13 @@ void main() {
 
       expect(result.value, contains(training));
     });
+    test('delete a training', () {
+      final training = AcademyTraining.empty();
+      final trainings = AcademyTrainings.empty()..add(training);
+
+      final result = trainings.remove(training);
+
+      expect(result.value, isNot(contains(training)));
+    });
   });
 }
