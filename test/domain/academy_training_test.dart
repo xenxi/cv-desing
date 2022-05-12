@@ -22,13 +22,13 @@ void main() {
     });
     test('update a training', () {
       final training = AcademyTraining.empty();
-      final trainings = AcademyTrainings.empty().add(training);
+      final trainings = AcademyTrainings([training]);
       final editedTraining = training.copyWith(title: Title('otherTitle'));
 
       final result = trainings.add(editedTraining);
 
-      expect(result.value, isNot(contains(training)));
-      expect(result.value, contains(editedTraining));
+      final expectedTrainings = AcademyTrainings([editedTraining]);
+      expect(result, equals(expectedTrainings));
     });
   });
 }
