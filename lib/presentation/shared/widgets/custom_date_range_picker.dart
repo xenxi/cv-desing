@@ -15,9 +15,6 @@ class CustomDateRangePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Option<DateTime> untilOption =
-        dateRange.fold((_) => none(), (r) => r.until);
-
     final Option<DateTime> sinceOption = dateRange.fold(
       (f) => f is InvalidEndDate ? optionOf(f.failedValue?.since) : none(),
       (r) => some(r.since),

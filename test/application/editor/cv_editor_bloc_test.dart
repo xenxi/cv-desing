@@ -9,6 +9,7 @@ import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/skills.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/unique_id.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -32,6 +33,7 @@ void main() {
       since: DateTime.now().subtract(const Duration(days: 20)),
       until: DateTime.now(),
     ),
+    uniqueId: UniqueId.fromString('otherId'),
   );
   final anyAcademyTraining = AcademyTraining(
     schoold: Schoold('otherSchoold'),
@@ -40,6 +42,7 @@ void main() {
       since: DateTime.now().subtract(const Duration(days: 60)),
       until: null,
     ),
+    uniqueId: UniqueId.fromString('anyId'),
   );
   group('CvEditorBloc should', () {
     test('has empty as initial state', () {
