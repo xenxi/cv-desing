@@ -24,9 +24,20 @@ class CustomDateRangePicker extends StatelessWidget {
     );
 
     final startController = TextEditingController(
-      text: _formatDate(sinceOption),
+      text: _formatDate(
+        dateRange.fold(
+          (l) => optionOf(l.failedValue?.since),
+          (r) => some(r.since),
+        ),
+      ),
     );
-    final endController = TextEditingController(text: _formatDate(untilOption));
+    final endController = TextEditingController(
+        text: _formatDate(
+      dateRange.fold(
+        (l) => optionOf(l.failedValue?.until.fold(() => null, (a) => a)),
+        (r) => r.until,
+      ),
+    ));
     return Row(
       children: [
         Expanded(
@@ -39,6 +50,10 @@ class CustomDateRangePicker extends StatelessWidget {
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.date_range_rounded),
               labelText: 'Desde',
+            ),
+            validator: (_) => dateRange.fold(
+              (l) => l is! InvalidEndDate ? '$l' : null,
+              (r) => null,
             ),
             onTap: () async {
               final selectedStartDate = await _selectDate(context);
@@ -57,6 +72,10 @@ class CustomDateRangePicker extends StatelessWidget {
             enabled: sinceOption.isSome(),
             enableInteractiveSelection: false,
             keyboardType: TextInputType.datetime,
+            validator: (_) => dateRange.fold(
+              (l) => l is InvalidEndDate ? '$l' : null,
+              (r) => null,
+            ),
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.date_range_rounded),
               labelText: 'Hasta',
@@ -75,7 +94,9 @@ class CustomDateRangePicker extends StatelessWidget {
   }
 
   String _formatDate(Option<DateTime> dateOption) => dateOption.fold(
-      () => '', (date) => DateFormat('dd/MM/yyyy').format(date));
+        () => '',
+        (date) => DateFormat('dd/MM/yyyy').format(date),
+      );
   Future<DateTime?> _selectDate(BuildContext context) => showDatePicker(
         context: context,
         initialDate: DateTime.now(),

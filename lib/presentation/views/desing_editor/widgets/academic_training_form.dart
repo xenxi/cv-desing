@@ -85,8 +85,8 @@ class AcademicTrainingForm extends StatelessWidget {
                       onPressed: () =>
                           BlocProvider.of<AcademyTrainingFormBloc>(context)
                               .add(Saved()),
-                      icon: const Icon(Icons.add_outlined),
-                      label: const Text('Añadir'),
+                      icon: const Icon(Icons.save_alt_outlined),
+                      label: const Text('Guardar'),
                     ),
                   ],
                 ));
