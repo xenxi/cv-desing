@@ -61,8 +61,11 @@ class AcademyTrainings extends Equatable {
   @override
   List<Object?> get props => [...value];
 
-  AcademyTrainings add(AcademyTraining skill) =>
-      AcademyTrainings(List<AcademyTraining>.from(value)..add(skill));
+  AcademyTrainings add(AcademyTraining skill) => AcademyTrainings(
+        List<AcademyTraining>.from(value)
+          ..removeWhere((element) => element.uniqueId == skill.uniqueId)
+          ..add(skill),
+      );
 
   AcademyTrainings remove(AcademyTraining skill) => AcademyTrainings(
         List<AcademyTraining>.from(value)..remove(skill),
