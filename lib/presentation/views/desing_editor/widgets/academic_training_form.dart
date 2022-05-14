@@ -88,6 +88,14 @@ class AcademicTrainingForm extends StatelessWidget {
                       icon: const Icon(Icons.save_alt_outlined),
                       label: const Text('Guardar'),
                     ),
+                    if (editedAcademicTraining != null)
+                      ElevatedButton.icon(
+                        onPressed: () => BlocProvider.of<CvEditorBloc>(context)
+                            .add(
+                                AcademyTrainingDeleted(editedAcademicTraining)),
+                        icon: const Icon(Icons.delete_outline),
+                        label: const Text('Eliminar'),
+                      ),
                   ],
                 ));
           },
