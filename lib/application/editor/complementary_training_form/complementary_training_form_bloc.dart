@@ -55,7 +55,7 @@ class ComplementaryTrainingFormBloc extends Bloc<ComplementaryTrainingFormEvent,
         );
       } else if (event is Initialized) {
         emit(
-          event.ademyTraining.fold(
+          event.complementaryTraining.fold(
             () => state,
             (complementaryTraining) => state.copyWith(
               isLoaded: true,
