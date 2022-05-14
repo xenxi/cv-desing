@@ -3,6 +3,16 @@ import 'package:cv_desing_website_flutter/domain/value_failures.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:dartz/dartz.dart';
 
+Either<Failure<int>, int> validateMinNumberValue(
+  int input,
+  int min,
+) {
+  if (input < min) {
+    return left(ExceedingMinNumber(input));
+  }
+  return right(input);
+}
+
 Either<Failure<String>, String> validateStringIsNotEmpty(String? input) {
   if (input?.isNotEmpty == true) {
     return right(input!);

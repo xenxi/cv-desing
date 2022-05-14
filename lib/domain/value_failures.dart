@@ -5,6 +5,10 @@ class Empty<T> extends Failure<T> {
   const Empty() : super(null);
 }
 
+class ExceedingMinNumber extends Failure<int> {
+  const ExceedingMinNumber(int number) : super(number);
+}
+
 class ExceedingMaxDate extends Failure<DateTime> {
   const ExceedingMaxDate(DateTime date) : super(date);
 }
