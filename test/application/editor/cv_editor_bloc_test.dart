@@ -2,6 +2,8 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/domain/academy_training.dart';
+import 'package:cv_desing_website_flutter/domain/complementary_training.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/course_hours.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/percentage.dart';
@@ -10,10 +12,12 @@ import 'package:cv_desing_website_flutter/domain/value_objects/skills.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/unique_id.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   final initialState = CvEditorState(
+    complementaryTrainings: ComplementaryTrainings.empty(),
     section: Section.personalInformation,
     skills: Skills.empty(),
     softwareSkills: SoftwareSkills.empty(),
@@ -44,6 +48,27 @@ void main() {
     ),
     uniqueId: UniqueId.fromString('anyId'),
   );
+  final anyComplementaryTraining = ComplementaryTraining(
+    schoold: Schoold('anySchoold'),
+    title: Title('anyTitle'),
+    dateRange: DateRange(
+      since: DateTime.now().subtract(const Duration(days: 10)),
+      until: DateTime.now(),
+    ),
+    uniqueId: UniqueId.fromString('anyId'),
+    courseHoursOption: some(CourseHours(2)),
+  );
+  final otherComplementaryTraining = ComplementaryTraining(
+    schoold: Schoold('otherSchoold'),
+    title: Title('otherTitle'),
+    dateRange: DateRange(
+      since: DateTime.now().subtract(const Duration(days: 20)),
+      until: DateTime.now(),
+    ),
+    uniqueId: UniqueId.fromString('otherId'),
+    courseHoursOption: none(),
+  );
+
   group('CvEditorBloc should', () {
     test('has empty as initial state', () {
       final bloc = CvEditorBloc();
@@ -269,6 +294,48 @@ void main() {
           academyTrainings: AcademyTrainings(
             [
               anyAcademyTraining,
+            ],
+          ),
+        ),
+      ],
+    );
+    blocTest<CvEditorBloc, CvEditorState>(
+      'update complementary training',
+      build: () => CvEditorBloc(),
+      act: (bloc) => bloc
+        ..add(
+          ComplementaryTrainingAdded(anyComplementaryTraining),
+        )
+        ..add(
+          ComplementaryTrainingAdded(
+            otherComplementaryTraining,
+          ),
+        )
+        ..add(
+          ComplementaryTrainingDeleted(
+            otherComplementaryTraining,
+          ),
+        ),
+      expect: () => <CvEditorState>[
+        initialState.copyWith(
+          complementaryTrainings: ComplementaryTrainings(
+            [
+              anyComplementaryTraining,
+            ],
+          ),
+        ),
+        initialState.copyWith(
+          complementaryTrainings: ComplementaryTrainings(
+            [
+              anyComplementaryTraining,
+              otherComplementaryTraining,
+            ],
+          ),
+        ),
+        initialState.copyWith(
+          complementaryTrainings: ComplementaryTrainings(
+            [
+              anyComplementaryTraining,
             ],
           ),
         ),

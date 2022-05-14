@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/domain/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
+import 'package:cv_desing_website_flutter/domain/complementary_training.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/percentage.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/skills.dart';
@@ -109,6 +110,20 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
           state.copyWith(
             academyTrainings:
                 state.academyTrainings.remove(event.academyTraining),
+          ),
+        );
+      } else if (event is ComplementaryTrainingAdded) {
+        emit(
+          state.copyWith(
+            complementaryTrainings:
+                state.complementaryTrainings.add(event.complementaryTraining),
+          ),
+        );
+      } else if (event is ComplementaryTrainingDeleted) {
+        emit(
+          state.copyWith(
+            complementaryTrainings: state.complementaryTrainings
+                .remove(event.complementaryTraining),
           ),
         );
       }

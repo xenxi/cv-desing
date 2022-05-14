@@ -150,3 +150,23 @@ class AcademyTrainingDeleted extends CvEditorEvent {
   @override
   List<Object> get props => [academyTraining];
 }
+
+class ComplementaryTrainingAdded extends CvEditorEvent {
+  const ComplementaryTrainingAdded(
+    this.complementaryTraining,
+  );
+  final ComplementaryTraining complementaryTraining;
+
+  @override
+  List<Object> get props => [complementaryTraining];
+}
+
+class ComplementaryTrainingDeleted extends CvEditorEvent {
+  const ComplementaryTrainingDeleted(
+    this.complementaryTraining,
+  );
+  final ComplementaryTraining complementaryTraining;
+
+  @override
+  List<Object> get props => [complementaryTraining];
+}
