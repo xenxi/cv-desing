@@ -30,12 +30,8 @@ class ComplementaryTraining extends Equatable {
   final Option<CourseHours> courseHoursOption;
 
   @override
-  List<Object?> get props => [
-        title,
-        schoold,
-        dateRange,
-        uniqueId,
-      ];
+  List<Object?> get props =>
+      [title, schoold, dateRange, uniqueId, courseHoursOption];
 
   ComplementaryTraining copyWith({
     Title? title,
