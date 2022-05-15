@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/complementary_training_form/complementary_training_form_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/complementary_training.dart';
 import 'package:cv_desing_website_flutter/domain/value_failures.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/course_hours.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
@@ -137,6 +138,29 @@ void main() {
         initialState.copyWith(
           showErrorMessages: true,
           saveFailureOrSuccessOption: some(left(const Empty<String>())),
+        ),
+      ],
+    );
+    blocTest<ComplementaryTrainingFormBloc, ComplementaryTrainingFormState>(
+      'update course hours',
+      build: () => ComplementaryTrainingFormBloc(),
+      seed: () => initialState,
+      act: (bloc) => bloc
+        ..add(const CourseHoursChanged(1))
+        ..add(const CourseHoursChanged(null))
+        ..add(const CourseHoursChanged(2)),
+      expect: () => <ComplementaryTrainingFormState>[
+        initialState.copyWith(
+          complementaryTraining: initialState.complementaryTraining
+              .copyWith(courseHoursOption: some(CourseHours(1))),
+        ),
+        initialState.copyWith(
+          complementaryTraining: initialState.complementaryTraining
+              .copyWith(courseHoursOption: none()),
+        ),
+        initialState.copyWith(
+          complementaryTraining: initialState.complementaryTraining
+              .copyWith(courseHoursOption: some(CourseHours(2))),
         ),
       ],
     );

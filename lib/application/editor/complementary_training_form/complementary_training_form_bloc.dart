@@ -2,6 +2,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cv_desing_website_flutter/domain/complementary_training.dart';
 import 'package:cv_desing_website_flutter/domain/failure.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/course_hours.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
@@ -66,6 +67,16 @@ class ComplementaryTrainingFormBloc extends Bloc<ComplementaryTrainingFormEvent,
         await Future.delayed(const Duration(seconds: 1)).then((_) {
           emit(state.copyWith(isLoaded: false));
         });
+      } else if (event is CourseHoursChanged) {
+        final courseHoursOption =
+            optionOf(event.courseHours).map((h) => CourseHours(h));
+        emit(
+          state.copyWith(
+            complementaryTraining: state.complementaryTraining.copyWith(
+              courseHoursOption: courseHoursOption,
+            ),
+          ),
+        );
       }
     });
   }

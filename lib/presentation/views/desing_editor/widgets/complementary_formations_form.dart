@@ -153,7 +153,9 @@ class ComplementaryFormationsForm extends StatelessWidget {
                     text: 'Horas de estudio',
                     icon: Icons.timer_outlined,
                     value: state.complementaryTraining.schoold,
-                    onChanged: (val) {},
+                    onChanged: (val) =>
+                        BlocProvider.of<ComplementaryTrainingFormBloc>(context)
+                            .add(CourseHoursChanged(int.tryParse(val))),
                   ),
                   CustomDateRangePicker(
                     dateRange: state.complementaryTraining.dateRange,

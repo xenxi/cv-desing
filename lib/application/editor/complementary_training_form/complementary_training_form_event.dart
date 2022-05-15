@@ -31,6 +31,15 @@ class SchooldChanged extends ComplementaryTrainingFormEvent {
   List<Object?> get props => [shoold];
 }
 
+class CourseHoursChanged extends ComplementaryTrainingFormEvent {
+  const CourseHoursChanged(this.courseHours);
+
+  final int? courseHours;
+
+  @override
+  List<Object?> get props => [courseHours];
+}
+
 class DateRangeChanged extends ComplementaryTrainingFormEvent {
   const DateRangeChanged({this.since, this.until});
 
