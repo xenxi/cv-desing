@@ -1,6 +1,7 @@
 import 'package:cv_desing_website_flutter/application/editor/complementary_training_form/complementary_training_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/complementary_training.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/course_hours.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_date_range_picker.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
 import 'package:dartz/dartz.dart';
@@ -152,7 +153,9 @@ class ComplementaryFormationsForm extends StatelessWidget {
                     initialized: state.isLoaded,
                     text: 'Horas de estudio',
                     icon: Icons.timer_outlined,
-                    value: state.complementaryTraining.schoold,
+                    inputType: TextInputType.number,
+                    value: state.complementaryTraining.courseHoursOption
+                        .fold(() => null, (a) => a),
                     onChanged: (val) =>
                         BlocProvider.of<ComplementaryTrainingFormBloc>(context)
                             .add(CourseHoursChanged(int.tryParse(val))),
