@@ -58,18 +58,22 @@ class _Editor extends HookWidget {
           ),
         ),
         Expanded(
-          child: DropdownButton<String>(
-            value: level.value,
-            hint: const Text('Nivel'),
-            items: const ['Nativo', 'Intermedio', 'Básico'].map((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-            onChanged: controller.text.isNotEmpty
-                ? (String? value) => level.value = value ?? 'Básico'
-                : null,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 19, left: 8),
+            child: DropdownButton<String>(
+              value: level.value,
+              hint: const Text('Nivel'),
+              items:
+                  const ['Nativo', 'Intermedio', 'Básico'].map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: controller.text.isNotEmpty
+                  ? (String? value) => level.value = value ?? 'Básico'
+                  : null,
+            ),
           ),
         ),
         IconButton(
