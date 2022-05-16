@@ -50,6 +50,7 @@ class AcademyTraining extends Equatable {
       .andThen(schoold.failureOrUnit)
       .andThen(dateRange.failureOrUnit)
       .andThen(schoold.failureOrUnit)
+      .andThen(uniqueId.failureOrUnit)
       .fold((l) => some(l), (_) => none());
 }
 

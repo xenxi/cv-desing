@@ -1,12 +1,11 @@
-import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
-
 import 'package:cv_desing_website_flutter/domain/failure.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/course_hours.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/unique_id.dart';
+import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
 
 class ComplementaryTraining extends Equatable {
   const ComplementaryTraining({
@@ -53,6 +52,7 @@ class ComplementaryTraining extends Equatable {
       .andThen(schoold.failureOrUnit)
       .andThen(dateRange.failureOrUnit)
       .andThen(schoold.failureOrUnit)
+      .andThen(uniqueId.failureOrUnit)
       .fold((l) => some(l), (_) => none());
 }
 
