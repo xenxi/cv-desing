@@ -5,6 +5,10 @@ import 'package:cv_desing_website_flutter/domain/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/complementary_training.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/course_hours.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/description.dart'
+    as domainDescription;
+import 'package:cv_desing_website_flutter/domain/value_objects/employer.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/job.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/percentage.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
@@ -12,6 +16,7 @@ import 'package:cv_desing_website_flutter/domain/value_objects/skills.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/unique_id.dart';
+import 'package:cv_desing_website_flutter/domain/work_experience.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -29,6 +34,7 @@ void main() {
     phoneNumber: '',
     languages: Languages.empty(),
     academyTrainings: AcademyTrainings.empty(),
+    workExperiences: WorkExperiences.empty(),
   );
   final otherAcademyTraining = AcademyTraining(
     schoold: Schoold('otherSchoold'),
@@ -48,6 +54,7 @@ void main() {
     ),
     uniqueId: UniqueId.fromString('anyId'),
   );
+
   final anyComplementaryTraining = ComplementaryTraining(
     schoold: Schoold('anySchoold'),
     title: Title('anyTitle'),
@@ -387,6 +394,68 @@ void main() {
                 'anySoftwareSkillA',
                 percentage: Percentage(50),
               ),
+            ],
+          ),
+        ),
+      ],
+    );
+    final anyWorkExperience = WorkExperience(
+      dateRange: DateRange(
+        since: DateTime.now().subtract(const Duration(days: 10)),
+        until: DateTime.now(),
+      ),
+      description: domainDescription.Description('anyDescription'),
+      employer: Employer('anyEmployer'),
+      job: Job('anyJob'),
+      uniqueId: UniqueId.fromString('anyUniqueId'),
+    );
+    final otherWorkExperience = WorkExperience(
+      dateRange: DateRange(
+        since: DateTime.now().subtract(const Duration(days: 1)),
+        until: null,
+      ),
+      description: domainDescription.Description('otherDescription'),
+      employer: Employer('otherEmployer'),
+      job: Job('otherJob'),
+      uniqueId: UniqueId.fromString('otherUniqueId'),
+    );
+    blocTest<CvEditorBloc, CvEditorState>(
+      'update work experience',
+      build: () => CvEditorBloc(),
+      act: (bloc) => bloc
+        ..add(
+          WorkExperienceAdded(anyWorkExperience),
+        )
+        ..add(
+          WorkExperienceAdded(
+            otherWorkExperience,
+          ),
+        )
+        ..add(
+          WorkExperienceDeleted(
+            otherWorkExperience,
+          ),
+        ),
+      expect: () => <CvEditorState>[
+        initialState.copyWith(
+          workExperiences: WorkExperiences(
+            [
+              anyWorkExperience,
+            ],
+          ),
+        ),
+        initialState.copyWith(
+          workExperiences: WorkExperiences(
+            [
+              anyWorkExperience,
+              otherWorkExperience,
+            ],
+          ),
+        ),
+        initialState.copyWith(
+          workExperiences: WorkExperiences(
+            [
+              anyWorkExperience,
             ],
           ),
         ),

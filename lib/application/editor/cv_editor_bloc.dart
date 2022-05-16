@@ -8,6 +8,7 @@ import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/percentage.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/skills.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
+import 'package:cv_desing_website_flutter/domain/work_experience.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
@@ -124,6 +125,18 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
           state.copyWith(
             complementaryTrainings: state.complementaryTrainings
                 .remove(event.complementaryTraining),
+          ),
+        );
+      } else if (event is WorkExperienceAdded) {
+        emit(
+          state.copyWith(
+            workExperiences: state.workExperiences.add(event.workExperience),
+          ),
+        );
+      } else if (event is WorkExperienceDeleted) {
+        emit(
+          state.copyWith(
+            workExperiences: state.workExperiences.remove(event.workExperience),
           ),
         );
       }

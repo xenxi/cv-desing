@@ -170,3 +170,23 @@ class ComplementaryTrainingDeleted extends CvEditorEvent {
   @override
   List<Object> get props => [complementaryTraining];
 }
+
+class WorkExperienceAdded extends CvEditorEvent {
+  const WorkExperienceAdded(
+    this.workExperience,
+  );
+  final WorkExperience workExperience;
+
+  @override
+  List<Object> get props => [workExperience];
+}
+
+class WorkExperienceDeleted extends CvEditorEvent {
+  const WorkExperienceDeleted(
+    this.workExperience,
+  );
+  final WorkExperience workExperience;
+
+  @override
+  List<Object> get props => [workExperience];
+}
