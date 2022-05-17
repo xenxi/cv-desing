@@ -8,12 +8,13 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 class WorkExperience extends Equatable {
-  const WorkExperience(
-      {required this.job,
-      required this.employer,
-      required this.dateRange,
-      required this.uniqueId,
-      required this.description});
+  const WorkExperience({
+    required this.job,
+    required this.employer,
+    required this.dateRange,
+    required this.uniqueId,
+    required this.description,
+  });
   factory WorkExperience.empty() => WorkExperience(
         job: Job.empty(),
         employer: Employer.empty(),
@@ -42,6 +43,22 @@ class WorkExperience extends Equatable {
       .andThen(description.failureOrUnit)
       .andThen(uniqueId.failureOrUnit)
       .fold((l) => some(l), (_) => none());
+
+  WorkExperience copyWith({
+    Job? job,
+    Employer? employer,
+    DateRange? dateRange,
+    UniqueId? uniqueId,
+    Description? description,
+  }) {
+    return WorkExperience(
+      job: job ?? this.job,
+      employer: employer ?? this.employer,
+      dateRange: dateRange ?? this.dateRange,
+      uniqueId: uniqueId ?? this.uniqueId,
+      description: description ?? this.description,
+    );
+  }
 }
 
 class WorkExperiences extends Equatable {

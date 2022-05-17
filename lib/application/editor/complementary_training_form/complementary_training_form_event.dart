@@ -14,12 +14,12 @@ class TitleChanged extends ComplementaryTrainingFormEvent {
 }
 
 class Initialized extends ComplementaryTrainingFormEvent {
-  const Initialized(this.complementaryTraining);
+  const Initialized(this.complementaryTrainingOption);
 
-  final Option<ComplementaryTraining> complementaryTraining;
+  final Option<ComplementaryTraining> complementaryTrainingOption;
 
   @override
-  List<Object?> get props => [complementaryTraining];
+  List<Object?> get props => [complementaryTrainingOption];
 }
 
 class SchooldChanged extends ComplementaryTrainingFormEvent {
