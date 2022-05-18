@@ -100,36 +100,38 @@ class WorkExperienceForm extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton.icon(
-                        onPressed: () =>
-                            BlocProvider.of<WorkExperienceFormBloc>(
-                          context,
-                        ).add(Saved()),
-                        icon: const Icon(Icons.save_alt_outlined),
-                        label: const Text('Guardar'),
-                      ),
-                      if (editedWorkExperience != null) ...[
-                        const SizedBox(width: 20),
-                        ElevatedButton.icon(
-                          onPressed: () =>
-                              BlocProvider.of<CvEditorBloc>(context).add(
-                            WorkExperienceDeleted(
-                              editedWorkExperience,
-                            ),
-                          ),
-                          icon: const Icon(Icons.delete_outline),
-                          label: const Text('Eliminar'),
-                        ),
-                      ]
-                    ],
-                  )
+                  _buildActions(context, editedWorkExperience)
                 ],
               ),
             );
           },
         ),
+      );
+
+  Widget _buildActions(
+          BuildContext context, WorkExperience? editedWorkExperience) =>
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton.icon(
+            onPressed: () => BlocProvider.of<WorkExperienceFormBloc>(
+              context,
+            ).add(Saved()),
+            icon: const Icon(Icons.save_alt_outlined),
+            label: const Text('Guardar'),
+          ),
+          if (editedWorkExperience != null) ...[
+            const SizedBox(width: 20),
+            ElevatedButton.icon(
+              onPressed: () => BlocProvider.of<CvEditorBloc>(context).add(
+                WorkExperienceDeleted(
+                  editedWorkExperience,
+                ),
+              ),
+              icon: const Icon(Icons.delete_outline),
+              label: const Text('Eliminar'),
+            ),
+          ]
+        ],
       );
 }
