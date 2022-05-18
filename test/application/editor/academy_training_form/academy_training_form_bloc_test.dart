@@ -51,7 +51,19 @@ void main() {
       ],
     );
     blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
-      'initialized with academyTraining',
+      'not update work academy training',
+      build: () => AcademyTrainingFormBloc(),
+      seed: () => initialState,
+      act: (bloc) => bloc
+        ..add(
+          Initialized(
+            none(),
+          ),
+        ),
+      expect: () => <AcademyTrainingFormState>[],
+    );
+    blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
+      'initialized with academy training',
       build: () => AcademyTrainingFormBloc(),
       seed: () => initialState,
       wait: const Duration(seconds: 1),
