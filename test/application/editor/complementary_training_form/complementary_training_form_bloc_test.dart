@@ -53,6 +53,18 @@ void main() {
       ],
     );
     blocTest<ComplementaryTrainingFormBloc, ComplementaryTrainingFormState>(
+      'not update work complemented training',
+      build: () => ComplementaryTrainingFormBloc(),
+      seed: () => initialState,
+      act: (bloc) => bloc
+        ..add(
+          Initialized(
+            none(),
+          ),
+        ),
+      expect: () => <ComplementaryTrainingFormState>[],
+    );
+    blocTest<ComplementaryTrainingFormBloc, ComplementaryTrainingFormState>(
       'initialized with complementaryTraining',
       build: () => ComplementaryTrainingFormBloc(),
       seed: () => initialState,
