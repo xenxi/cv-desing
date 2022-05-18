@@ -102,29 +102,38 @@ class ComplementaryFormationsForm extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  ElevatedButton.icon(
-                    onPressed: () =>
-                        BlocProvider.of<ComplementaryTrainingFormBloc>(
-                      context,
-                    ).add(Saved()),
-                    icon: const Icon(Icons.save_alt_outlined),
-                    label: const Text('Guardar'),
-                  ),
-                  if (editedComplementaryTraining != null)
-                    ElevatedButton.icon(
-                      onPressed: () =>
-                          BlocProvider.of<CvEditorBloc>(context).add(
-                        ComplementaryTrainingDeleted(
-                          editedComplementaryTraining,
-                        ),
-                      ),
-                      icon: const Icon(Icons.delete_outline),
-                      label: const Text('Eliminar'),
-                    ),
+                  _buildActions(context, editedComplementaryTraining),
                 ],
               ),
             );
           },
         ),
+      );
+
+  Widget _buildActions(BuildContext context,
+          ComplementaryTraining? editedComplementaryTraining) =>
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton.icon(
+            onPressed: () => BlocProvider.of<ComplementaryTrainingFormBloc>(
+              context,
+            ).add(Saved()),
+            icon: const Icon(Icons.save_alt_outlined),
+            label: const Text('Guardar'),
+          ),
+          if (editedComplementaryTraining != null) ...[
+            const SizedBox(width: 20),
+            ElevatedButton.icon(
+              onPressed: () => BlocProvider.of<CvEditorBloc>(context).add(
+                ComplementaryTrainingDeleted(
+                  editedComplementaryTraining,
+                ),
+              ),
+              icon: const Icon(Icons.delete_outline),
+              label: const Text('Eliminar'),
+            ),
+          ]
+        ],
       );
 }
