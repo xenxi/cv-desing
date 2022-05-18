@@ -48,57 +48,73 @@ class AcademicTrainingForm extends StatelessWidget {
           },
           builder: (context, state) {
             return Form(
-                autovalidateMode: state.showErrorMessages
-                    ? AutovalidateMode.always
-                    : AutovalidateMode.disabled,
-                child: Column(
-                  children: [
-                    CustomFormField(
-                      initialized: state.isLoaded,
-                      text: 'Titulo',
-                      icon: Icons.science_outlined,
-                      value: state.academyTraining.title,
-                      onChanged: (val) =>
-                          BlocProvider.of<AcademyTrainingFormBloc>(context).add(
-                        TitleChanged(val),
-                      ),
+              autovalidateMode: state.showErrorMessages
+                  ? AutovalidateMode.always
+                  : AutovalidateMode.disabled,
+              child: Column(
+                children: [
+                  CustomFormField(
+                    initialized: state.isLoaded,
+                    text: 'Titulo',
+                    icon: Icons.science_outlined,
+                    value: state.academyTraining.title,
+                    onChanged: (val) =>
+                        BlocProvider.of<AcademyTrainingFormBloc>(context).add(
+                      TitleChanged(val),
                     ),
-                    CustomFormField(
-                      initialized: state.isLoaded,
-                      text: 'Escuela, instito o universidad',
-                      icon: Icons.school_outlined,
-                      value: state.academyTraining.schoold,
-                      onChanged: (val) =>
-                          BlocProvider.of<AcademyTrainingFormBloc>(context).add(
-                        SchooldChanged(val),
-                      ),
+                  ),
+                  CustomFormField(
+                    initialized: state.isLoaded,
+                    text: 'Escuela, instito o universidad',
+                    icon: Icons.school_outlined,
+                    value: state.academyTraining.schoold,
+                    onChanged: (val) =>
+                        BlocProvider.of<AcademyTrainingFormBloc>(context).add(
+                      SchooldChanged(val),
                     ),
-                    CustomDateRangePicker(
-                      dateRange: state.academyTraining.dateRange,
-                      onChanged: (start, end) =>
-                          BlocProvider.of<AcademyTrainingFormBloc>(context).add(
-                        DateRangeChanged(since: start, until: end),
-                      ),
+                  ),
+                  CustomDateRangePicker(
+                    dateRange: state.academyTraining.dateRange,
+                    onChanged: (start, end) =>
+                        BlocProvider.of<AcademyTrainingFormBloc>(context).add(
+                      DateRangeChanged(since: start, until: end),
                     ),
-                    const SizedBox(height: 20),
-                    ElevatedButton.icon(
-                      onPressed: () =>
-                          BlocProvider.of<AcademyTrainingFormBloc>(context)
-                              .add(Saved()),
-                      icon: const Icon(Icons.save_alt_outlined),
-                      label: const Text('Guardar'),
-                    ),
-                    if (editedAcademicTraining != null)
-                      ElevatedButton.icon(
-                        onPressed: () => BlocProvider.of<CvEditorBloc>(context)
-                            .add(
-                                AcademyTrainingDeleted(editedAcademicTraining)),
-                        icon: const Icon(Icons.delete_outline),
-                        label: const Text('Eliminar'),
-                      ),
-                  ],
-                ));
+                  ),
+                  const SizedBox(height: 20),
+                  _buildActions(context, editedAcademicTraining),
+                ],
+              ),
+            );
           },
         ),
+      );
+
+  Widget _buildActions(
+    BuildContext context,
+    AcademyTraining? editedAcademyTraining,
+  ) =>
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton.icon(
+            onPressed: () => BlocProvider.of<AcademyTrainingFormBloc>(
+              context,
+            ).add(Saved()),
+            icon: const Icon(Icons.save_alt_outlined),
+            label: const Text('Guardar'),
+          ),
+          if (editedAcademyTraining != null) ...[
+            const SizedBox(width: 20),
+            ElevatedButton.icon(
+              onPressed: () => BlocProvider.of<CvEditorBloc>(context).add(
+                AcademyTrainingDeleted(
+                  editedAcademyTraining,
+                ),
+              ),
+              icon: const Icon(Icons.delete_outline),
+              label: const Text('Eliminar'),
+            ),
+          ]
+        ],
       );
 }
