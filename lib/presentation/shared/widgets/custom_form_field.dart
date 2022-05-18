@@ -42,6 +42,8 @@ class CustomFormField extends StatelessWidget {
               FilteringTextInputFormatter.digitsOnly,
             ]
           : null,
+      minLines: inputType == TextInputType.multiline ? 4 : null,
+      maxLines: null,
       autocorrect: false,
       onChanged: onChanged,
       validator: (_) => valueOption

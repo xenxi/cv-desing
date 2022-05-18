@@ -15,7 +15,7 @@ class WorkExperienceFormState extends Equatable {
   });
   final bool showErrorMessages;
   final bool isLoaded;
-  final Option saveFailureOrSuccessOption;
+  final Option<Either<Failure, Unit>> saveFailureOrSuccessOption;
   final WorkExperience workExperience;
   @override
   List<Object> get props => [
@@ -28,7 +28,7 @@ class WorkExperienceFormState extends Equatable {
   WorkExperienceFormState copyWith({
     bool? showErrorMessages,
     bool? isLoaded,
-    Option? saveFailureOrSuccessOption,
+    Option<Either<Failure, Unit>>? saveFailureOrSuccessOption,
     WorkExperience? workExperience,
   }) {
     return WorkExperienceFormState(
