@@ -136,6 +136,18 @@ void main() {
       ],
     );
     blocTest<WorkExperienceFormBloc, WorkExperienceFormState>(
+      'not update work experience',
+      build: () => WorkExperienceFormBloc(),
+      seed: () => initialState,
+      act: (bloc) => bloc
+        ..add(
+          Initialized(
+            none(),
+          ),
+        ),
+      expect: () => <WorkExperienceFormState>[],
+    );
+    blocTest<WorkExperienceFormBloc, WorkExperienceFormState>(
       'save work experience',
       build: () => WorkExperienceFormBloc(),
       seed: () => WorkExperienceFormState(
