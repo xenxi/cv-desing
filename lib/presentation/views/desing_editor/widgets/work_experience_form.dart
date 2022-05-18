@@ -26,25 +26,6 @@ class WorkExperienceForm extends StatelessWidget {
         );
       },
     );
-
-    return Form(
-        child: Column(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: _datePicker(context, text: 'Desde'),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Expanded(
-              child: _datePicker(context, text: 'Hasta'),
-            ),
-          ],
-        )
-      ],
-    ));
   }
 
   Widget _buildWorkExperience({
@@ -142,23 +123,5 @@ class WorkExperienceForm extends StatelessWidget {
             );
           },
         ),
-      );
-  Widget _datePicker(BuildContext context, {required String text}) =>
-      TextFormField(
-        enableInteractiveSelection: false,
-        keyboardType: TextInputType.datetime,
-        decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.date_range_rounded),
-          labelText: text,
-        ),
-        onTap: () => _selectDate(context),
-      );
-
-  Future<DateTime?> _selectDate(BuildContext context) => showDatePicker(
-        // locale: const Locale('es', 'ES'),
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(1850),
-        lastDate: DateTime.now(),
       );
 }
