@@ -1,11 +1,11 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:cv_desing_website_flutter/domain/failure.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/work_experience.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/description.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/employer.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/job.dart';
-import 'package:cv_desing_website_flutter/domain/work_experience.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 

@@ -1,12 +1,13 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
-import 'package:cv_desing_website_flutter/domain/academy_training.dart';
-import 'package:cv_desing_website_flutter/domain/complementary_training.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/academy_training.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/complementary_training.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/work_experience.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/course_hours.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/description.dart'
-    as domainDescription;
+    as domain;
 import 'package:cv_desing_website_flutter/domain/value_objects/employer.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/job.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
@@ -16,7 +17,6 @@ import 'package:cv_desing_website_flutter/domain/value_objects/skills.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/unique_id.dart';
-import 'package:cv_desing_website_flutter/domain/work_experience.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -404,7 +404,7 @@ void main() {
         since: DateTime.now().subtract(const Duration(days: 10)),
         until: DateTime.now(),
       ),
-      description: domainDescription.Description('anyDescription'),
+      description: domain.Description('anyDescription'),
       employer: Employer('anyEmployer'),
       job: Job('anyJob'),
       uniqueId: UniqueId.fromString('anyUniqueId'),
@@ -414,7 +414,7 @@ void main() {
         since: DateTime.now().subtract(const Duration(days: 1)),
         until: null,
       ),
-      description: domainDescription.Description('otherDescription'),
+      description: domain.Description('otherDescription'),
       employer: Employer('otherEmployer'),
       job: Job('otherJob'),
       uniqueId: UniqueId.fromString('otherUniqueId'),

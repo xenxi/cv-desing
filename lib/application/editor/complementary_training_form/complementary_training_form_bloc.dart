@@ -1,7 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
-import 'package:cv_desing_website_flutter/domain/complementary_training.dart';
 import 'package:cv_desing_website_flutter/domain/failure.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/complementary_training.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/course_hours.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';

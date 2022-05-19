@@ -1,4 +1,4 @@
-import 'package:cv_desing_website_flutter/domain/academy_training.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
 import 'package:flutter_test/flutter_test.dart';
 

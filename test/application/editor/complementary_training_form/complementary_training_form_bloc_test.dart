@@ -1,6 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/complementary_training_form/complementary_training_form_bloc.dart';
-import 'package:cv_desing_website_flutter/domain/complementary_training.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/complementary_training.dart';
 import 'package:cv_desing_website_flutter/domain/value_failures.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/course_hours.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';

@@ -1,11 +1,11 @@
-import 'package:cv_desing_website_flutter/domain/academy_training.dart';
-import 'package:cv_desing_website_flutter/domain/complementary_training.dart';
-import 'package:cv_desing_website_flutter/domain/contact_information.dart';
-import 'package:cv_desing_website_flutter/domain/personal_information.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/academy_training.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/complementary_training.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/contact_information.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/personal_information.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/work_experience.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/skills.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
-import 'package:cv_desing_website_flutter/domain/work_experience.dart';
 import 'package:equatable/equatable.dart';
 
 class Resume extends Equatable {

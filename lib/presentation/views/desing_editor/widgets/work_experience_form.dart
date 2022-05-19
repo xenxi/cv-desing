@@ -1,6 +1,6 @@
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/work_experience_form/work_experience_form_bloc.dart';
-import 'package:cv_desing_website_flutter/domain/work_experience.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/work_experience.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_date_range_picker.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
 import 'package:dartz/dartz.dart';

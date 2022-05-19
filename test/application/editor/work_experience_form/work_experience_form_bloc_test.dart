@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/work_experience_form/work_experience_form_bloc.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/work_experience.dart';
 import 'package:cv_desing_website_flutter/domain/value_failures.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/description.dart'
@@ -7,7 +8,6 @@ import 'package:cv_desing_website_flutter/domain/value_objects/description.dart'
 import 'package:cv_desing_website_flutter/domain/value_objects/employer.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/job.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/unique_id.dart';
-import 'package:cv_desing_website_flutter/domain/work_experience.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
