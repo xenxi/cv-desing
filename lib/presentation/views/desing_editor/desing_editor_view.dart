@@ -15,7 +15,6 @@ class DesingEditorView extends HookWidget {
       create: (context) => getIt<CvEditorBloc>(),
       child: BlocBuilder<CvEditorBloc, CvEditorState>(
         builder: (context, state) {
-          print(state);
           return Stepper(
             controlsBuilder: (context, details) {
               return Container();

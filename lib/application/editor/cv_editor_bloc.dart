@@ -24,7 +24,6 @@ part 'cv_editor_state.dart';
 class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
   CvEditorBloc() : super(CvEditorState.initial()) {
     on<CvEditorEvent>((event, emit) {
-      print(event);
       if (event is SectionChanged) {
         emit(state.copyWith(section: event.section));
       } else if (event is SkillAdded) {
