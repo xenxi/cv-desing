@@ -13,7 +13,7 @@ class SoftwareSkillsForm extends StatelessWidget {
         return Column(
           children: [
             const _Editor(),
-            ...state.softwareSkills.value.map(
+            ...state.resume.softwareSkills.value.map(
               (skill) => ListTile(
                 title: Text(skill.getOrCrash()),
                 subtitle: LinearProgressIndicator(

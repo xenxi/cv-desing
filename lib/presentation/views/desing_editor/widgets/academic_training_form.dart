@@ -17,7 +17,7 @@ class AcademicTrainingForm extends StatelessWidget {
         return Column(
           children: [
             _buildAcademyTraining(),
-            ...state.academyTrainings.value.map(
+            ...state.resume.academyTrainings.value.map(
               (academyTraining) => _buildAcademyTraining(
                 editedAcademicTraining: academyTraining,
               ),

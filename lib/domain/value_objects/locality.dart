@@ -3,13 +3,13 @@ import 'package:cv_desing_website_flutter/domain/value_objects/value_object.dart
 import 'package:cv_desing_website_flutter/domain/value_validators.dart';
 import 'package:dartz/dartz.dart';
 
-class Location extends ValueObject<String> {
-  const Location._(this.value);
+class Locality extends ValueObject<String> {
+  const Locality._(this.value);
 
-  factory Location(String location) {
-    return Location._(validateStringIsNotEmpty(location));
+  factory Locality(String localityStr) {
+    return Locality._(validateStringIsNotEmpty(localityStr));
   }
-  factory Location.empty() => Location('');
+  factory Locality.empty() => Locality('');
   @override
   final Either<Failure<String>, String> value;
 }

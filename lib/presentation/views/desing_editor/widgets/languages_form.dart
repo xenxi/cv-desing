@@ -14,7 +14,7 @@ class LanguagesForm extends StatelessWidget {
           child: Column(
             children: [
               const _Editor(),
-              ...state.languages.value.map(
+              ...state.resume.languages.value.map(
                 (language) => ListTile(
                   title: Text(language.getOrCrash()),
                   subtitle: Chip(label: Text(language.level)),

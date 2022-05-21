@@ -11,7 +11,8 @@ class SkillsForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CvEditorBloc, CvEditorState>(
-      buildWhen: (previous, current) => previous.skills != current.skills,
+      buildWhen: (previous, current) =>
+          previous.resume.skills != current.resume.skills,
       builder: (context, state) {
         return Row(
           children: [
@@ -36,7 +37,7 @@ class SkillsForm extends StatelessWidget {
               Expanded(
                 child: Wrap(
                   children: [
-                    ...state.skills.value.map(
+                    ...state.resume.skills.value.map(
                       (skill) => FlipInX(
                         child: InputChip(
                           label: Text(skill),
@@ -55,7 +56,8 @@ class SkillsForm extends StatelessWidget {
     );
   }
 
-  bool _hasAnySkill(CvEditorState state) => state.skills.value.isNotEmpty;
+  bool _hasAnySkill(CvEditorState state) =>
+      state.resume.skills.value.isNotEmpty;
 
   void _saveSkill(
     BuildContext context,

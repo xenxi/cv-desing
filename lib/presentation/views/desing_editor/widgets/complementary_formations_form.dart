@@ -17,7 +17,7 @@ class ComplementaryFormationsForm extends StatelessWidget {
         return Column(
           children: [
             _buildComplementaryTraining(),
-            ...state.complementaryTrainings.value.map(
+            ...state.resume.complementaryTrainings.value.map(
               (complementaryTraining) => _buildComplementaryTraining(
                 editedComplementaryTraining: complementaryTraining,
               ),

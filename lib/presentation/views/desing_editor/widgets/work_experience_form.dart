@@ -17,7 +17,7 @@ class WorkExperienceForm extends StatelessWidget {
         return Column(
           children: [
             _buildWorkExperience(),
-            ...state.workExperiences.value.map(
+            ...state.resume.workExperiences.value.map(
               (workExperience) => _buildWorkExperience(
                 editedWorkExperience: workExperience,
               ),

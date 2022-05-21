@@ -3,10 +3,25 @@ import 'package:cv_desing_website_flutter/domain/value_objects/phone_number.dart
 import 'package:equatable/equatable.dart';
 
 class ContactInformation extends Equatable {
-  const ContactInformation(this.emailAddress, this.phoneNumber);
+  factory ContactInformation.empty() => ContactInformation(
+        emailAddress: EmailAddress.empty(),
+        phoneNumber: PhoneNumber.empty(),
+      );
+  const ContactInformation(
+      {required this.emailAddress, required this.phoneNumber});
 
   final EmailAddress emailAddress;
   final PhoneNumber phoneNumber;
   @override
   List<Object?> get props => [emailAddress, phoneNumber];
+
+  ContactInformation copyWith({
+    EmailAddress? emailAddress,
+    PhoneNumber? phoneNumber,
+  }) {
+    return ContactInformation(
+      emailAddress: emailAddress ?? this.emailAddress,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+    );
+  }
 }

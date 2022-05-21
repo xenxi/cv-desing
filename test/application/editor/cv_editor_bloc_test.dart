@@ -1,9 +1,13 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
+import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/complementary_training.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/contact_information.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/personal_information.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/work_experience.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/course_hours.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/description.dart'
@@ -11,7 +15,10 @@ import 'package:cv_desing_website_flutter/domain/value_objects/description.dart'
 import 'package:cv_desing_website_flutter/domain/value_objects/employer.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/job.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/percentage.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/phone_number.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/schoold.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/skills.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
@@ -22,19 +29,25 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   final initialState = CvEditorState(
-    complementaryTrainings: ComplementaryTrainings.empty(),
     section: Section.personalInformation,
-    skills: Skills.empty(),
-    softwareSkills: SoftwareSkills.empty(),
-    name: '',
-    locality: '',
-    profession: '',
-    personalDescription: '',
-    email: '',
-    phoneNumber: '',
-    languages: Languages.empty(),
-    academyTrainings: AcademyTrainings.empty(),
-    workExperiences: WorkExperiences.empty(),
+    resume: Resume(
+      academyTrainings: const AcademyTrainings([]),
+      complementaryTrainings: const ComplementaryTrainings([]),
+      contactInformation: ContactInformation(
+        emailAddress: EmailAddress(''),
+        phoneNumber: PhoneNumber(''),
+      ),
+      languages: const Languages([]),
+      skills: const Skills([]),
+      softwareSkills: const SoftwareSkills([]),
+      workExperiences: const WorkExperiences([]),
+      personalInformation: PersonalInformation(
+        description: domain.Description(''),
+        job: Job(''),
+        locality: Locality(''),
+        name: Name(''),
+      ),
+    ),
   );
   final otherAcademyTraining = AcademyTraining(
     schoold: Schoold('otherSchoold'),
@@ -158,8 +171,22 @@ void main() {
         ..add(const NameChanged('anyName'))
         ..add(const NameChanged('otherName')),
       expect: () => <CvEditorState>[
-        initialState.copyWith(name: 'anyName'),
-        initialState.copyWith(name: 'otherName'),
+        initialState.copyWith(
+          resume: initialState.resume.copyWith(
+            personalInformation:
+                initialState.resume.personalInformation.copyWith(
+              name: Name('anyName'),
+            ),
+          ),
+        ),
+        initialState.copyWith(
+          resume: initialState.resume.copyWith(
+            personalInformation:
+                initialState.resume.personalInformation.copyWith(
+              name: Name('otherName'),
+            ),
+          ),
+        ),
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
@@ -169,8 +196,22 @@ void main() {
         ..add(const LocalityChanged('anyLocality'))
         ..add(const LocalityChanged('otherLocality')),
       expect: () => <CvEditorState>[
-        initialState.copyWith(locality: 'anyLocality'),
-        initialState.copyWith(locality: 'otherLocality'),
+        initialState.copyWith(
+          resume: initialState.resume.copyWith(
+            personalInformation:
+                initialState.resume.personalInformation.copyWith(
+              locality: Locality('anyLocality'),
+            ),
+          ),
+        ),
+        initialState.copyWith(
+          resume: initialState.resume.copyWith(
+            personalInformation:
+                initialState.resume.personalInformation.copyWith(
+              locality: Locality('otherLocality'),
+            ),
+          ),
+        ),
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
@@ -180,8 +221,22 @@ void main() {
         ..add(const ProfessionChanged('anyProfession'))
         ..add(const ProfessionChanged('otherProfession')),
       expect: () => <CvEditorState>[
-        initialState.copyWith(profession: 'anyProfession'),
-        initialState.copyWith(profession: 'otherProfession'),
+        initialState.copyWith(
+          resume: initialState.resume.copyWith(
+            personalInformation:
+                initialState.resume.personalInformation.copyWith(
+              job: Job('anyProfession'),
+            ),
+          ),
+        ),
+        initialState.copyWith(
+          resume: initialState.resume.copyWith(
+            personalInformation:
+                initialState.resume.personalInformation.copyWith(
+              job: Job('otherProfession'),
+            ),
+          ),
+        ),
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
@@ -191,8 +246,22 @@ void main() {
         ..add(const PersonalDescriptionChanged('anyPersonalDescription'))
         ..add(const PersonalDescriptionChanged('otherPersonalDescription')),
       expect: () => <CvEditorState>[
-        initialState.copyWith(personalDescription: 'anyPersonalDescription'),
-        initialState.copyWith(personalDescription: 'otherPersonalDescription'),
+        initialState.copyWith(
+          resume: initialState.resume.copyWith(
+            personalInformation:
+                initialState.resume.personalInformation.copyWith(
+              description: domain.Description('anyPersonalDescription'),
+            ),
+          ),
+        ),
+        initialState.copyWith(
+          resume: initialState.resume.copyWith(
+            personalInformation:
+                initialState.resume.personalInformation.copyWith(
+              description: domain.Description('otherPersonalDescription'),
+            ),
+          ),
+        ),
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
@@ -202,8 +271,20 @@ void main() {
         ..add(const EmailChanged('anyEmail'))
         ..add(const EmailChanged('otherEmail')),
       expect: () => <CvEditorState>[
-        initialState.copyWith(email: 'anyEmail'),
-        initialState.copyWith(email: 'otherEmail'),
+        initialState.copyWith(
+          resume: initialState.resume.copyWith(
+            contactInformation: initialState.resume.contactInformation.copyWith(
+              emailAddress: EmailAddress('anyEmail'),
+            ),
+          ),
+        ),
+        initialState.copyWith(
+          resume: initialState.resume.copyWith(
+            contactInformation: initialState.resume.contactInformation.copyWith(
+              emailAddress: EmailAddress('otherEmail'),
+            ),
+          ),
+        ),
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
@@ -213,8 +294,20 @@ void main() {
         ..add(const PhoneNumberChanged('anyPhoneNumber'))
         ..add(const PhoneNumberChanged('otherPhoneNumber')),
       expect: () => <CvEditorState>[
-        initialState.copyWith(phoneNumber: 'anyPhoneNumber'),
-        initialState.copyWith(phoneNumber: 'otherPhoneNumber'),
+        initialState.copyWith(
+          resume: initialState.resume.copyWith(
+            contactInformation: initialState.resume.contactInformation.copyWith(
+              phoneNumber: PhoneNumber('anyPhoneNumber'),
+            ),
+          ),
+        ),
+        initialState.copyWith(
+          resume: initialState.resume.copyWith(
+            contactInformation: initialState.resume.contactInformation.copyWith(
+              phoneNumber: PhoneNumber('otherPhoneNumber'),
+            ),
+          ),
+        ),
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
@@ -226,16 +319,22 @@ void main() {
         ..add(const LanguageDeleted('otherLanguage')),
       expect: () => <CvEditorState>[
         initialState.copyWith(
-          languages: Languages([Language('anyLanguage', level: 'anyLevel')]),
+          resume: initialState.resume.copyWith(
+            languages: Languages([Language('anyLanguage', level: 'anyLevel')]),
+          ),
         ),
         initialState.copyWith(
-          languages: Languages([
-            Language('anyLanguage', level: 'anyLevel'),
-            Language('otherLanguage', level: 'otherLevel')
-          ]),
+          resume: initialState.resume.copyWith(
+            languages: Languages([
+              Language('anyLanguage', level: 'anyLevel'),
+              Language('otherLanguage', level: 'otherLevel')
+            ]),
+          ),
         ),
         initialState.copyWith(
-          languages: Languages([Language('anyLanguage', level: 'anyLevel')]),
+          resume: initialState.resume.copyWith(
+            languages: Languages([Language('anyLanguage', level: 'anyLevel')]),
+          ),
         ),
       ],
     );
@@ -248,18 +347,24 @@ void main() {
         ..add(const SkillDeleted(skill: 'anySkill')),
       expect: () => <CvEditorState>[
         initialState.copyWith(
-          skills: const Skills(
-            ['anySkill'],
+          resume: initialState.resume.copyWith(
+            skills: const Skills(
+              ['anySkill'],
+            ),
           ),
         ),
         initialState.copyWith(
-          skills: const Skills(
-            ['anySkill', 'otherSkill'],
+          resume: initialState.resume.copyWith(
+            skills: const Skills(
+              ['anySkill', 'otherSkill'],
+            ),
           ),
         ),
         initialState.copyWith(
-          skills: const Skills(
-            ['otherSkill'],
+          resume: initialState.resume.copyWith(
+            skills: const Skills(
+              ['otherSkill'],
+            ),
           ),
         ),
       ],
@@ -283,25 +388,31 @@ void main() {
         ),
       expect: () => <CvEditorState>[
         initialState.copyWith(
-          academyTrainings: AcademyTrainings(
-            [
-              anyAcademyTraining,
-            ],
+          resume: initialState.resume.copyWith(
+            academyTrainings: AcademyTrainings(
+              [
+                anyAcademyTraining,
+              ],
+            ),
           ),
         ),
         initialState.copyWith(
-          academyTrainings: AcademyTrainings(
-            [
-              anyAcademyTraining,
-              otherAcademyTraining,
-            ],
+          resume: initialState.resume.copyWith(
+            academyTrainings: AcademyTrainings(
+              [
+                anyAcademyTraining,
+                otherAcademyTraining,
+              ],
+            ),
           ),
         ),
         initialState.copyWith(
-          academyTrainings: AcademyTrainings(
-            [
-              anyAcademyTraining,
-            ],
+          resume: initialState.resume.copyWith(
+            academyTrainings: AcademyTrainings(
+              [
+                anyAcademyTraining,
+              ],
+            ),
           ),
         ),
       ],
@@ -325,25 +436,31 @@ void main() {
         ),
       expect: () => <CvEditorState>[
         initialState.copyWith(
-          complementaryTrainings: ComplementaryTrainings(
-            [
-              anyComplementaryTraining,
-            ],
+          resume: initialState.resume.copyWith(
+            complementaryTrainings: ComplementaryTrainings(
+              [
+                anyComplementaryTraining,
+              ],
+            ),
           ),
         ),
         initialState.copyWith(
-          complementaryTrainings: ComplementaryTrainings(
-            [
-              anyComplementaryTraining,
-              otherComplementaryTraining,
-            ],
+          resume: initialState.resume.copyWith(
+            complementaryTrainings: ComplementaryTrainings(
+              [
+                anyComplementaryTraining,
+                otherComplementaryTraining,
+              ],
+            ),
           ),
         ),
         initialState.copyWith(
-          complementaryTrainings: ComplementaryTrainings(
-            [
-              anyComplementaryTraining,
-            ],
+          resume: initialState.resume.copyWith(
+            complementaryTrainings: ComplementaryTrainings(
+              [
+                anyComplementaryTraining,
+              ],
+            ),
           ),
         ),
       ],
@@ -364,37 +481,43 @@ void main() {
         ),
       expect: () => <CvEditorState>[
         initialState.copyWith(
-          softwareSkills: SoftwareSkills(
-            [
-              SoftwareSkill(
-                'anySoftwareSkillA',
-                percentage: Percentage(50),
-              ),
-            ],
+          resume: initialState.resume.copyWith(
+            softwareSkills: SoftwareSkills(
+              [
+                SoftwareSkill(
+                  'anySoftwareSkillA',
+                  percentage: Percentage(50),
+                ),
+              ],
+            ),
           ),
         ),
         initialState.copyWith(
-          softwareSkills: SoftwareSkills(
-            [
-              SoftwareSkill(
-                'anySoftwareSkillA',
-                percentage: Percentage(50),
-              ),
-              SoftwareSkill(
-                'otherSoftwareSkillA',
-                percentage: Percentage(10),
-              ),
-            ],
+          resume: initialState.resume.copyWith(
+            softwareSkills: SoftwareSkills(
+              [
+                SoftwareSkill(
+                  'anySoftwareSkillA',
+                  percentage: Percentage(50),
+                ),
+                SoftwareSkill(
+                  'otherSoftwareSkillA',
+                  percentage: Percentage(10),
+                ),
+              ],
+            ),
           ),
         ),
         initialState.copyWith(
-          softwareSkills: SoftwareSkills(
-            [
-              SoftwareSkill(
-                'anySoftwareSkillA',
-                percentage: Percentage(50),
-              ),
-            ],
+          resume: initialState.resume.copyWith(
+            softwareSkills: SoftwareSkills(
+              [
+                SoftwareSkill(
+                  'anySoftwareSkillA',
+                  percentage: Percentage(50),
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -438,25 +561,31 @@ void main() {
         ),
       expect: () => <CvEditorState>[
         initialState.copyWith(
-          workExperiences: WorkExperiences(
-            [
-              anyWorkExperience,
-            ],
+          resume: initialState.resume.copyWith(
+            workExperiences: WorkExperiences(
+              [
+                anyWorkExperience,
+              ],
+            ),
           ),
         ),
         initialState.copyWith(
-          workExperiences: WorkExperiences(
-            [
-              anyWorkExperience,
-              otherWorkExperience,
-            ],
+          resume: initialState.resume.copyWith(
+            workExperiences: WorkExperiences(
+              [
+                anyWorkExperience,
+                otherWorkExperience,
+              ],
+            ),
           ),
         ),
         initialState.copyWith(
-          workExperiences: WorkExperiences(
-            [
-              anyWorkExperience,
-            ],
+          resume: initialState.resume.copyWith(
+            workExperiences: WorkExperiences(
+              [
+                anyWorkExperience,
+              ],
+            ),
           ),
         ),
       ],

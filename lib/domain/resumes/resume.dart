@@ -9,22 +9,32 @@ import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.da
 import 'package:equatable/equatable.dart';
 
 class Resume extends Equatable {
-  const Resume(
-    this.personalInformation,
-    this.contactInformation,
-    this.academyTraining,
-    this.complementaryTraining,
-    this.workExperience,
-    this.languages,
-    this.softwareSkills,
-    this.skills,
-  );
+  factory Resume.empty() => Resume(
+        personalInformation: PersonalInformation.empty(),
+        contactInformation: ContactInformation.empty(),
+        academyTrainings: AcademyTrainings.empty(),
+        complementaryTrainings: ComplementaryTrainings.empty(),
+        workExperiences: WorkExperiences.empty(),
+        languages: Languages.empty(),
+        softwareSkills: SoftwareSkills.empty(),
+        skills: Skills.empty(),
+      );
+  const Resume({
+    required this.personalInformation,
+    required this.contactInformation,
+    required this.academyTrainings,
+    required this.complementaryTrainings,
+    required this.workExperiences,
+    required this.languages,
+    required this.softwareSkills,
+    required this.skills,
+  });
 
   final PersonalInformation personalInformation;
   final ContactInformation contactInformation;
-  final AcademyTraining academyTraining;
-  final ComplementaryTraining complementaryTraining;
-  final WorkExperience workExperience;
+  final AcademyTrainings academyTrainings;
+  final ComplementaryTrainings complementaryTrainings;
+  final WorkExperiences workExperiences;
   final Languages languages;
   final SoftwareSkills softwareSkills;
   final Skills skills;
@@ -32,11 +42,34 @@ class Resume extends Equatable {
   List<Object?> get props => [
         personalInformation,
         contactInformation,
-        academyTraining,
-        complementaryTraining,
-        workExperience,
+        academyTrainings,
+        complementaryTrainings,
+        workExperiences,
         languages,
         softwareSkills,
         skills,
       ];
+
+  Resume copyWith({
+    PersonalInformation? personalInformation,
+    ContactInformation? contactInformation,
+    AcademyTrainings? academyTrainings,
+    ComplementaryTrainings? complementaryTrainings,
+    WorkExperiences? workExperiences,
+    Languages? languages,
+    SoftwareSkills? softwareSkills,
+    Skills? skills,
+  }) {
+    return Resume(
+      personalInformation: personalInformation ?? this.personalInformation,
+      contactInformation: contactInformation ?? this.contactInformation,
+      academyTrainings: academyTrainings ?? this.academyTrainings,
+      complementaryTrainings:
+          complementaryTrainings ?? this.complementaryTrainings,
+      workExperiences: workExperiences ?? this.workExperiences,
+      languages: languages ?? this.languages,
+      softwareSkills: softwareSkills ?? this.softwareSkills,
+      skills: skills ?? this.skills,
+    );
+  }
 }
