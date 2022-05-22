@@ -2,6 +2,7 @@ import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/form_step_builder.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/resume_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -15,13 +16,25 @@ class DesingEditorView extends HookWidget {
       create: (context) => getIt<CvEditorBloc>(),
       child: BlocBuilder<CvEditorBloc, CvEditorState>(
         builder: (context, state) {
-          return Stepper(
-            controlsBuilder: (context, details) {
-              return Container();
-            },
-            currentStep: _getCurrentStepFrom(state),
-            onStepTapped: (index) => _updateSelectedSection(context, index),
-            steps: _buildStepForms(),
+          return Row(
+            children: [
+              Expanded(
+                child: Stepper(
+                  controlsBuilder: (context, details) {
+                    return Container();
+                  },
+                  currentStep: _getCurrentStepFrom(state),
+                  onStepTapped: (index) =>
+                      _updateSelectedSection(context, index),
+                  steps: _buildStepForms(),
+                ),
+              ),
+              Expanded(
+                child: ResumePreview(
+                  resume: state.resume,
+                ),
+              )
+            ],
           );
         },
       ),

@@ -46,6 +46,7 @@ dependencies:
   injectable: ^1.5.3
   intl: ^0.17.0
   pdf: ^3.8.1
+  printing: ^5.9.1
   responsive_builder: ^0.4.2
   share_plus: ^4.0.4
   url_launcher: ^6.0.20
