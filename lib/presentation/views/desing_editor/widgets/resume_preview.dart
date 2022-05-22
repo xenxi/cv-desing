@@ -62,9 +62,21 @@ class ResumePreview extends StatelessWidget {
   }
 
   Future<List<Uint8List>> _buildPdf() async {
-    final pdf = pw.Document();
+    final doc = _buildResume(); //
+    final bytes = await doc.save();
+    final test = Printing.raster(bytes);
+    final result = <Uint8List>[];
+    await for (final page in test) {
+      final aux = await page.toPng();
+      result.add(aux);
+    }
+    return result;
+  }
 
-    pdf.addPage(
+  pw.Document _buildResume() {
+    final doc = pw.Document(title: 'My Résumé', author: 'David PHAM-VAN');
+
+    doc.addPage(
       pw.Page(
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
@@ -76,13 +88,6 @@ class ResumePreview extends StatelessWidget {
         },
       ),
     ); //
-    final bytes = await pdf.save();
-    final test = Printing.raster(bytes);
-    final result = <Uint8List>[];
-    await for (final page in test) {
-      final aux = await page.toPng();
-      result.add(aux);
-    }
-    return result;
+    return doc;
   }
 }
