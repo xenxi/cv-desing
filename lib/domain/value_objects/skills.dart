@@ -1,4 +1,3 @@
-import 'package:cv_desing_website_flutter/domain/value_objects/value_object.dart';
 import 'package:equatable/equatable.dart';
 
 class Skills extends Equatable {

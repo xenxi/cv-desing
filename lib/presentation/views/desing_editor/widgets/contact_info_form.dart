@@ -25,8 +25,8 @@ class ContactInfoForm extends StatelessWidget {
               prefixIcon: Icon(Icons.phone_outlined),
               labelText: 'Tu teléfono',
             ),
-            onChanged: (val) =>
-                BlocProvider.of<CvEditorBloc>(context).add(EmailChanged(val)),
+            onChanged: (val) => BlocProvider.of<CvEditorBloc>(context)
+                .add(PhoneNumberChanged(val)),
           ),
         ],
       ),

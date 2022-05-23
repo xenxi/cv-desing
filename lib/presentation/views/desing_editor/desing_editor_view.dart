@@ -14,11 +14,11 @@ class DesingEditorView extends HookWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<CvEditorBloc>(),
-      child: BlocBuilder<CvEditorBloc, CvEditorState>(
-        builder: (context, state) {
-          return Row(
-            children: [
-              Expanded(
+      child: Row(
+        children: [
+          BlocBuilder<CvEditorBloc, CvEditorState>(
+            builder: (context, state) {
+              return Expanded(
                 child: Stepper(
                   controlsBuilder: (context, details) {
                     return Container();
@@ -28,15 +28,26 @@ class DesingEditorView extends HookWidget {
                       _updateSelectedSection(context, index),
                   steps: _buildStepForms(),
                 ),
-              ),
-              Expanded(
-                child: ResumePreview(
-                  resume: state.resume,
+              );
+            },
+          ),
+          BlocBuilder<CvEditorBloc, CvEditorState>(
+            buildWhen: (previous, current) => previous.resume != current.resume,
+            builder: (context, state) {
+              return Expanded(
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ResumePreview(
+                        resume: state.resume,
+                      ),
+                    ),
+                  ],
                 ),
-              )
-            ],
-          );
-        },
+              );
+            },
+          ),
+        ],
       ),
     );
   }
