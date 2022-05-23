@@ -35,14 +35,14 @@ class DesingEditorView extends HookWidget {
             buildWhen: (previous, current) => previous.resume != current.resume,
             builder: (context, state) {
               return Expanded(
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: ResumePreview(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ResumePreview(
                         resume: state.resume,
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               );
             },

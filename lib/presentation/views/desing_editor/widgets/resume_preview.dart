@@ -13,6 +13,7 @@ import 'package:printing/printing.dart';
 
 const PdfColor green = PdfColor.fromInt(0xff9ce5d0);
 const PdfColor lightGreen = PdfColor.fromInt(0xffcdf1e7);
+const sep = 120.0;
 
 class ResumePreview extends StatelessWidget {
   const ResumePreview({
@@ -23,7 +24,40 @@ class ResumePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(resume.contactInformation);
+    return Container(
+      margin: const EdgeInsets.only(
+        left: 8,
+        top: 8,
+        right: 8,
+        bottom: 12,
+      ),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            offset: Offset(0, 3),
+            blurRadius: 5,
+            color: Color(0xFF000000),
+          ),
+        ],
+      ),
+      child: FutureBuilder<pw.Document>(
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Container(
+              width: 500,
+              height: 700,
+              child: PdfPreview(
+                build: (format) => snapshot.data!.save(),
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+        future: _buildResume(),
+      ),
+    );
     return Container(
       margin: const EdgeInsets.only(
         left: 8,
@@ -64,7 +98,7 @@ class ResumePreview extends StatelessWidget {
   }
 
   Future<List<Uint8List>> _buildPdf() async {
-    final doc = await _buildResume(); //
+    final doc = await _buildResume();
     final bytes = await doc.save();
     final test = Printing.raster(bytes);
     final result = <Uint8List>[];
@@ -80,7 +114,10 @@ class ResumePreview extends StatelessWidget {
       (await rootBundle.load(ImagePath.logo)).buffer.asUint8List(),
     );
 
-    final doc = pw.Document(title: 'My Résumé', author: 'David PHAM-VAN');
+    final doc = pw.Document(
+        title: resume.personalInformation.name
+            .fold((l) => Location.curriculum, (r) => r),
+        author: Location.appTitle);
     final pageTheme = await _myPageTheme();
     doc.addPage(
       pw.MultiPage(
@@ -186,7 +223,7 @@ class ResumePreview extends StatelessWidget {
                 ),
               ),
               pw.Partition(
-                // width: sep,
+                width: sep,
                 child: pw.Column(
                   children: [
                     pw.Container(
