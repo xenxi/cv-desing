@@ -43,7 +43,7 @@ class ResumePreview extends StatelessWidget {
       child: FutureBuilder<pw.Document>(
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return Container(
+            return SizedBox(
               width: 500,
               height: 700,
               child: PdfPreview(
@@ -147,28 +147,34 @@ class ResumePreview extends StatelessWidget {
                         ],
                       ),
                     ),
-                    _Category(title: Location.workExperience),
-                    ...resume.workExperiences.value.map(
-                      (workExperience) => _Block(
-                        title: workExperience.job.getOrCrash(),
-                        text: workExperience.description.getOrCrash(),
+                    if (resume.workExperiences.value.isNotEmpty) ...[
+                      _Category(title: Location.workExperience),
+                      ...resume.workExperiences.value.map(
+                        (workExperience) => _Block(
+                          title: workExperience.job.getOrCrash(),
+                          text: workExperience.description.getOrCrash(),
+                        ),
                       ),
-                    ),
-                    pw.SizedBox(height: 20),
-                    _Category(title: Location.academicTraining),
-                    ...resume.academyTrainings.value.map(
-                      (academyTraining) => _Block(
-                        title: academyTraining.title.getOrCrash(),
-                        text: academyTraining.schoold.getOrCrash(),
+                      pw.SizedBox(height: 20),
+                    ],
+                    if (resume.academyTrainings.value.isNotEmpty) ...[
+                      _Category(title: Location.academicTraining),
+                      ...resume.academyTrainings.value.map(
+                        (academyTraining) => _Block(
+                          title: academyTraining.title.getOrCrash(),
+                          text: academyTraining.schoold.getOrCrash(),
+                        ),
                       ),
-                    ),
-                    _Category(title: Location.complementaryFormations),
-                    ...resume.complementaryTrainings.value.map(
-                      (complementaryTraining) => _Block(
-                        title: complementaryTraining.title.getOrCrash(),
-                        text: complementaryTraining.schoold.getOrCrash(),
+                    ],
+                    if (resume.complementaryTrainings.value.isNotEmpty) ...[
+                      _Category(title: Location.complementaryFormations),
+                      ...resume.complementaryTrainings.value.map(
+                        (complementaryTraining) => _Block(
+                          title: complementaryTraining.title.getOrCrash(),
+                          text: complementaryTraining.schoold.getOrCrash(),
+                        ),
                       ),
-                    ),
+                    ],
                   ],
                 ),
               ),
