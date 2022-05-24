@@ -60,6 +60,7 @@ class AcademyTrainingFormBloc
               isLoaded: true,
               showErrorMessages: false,
               academyTraining: academyTraining,
+              saveFailureOrSuccessOption: none(),
             ),
           ),
         );

@@ -65,8 +65,11 @@ void main() {
     blocTest<AcademyTrainingFormBloc, AcademyTrainingFormState>(
       'initialized with academy training',
       build: () => AcademyTrainingFormBloc(),
-      seed: () =>
-          initialState.copyWith(isLoaded: false, showErrorMessages: true),
+      seed: () => initialState.copyWith(
+        isLoaded: false,
+        showErrorMessages: true,
+        saveFailureOrSuccessOption: some(right(unit)),
+      ),
       wait: const Duration(seconds: 1),
       act: (bloc) => bloc
         ..add(
