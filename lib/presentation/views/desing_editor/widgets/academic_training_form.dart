@@ -41,8 +41,12 @@ class AcademicTrainingForm extends StatelessWidget {
               () => {},
               (failureOrSucces) => failureOrSucces.fold(
                 (l) => {},
-                (_) => BlocProvider.of<CvEditorBloc>(context)
-                    .add(AcademyTrainingAdded(state.academyTraining)),
+                (_) {
+                  BlocProvider.of<CvEditorBloc>(context)
+                      .add(AcademyTrainingAdded(state.academyTraining));
+                  BlocProvider.of<AcademyTrainingFormBloc>(context)
+                      .add(Initialized(some(AcademyTraining.empty())));
+                },
               ),
             );
           },
