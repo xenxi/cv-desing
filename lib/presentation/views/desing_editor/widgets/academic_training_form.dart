@@ -28,72 +28,83 @@ class AcademicTrainingForm extends StatelessWidget {
     );
   }
 
-  Widget _buildAcademyTraining({AcademyTraining? editedAcademicTraining}) =>
-      BlocProvider(
-        create: (context) => AcademyTrainingFormBloc()
-          ..add(Initialized(optionOf(editedAcademicTraining))),
-        child: BlocConsumer<AcademyTrainingFormBloc, AcademyTrainingFormState>(
-          listenWhen: (previous, current) =>
-              previous.saveFailureOrSuccessOption !=
-              current.saveFailureOrSuccessOption,
-          listener: (context, state) {
-            state.saveFailureOrSuccessOption.fold(
-              () => {},
-              (failureOrSucces) => failureOrSucces.fold(
-                (l) => {},
-                (_) => onSaved(context, academyTraining: state.academyTraining),
+  Widget _buildAcademyTraining({AcademyTraining? editedAcademicTraining}) {
+    final editedAcademicTrainingOption = optionOf(editedAcademicTraining);
+    return BlocProvider(
+      create: (context) => AcademyTrainingFormBloc()
+        ..add(Initialized(editedAcademicTrainingOption)),
+      child: BlocConsumer<AcademyTrainingFormBloc, AcademyTrainingFormState>(
+        listenWhen: (previous, current) =>
+            previous.saveFailureOrSuccessOption !=
+            current.saveFailureOrSuccessOption,
+        listener: (context, state) {
+          state.saveFailureOrSuccessOption.fold(
+            () => {},
+            (failureOrSucces) => failureOrSucces.fold(
+              (l) => {},
+              (_) => onSaved(
+                context,
+                academyTraining: state.academyTraining,
+                clearForm: editedAcademicTrainingOption.isNone(),
               ),
-            );
-          },
-          builder: (context, state) {
-            return Form(
-              autovalidateMode: state.showErrorMessages
-                  ? AutovalidateMode.always
-                  : AutovalidateMode.disabled,
-              child: Column(
-                children: [
-                  CustomFormField(
-                    initialized: state.isLoaded,
-                    text: 'Titulo',
-                    icon: Icons.science_outlined,
-                    value: state.academyTraining.title,
-                    onChanged: (val) =>
-                        BlocProvider.of<AcademyTrainingFormBloc>(context).add(
-                      TitleChanged(val),
-                    ),
+            ),
+          );
+        },
+        builder: (context, state) {
+          return Form(
+            autovalidateMode: state.showErrorMessages
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
+            child: Column(
+              children: [
+                CustomFormField(
+                  initialized: state.isLoaded,
+                  text: 'Titulo',
+                  icon: Icons.science_outlined,
+                  value: state.academyTraining.title,
+                  onChanged: (val) =>
+                      BlocProvider.of<AcademyTrainingFormBloc>(context).add(
+                    TitleChanged(val),
                   ),
-                  CustomFormField(
-                    initialized: state.isLoaded,
-                    text: 'Escuela, instito o universidad',
-                    icon: Icons.school_outlined,
-                    value: state.academyTraining.schoold,
-                    onChanged: (val) =>
-                        BlocProvider.of<AcademyTrainingFormBloc>(context).add(
-                      SchooldChanged(val),
-                    ),
+                ),
+                CustomFormField(
+                  initialized: state.isLoaded,
+                  text: 'Escuela, instito o universidad',
+                  icon: Icons.school_outlined,
+                  value: state.academyTraining.schoold,
+                  onChanged: (val) =>
+                      BlocProvider.of<AcademyTrainingFormBloc>(context).add(
+                    SchooldChanged(val),
                   ),
-                  CustomDateRangePicker(
-                    dateRange: state.academyTraining.dateRange,
-                    onChanged: (start, end) =>
-                        BlocProvider.of<AcademyTrainingFormBloc>(context).add(
-                      DateRangeChanged(since: start, until: end),
-                    ),
+                ),
+                CustomDateRangePicker(
+                  dateRange: state.academyTraining.dateRange,
+                  onChanged: (start, end) =>
+                      BlocProvider.of<AcademyTrainingFormBloc>(context).add(
+                    DateRangeChanged(since: start, until: end),
                   ),
-                  const SizedBox(height: 20),
-                  _buildActions(context, editedAcademicTraining),
-                ],
-              ),
-            );
-          },
-        ),
-      );
+                ),
+                const SizedBox(height: 20),
+                _buildActions(context, editedAcademicTraining),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
 
-  void onSaved(BuildContext context,
-      {required AcademyTraining academyTraining}) {
+  void onSaved(
+    BuildContext context, {
+    required AcademyTraining academyTraining,
+    required bool clearForm,
+  }) {
     BlocProvider.of<CvEditorBloc>(context)
         .add(AcademyTrainingAdded(academyTraining));
-    BlocProvider.of<AcademyTrainingFormBloc>(context)
-        .add(Initialized(some(AcademyTraining.empty())));
+    if (clearForm) {
+      BlocProvider.of<AcademyTrainingFormBloc>(context)
+          .add(Initialized(some(AcademyTraining.empty())));
+    }
   }
 
   Widget _buildActions(
