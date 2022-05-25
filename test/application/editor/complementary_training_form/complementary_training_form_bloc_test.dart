@@ -67,7 +67,11 @@ void main() {
     blocTest<ComplementaryTrainingFormBloc, ComplementaryTrainingFormState>(
       'initialized with complementaryTraining',
       build: () => ComplementaryTrainingFormBloc(),
-      seed: () => initialState,
+      seed: () => initialState.copyWith(
+        isLoaded: false,
+        showErrorMessages: true,
+        saveFailureOrSuccessOption: some(right(unit)),
+      ),
       wait: const Duration(seconds: 1),
       act: (bloc) => bloc
         ..add(

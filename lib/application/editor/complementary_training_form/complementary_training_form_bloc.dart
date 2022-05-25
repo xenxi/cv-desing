@@ -60,6 +60,8 @@ class ComplementaryTrainingFormBloc extends Bloc<ComplementaryTrainingFormEvent,
             () => state,
             (complementaryTraining) => state.copyWith(
               isLoaded: true,
+              showErrorMessages: false,
+              saveFailureOrSuccessOption: none(),
               complementaryTraining: complementaryTraining,
             ),
           ),

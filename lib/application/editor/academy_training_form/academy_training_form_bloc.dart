@@ -59,8 +59,8 @@ class AcademyTrainingFormBloc
             (academyTraining) => state.copyWith(
               isLoaded: true,
               showErrorMessages: false,
-              academyTraining: academyTraining,
               saveFailureOrSuccessOption: none(),
+              academyTraining: academyTraining,
             ),
           ),
         );
