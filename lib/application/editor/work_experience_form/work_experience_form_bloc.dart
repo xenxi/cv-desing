@@ -65,6 +65,8 @@ class WorkExperienceFormBloc
             () => state,
             (workExperience) => state.copyWith(
               isLoaded: true,
+              showErrorMessages: false,
+              saveFailureOrSuccessOption: none(),
               workExperience: workExperience,
             ),
           ),

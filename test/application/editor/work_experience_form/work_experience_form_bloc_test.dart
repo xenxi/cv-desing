@@ -92,7 +92,11 @@ void main() {
     blocTest<WorkExperienceFormBloc, WorkExperienceFormState>(
       'initialized with work experience',
       build: () => WorkExperienceFormBloc(),
-      seed: () => initialState,
+      seed: () => initialState.copyWith(
+        isLoaded: false,
+        showErrorMessages: true,
+        saveFailureOrSuccessOption: some(right(unit)),
+      ),
       wait: const Duration(seconds: 1),
       act: (bloc) => bloc
         ..add(
