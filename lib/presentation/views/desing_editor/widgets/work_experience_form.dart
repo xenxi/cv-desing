@@ -30,83 +30,87 @@ class WorkExperienceForm extends StatelessWidget {
 
   Widget _buildWorkExperience({
     WorkExperience? editedWorkExperience,
-  }) =>
-      BlocProvider(
-        create: (context) => WorkExperienceFormBloc()
-          ..add(Initialized(optionOf(editedWorkExperience))),
-        child: BlocConsumer<WorkExperienceFormBloc, WorkExperienceFormState>(
-          listenWhen: (previous, current) =>
-              previous.saveFailureOrSuccessOption !=
-              current.saveFailureOrSuccessOption,
-          listener: (context, state) {
-            state.saveFailureOrSuccessOption.fold(
-              () => {},
-              (failureOrSucces) => failureOrSucces.fold(
-                (l) => {},
-                (_) => BlocProvider.of<CvEditorBloc>(context).add(
-                  WorkExperienceAdded(state.workExperience),
+  }) {
+    final editedWorkExperienceOption = optionOf(editedWorkExperience);
+    return BlocProvider(
+      create: (context) => WorkExperienceFormBloc()
+        ..add(Initialized(editedWorkExperienceOption)),
+      child: BlocConsumer<WorkExperienceFormBloc, WorkExperienceFormState>(
+        listenWhen: (previous, current) =>
+            previous.saveFailureOrSuccessOption !=
+            current.saveFailureOrSuccessOption,
+        listener: (context, state) {
+          state.saveFailureOrSuccessOption.fold(
+            () => {},
+            (failureOrSucces) => failureOrSucces.fold(
+              (l) => {},
+              (_) => onSaved(
+                context,
+                workExperience: state.workExperience,
+                clearForm: editedWorkExperienceOption.isNone(),
+              ),
+            ),
+          );
+        },
+        builder: (context, state) {
+          return Form(
+            autovalidateMode: state.showErrorMessages
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
+            child: Column(
+              children: [
+                CustomFormField(
+                  initialized: state.isLoaded,
+                  text: 'Puesto',
+                  icon: Icons.work_history_outlined,
+                  value: state.workExperience.job,
+                  onChanged: (val) => BlocProvider.of<WorkExperienceFormBloc>(
+                    context,
+                  ).add(
+                    JobChanged(val),
+                  ),
                 ),
-              ),
-            );
-          },
-          builder: (context, state) {
-            return Form(
-              autovalidateMode: state.showErrorMessages
-                  ? AutovalidateMode.always
-                  : AutovalidateMode.disabled,
-              child: Column(
-                children: [
-                  CustomFormField(
-                    initialized: state.isLoaded,
-                    text: 'Puesto',
-                    icon: Icons.work_history_outlined,
-                    value: state.workExperience.job,
-                    onChanged: (val) => BlocProvider.of<WorkExperienceFormBloc>(
-                      context,
-                    ).add(
-                      JobChanged(val),
-                    ),
+                CustomFormField(
+                  initialized: state.isLoaded,
+                  text: 'Empleador',
+                  icon: Icons.business_sharp,
+                  value: state.workExperience.employer,
+                  onChanged: (val) => BlocProvider.of<WorkExperienceFormBloc>(
+                    context,
+                  ).add(
+                    EmployerChanged(val),
                   ),
-                  CustomFormField(
-                    initialized: state.isLoaded,
-                    text: 'Empleador',
-                    icon: Icons.business_sharp,
-                    value: state.workExperience.employer,
-                    onChanged: (val) => BlocProvider.of<WorkExperienceFormBloc>(
-                      context,
-                    ).add(
-                      EmployerChanged(val),
-                    ),
+                ),
+                CustomFormField(
+                  initialized: state.isLoaded,
+                  text: 'Descripción del puesto y tareas realizadas',
+                  icon: Icons.info_outline,
+                  inputType: TextInputType.multiline,
+                  value: state.workExperience.description,
+                  onChanged: (val) => BlocProvider.of<WorkExperienceFormBloc>(
+                    context,
+                  ).add(
+                    DescriptionChanged(val),
                   ),
-                  CustomFormField(
-                    initialized: state.isLoaded,
-                    text: 'Descripción del puesto y tareas realizadas',
-                    icon: Icons.info_outline,
-                    inputType: TextInputType.multiline,
-                    value: state.workExperience.description,
-                    onChanged: (val) => BlocProvider.of<WorkExperienceFormBloc>(
-                      context,
-                    ).add(
-                      DescriptionChanged(val),
-                    ),
+                ),
+                CustomDateRangePicker(
+                  dateRange: state.workExperience.dateRange,
+                  onChanged: (start, end) =>
+                      BlocProvider.of<WorkExperienceFormBloc>(
+                    context,
+                  ).add(
+                    DateRangeChanged(since: start, until: end),
                   ),
-                  CustomDateRangePicker(
-                    dateRange: state.workExperience.dateRange,
-                    onChanged: (start, end) =>
-                        BlocProvider.of<WorkExperienceFormBloc>(
-                      context,
-                    ).add(
-                      DateRangeChanged(since: start, until: end),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  _buildActions(context, editedWorkExperience)
-                ],
-              ),
-            );
-          },
-        ),
-      );
+                ),
+                const SizedBox(height: 20),
+                _buildActions(context, editedWorkExperience)
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
 
   Widget _buildActions(
           BuildContext context, WorkExperience? editedWorkExperience) =>
@@ -134,4 +138,16 @@ class WorkExperienceForm extends StatelessWidget {
           ]
         ],
       );
+
+  void onSaved(BuildContext context,
+      {required WorkExperience workExperience, required bool clearForm}) {
+    BlocProvider.of<CvEditorBloc>(context).add(
+      WorkExperienceAdded(workExperience),
+    );
+
+    if (clearForm) {
+      BlocProvider.of<WorkExperienceFormBloc>(context)
+          .add(Initialized(some(WorkExperience.empty())));
+    }
+  }
 }
