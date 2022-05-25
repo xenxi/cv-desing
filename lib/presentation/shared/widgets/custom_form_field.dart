@@ -40,7 +40,7 @@ class CustomFormField extends StatelessWidget {
           prefixIcon: Icon(icon),
           labelText: text,
         ),
-        inputFormatters: inputType != null && inputType == TextInputType.number
+        inputFormatters: inputTypeNumber
             ? [
                 FilteringTextInputFormatter.digitsOnly,
               ]
@@ -53,4 +53,7 @@ class CustomFormField extends StatelessWidget {
             .map((a) => a.fold((l) => '$l', (r) => null))
             .getOrElse(() => null),
       );
+
+  bool get inputTypeNumber =>
+      inputType != null && inputType == TextInputType.number;
 }
