@@ -21,34 +21,36 @@ class CustomFormField extends StatelessWidget {
   final IconData icon;
   final bool initialized;
   @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: !initialized
-          ? null
-          : valueOption.fold(
-              () => null,
-              (r) => TextEditingController(text: '$r')
-                ..selection = TextSelection.fromPosition(
-                  TextPosition(offset: '$r'.length),
-                ),
-            ),
-      keyboardType: inputType,
-      decoration: InputDecoration(
-        prefixIcon: Icon(icon),
-        labelText: text,
-      ),
-      inputFormatters: inputType != null && inputType == TextInputType.number
-          ? [
-              FilteringTextInputFormatter.digitsOnly,
-            ]
-          : null,
-      minLines: inputType == TextInputType.multiline ? 4 : null,
-      maxLines: null,
-      autocorrect: false,
-      onChanged: onChanged,
-      validator: (_) => valueOption
-          .map((a) => a.fold((l) => '$l', (r) => null))
-          .getOrElse(() => null),
-    );
-  }
+  Widget build(BuildContext context) => TextFormField(
+        controller: !initialized
+            ? null
+            : valueOption.fold(
+                () => null,
+                (v) {
+                  final textvalue =
+                      v.fold((l) => '${l.failedValue ?? ''}', (r) => '$r');
+                  return TextEditingController(text: textvalue)
+                    ..selection = TextSelection.fromPosition(
+                      TextPosition(offset: textvalue.length),
+                    );
+                },
+              ),
+        keyboardType: inputType,
+        decoration: InputDecoration(
+          prefixIcon: Icon(icon),
+          labelText: text,
+        ),
+        inputFormatters: inputType != null && inputType == TextInputType.number
+            ? [
+                FilteringTextInputFormatter.digitsOnly,
+              ]
+            : null,
+        minLines: inputType == TextInputType.multiline ? 4 : null,
+        maxLines: null,
+        autocorrect: false,
+        onChanged: onChanged,
+        validator: (_) => valueOption
+            .map((a) => a.fold((l) => '$l', (r) => null))
+            .getOrElse(() => null),
+      );
 }
