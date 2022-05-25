@@ -30,85 +30,88 @@ class ComplementaryFormationsForm extends StatelessWidget {
 
   Widget _buildComplementaryTraining({
     ComplementaryTraining? editedComplementaryTraining,
-  }) =>
-      BlocProvider(
-        create: (context) => ComplementaryTrainingFormBloc()
-          ..add(Initialized(optionOf(editedComplementaryTraining))),
-        child: BlocConsumer<ComplementaryTrainingFormBloc,
-            ComplementaryTrainingFormState>(
-          listenWhen: (previous, current) =>
-              previous.saveFailureOrSuccessOption !=
-              current.saveFailureOrSuccessOption,
-          listener: (context, state) {
-            state.saveFailureOrSuccessOption.fold(
-              () => {},
-              (failureOrSucces) => failureOrSucces.fold(
-                (l) => {},
-                (_) => BlocProvider.of<CvEditorBloc>(context).add(
-                  ComplementaryTrainingAdded(state.complementaryTraining),
+  }) {
+    final editedComplementaryTrainingOption =
+        optionOf(editedComplementaryTraining);
+    return BlocProvider(
+      create: (context) => ComplementaryTrainingFormBloc()
+        ..add(Initialized(editedComplementaryTrainingOption)),
+      child: BlocConsumer<ComplementaryTrainingFormBloc,
+          ComplementaryTrainingFormState>(
+        listenWhen: (previous, current) =>
+            previous.saveFailureOrSuccessOption !=
+            current.saveFailureOrSuccessOption,
+        listener: (context, state) {
+          state.saveFailureOrSuccessOption.fold(
+            () => {},
+            (failureOrSucces) => failureOrSucces.fold(
+              (l) => {},
+              (_) => onSaved(context,
+                  complementaryTraining: state.complementaryTraining,
+                  clearForm: editedComplementaryTrainingOption.isNone()),
+            ),
+          );
+        },
+        builder: (context, state) {
+          return Form(
+            autovalidateMode: state.showErrorMessages
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
+            child: Column(
+              children: [
+                CustomFormField(
+                  initialized: state.isLoaded,
+                  text: 'Curso / taller / seminario / conferencia',
+                  icon: Icons.science_outlined,
+                  value: state.complementaryTraining.title,
+                  onChanged: (val) =>
+                      BlocProvider.of<ComplementaryTrainingFormBloc>(
+                    context,
+                  ).add(
+                    TitleChanged(val),
+                  ),
                 ),
-              ),
-            );
-          },
-          builder: (context, state) {
-            return Form(
-              autovalidateMode: state.showErrorMessages
-                  ? AutovalidateMode.always
-                  : AutovalidateMode.disabled,
-              child: Column(
-                children: [
-                  CustomFormField(
-                    initialized: state.isLoaded,
-                    text: 'Curso / taller / seminario / conferencia',
-                    icon: Icons.science_outlined,
-                    value: state.complementaryTraining.title,
-                    onChanged: (val) =>
-                        BlocProvider.of<ComplementaryTrainingFormBloc>(
-                      context,
-                    ).add(
-                      TitleChanged(val),
-                    ),
+                CustomFormField(
+                  initialized: state.isLoaded,
+                  text: 'Entidad formadora',
+                  icon: Icons.school_outlined,
+                  value: state.complementaryTraining.schoold,
+                  onChanged: (val) =>
+                      BlocProvider.of<ComplementaryTrainingFormBloc>(
+                    context,
+                  ).add(
+                    SchooldChanged(val),
                   ),
-                  CustomFormField(
-                    initialized: state.isLoaded,
-                    text: 'Entidad formadora',
-                    icon: Icons.school_outlined,
-                    value: state.complementaryTraining.schoold,
-                    onChanged: (val) =>
-                        BlocProvider.of<ComplementaryTrainingFormBloc>(
-                      context,
-                    ).add(
-                      SchooldChanged(val),
-                    ),
+                ),
+                CustomFormField(
+                  initialized: state.isLoaded,
+                  text: 'Horas de estudio',
+                  icon: Icons.timer_outlined,
+                  inputType: TextInputType.number,
+                  value: state.complementaryTraining.courseHoursOption
+                      .fold(() => null, (a) => a),
+                  onChanged: (val) =>
+                      BlocProvider.of<ComplementaryTrainingFormBloc>(context)
+                          .add(CourseHoursChanged(int.tryParse(val))),
+                ),
+                CustomDateRangePicker(
+                  dateRange: state.complementaryTraining.dateRange,
+                  onChanged: (start, end) =>
+                      BlocProvider.of<ComplementaryTrainingFormBloc>(
+                    context,
+                  ).add(
+                    DateRangeChanged(since: start, until: end),
                   ),
-                  CustomFormField(
-                    initialized: state.isLoaded,
-                    text: 'Horas de estudio',
-                    icon: Icons.timer_outlined,
-                    inputType: TextInputType.number,
-                    value: state.complementaryTraining.courseHoursOption
-                        .fold(() => null, (a) => a),
-                    onChanged: (val) =>
-                        BlocProvider.of<ComplementaryTrainingFormBloc>(context)
-                            .add(CourseHoursChanged(int.tryParse(val))),
-                  ),
-                  CustomDateRangePicker(
-                    dateRange: state.complementaryTraining.dateRange,
-                    onChanged: (start, end) =>
-                        BlocProvider.of<ComplementaryTrainingFormBloc>(
-                      context,
-                    ).add(
-                      DateRangeChanged(since: start, until: end),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  _buildActions(context, editedComplementaryTraining),
-                ],
-              ),
-            );
-          },
-        ),
-      );
+                ),
+                const SizedBox(height: 20),
+                _buildActions(context, editedComplementaryTraining),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
 
   Widget _buildActions(BuildContext context,
           ComplementaryTraining? editedComplementaryTraining) =>
@@ -136,4 +139,18 @@ class ComplementaryFormationsForm extends StatelessWidget {
           ]
         ],
       );
+
+  void onSaved(
+    BuildContext context, {
+    required ComplementaryTraining complementaryTraining,
+    required bool clearForm,
+  }) {
+    BlocProvider.of<CvEditorBloc>(context).add(
+      ComplementaryTrainingAdded(complementaryTraining),
+    );
+    if (clearForm) {
+      BlocProvider.of<ComplementaryTrainingFormBloc>(context)
+          .add(Initialized(some(ComplementaryTraining.empty())));
+    }
+  }
 }
