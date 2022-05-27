@@ -28,6 +28,14 @@ class PersonalInformationUpdated extends CvEditorEvent {
   List<Object> get props => [personalInformation];
 }
 
+class ContactInformationUpdated extends CvEditorEvent {
+  const ContactInformationUpdated({required this.contactInformation});
+
+  final ContactInformation contactInformation;
+  @override
+  List<Object> get props => [contactInformation];
+}
+
 class SkillDeleted extends CvEditorEvent {
   const SkillDeleted({required this.skill});
 

@@ -4,6 +4,7 @@ import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/complementary_training.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/contact_information.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/personal_information.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/work_experience.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
@@ -203,6 +204,14 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
           state.copyWith(
             resume: state.resume.copyWith(
               personalInformation: event.personalInformation,
+            ),
+          ),
+        );
+      } else if (event is ContactInformationUpdated) {
+        emit(
+          state.copyWith(
+            resume: state.resume.copyWith(
+              contactInformation: event.contactInformation,
             ),
           ),
         );

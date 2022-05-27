@@ -397,6 +397,29 @@ void main() {
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
+      'update contact information',
+      build: () => CvEditorBloc(),
+      act: (bloc) => bloc
+        ..add(
+          ContactInformationUpdated(
+            contactInformation: ContactInformation(
+              emailAddress: EmailAddress('anyEmail'),
+              phoneNumber: PhoneNumber('anyPhoneNumber'),
+            ),
+          ),
+        ),
+      expect: () => <CvEditorState>[
+        initialState.copyWith(
+          resume: initialState.resume.copyWith(
+            contactInformation: ContactInformation(
+              emailAddress: EmailAddress('anyEmail'),
+              phoneNumber: PhoneNumber('anyPhoneNumber'),
+            ),
+          ),
+        ),
+      ],
+    );
+    blocTest<CvEditorBloc, CvEditorState>(
       'update academy training',
       build: () => CvEditorBloc(),
       act: (bloc) => bloc
