@@ -45,5 +45,24 @@ void main() {
         ),
       ],
     );
+    blocTest<ContactInformationFormBloc, ContactInformationFormState>(
+      'update phone number',
+      build: () => ContactInformationFormBloc(),
+      act: (bloc) => bloc
+        ..add(const PhoneNumberChanged('anyPhoneNumber'))
+        ..add(const PhoneNumberChanged('otherPhoneNumber')),
+      expect: () => <ContactInformationFormState>[
+        initialState.copyWith(
+          contactInformation: initialState.contactInformation.copyWith(
+            phoneNumber: PhoneNumber('anyPhoneNumber'),
+          ),
+        ),
+        initialState.copyWith(
+          contactInformation: initialState.contactInformation.copyWith(
+            phoneNumber: PhoneNumber('otherPhoneNumber'),
+          ),
+        ),
+      ],
+    );
   });
 }

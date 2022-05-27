@@ -16,3 +16,13 @@ class EmailChanged extends ContactInformationFormEvent {
   @override
   List<Object> get props => [email];
 }
+
+class PhoneNumberChanged extends ContactInformationFormEvent {
+  const PhoneNumberChanged(
+    this.phoneNumber,
+  );
+  final String phoneNumber;
+
+  @override
+  List<Object> get props => [phoneNumber];
+}
