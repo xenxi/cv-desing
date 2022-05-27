@@ -1,3 +1,4 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/contact_information.dart';
@@ -24,5 +25,25 @@ void main() {
         equals(initialState),
       );
     });
+
+    blocTest<ContactInformationFormBloc, ContactInformationFormState>(
+      'update email',
+      build: () => ContactInformationFormBloc(),
+      act: (bloc) => bloc
+        ..add(const EmailChanged('anyEmail'))
+        ..add(const EmailChanged('otherEmail')),
+      expect: () => <ContactInformationFormState>[
+        initialState.copyWith(
+          contactInformation: initialState.contactInformation.copyWith(
+            emailAddress: EmailAddress('anyEmail'),
+          ),
+        ),
+        initialState.copyWith(
+          contactInformation: initialState.contactInformation.copyWith(
+            emailAddress: EmailAddress('otherEmail'),
+          ),
+        ),
+      ],
+    );
   });
 }

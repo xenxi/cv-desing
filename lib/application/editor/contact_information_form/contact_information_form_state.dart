@@ -25,4 +25,19 @@ class ContactInformationFormState extends Equatable {
         isLoaded,
         saveFailureOrSuccessOption,
       ];
+
+  ContactInformationFormState copyWith({
+    ContactInformation? contactInformation,
+    bool? showErrorMessages,
+    bool? isLoaded,
+    Option<Either<Failure, Unit>>? saveFailureOrSuccessOption,
+  }) {
+    return ContactInformationFormState(
+      contactInformation: contactInformation ?? this.contactInformation,
+      showErrorMessages: showErrorMessages ?? this.showErrorMessages,
+      isLoaded: isLoaded ?? this.isLoaded,
+      saveFailureOrSuccessOption:
+          saveFailureOrSuccessOption ?? this.saveFailureOrSuccessOption,
+    );
+  }
 }
