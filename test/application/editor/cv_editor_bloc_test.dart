@@ -370,6 +370,33 @@ void main() {
       ],
     );
     blocTest<CvEditorBloc, CvEditorState>(
+      'update personal information',
+      build: () => CvEditorBloc(),
+      act: (bloc) => bloc
+        ..add(
+          PersonalInformationUpdated(
+            personalInformation: PersonalInformation(
+              name: Name('anyName'),
+              locality: Locality('anyLocality'),
+              job: Job('anyProfession'),
+              description: domain.Description('anyPersonalDescription'),
+            ),
+          ),
+        ),
+      expect: () => <CvEditorState>[
+        initialState.copyWith(
+          resume: initialState.resume.copyWith(
+            personalInformation: PersonalInformation(
+              name: Name('anyName'),
+              locality: Locality('anyLocality'),
+              job: Job('anyProfession'),
+              description: domain.Description('anyPersonalDescription'),
+            ),
+          ),
+        ),
+      ],
+    );
+    blocTest<CvEditorBloc, CvEditorState>(
       'update academy training',
       build: () => CvEditorBloc(),
       act: (bloc) => bloc

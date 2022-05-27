@@ -27,8 +27,9 @@ class CustomFormField extends StatelessWidget {
             : valueOption.fold(
                 () => null,
                 (v) {
-                  final textvalue =
-                      v.fold((l) => '${l.failedValue ?? ''}', (r) => '$r');
+                  final textvalue = v.fold(
+                      (l) => '${l.failedValue ?? (inputTypeNumber ? '0' : '')}',
+                      (r) => '$r');
                   return TextEditingController(text: textvalue)
                     ..selection = TextSelection.fromPosition(
                       TextPosition(offset: textvalue.length),
