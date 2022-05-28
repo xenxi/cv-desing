@@ -65,4 +65,30 @@ void main() {
       ],
     );
   });
+
+  blocTest<ContactInformationFormBloc, ContactInformationFormState>(
+    'save contact information',
+    build: () => ContactInformationFormBloc(),
+    seed: () => ContactInformationFormState(
+      isLoaded: false,
+      showErrorMessages: false,
+      saveFailureOrSuccessOption: none(),
+      contactInformation: ContactInformation(
+        emailAddress: EmailAddress('email@valid.com'),
+        phoneNumber: PhoneNumber('654654673'),
+      ),
+    ),
+    act: (bloc) => bloc..add(Saved()),
+    expect: () => <ContactInformationFormState>[
+      ContactInformationFormState(
+        isLoaded: false,
+        showErrorMessages: true,
+        saveFailureOrSuccessOption: some(right(unit)),
+        contactInformation: ContactInformation(
+          emailAddress: EmailAddress('email@valid.com'),
+          phoneNumber: PhoneNumber('654654673'),
+        ),
+      ),
+    ],
+  );
 }

@@ -26,3 +26,8 @@ class PhoneNumberChanged extends ContactInformationFormEvent {
   @override
   List<Object> get props => [phoneNumber];
 }
+
+class Saved extends ContactInformationFormEvent {
+  @override
+  List<Object> get props => [];
+}

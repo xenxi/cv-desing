@@ -30,6 +30,17 @@ class ContactInformationFormBloc
             ),
           ),
         );
+      } else if (event is Saved) {
+        final Either<Failure, Unit> failureOrSuccess = state
+            .contactInformation.failureOption
+            .fold(() => right(unit), (a) => left(a));
+
+        emit(
+          state.copyWith(
+            saveFailureOrSuccessOption: some(failureOrSuccess),
+            showErrorMessages: true,
+          ),
+        );
       }
     });
   }
