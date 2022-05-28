@@ -1,8 +1,6 @@
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
-import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/form_step_builder.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/resume_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/resume_preview.dart';
 import 'package:flutter/material.dart';
@@ -30,14 +28,34 @@ class DesingEditorView extends HookWidget {
   }
 
   Widget _buildMobileView() {
-    return Column(
-      children: [
-        const Expanded(
-          child: ResumeForm(),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: const TabBar(
+            tabs: [
+              Tab(
+                icon: Icon(Icons.edit),
+              ),
+              Tab(icon: Icon(Icons.preview_outlined)),
+            ],
+          ),
         ),
-        const SizedBox(height: 9),
-        _buildPreview(),
-      ],
+        body: TabBarView(
+          children: [
+            const ResumeForm(),
+            BlocBuilder<CvEditorBloc, CvEditorState>(
+              buildWhen: (previous, current) =>
+                  previous.resume != current.resume,
+              builder: (context, state) {
+                return ResumePreview(
+                  resume: state.resume,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 
