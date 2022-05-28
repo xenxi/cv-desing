@@ -7,9 +7,8 @@ import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widge
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/resume_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
-class DesingEditorView extends HookWidget {
+class DesingEditorView extends StatelessWidget {
   const DesingEditorView({Key? key}) : super(key: key);
 
   @override
