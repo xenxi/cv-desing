@@ -105,26 +105,6 @@ class PersonalDescriptionChanged extends CvEditorEvent {
   List<Object> get props => [personalDescription];
 }
 
-class EmailChanged extends CvEditorEvent {
-  const EmailChanged(
-    this.email,
-  );
-  final String email;
-
-  @override
-  List<Object> get props => [email];
-}
-
-class PhoneNumberChanged extends CvEditorEvent {
-  const PhoneNumberChanged(
-    this.phoneNumber,
-  );
-  final String phoneNumber;
-
-  @override
-  List<Object> get props => [phoneNumber];
-}
-
 class LanguageAdded extends CvEditorEvent {
   const LanguageAdded(
     this.language, {

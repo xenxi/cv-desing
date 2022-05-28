@@ -264,52 +264,7 @@ void main() {
         ),
       ],
     );
-    blocTest<CvEditorBloc, CvEditorState>(
-      'update email',
-      build: () => CvEditorBloc(),
-      act: (bloc) => bloc
-        ..add(const EmailChanged('anyEmail'))
-        ..add(const EmailChanged('otherEmail')),
-      expect: () => <CvEditorState>[
-        initialState.copyWith(
-          resume: initialState.resume.copyWith(
-            contactInformation: initialState.resume.contactInformation.copyWith(
-              emailAddress: EmailAddress('anyEmail'),
-            ),
-          ),
-        ),
-        initialState.copyWith(
-          resume: initialState.resume.copyWith(
-            contactInformation: initialState.resume.contactInformation.copyWith(
-              emailAddress: EmailAddress('otherEmail'),
-            ),
-          ),
-        ),
-      ],
-    );
-    blocTest<CvEditorBloc, CvEditorState>(
-      'update phone number',
-      build: () => CvEditorBloc(),
-      act: (bloc) => bloc
-        ..add(const PhoneNumberChanged('anyPhoneNumber'))
-        ..add(const PhoneNumberChanged('otherPhoneNumber')),
-      expect: () => <CvEditorState>[
-        initialState.copyWith(
-          resume: initialState.resume.copyWith(
-            contactInformation: initialState.resume.contactInformation.copyWith(
-              phoneNumber: PhoneNumber('anyPhoneNumber'),
-            ),
-          ),
-        ),
-        initialState.copyWith(
-          resume: initialState.resume.copyWith(
-            contactInformation: initialState.resume.contactInformation.copyWith(
-              phoneNumber: PhoneNumber('otherPhoneNumber'),
-            ),
-          ),
-        ),
-      ],
-    );
+
     blocTest<CvEditorBloc, CvEditorState>(
       'update languages',
       build: () => CvEditorBloc(),

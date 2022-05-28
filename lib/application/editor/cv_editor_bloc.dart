@@ -104,26 +104,6 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
             ),
           ),
         );
-      } else if (event is EmailChanged) {
-        emit(
-          state.copyWith(
-            resume: state.resume.copyWith(
-              contactInformation: state.resume.contactInformation.copyWith(
-                emailAddress: EmailAddress(event.email),
-              ),
-            ),
-          ),
-        );
-      } else if (event is PhoneNumberChanged) {
-        emit(
-          state.copyWith(
-            resume: state.resume.copyWith(
-              contactInformation: state.resume.contactInformation.copyWith(
-                phoneNumber: PhoneNumber(event.phoneNumber),
-              ),
-            ),
-          ),
-        );
       } else if (event is LanguageAdded) {
         emit(
           state.copyWith(
