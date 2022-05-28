@@ -67,43 +67,6 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
             ),
           ),
         );
-      } else if (event is NameChanged) {
-        emit(
-          state.copyWith(
-            resume: state.resume.copyWith(
-              personalInformation: state.resume.personalInformation
-                  .copyWith(name: Name(event.name)),
-            ),
-          ),
-        );
-      } else if (event is LocalityChanged) {
-        emit(
-          state.copyWith(
-            resume: state.resume.copyWith(
-              personalInformation: state.resume.personalInformation
-                  .copyWith(locality: Locality(event.locality)),
-            ),
-          ),
-        );
-      } else if (event is ProfessionChanged) {
-        emit(
-          state.copyWith(
-            resume: state.resume.copyWith(
-              personalInformation: state.resume.personalInformation
-                  .copyWith(job: Job(event.profession)),
-            ),
-          ),
-        );
-      } else if (event is PersonalDescriptionChanged) {
-        emit(
-          state.copyWith(
-            resume: state.resume.copyWith(
-              personalInformation: state.resume.personalInformation.copyWith(
-                description: Description(event.personalDescription),
-              ),
-            ),
-          ),
-        );
       } else if (event is LanguageAdded) {
         emit(
           state.copyWith(

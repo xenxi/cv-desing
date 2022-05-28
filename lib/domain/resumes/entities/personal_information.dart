@@ -1,7 +1,9 @@
+import 'package:cv_desing_website_flutter/domain/failure.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/description.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/job.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 class PersonalInformation extends Equatable {
@@ -42,4 +44,10 @@ class PersonalInformation extends Equatable {
       description: description ?? this.description,
     );
   }
+
+  Option<Failure> get failureOption => name.failureOrUnit
+      .andThen(locality.failureOrUnit)
+      .andThen(job.failureOrUnit)
+      .andThen(description.failureOrUnit)
+      .fold((l) => some(l), (_) => none());
 }

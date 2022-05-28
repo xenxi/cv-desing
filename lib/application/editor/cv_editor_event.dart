@@ -65,46 +65,6 @@ class SoftwareSkillDeleted extends CvEditorEvent {
   List<Object> get props => [name];
 }
 
-class NameChanged extends CvEditorEvent {
-  const NameChanged(
-    this.name,
-  );
-  final String name;
-
-  @override
-  List<Object> get props => [name];
-}
-
-class LocalityChanged extends CvEditorEvent {
-  const LocalityChanged(
-    this.locality,
-  );
-  final String locality;
-
-  @override
-  List<Object> get props => [locality];
-}
-
-class ProfessionChanged extends CvEditorEvent {
-  const ProfessionChanged(
-    this.profession,
-  );
-  final String profession;
-
-  @override
-  List<Object> get props => [profession];
-}
-
-class PersonalDescriptionChanged extends CvEditorEvent {
-  const PersonalDescriptionChanged(
-    this.personalDescription,
-  );
-  final String personalDescription;
-
-  @override
-  List<Object> get props => [personalDescription];
-}
-
 class LanguageAdded extends CvEditorEvent {
   const LanguageAdded(
     this.language, {
