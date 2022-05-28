@@ -20,6 +20,7 @@ class ImagePath {
   static const String homeMainImage = '$imageDir/home.png';
   static const String homeMainImage2 = '$imageDir/home_02.png';
   static const String googleIcon = '$imageDir/google.png';
+  static const String templateResumeDefault = '$imageDir/resume.svg';
 
   static const spainFlag = '$imageDir/spain.png';
 

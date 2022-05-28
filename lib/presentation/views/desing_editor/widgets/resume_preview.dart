@@ -222,7 +222,7 @@ class ResumePreview extends StatelessWidget {
 }
 
 Future<pw.PageTheme> _myPageTheme() async {
-  final bgShape = await rootBundle.loadString('/resume.svg');
+  final bgShape = await rootBundle.loadString(ImagePath.templateResumeDefault);
 
   final format = PdfPageFormat.a4.applyMargin(
     left: 2.0 * PdfPageFormat.cm,
