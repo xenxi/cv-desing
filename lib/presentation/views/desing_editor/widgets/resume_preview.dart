@@ -47,6 +47,9 @@ class ResumePreview extends StatelessWidget {
               width: 500,
               height: 700,
               child: PdfPreview(
+                canChangeOrientation: false,
+                canDebug: false,
+                canChangePageFormat: false,
                 build: (format) => snapshot.data!.save(),
               ),
             );
