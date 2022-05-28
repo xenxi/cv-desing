@@ -21,9 +21,12 @@ class ContactInfoForm extends StatelessWidget {
         listener: (context, state) {
           state.saveFailureOrSuccessOption.fold(
             () => {},
-            (_) => BlocProvider.of<CvEditorBloc>(context).add(
-              ContactInformationUpdated(
-                contactInformation: state.contactInformation,
+            (s) => s.fold(
+              (l) => {},
+              (_) => BlocProvider.of<CvEditorBloc>(context).add(
+                ContactInformationUpdated(
+                  contactInformation: state.contactInformation,
+                ),
               ),
             ),
           );

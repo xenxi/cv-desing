@@ -14,6 +14,9 @@ class PersonalInfoForm extends StatelessWidget {
       create: (context) => PersonalInformationFormBloc(),
       child: BlocConsumer<PersonalInformationFormBloc,
           PersonalInformationFormState>(
+        listenWhen: (previous, current) =>
+            previous.saveFailureOrSuccessOption !=
+            current.saveFailureOrSuccessOption,
         listener: (context, state) {
           state.saveFailureOrSuccessOption.fold(
             () => {},
