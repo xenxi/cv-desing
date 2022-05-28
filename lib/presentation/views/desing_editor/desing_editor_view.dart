@@ -17,15 +17,7 @@ class DesingEditorView extends HookWidget {
     return BlocProvider(
       create: (context) => getIt<CvEditorBloc>(),
       child: isMobileScreen(context)
-          ? Column(
-              children: [
-                const Expanded(
-                  child: ResumeForm(),
-                ),
-                const SizedBox(height: 9),
-                _buildPreview(),
-              ],
-            )
+          ? _buildMobileView()
           : Row(
               children: [
                 const Expanded(
@@ -34,6 +26,18 @@ class DesingEditorView extends HookWidget {
                 _buildPreview(),
               ],
             ),
+    );
+  }
+
+  Widget _buildMobileView() {
+    return Column(
+      children: [
+        const Expanded(
+          child: ResumeForm(),
+        ),
+        const SizedBox(height: 9),
+        _buildPreview(),
+      ],
     );
   }
 
