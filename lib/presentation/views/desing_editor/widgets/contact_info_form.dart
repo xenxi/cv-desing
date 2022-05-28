@@ -11,64 +11,61 @@ class ContactInfoForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ContactInformationFormBloc(),
-      child:
-          BlocConsumer<ContactInformationFormBloc, ContactInformationFormState>(
-        listenWhen: (previous, current) =>
-            previous.saveFailureOrSuccessOption !=
-            current.saveFailureOrSuccessOption,
-        listener: (context, state) {
-          state.saveFailureOrSuccessOption.fold(
-            () => {},
-            (s) => s.fold(
-              (l) => {},
-              (_) => BlocProvider.of<CvEditorBloc>(context).add(
-                ContactInformationUpdated(
-                  contactInformation: state.contactInformation,
-                ),
+    return BlocConsumer<ContactInformationFormBloc,
+        ContactInformationFormState>(
+      listenWhen: (previous, current) =>
+          previous.saveFailureOrSuccessOption !=
+          current.saveFailureOrSuccessOption,
+      listener: (context, state) {
+        state.saveFailureOrSuccessOption.fold(
+          () => {},
+          (s) => s.fold(
+            (l) => {},
+            (_) => BlocProvider.of<CvEditorBloc>(context).add(
+              ContactInformationUpdated(
+                contactInformation: state.contactInformation,
               ),
             ),
-          );
-        },
-        builder: (context, state) {
-          return Form(
-            autovalidateMode: state.showErrorMessages
-                ? AutovalidateMode.always
-                : AutovalidateMode.disabled,
-            child: Column(
-              children: [
-                CustomFormField(
-                  initialized: state.isLoaded,
-                  text: 'Tu email',
-                  value: state.contactInformation.emailAddress,
-                  onChanged: (val) =>
-                      BlocProvider.of<ContactInformationFormBloc>(context)
-                          .add(EmailChanged(val)),
-                  icon: Icons.email_outlined,
-                ),
-                CustomFormField(
-                  initialized: state.isLoaded,
-                  text: 'Tu teléfono',
-                  value: state.contactInformation.phoneNumber,
-                  onChanged: (val) =>
-                      BlocProvider.of<ContactInformationFormBloc>(context)
-                          .add(PhoneNumberChanged(val)),
-                  icon: Icons.phone_outlined,
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton.icon(
-                  onPressed: () => BlocProvider.of<ContactInformationFormBloc>(
-                    context,
-                  ).add(Saved()),
-                  icon: const Icon(Icons.save_alt_outlined),
-                  label: const Text('Guardar'),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
+          ),
+        );
+      },
+      builder: (context, state) {
+        return Form(
+          autovalidateMode: state.showErrorMessages
+              ? AutovalidateMode.always
+              : AutovalidateMode.disabled,
+          child: Column(
+            children: [
+              CustomFormField(
+                initialized: state.isLoaded,
+                text: 'Tu email',
+                value: state.contactInformation.emailAddress,
+                onChanged: (val) =>
+                    BlocProvider.of<ContactInformationFormBloc>(context)
+                        .add(EmailChanged(val)),
+                icon: Icons.email_outlined,
+              ),
+              CustomFormField(
+                initialized: state.isLoaded,
+                text: 'Tu teléfono',
+                value: state.contactInformation.phoneNumber,
+                onChanged: (val) =>
+                    BlocProvider.of<ContactInformationFormBloc>(context)
+                        .add(PhoneNumberChanged(val)),
+                icon: Icons.phone_outlined,
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton.icon(
+                onPressed: () => BlocProvider.of<ContactInformationFormBloc>(
+                  context,
+                ).add(Saved()),
+                icon: const Icon(Icons.save_alt_outlined),
+                label: const Text('Guardar'),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

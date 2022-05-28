@@ -1,4 +1,6 @@
+import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
+import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/resume_form.dart';
@@ -12,8 +14,18 @@ class DesingEditorView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<CvEditorBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<CvEditorBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => PersonalInformationFormBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ContactInformationFormBloc(),
+        ),
+      ],
       child: isMobileScreen(context)
           ? _buildMobileView()
           : Row(
