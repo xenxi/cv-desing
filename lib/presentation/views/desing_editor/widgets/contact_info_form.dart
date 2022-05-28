@@ -1,5 +1,6 @@
 import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,26 +30,30 @@ class ContactInfoForm extends StatelessWidget {
         },
         builder: (context, state) {
           return Form(
+            autovalidateMode: state.showErrorMessages
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
             child: Column(
               children: [
-                TextFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.email_outlined),
-                    labelText: 'Tu email',
-                  ),
+                CustomFormField(
+                  initialized: state.isLoaded,
+                  text: 'Tu email',
+                  value: state.contactInformation.emailAddress,
                   onChanged: (val) =>
                       BlocProvider.of<ContactInformationFormBloc>(context)
                           .add(EmailChanged(val)),
+                  icon: Icons.email_outlined,
                 ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.phone_outlined),
-                    labelText: 'Tu teléfono',
-                  ),
+                CustomFormField(
+                  initialized: state.isLoaded,
+                  text: 'Tu teléfono',
+                  value: state.contactInformation.phoneNumber,
                   onChanged: (val) =>
                       BlocProvider.of<ContactInformationFormBloc>(context)
                           .add(PhoneNumberChanged(val)),
+                  icon: Icons.phone_outlined,
                 ),
+                const SizedBox(height: 20),
                 ElevatedButton.icon(
                   onPressed: () => BlocProvider.of<ContactInformationFormBloc>(
                     context,
