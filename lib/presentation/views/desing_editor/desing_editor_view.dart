@@ -19,14 +19,18 @@ class DesingEditorView extends HookWidget {
       child: isMobileScreen(context)
           ? Column(
               children: [
-                _buildForm(),
+                const Expanded(
+                  child: ResumeForm(),
+                ),
                 const SizedBox(height: 9),
                 _buildPreview(),
               ],
             )
           : Row(
               children: [
-                _buildForm(),
+                const Expanded(
+                  child: ResumeForm(),
+                ),
                 _buildPreview(),
               ],
             ),
@@ -49,12 +53,6 @@ class DesingEditorView extends HookWidget {
           ),
         );
       },
-    );
-  }
-
-  Widget _buildForm() {
-    return const Expanded(
-      child: ResumeForm(),
     );
   }
 }
