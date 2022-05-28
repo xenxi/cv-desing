@@ -1,6 +1,7 @@
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/form_step_builder.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/resume_preview.dart';
 import 'package:flutter/material.dart';
@@ -14,41 +15,56 @@ class DesingEditorView extends HookWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<CvEditorBloc>(),
-      child: Row(
-        children: [
-          BlocBuilder<CvEditorBloc, CvEditorState>(
-            builder: (context, state) {
-              return Expanded(
-                child: Stepper(
-                  controlsBuilder: (context, details) {
-                    return Container();
-                  },
-                  currentStep: _getCurrentStepFrom(state),
-                  onStepTapped: (index) =>
-                      _updateSelectedSection(context, index),
-                  steps: _buildStepForms(),
+      child: isMobileScreen(context)
+          ? Column(
+              children: [
+                _buildForm(),
+                const SizedBox(height: 9),
+                _buildPreview(),
+              ],
+            )
+          : Row(
+              children: [
+                _buildForm(),
+                _buildPreview(),
+              ],
+            ),
+    );
+  }
+
+  BlocBuilder<CvEditorBloc, CvEditorState> _buildPreview() {
+    return BlocBuilder<CvEditorBloc, CvEditorState>(
+      buildWhen: (previous, current) => previous.resume != current.resume,
+      builder: (context, state) {
+        return Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                ResumePreview(
+                  resume: state.resume,
                 ),
-              );
-            },
+              ],
+            ),
           ),
-          BlocBuilder<CvEditorBloc, CvEditorState>(
-            buildWhen: (previous, current) => previous.resume != current.resume,
-            builder: (context, state) {
-              return Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ResumePreview(
-                        resume: state.resume,
-                      ),
-                    ],
-                  ),
-                ),
-              );
+        );
+      },
+    );
+  }
+
+  BlocBuilder<CvEditorBloc, CvEditorState> _buildForm() {
+    return BlocBuilder<CvEditorBloc, CvEditorState>(
+      builder: (context, state) {
+        return Expanded(
+          child: Stepper(
+            controlsBuilder: (context, details) {
+              return Container();
             },
+            currentStep: _getCurrentStepFrom(state),
+            onStepTapped: (index) => _updateSelectedSection(context, index),
+            steps: _buildStepForms(),
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
