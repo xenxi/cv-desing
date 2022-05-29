@@ -95,16 +95,7 @@ class ResumePreview extends StatelessWidget {
                         children: <pw.Widget>[
                           _buildName(context),
                           pw.SizedBox(height: 10),
-                          pw.Text(
-                            resume.personalInformation.job
-                                .fold((l) => '', (r) => r),
-                            textScaleFactor: 1.2,
-                            style:
-                                pw.Theme.of(context).defaultTextStyle.copyWith(
-                                      fontWeight: pw.FontWeight.bold,
-                                      color: green,
-                                    ),
-                          ),
+                          _buildJob(context),
                           pw.Padding(
                             padding: const pw.EdgeInsets.only(top: 20),
                           ),
@@ -283,6 +274,15 @@ class ResumePreview extends StatelessWidget {
     );
     return doc;
   }
+
+  pw.Widget _buildJob(pw.Context context) => pw.Text(
+        resume.personalInformation.job.fold((l) => '', (r) => r),
+        textScaleFactor: 1.2,
+        style: pw.Theme.of(context).defaultTextStyle.copyWith(
+              fontWeight: pw.FontWeight.bold,
+              color: green,
+            ),
+      );
 
   pw.Widget _buildName(pw.Context context) => pw.Text(
         resume.personalInformation.name.fold((l) => '', (r) => r),
