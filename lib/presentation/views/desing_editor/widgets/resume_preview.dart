@@ -66,9 +66,11 @@ class ResumePreview extends StatelessWidget {
   }
 
   Future<pw.Document> _buildResume() async {
-    final profileImage = pw.MemoryImage(
-      (await rootBundle.load(ImagePath.logo)).buffer.asUint8List(),
-    );
+    final bytes = await resume.personalInformation.avatarOption.fold(
+        () async =>
+            (await rootBundle.load(ImagePath.logo)).buffer.asUint8List(),
+        (a) => Future.value(a));
+    final profileImage = pw.MemoryImage(bytes);
 
     final doc = pw.Document(
       title: resume.personalInformation.name
