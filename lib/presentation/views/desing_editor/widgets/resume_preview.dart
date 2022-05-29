@@ -105,10 +105,7 @@ class ResumePreview extends StatelessWidget {
                               pw.Column(
                                 crossAxisAlignment: pw.CrossAxisAlignment.start,
                                 children: <pw.Widget>[
-                                  resume.personalInformation.locality.fold(
-                                    (l) => pw.Container(),
-                                    (r) => pw.Text(r),
-                                  ),
+                                  _buildLocality(context),
                                   resume.personalInformation.description.fold(
                                     (l) => pw.Container(),
                                     (r) => pw.Text(r),
@@ -298,6 +295,12 @@ class ResumePreview extends StatelessWidget {
     final dateRange = '${dateFormat.format(dates.since)} - $endDate';
     return dateRange;
   }
+
+  pw.Widget _buildLocality(pw.Context context) =>
+      resume.personalInformation.locality.fold(
+        (l) => pw.Container(),
+        (r) => pw.Text(r),
+      );
 }
 
 Future<pw.PageTheme> _myPageTheme() async {
