@@ -26,9 +26,10 @@ class PublicLayout extends StatelessWidget {
         OverlayEntry(
           builder: (context) => BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
+              final navItems = _getNavigationData(state is Authenticated);
               return _buildBody(
                 context,
-                isAuthenticated: state is Authenticated,
+                navItems: navItems,
               );
             },
           ),
@@ -37,9 +38,8 @@ class PublicLayout extends StatelessWidget {
     );
   }
 
-  Widget _buildBody(BuildContext context, {required bool isAuthenticated}) {
-    final isMobile = isMobileScreen(context);
-    final List<NavItemData> navItems = [
+  List<NavItemData> _getNavigationData(bool isAuthenticated) {
+    return [
       NavItemData(
         name: Location.home,
         onTapEvent: const HomeOpened(),
@@ -54,6 +54,11 @@ class PublicLayout extends StatelessWidget {
           onTapEvent: const CvEditorOpened(),
         ),
     ];
+  }
+
+  Widget _buildBody(BuildContext context,
+      {required List<NavItemData> navItems}) {
+    final isMobile = isMobileScreen(context);
     return Scaffold(
       appBar: _buildNavBar(isMobile, navItems) as PreferredSizeWidget,
       drawer: isMobile
