@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/application/auth/auth_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/views/auth/auth_view.dart';
 import 'package:cv_desing_website_flutter/presentation/views/coming_soon/coming_soon_view.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_details/desing_details_view.dart';
@@ -6,6 +7,7 @@ import 'package:cv_desing_website_flutter/presentation/views/desings/desings_vie
 import 'package:cv_desing_website_flutter/presentation/views/home/home_view.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
   static const String initial = '/';
@@ -26,7 +28,14 @@ class AppRouter {
     home: (context, params) => const HomeView(),
     blog: (context, params) => const ComingSoonView(),
     auth: (context, params) => const AuthView(),
-    editor: (context, params) => const DesingEditorView(),
+    editor: (context, params) {
+      if (context != null &&
+          BlocProvider.of<AuthBloc>(context).state is Authenticated) {
+        return const DesingEditorView();
+      } else {
+        return const AuthView();
+      }
+    },
     details: (context, params) {
       final referenceOption = optionOf(params['reference']?.first);
       return referenceOption.fold(
