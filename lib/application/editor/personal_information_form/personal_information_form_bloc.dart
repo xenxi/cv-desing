@@ -9,13 +9,14 @@ import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 
 part 'personal_information_form_event.dart';
 part 'personal_information_form_state.dart';
 
+@injectable
 class PersonalInformationFormBloc
     extends Bloc<PersonalInformationFormEvent, PersonalInformationFormState> {
-  final ImagePicker _imagePicker;
   PersonalInformationFormBloc(this._imagePicker)
       : super(PersonalInformationFormState.initial()) {
     on<PersonalInformationFormEvent>((event, emit) async {
@@ -82,4 +83,5 @@ class PersonalInformationFormBloc
       }
     });
   }
+  final ImagePicker _imagePicker;
 }

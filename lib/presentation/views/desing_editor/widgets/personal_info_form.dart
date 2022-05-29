@@ -1,9 +1,9 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -40,21 +40,10 @@ class PersonalInfoForm extends StatelessWidget {
           child: Column(
             children: [
               GestureDetector(
-                onTap: () async {
-                  final result = await FilePicker.platform.pickFiles();
-
-                  if (result != null) {
-                    final bytes = result.files.single.bytes;
-                    final file = MemoryImage(bytes!);
-                    print(file);
-                  } else {
-                    // User canceled the picker
-                  }
-                },
-                child: const CircleAvatar(
-                  radius: 50,
-                  child: Icon(Icons.account_box_outlined, size: 60),
-                ),
+                onTap: () =>
+                    BlocProvider.of<PersonalInformationFormBloc>(context)
+                        .add(AvatarChanged()),
+                child: _buildAvatar(state.personalInformation.avatarOption),
               ),
               CustomFormField(
                 icon: Icons.person_outlined,
@@ -107,4 +96,16 @@ class PersonalInfoForm extends StatelessWidget {
       },
     );
   }
+
+  Widget _buildAvatar(Option<Uint8List> avatarOption) => CircleAvatar(
+        backgroundImage: avatarOption.fold(
+          () => null,
+          (a) => MemoryImage(a),
+        ),
+        radius: 50,
+        child: avatarOption.fold(
+          () => const Icon(Icons.add_a_photo_outlined, size: 60),
+          (a) => null,
+        ),
+      );
 }

@@ -10,24 +10,26 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i8;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../../application/auth/auth_bloc.dart' as _i18;
-import '../../../application/auth/sign_in_form/sign_in_form_bloc.dart' as _i17;
+import '../../../application/auth/auth_bloc.dart' as _i19;
+import '../../../application/auth/sign_in_form/sign_in_form_bloc.dart' as _i18;
 import '../../../application/components/image_picker.dart' as _i13;
-import '../../../application/desings/desings_bloc.dart' as _i22;
-import '../../../application/desings/details/desing_details_bloc.dart' as _i21;
+import '../../../application/desings/desings_bloc.dart' as _i23;
+import '../../../application/desings/details/desing_details_bloc.dart' as _i22;
 import '../../../application/editor/academy_training_form/academy_training_form_bloc.dart'
     as _i3;
 import '../../../application/editor/complementary_training_form/complementary_training_form_bloc.dart'
     as _i4;
 import '../../../application/editor/cv_editor_bloc.dart' as _i5;
+import '../../../application/editor/personal_information_form/personal_information_form_bloc.dart'
+    as _i17;
 import '../../../application/navigation/navigation_bloc.dart' as _i16;
 import '../../../domain/auth/i_auth_facade.dart' as _i9;
 import '../../../domain/desing.dart' as _i15;
-import '../../../domain/i_desings.dart' as _i19;
+import '../../../domain/i_desings.dart' as _i20;
 import '../../../infrastructure/auth/firebase_auth_facade.dart' as _i10;
-import '../../../infrastructure/core/register_module.dart' as _i23;
+import '../../../infrastructure/core/register_module.dart' as _i24;
 import '../../../infrastructure/file_picker_image_picker.dart' as _i14;
-import '../../../infrastructure/in_memory_desings.dart' as _i20;
+import '../../../infrastructure/in_memory_desings.dart' as _i21;
 import '../routes/navigators/custom_navigator.dart' as _i12;
 import '../routes/navigators/i_navigator.dart'
     as _i11; // ignore_for_file: unnecessary_lambdas
@@ -53,15 +55,17 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<List<_i15.Desing>>(() => registerModule.desings);
   gh.factory<_i16.NavigationBloc>(
       () => _i16.NavigationBloc(get<_i11.INavigator>()));
-  gh.factory<_i17.SignInFormBloc>(
-      () => _i17.SignInFormBloc(get<_i9.IAuthFacade>()));
-  gh.factory<_i18.AuthBloc>(() => _i18.AuthBloc(get<_i9.IAuthFacade>()));
-  gh.lazySingleton<_i19.IDesings>(
-      () => _i20.InMemoryDesings(get<List<_i15.Desing>>()));
-  gh.factory<_i21.DesingDetailsBloc>(
-      () => _i21.DesingDetailsBloc(get<_i19.IDesings>()));
-  gh.factory<_i22.DesingsBloc>(() => _i22.DesingsBloc(get<_i19.IDesings>()));
+  gh.factory<_i17.PersonalInformationFormBloc>(
+      () => _i17.PersonalInformationFormBloc(get<_i13.ImagePicker>()));
+  gh.factory<_i18.SignInFormBloc>(
+      () => _i18.SignInFormBloc(get<_i9.IAuthFacade>()));
+  gh.factory<_i19.AuthBloc>(() => _i19.AuthBloc(get<_i9.IAuthFacade>()));
+  gh.lazySingleton<_i20.IDesings>(
+      () => _i21.InMemoryDesings(get<List<_i15.Desing>>()));
+  gh.factory<_i22.DesingDetailsBloc>(
+      () => _i22.DesingDetailsBloc(get<_i20.IDesings>()));
+  gh.factory<_i23.DesingsBloc>(() => _i23.DesingsBloc(get<_i20.IDesings>()));
   return get;
 }
 
-class _$RegisterModule extends _i23.RegisterModule {}
+class _$RegisterModule extends _i24.RegisterModule {}
