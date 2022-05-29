@@ -31,3 +31,7 @@ class DesingDetailsOpened extends NavigationEvent {
           '${Location.desings}/$reference',
         );
 }
+
+class CvEditorOpened extends NavigationEvent {
+  const CvEditorOpened() : super(AppRouter.desings, Location.desings);
+}

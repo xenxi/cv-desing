@@ -5,6 +5,7 @@ class Location {
   static const appTitle = 'Diseños CV';
   static const home = 'Inicio';
   static const desings = 'Diseños';
+  static const cvEditor = 'Diseña tu CV';
   static const blog = 'Blogs';
   static const auth = 'Autenticación';
 

@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/application/auth/auth_bloc.dart';
 import 'package:cv_desing_website_flutter/application/navigation/navigation_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_drawer.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
@@ -9,6 +10,7 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/location.da
 import 'package:cv_desing_website_flutter/presentation/shared/values/social_data.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/widgets/footer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PublicLayout extends StatelessWidget {
   const PublicLayout({
@@ -21,12 +23,21 @@ class PublicLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Overlay(
       initialEntries: [
-        OverlayEntry(builder: (context) => _buildBody(context)),
+        OverlayEntry(
+          builder: (context) => BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              return _buildBody(
+                context,
+                isAuthenticated: state is Authenticated,
+              );
+            },
+          ),
+        ),
       ],
     );
   }
 
-  Widget _buildBody(BuildContext context) {
+  Widget _buildBody(BuildContext context, {required bool isAuthenticated}) {
     final isMobile = isMobileScreen(context);
     final List<NavItemData> navItems = [
       NavItemData(
@@ -37,6 +48,11 @@ class PublicLayout extends StatelessWidget {
         name: Location.desings,
         onTapEvent: const DesingsOpened(),
       ),
+      if (isAuthenticated)
+        NavItemData(
+          name: Location.cvEditor,
+          onTapEvent: const CvEditorOpened(),
+        ),
     ];
     return Scaffold(
       appBar: _buildNavBar(isMobile, navItems) as PreferredSizeWidget,

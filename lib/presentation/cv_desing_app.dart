@@ -24,15 +24,22 @@ class CvDesingApp extends StatelessWidget {
           create: (context) => getIt<NavigationBloc>(),
         ),
       ],
-      child: MaterialApp(
-        navigatorKey: getIt<GlobalKey<NavigatorState>>(),
-        scrollBehavior: _MyCustomScrollBehavior(),
-        debugShowCheckedModeBanner: false,
-        title: Location.appTitle,
-        initialRoute: AppRouter.initial,
-        onGenerateRoute: FluroRouteGenerator().generateRoute,
-        builder: (context, child) => PublicLayout(child: child!),
-        theme: CustomTheme.lightTheme,
+      child: BlocListener<AuthBloc, AuthState>(
+        listenWhen: (previous, current) =>
+            previous != current && current is Authenticated,
+        listener: (context, state) {
+          BlocProvider.of<NavigationBloc>(context).add(const HomeOpened());
+        },
+        child: MaterialApp(
+          navigatorKey: getIt<GlobalKey<NavigatorState>>(),
+          scrollBehavior: _MyCustomScrollBehavior(),
+          debugShowCheckedModeBanner: false,
+          title: Location.appTitle,
+          initialRoute: AppRouter.initial,
+          onGenerateRoute: FluroRouteGenerator().generateRoute,
+          builder: (context, child) => PublicLayout(child: child!),
+          theme: CustomTheme.lightTheme,
+        ),
       ),
     );
   }
