@@ -16,14 +16,18 @@ class AppRouter {
   static const String auth = '/auth';
   static const String editor = '/editor';
 
-  static Map<String, Widget Function(Map<String, List<String>> params)>
-      routesMap = {
-    initial: (_) => const HomeView(),
-    home: (_) => const HomeView(),
-    blog: (_) => const ComingSoonView(),
-    auth: (_) => const AuthView(),
-    editor: (context) => const DesingEditorView(),
-    details: (params) {
+  static Map<
+      String,
+      Widget Function(
+    BuildContext? context,
+    Map<String, List<String>> params,
+  )> routesMap = {
+    initial: (context, params) => const HomeView(),
+    home: (context, params) => const HomeView(),
+    blog: (context, params) => const ComingSoonView(),
+    auth: (context, params) => const AuthView(),
+    editor: (context, params) => const DesingEditorView(),
+    details: (context, params) {
       final referenceOption = optionOf(params['reference']?.first);
       return referenceOption.fold(
         () => const DesingsView(),
@@ -32,6 +36,6 @@ class AppRouter {
         ),
       );
     },
-    desings: (_) => const DesingsView(),
+    desings: (context, params) => const DesingsView(),
   };
 }

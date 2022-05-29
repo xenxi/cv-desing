@@ -13,12 +13,12 @@ class FluroRouteGenerator {
       _router.generator(settings);
 
   void _configureRoutes() {
-    AppRouter.routesMap.forEach((key, value) {
+    AppRouter.routesMap.forEach((key, handlerFunc) {
       _router.define(
         key,
         transitionType: kIsWeb ? TransitionType.fadeIn : TransitionType.fadeIn,
         handler: Handler(
-          handlerFunc: (context, parameters) => value(parameters),
+          handlerFunc: handlerFunc,
         ),
       );
     });
