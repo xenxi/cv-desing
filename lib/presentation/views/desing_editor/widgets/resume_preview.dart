@@ -506,13 +506,12 @@ class _Block extends pw.StatelessWidget {
             ),
             if (icon != null) pw.Icon(icon!, color: lightGreen, size: 18),
             if (trailingText != null) ...[
-              pw.Spacer(),
+              pw.SizedBox(width: 10),
               pw.Text(
                 trailingText!,
                 style:
                     pw.TextStyle(fontWeight: pw.FontWeight.bold, color: green),
               ),
-              pw.SizedBox(width: 20),
             ]
           ],
         ),
