@@ -96,9 +96,7 @@ class ResumePreview extends StatelessWidget {
                           _buildName(context),
                           pw.SizedBox(height: 10),
                           _buildJob(context),
-                          pw.Padding(
-                            padding: const pw.EdgeInsets.only(top: 20),
-                          ),
+                          pw.SizedBox(height: 20),
                           pw.Row(
                             crossAxisAlignment: pw.CrossAxisAlignment.start,
                             mainAxisAlignment:
