@@ -31,6 +31,7 @@ dependencies:
   cupertino_icons: ^1.0.4
   dartz: ^0.10.1
   equatable: ^2.0.3
+  file_picker: ^4.6.0
   firebase_analytics: ^9.1.2
   firebase_auth: ^3.3.11
   firebase_core: ^1.13.1
