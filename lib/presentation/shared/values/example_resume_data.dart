@@ -33,6 +33,7 @@ class ExampleResumeData {
       description: Description(
         'A hard-working mechanic for 2 big-time energy factories. Familiar in repair and safety standards. Has experience in various repair and maintenance works.F',
       ),
+      avatarOption: none(),
     ),
     contactInformation: ContactInformation(
       emailAddress: EmailAddress('jonDoe@gmail.com'),

@@ -20,7 +20,7 @@ class DesingEditorView extends StatelessWidget {
           create: (context) => getIt<CvEditorBloc>(),
         ),
         BlocProvider(
-          create: (context) => PersonalInformationFormBloc(),
+          create: (context) => getIt<PersonalInformationFormBloc>(),
         ),
         BlocProvider(
           create: (context) => ContactInformationFormBloc(),

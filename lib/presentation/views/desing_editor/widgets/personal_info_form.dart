@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,9 +39,22 @@ class PersonalInfoForm extends StatelessWidget {
               : AutovalidateMode.disabled,
           child: Column(
             children: [
-              const CircleAvatar(
-                radius: 50,
-                child: Icon(Icons.account_box_outlined, size: 60),
+              GestureDetector(
+                onTap: () async {
+                  final result = await FilePicker.platform.pickFiles();
+
+                  if (result != null) {
+                    final bytes = result.files.single.bytes;
+                    final file = MemoryImage(bytes!);
+                    print(file);
+                  } else {
+                    // User canceled the picker
+                  }
+                },
+                child: const CircleAvatar(
+                  radius: 50,
+                  child: Icon(Icons.account_box_outlined, size: 60),
+                ),
               ),
               CustomFormField(
                 icon: Icons.person_outlined,

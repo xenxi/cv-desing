@@ -46,6 +46,7 @@ void main() {
         job: Job(''),
         locality: Locality(''),
         name: Name(''),
+        avatarOption: none(),
       ),
     ),
   );
@@ -235,6 +236,7 @@ void main() {
               locality: Locality('anyLocality'),
               job: Job('anyProfession'),
               description: domain.Description('anyPersonalDescription'),
+              avatarOption: none(),
             ),
           ),
         ),
@@ -246,6 +248,7 @@ void main() {
               locality: Locality('anyLocality'),
               job: Job('anyProfession'),
               description: domain.Description('anyPersonalDescription'),
+              avatarOption: none(),
             ),
           ),
         ),

@@ -1,5 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
+import 'package:cv_desing_website_flutter/application/components/image_picker.dart';
 import 'package:cv_desing_website_flutter/domain/failure.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/personal_information.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/description.dart';
@@ -14,9 +15,10 @@ part 'personal_information_form_state.dart';
 
 class PersonalInformationFormBloc
     extends Bloc<PersonalInformationFormEvent, PersonalInformationFormState> {
-  PersonalInformationFormBloc()
+  final ImagePicker _imagePicker;
+  PersonalInformationFormBloc(this._imagePicker)
       : super(PersonalInformationFormState.initial()) {
-    on<PersonalInformationFormEvent>((event, emit) {
+    on<PersonalInformationFormEvent>((event, emit) async {
       if (event is NameChanged) {
         emit(
           state.copyWith(
@@ -58,6 +60,15 @@ class PersonalInformationFormBloc
           state.copyWith(
             saveFailureOrSuccessOption: some(failureOrSuccess),
             showErrorMessages: true,
+          ),
+        );
+      } else if (event is AvatarChanged) {
+        final imageOption = await _imagePicker.pickImage();
+        emit(
+          state.copyWith(
+            personalInformation: state.personalInformation.copyWith(
+              avatarOption: imageOption,
+            ),
           ),
         );
       }

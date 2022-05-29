@@ -1,4 +1,7 @@
+import 'dart:typed_data';
+
 import 'package:bloc_test/bloc_test.dart';
+import 'package:cv_desing_website_flutter/application/components/image_picker.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/personal_information.dart';
 import 'package:cv_desing_website_flutter/domain/value_failures.dart';
@@ -9,14 +12,25 @@ import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockImagePicker extends Mock implements ImagePicker {}
 
 void main() {
+  late MockImagePicker mockImagePicker;
+  late PersonalInformationFormBloc bloc;
+  setUp(() {
+    mockImagePicker = MockImagePicker();
+    bloc = PersonalInformationFormBloc(mockImagePicker);
+  });
+
   final initialState = PersonalInformationFormState(
     personalInformation: PersonalInformation(
       description: domain.Description(''),
       name: Name(''),
       locality: Locality(''),
       job: Job(''),
+      avatarOption: none(),
     ),
     showErrorMessages: false,
     isLoaded: false,
@@ -25,8 +39,6 @@ void main() {
 
   group('PersonalInformationFormBloc should', () {
     test('has empty as initial state', () {
-      final bloc = PersonalInformationFormBloc();
-      // assert
       expect(
         bloc.state,
         equals(
@@ -37,7 +49,7 @@ void main() {
 
     blocTest<PersonalInformationFormBloc, PersonalInformationFormState>(
       'update name',
-      build: () => PersonalInformationFormBloc(),
+      build: () => bloc,
       act: (bloc) => bloc
         ..add(const NameChanged('anyName'))
         ..add(const NameChanged('otherName')),
@@ -56,7 +68,7 @@ void main() {
     );
     blocTest<PersonalInformationFormBloc, PersonalInformationFormState>(
       'update locality',
-      build: () => PersonalInformationFormBloc(),
+      build: () => bloc,
       act: (bloc) => bloc
         ..add(const LocalityChanged('anyLocality'))
         ..add(const LocalityChanged('otherLocality')),
@@ -75,7 +87,7 @@ void main() {
     );
     blocTest<PersonalInformationFormBloc, PersonalInformationFormState>(
       'update profession',
-      build: () => PersonalInformationFormBloc(),
+      build: () => bloc,
       act: (bloc) => bloc
         ..add(const ProfessionChanged('anyProfession'))
         ..add(const ProfessionChanged('otherProfession')),
@@ -94,7 +106,7 @@ void main() {
     );
     blocTest<PersonalInformationFormBloc, PersonalInformationFormState>(
       'update personal description',
-      build: () => PersonalInformationFormBloc(),
+      build: () => bloc,
       act: (bloc) => bloc
         ..add(const PersonalDescriptionChanged('anyPersonalDescription'))
         ..add(const PersonalDescriptionChanged('otherPersonalDescription')),
@@ -111,10 +123,25 @@ void main() {
         ),
       ],
     );
+    final anyImage = Uint8List(50);
+    blocTest<PersonalInformationFormBloc, PersonalInformationFormState>(
+      'update avatar option',
+      build: () => bloc,
+      setUp: () => when(() => mockImagePicker.pickImage())
+          .thenAnswer((_) => Future.value(some(anyImage))),
+      act: (bloc) => bloc..add(AvatarChanged()),
+      expect: () => <PersonalInformationFormState>[
+        initialState.copyWith(
+          personalInformation: initialState.personalInformation.copyWith(
+            avatarOption: some(anyImage),
+          ),
+        ),
+      ],
+    );
 
     blocTest<PersonalInformationFormBloc, PersonalInformationFormState>(
       'save contact information',
-      build: () => PersonalInformationFormBloc(),
+      build: () => bloc,
       seed: () => PersonalInformationFormState(
         isLoaded: false,
         showErrorMessages: false,
@@ -124,6 +151,7 @@ void main() {
           name: Name('anyName'),
           locality: Locality('anyLocality'),
           job: Job('anyProfession'),
+          avatarOption: none(),
         ),
       ),
       act: (bloc) => bloc..add(Saved()),
@@ -137,6 +165,7 @@ void main() {
             name: Name('anyName'),
             locality: Locality('anyLocality'),
             job: Job('anyProfession'),
+            avatarOption: none(),
           ),
         ),
       ],
@@ -144,7 +173,7 @@ void main() {
 
     blocTest<PersonalInformationFormBloc, PersonalInformationFormState>(
       'not allow save contact information is wrong',
-      build: () => PersonalInformationFormBloc(),
+      build: () => bloc,
       seed: () => initialState,
       act: (bloc) => bloc..add(Saved()),
       expect: () => <PersonalInformationFormState>[
