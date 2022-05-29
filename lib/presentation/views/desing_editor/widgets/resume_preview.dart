@@ -83,10 +83,12 @@ class ResumePreview extends StatelessWidget {
           pw.Partitions(
             children: [
               pw.Partition(
+                width: 400,
                 child: pw.Column(
                   crossAxisAlignment: pw.CrossAxisAlignment.start,
                   children: <pw.Widget>[
                     pw.Container(
+                      color: PdfColors.red,
                       padding: const pw.EdgeInsets.only(left: 30, bottom: 20),
                       child: pw.Column(
                         crossAxisAlignment: pw.CrossAxisAlignment.start,
@@ -213,17 +215,70 @@ class ResumePreview extends StatelessWidget {
                               child: pw.Image(profileImage),
                             ),
                           ),
-                          pw.Column(
-                            children: <pw.Widget>[
-                              ...resume.softwareSkills.value.map(
-                                (skill) => _Percent(
-                                  size: 60,
-                                  value: skill.percentage.getOrCrash() * .01,
-                                  title: pw.Text(skill.getOrCrash()),
+                          if (resume.softwareSkills.value.isNotEmpty) ...[
+                            pw.Column(
+                              children: <pw.Widget>[
+                                ...resume.softwareSkills.value.map(
+                                  (skill) => _Percent(
+                                    size: 60,
+                                    value: skill.percentage.getOrCrash() * .01,
+                                    title: pw.Text(skill.getOrCrash()),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
+                              ],
+                            ),
+                          ],
+                          if (resume.skills.value.isNotEmpty)
+                            pw.Column(
+                              children: [
+                                _SubCategory(text: 'Habilidades'),
+                                pw.Wrap(
+                                  children: [
+                                    ...resume.skills.value.map(
+                                      (skill) => pw.Container(
+                                        margin: const pw.EdgeInsets.all(1),
+                                        padding: const pw.EdgeInsets.symmetric(
+                                          vertical: 2,
+                                          horizontal: 4,
+                                        ),
+                                        decoration: pw.BoxDecoration(
+                                          color: lightGreen,
+                                          borderRadius:
+                                              pw.BorderRadius.circular(8),
+                                        ),
+                                        child: pw.Text(
+                                          skill,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          if (resume.languages.value.isNotEmpty)
+                            pw.Column(
+                              children: [
+                                _SubCategory(text: 'Idiomas'),
+                                ...resume.languages.value.map(
+                                  (l) => pw.Column(
+                                    crossAxisAlignment:
+                                        pw.CrossAxisAlignment.stretch,
+                                    children: [
+                                      pw.Text(l.getOrCrash()),
+                                      pw.Text(
+                                        l.level,
+                                        textScaleFactor: .9,
+                                        style: pw.TextStyle(
+                                          fontWeight: pw.FontWeight.bold,
+                                          fontStyle: pw.FontStyle.italic,
+                                        ),
+                                      ),
+                                      pw.SizedBox(height: 4),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                         ],
                       ),
                     ),
@@ -304,6 +359,26 @@ class _UrlText extends pw.StatelessWidget {
         style: const pw.TextStyle(
           decoration: pw.TextDecoration.underline,
           color: PdfColors.blue,
+        ),
+      ),
+    );
+  }
+}
+
+class _SubCategory extends pw.StatelessWidget {
+  _SubCategory({required this.text});
+
+  final String text;
+
+  @override
+  pw.Widget build(pw.Context context) {
+    return pw.Padding(
+      padding: const pw.EdgeInsets.only(bottom: 4),
+      child: pw.Text(
+        text,
+        style: pw.TextStyle(
+          decoration: pw.TextDecoration.underline,
+          fontWeight: pw.FontWeight.bold,
         ),
       ),
     );
@@ -422,7 +497,6 @@ class _Block extends pw.StatelessWidget {
                   .defaultTextStyle
                   .copyWith(fontWeight: pw.FontWeight.bold),
             ),
-            pw.Spacer(),
             if (icon != null) pw.Icon(icon!, color: lightGreen, size: 18),
             if (trailingText != null)
               pw.Text(
