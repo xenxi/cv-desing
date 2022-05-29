@@ -505,10 +505,15 @@ class _Block extends pw.StatelessWidget {
                   .copyWith(fontWeight: pw.FontWeight.bold),
             ),
             if (icon != null) pw.Icon(icon!, color: lightGreen, size: 18),
-            if (trailingText != null)
+            if (trailingText != null) ...[
+              pw.Spacer(),
               pw.Text(
                 trailingText!,
+                style:
+                    pw.TextStyle(fontWeight: pw.FontWeight.bold, color: green),
               ),
+              pw.SizedBox(width: 20),
+            ]
           ],
         ),
         pw.Container(
