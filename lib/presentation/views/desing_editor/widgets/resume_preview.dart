@@ -106,10 +106,7 @@ class ResumePreview extends StatelessWidget {
                                 crossAxisAlignment: pw.CrossAxisAlignment.start,
                                 children: <pw.Widget>[
                                   _buildLocality(context),
-                                  resume.personalInformation.description.fold(
-                                    (l) => pw.Container(),
-                                    (r) => pw.Text(r),
-                                  ),
+                                  _buildDescription(context),
                                 ],
                               ),
                               pw.Column(
@@ -298,6 +295,12 @@ class ResumePreview extends StatelessWidget {
 
   pw.Widget _buildLocality(pw.Context context) =>
       resume.personalInformation.locality.fold(
+        (l) => pw.Container(),
+        (r) => pw.Text(r),
+      );
+
+  pw.Widget _buildDescription(pw.Context context) =>
+      resume.personalInformation.description.fold(
         (l) => pw.Container(),
         (r) => pw.Text(r),
       );
