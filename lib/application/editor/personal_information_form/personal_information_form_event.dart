@@ -56,3 +56,8 @@ class AvatarChanged extends PersonalInformationFormEvent {
   @override
   List<Object> get props => [];
 }
+
+class AvatarDeleted extends PersonalInformationFormEvent {
+  @override
+  List<Object> get props => [];
+}

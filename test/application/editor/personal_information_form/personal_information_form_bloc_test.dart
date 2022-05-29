@@ -138,6 +138,23 @@ void main() {
         ),
       ],
     );
+    blocTest<PersonalInformationFormBloc, PersonalInformationFormState>(
+      'clear avatar option',
+      build: () => bloc,
+      seed: () => initialState.copyWith(
+        personalInformation: initialState.personalInformation.copyWith(
+          avatarOption: some(anyImage),
+        ),
+      ),
+      act: (bloc) => bloc..add(AvatarDeleted()),
+      expect: () => <PersonalInformationFormState>[
+        initialState.copyWith(
+          personalInformation: initialState.personalInformation.copyWith(
+            avatarOption: none(),
+          ),
+        ),
+      ],
+    );
 
     blocTest<PersonalInformationFormBloc, PersonalInformationFormState>(
       'save contact information',

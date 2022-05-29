@@ -71,6 +71,14 @@ class PersonalInformationFormBloc
             ),
           ),
         );
+      } else if (event is AvatarDeleted) {
+        emit(
+          state.copyWith(
+            personalInformation: state.personalInformation.copyWith(
+              avatarOption: none(),
+            ),
+          ),
+        );
       }
     });
   }
