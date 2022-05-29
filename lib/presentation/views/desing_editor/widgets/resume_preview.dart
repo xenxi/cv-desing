@@ -89,18 +89,11 @@ class ResumePreview extends StatelessWidget {
                   children: <pw.Widget>[
                     pw.Container(
                       color: PdfColors.red,
-                      padding: const pw.EdgeInsets.only(left: 30, bottom: 20),
+                      padding: const pw.EdgeInsets.only(bottom: 20),
                       child: pw.Column(
                         crossAxisAlignment: pw.CrossAxisAlignment.start,
                         children: <pw.Widget>[
-                          pw.Text(
-                            resume.personalInformation.name
-                                .fold((l) => '', (r) => r),
-                            textScaleFactor: 2,
-                            style: pw.Theme.of(context)
-                                .defaultTextStyle
-                                .copyWith(fontWeight: pw.FontWeight.bold),
-                          ),
+                          _buildName(context),
                           pw.Padding(
                             padding: const pw.EdgeInsets.only(top: 10),
                           ),
@@ -292,6 +285,14 @@ class ResumePreview extends StatelessWidget {
     );
     return doc;
   }
+
+  pw.Widget _buildName(pw.Context context) => pw.Text(
+        resume.personalInformation.name.fold((l) => '', (r) => r),
+        textScaleFactor: 2,
+        style: pw.Theme.of(context)
+            .defaultTextStyle
+            .copyWith(fontWeight: pw.FontWeight.bold),
+      );
 
   String displayDateRange(RangeOfDates dates) {
     final endDate = dates.until.fold(
