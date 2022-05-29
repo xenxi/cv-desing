@@ -59,6 +59,20 @@ void main() {
         NavigationState(path: '/auth', displayName: Location.auth),
       ],
     );
+    blocTest<NavigationBloc, NavigationState>(
+      'navigate to cv editor page',
+      build: () => NavigationBloc(navigator),
+      act: (bloc) => bloc.add(const CvEditorOpened()),
+      verify: (_) => verify(
+        () => navigator.navigateTo('/editor'),
+      ).called(1),
+      expect: () => const <NavigationState>[
+        NavigationState(
+          path: '/editor',
+          displayName: Location.cvEditorDisplayPath,
+        ),
+      ],
+    );
 
     group('navigate to details page with ', () {
       final references = ['anyReference', 'otherReference'];

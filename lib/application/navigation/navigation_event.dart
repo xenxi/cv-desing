@@ -33,5 +33,6 @@ class DesingDetailsOpened extends NavigationEvent {
 }
 
 class CvEditorOpened extends NavigationEvent {
-  const CvEditorOpened() : super(AppRouter.desings, Location.desings);
+  const CvEditorOpened()
+      : super(AppRouter.editor, Location.cvEditorDisplayPath);
 }
