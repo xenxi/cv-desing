@@ -88,8 +88,7 @@ class ResumePreview extends StatelessWidget {
                   crossAxisAlignment: pw.CrossAxisAlignment.start,
                   children: <pw.Widget>[
                     pw.Container(
-                      color: PdfColors.red,
-                      padding: const pw.EdgeInsets.only(bottom: 20),
+                      padding: const pw.EdgeInsets.only(bottom: 8),
                       child: pw.Column(
                         crossAxisAlignment: pw.CrossAxisAlignment.start,
                         children: <pw.Widget>[
@@ -102,31 +101,31 @@ class ResumePreview extends StatelessWidget {
                             mainAxisAlignment:
                                 pw.MainAxisAlignment.spaceBetween,
                             children: <pw.Widget>[
-                              pw.Column(
-                                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                                children: <pw.Widget>[
-                                  _buildLocality(context),
-                                  _buildDescription(context),
-                                ],
+                              pw.Expanded(
+                                child: _buildLocality(context),
                               ),
-                              pw.Column(
-                                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                                children: <pw.Widget>[
-                                  _UrlText(
-                                    resume.contactInformation.phoneNumber
-                                        .fold((l) => '', (r) => r),
-                                    'tel:${resume.contactInformation.phoneNumber.fold((l) => '', (r) => r)}',
-                                  ),
-                                  _UrlText(
-                                    resume.contactInformation.emailAddress
-                                        .fold((l) => '', (r) => r),
-                                    'mailto:${resume.contactInformation.emailAddress.fold((l) => '', (r) => r)}',
-                                  ),
-                                ],
+                              pw.Expanded(
+                                child: pw.Column(
+                                  crossAxisAlignment: pw.CrossAxisAlignment.end,
+                                  children: <pw.Widget>[
+                                    _UrlText(
+                                      resume.contactInformation.phoneNumber
+                                          .fold((l) => '', (r) => r),
+                                      'tel:${resume.contactInformation.phoneNumber.fold((l) => '', (r) => r)}',
+                                    ),
+                                    _UrlText(
+                                      resume.contactInformation.emailAddress
+                                          .fold((l) => '', (r) => r),
+                                      'mailto:${resume.contactInformation.emailAddress.fold((l) => '', (r) => r)}',
+                                    ),
+                                  ],
+                                ),
                               ),
-                              pw.Padding(padding: pw.EdgeInsets.zero)
+                              pw.SizedBox(width: 8),
                             ],
                           ),
+                          pw.SizedBox(height: 10),
+                          _buildDescription(context),
                         ],
                       ),
                     ),
@@ -302,7 +301,12 @@ class ResumePreview extends StatelessWidget {
   pw.Widget _buildDescription(pw.Context context) =>
       resume.personalInformation.description.fold(
         (l) => pw.Container(),
-        (r) => pw.Text(r),
+        (r) => pw.Text(
+          r,
+          style: pw.TextStyle(
+            fontStyle: pw.FontStyle.italic,
+          ),
+        ),
       );
 }
 
