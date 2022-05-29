@@ -94,9 +94,7 @@ class ResumePreview extends StatelessWidget {
                         crossAxisAlignment: pw.CrossAxisAlignment.start,
                         children: <pw.Widget>[
                           _buildName(context),
-                          pw.Padding(
-                            padding: const pw.EdgeInsets.only(top: 10),
-                          ),
+                          pw.SizedBox(height: 10),
                           pw.Text(
                             resume.personalInformation.job
                                 .fold((l) => '', (r) => r),
