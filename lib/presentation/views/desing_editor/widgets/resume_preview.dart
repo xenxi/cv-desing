@@ -2,10 +2,12 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
@@ -13,6 +15,7 @@ import 'package:printing/printing.dart';
 const PdfColor green = PdfColor.fromInt(0xff9ce5d0);
 const PdfColor lightGreen = PdfColor.fromInt(0xffcdf1e7);
 const sep = 120.0;
+final dateFormat = DateFormat('MM/yyy');
 
 class ResumePreview extends StatelessWidget {
   const ResumePreview({
@@ -68,9 +71,10 @@ class ResumePreview extends StatelessWidget {
     );
 
     final doc = pw.Document(
-        title: resume.personalInformation.name
-            .fold((l) => Location.curriculum, (r) => r),
-        author: Location.appTitle);
+      title: resume.personalInformation.name
+          .fold((l) => Location.curriculum, (r) => r),
+      author: Location.appTitle,
+    );
     final pageTheme = await _myPageTheme();
     doc.addPage(
       pw.MultiPage(
@@ -153,10 +157,15 @@ class ResumePreview extends StatelessWidget {
                     if (resume.workExperiences.value.isNotEmpty) ...[
                       _Category(title: Location.workExperience),
                       ...resume.workExperiences.value.map(
-                        (workExperience) => _Block(
-                          title: workExperience.job.getOrCrash(),
-                          text: workExperience.description.getOrCrash(),
-                        ),
+                        (workExperience) {
+                          return _Block(
+                            title: workExperience.job.getOrCrash(),
+                            text: workExperience.description.getOrCrash(),
+                            trailingText: displayDateRange(
+                              workExperience.dateRange.getOrCrash(),
+                            ),
+                          );
+                        },
                       ),
                       pw.SizedBox(height: 20),
                     ],
@@ -166,6 +175,9 @@ class ResumePreview extends StatelessWidget {
                         (academyTraining) => _Block(
                           title: academyTraining.title.getOrCrash(),
                           text: academyTraining.schoold.getOrCrash(),
+                          trailingText: displayDateRange(
+                            academyTraining.dateRange.getOrCrash(),
+                          ),
                         ),
                       ),
                     ],
@@ -175,6 +187,9 @@ class ResumePreview extends StatelessWidget {
                         (complementaryTraining) => _Block(
                           title: complementaryTraining.title.getOrCrash(),
                           text: complementaryTraining.schoold.getOrCrash(),
+                          trailingText: displayDateRange(
+                            complementaryTraining.dateRange.getOrCrash(),
+                          ),
                         ),
                       ),
                     ],
@@ -221,6 +236,15 @@ class ResumePreview extends StatelessWidget {
       ),
     );
     return doc;
+  }
+
+  String displayDateRange(RangeOfDates dates) {
+    final endDate = dates.until.fold(
+      () => 'Act.',
+      (r) => dateFormat.format(r),
+    );
+    final dateRange = '${dateFormat.format(dates.since)} - $endDate';
+    return dateRange;
   }
 }
 
@@ -367,11 +391,13 @@ class _Block extends pw.StatelessWidget {
     required this.title,
     required this.text,
     this.icon,
+    this.trailingText,
   });
 
   final String title;
   final String text;
   final pw.IconData? icon;
+  final String? trailingText;
 
   @override
   pw.Widget build(pw.Context context) {
@@ -398,6 +424,10 @@ class _Block extends pw.StatelessWidget {
             ),
             pw.Spacer(),
             if (icon != null) pw.Icon(icon!, color: lightGreen, size: 18),
+            if (trailingText != null)
+              pw.Text(
+                trailingText!,
+              ),
           ],
         ),
         pw.Container(
