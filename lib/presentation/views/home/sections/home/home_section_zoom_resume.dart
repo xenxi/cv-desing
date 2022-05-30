@@ -28,6 +28,7 @@ class HomeSectionZoomResume extends StatelessWidget {
       ),
       child: Stack(
         children: [
+          _buildResume(context),
           Align(
             alignment: Alignment.centerLeft,
             child: Container(
@@ -41,7 +42,6 @@ class HomeSectionZoomResume extends StatelessWidget {
               ),
             ),
           ),
-          _buildResume(context),
         ],
       ),
     );
@@ -94,18 +94,29 @@ class HomeSectionZoomResume extends StatelessWidget {
   }
 
   Widget _buildResume(BuildContext context) {
-    if (MediaQuery.of(context).size.width < 720)
+    double currentWidth = widthOfScreen(context) * .6;
+    if (currentWidth > 800) {
+      currentWidth = 800;
+    }
+    if (currentWidth < 400) {
+      currentWidth = 400;
+    }
+    if (isMobileScreen(context)) {
+      final currentHeight = heightOfScreen(context) * .9;
+      currentWidth = currentHeight * .7;
       return Positioned.fill(
-        right: -(widthOfScreen(context) * .5),
+        right: -(currentWidth * .7),
         child: Align(
           alignment: Alignment.centerRight,
-          child: const _Resume(),
+          child: SizedBox(height: currentHeight, child: const _Resume()),
         ),
       );
+    }
+
     return Positioned(
       right: -120,
       top: -20,
-      width: widthOfScreen(context) * .5,
+      width: currentWidth,
       child: const _Resume(),
     );
   }

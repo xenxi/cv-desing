@@ -69,7 +69,7 @@ void main() {
       expect: () => const <NavigationState>[
         NavigationState(
           path: '/editor',
-          displayName: Location.cvEditorDisplayPath,
+          displayName: Location.cvEditor,
         ),
       ],
     );
