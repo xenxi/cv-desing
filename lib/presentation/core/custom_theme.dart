@@ -31,6 +31,14 @@ class CustomTheme {
     Color.fromRGBO(251, 205, 56, 1),
     Color.fromRGBO(252, 187, 91, 1),
   ];
+  static const List<Color> purpleGradient = [
+    Color.fromRGBO(203, 43, 94, 1),
+    Color.fromRGBO(117, 58, 136, 1)
+  ];
+  static const List<Color> blueGradient = [
+    Color.fromRGBO(4, 208, 220, 1),
+    Color.fromRGBO(91, 135, 229, 1)
+  ];
   static const double navbarHeight = 100.0;
   static const double navbarMobileHeight = 60.0;
   static const double defaultPadding = 20.0;
