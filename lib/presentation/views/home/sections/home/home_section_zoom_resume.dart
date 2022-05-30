@@ -91,7 +91,14 @@ class HomeSectionZoomResume extends StatelessWidget {
   }
 
   Widget _buildResume(BuildContext context) {
-    final isSmallWindows = MediaQuery.of(context).size.width < 720;
+    if (MediaQuery.of(context).size.width < 720)
+      return Positioned.fill(
+        right: -(widthOfScreen(context) * .5),
+        child: Align(
+          alignment: Alignment.centerRight,
+          child: const _Resume(),
+        ),
+      );
     return Positioned(
       right: -120,
       top: -20,
@@ -128,22 +135,25 @@ class _Resume extends StatelessWidget {
     return FadeInUp(
       child: Transform.rotate(
         angle: -.15,
-        child: Container(
-          clipBehavior: Clip.hardEdge,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black54,
-                blurRadius: 15,
-                offset: Offset(-15, 10), //(x,y)
-              ),
-            ],
-          ),
-          child: Image.asset(
-            '${ImagePath.desingsDir}/CV12S.jpg',
-            fit: BoxFit.cover,
-            alignment: Alignment.topCenter,
+        child: AspectRatio(
+          aspectRatio: .7,
+          child: Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black54,
+                  blurRadius: 15,
+                  offset: Offset(-15, 10), //(x,y)
+                ),
+              ],
+            ),
+            child: Image.asset(
+              '${ImagePath.desingsDir}/CV12S.jpg',
+              fit: BoxFit.cover,
+              alignment: Alignment.topCenter,
+            ),
           ),
         ),
       ),
