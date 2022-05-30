@@ -14,7 +14,6 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return PageView(
       scrollDirection: Axis.vertical,
-      pageSnapping: false,
       children: [
         HomeSectionZoomResume(
           goToProjectSection: () => BlocProvider.of<NavigationBloc>(context)

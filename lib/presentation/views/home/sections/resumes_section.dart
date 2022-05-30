@@ -18,21 +18,30 @@ class ResumesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SectionTitle(
-          title: Location.curriculums,
-          subTitle: Location.portfolioSectionSubtitle,
-          color: CustomTheme.primaryColor,
-          trailing: ShowMoreButton(
-            onPressed: () => BlocProvider.of<NavigationBloc>(context)
-                .add(const DesingsOpened()),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.bottomRight,
+          end: Alignment.topLeft,
+          colors: CustomTheme.snowGradient,
+        ),
+      ),
+      child: Column(
+        children: [
+          SectionTitle(
+            title: Location.curriculums,
+            subTitle: Location.portfolioSectionSubtitle,
+            color: CustomTheme.primaryColor,
+            trailing: ShowMoreButton(
+              onPressed: () => BlocProvider.of<NavigationBloc>(context)
+                  .add(const DesingsOpened()),
+            ),
           ),
-        ),
-        Expanded(
-          child: FeaturedDesingsList(desings: desings),
-        ),
-      ],
+          Expanded(
+            child: FeaturedDesingsList(desings: desings),
+          ),
+        ],
+      ),
     );
   }
 }
