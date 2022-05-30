@@ -38,34 +38,7 @@ class HomeSectionZoomResume extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            right: -120,
-            top: -20,
-            width: widthOfScreen(context) * .5,
-            child: FadeInUp(
-              child: Transform.rotate(
-                angle: -.15,
-                child: Container(
-                  clipBehavior: Clip.hardEdge,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black54,
-                        blurRadius: 15,
-                        offset: Offset(-15, 10), //(x,y)
-                      ),
-                    ],
-                  ),
-                  child: Image.asset(
-                    '${ImagePath.desingsDir}/CV12S.jpg',
-                    fit: BoxFit.cover,
-                    alignment: Alignment.topCenter,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          _buildResume(context),
         ],
       ),
     );
@@ -114,6 +87,37 @@ class HomeSectionZoomResume extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  Positioned _buildResume(BuildContext context) {
+    return Positioned(
+      right: -120,
+      top: -20,
+      width: widthOfScreen(context) * .5,
+      child: FadeInUp(
+        child: Transform.rotate(
+          angle: -.15,
+          child: Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black54,
+                  blurRadius: 15,
+                  offset: Offset(-15, 10), //(x,y)
+                ),
+              ],
+            ),
+            child: Image.asset(
+              '${ImagePath.desingsDir}/CV12S.jpg',
+              fit: BoxFit.cover,
+              alignment: Alignment.topCenter,
+            ),
+          ),
+        ),
+      ),
     );
   }
 
