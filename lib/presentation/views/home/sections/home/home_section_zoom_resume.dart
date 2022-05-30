@@ -1,12 +1,13 @@
 import 'dart:ui';
 
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/sections/home/widgets/text_banner.dart';
-import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeSectionZoomResume extends StatelessWidget {
   const HomeSectionZoomResume({
@@ -18,6 +19,8 @@ class HomeSectionZoomResume extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = isMobileScreen(context);
+
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -26,24 +29,7 @@ class HomeSectionZoomResume extends StatelessWidget {
           colors: CustomTheme.greenGradient,
         ),
       ),
-      child: Stack(
-        children: [
-          _buildResume(context),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              padding: EdgeInsets.only(left: widthOfScreen(context) * .1),
-              width: widthOfScreen(context) * .4,
-              child: TextBanner(
-                onButtonTap: goToProjectSection,
-                textColor: CustomTheme.secondaryColor,
-                iconColor: Colors.white,
-                buttonColor: Colors.white,
-              ),
-            ),
-          ),
-        ],
-      ),
+      child: isMobile ? _buildMobile(context) : _buildDesktop(context),
     );
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
@@ -93,6 +79,57 @@ class HomeSectionZoomResume extends StatelessWidget {
     );
   }
 
+  Widget _buildDesktop(BuildContext context) {
+    return Stack(
+      children: [
+        _buildResume(context),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            padding: EdgeInsets.only(left: widthOfScreen(context) * .05),
+            width: widthOfScreen(context) * .45,
+            constraints: const BoxConstraints(maxWidth: 500),
+            child: TextBanner(
+              onButtonTap: goToProjectSection,
+              textColor: CustomTheme.secondaryColor,
+              iconColor: Colors.white,
+              buttonColor: Colors.white,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildMobile(BuildContext context) {
+    double currentWidth = widthOfScreen(context) * .6;
+    final diff = 555 - widthOfScreen(context);
+    if (diff > 0) {
+      currentWidth += (diff * .2);
+    }
+
+    return Stack(
+      children: [
+        _buildResume(context),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            // color: Colors.red,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.only(left: 8, right: 8),
+            width: currentWidth,
+            child: TextBanner(
+              onButtonTap: goToProjectSection,
+              textColor: CustomTheme.secondaryColor,
+              iconColor: Colors.white,
+              buttonColor: Colors.white,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildResume(BuildContext context) {
     double currentWidth = widthOfScreen(context) * .6;
     if (currentWidth > 800) {
@@ -103,12 +140,22 @@ class HomeSectionZoomResume extends StatelessWidget {
     }
     if (isMobileScreen(context)) {
       final currentHeight = heightOfScreen(context) * .9;
-      currentWidth = currentHeight * .7;
+      currentWidth = currentHeight * .7 * .6;
+      final diff = 555 - widthOfScreen(context);
+      if (diff > 0) {
+        currentWidth += (diff * .6);
+      }
+      print('currentWidth: $currentWidth');
+      print('currentHeight: $currentHeight');
       return Positioned.fill(
-        right: -(currentWidth * .7),
+        right: -currentWidth,
         child: Align(
           alignment: Alignment.centerRight,
-          child: SizedBox(height: currentHeight, child: const _Resume()),
+          child: SizedBox(
+              height: currentHeight,
+              child: const _Resume(
+                angle: -.045,
+              )),
         ),
       );
     }
@@ -142,13 +189,14 @@ class HomeSectionZoomResume extends StatelessWidget {
 class _Resume extends StatelessWidget {
   const _Resume({
     Key? key,
+    this.angle = -.15,
   }) : super(key: key);
-
+  final double angle;
   @override
   Widget build(BuildContext context) {
     return FadeInUp(
       child: Transform.rotate(
-        angle: -.15,
+        angle: angle,
         child: AspectRatio(
           aspectRatio: .7,
           child: Container(
