@@ -5,28 +5,29 @@ class TextCheck extends StatelessWidget {
   const TextCheck({
     Key? key,
     required this.label,
+    this.textColor = Colors.white,
+    this.iconColor = CustomTheme.primaryColor,
   }) : super(key: key);
 
   final String label;
-
+  final Color textColor;
+  final Color iconColor;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Icon(
+        Icon(
           Icons.check,
-          color: CustomTheme.primaryColor,
+          color: iconColor,
         ),
         const SizedBox(
           width: 10,
         ),
         Text(
           label,
-          style: Theme.of(context)
-              .textTheme
-              .headline6
-              ?.copyWith(color: Colors.white),
+          style:
+              Theme.of(context).textTheme.headline6?.copyWith(color: textColor),
         )
       ],
     );

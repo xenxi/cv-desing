@@ -1,17 +1,23 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter/material.dart';
+
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/sections/home/widgets/text_check.dart';
-import 'package:flutter/material.dart';
 
 class TextBanner extends StatelessWidget {
   const TextBanner({
     Key? key,
     required this.onButtonTap,
+    this.textColor = Colors.white,
+    this.iconColor = CustomTheme.primaryColor,
+    this.buttonColor = CustomTheme.secondaryColor,
   }) : super(key: key);
 
   final VoidCallback onButtonTap;
-
+  final Color textColor;
+  final Color iconColor;
+  final Color buttonColor;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,13 +38,13 @@ class TextBanner extends StatelessWidget {
   }
 
   Widget _buildTitle() => FadeInDown(
-        child: const FittedBox(
+        child: FittedBox(
           child: Text(
             Location.homeTitle,
             style: TextStyle(
               fontSize: 60,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: textColor,
               height: 1.5,
             ),
           ),
@@ -49,8 +55,8 @@ class TextBanner extends StatelessWidget {
         delay: const Duration(milliseconds: 1000),
         child: TextButton.icon(
           style: TextButton.styleFrom(
-            backgroundColor: Colors.white,
-            primary: CustomTheme.secondaryColor,
+            backgroundColor: textColor,
+            primary: buttonColor,
             fixedSize: const Size(double.infinity, 50),
           ),
           onPressed: onButtonTap,
@@ -65,15 +71,27 @@ class TextBanner extends StatelessWidget {
           children: [
             FadeInLeft(
               delay: const Duration(milliseconds: 300),
-              child: const TextCheck(label: Location.homeSubtitle1),
+              child: TextCheck(
+                label: Location.homeSubtitle1,
+                textColor: textColor,
+                iconColor: iconColor,
+              ),
             ),
             FadeInLeft(
               delay: const Duration(milliseconds: 500),
-              child: const TextCheck(label: Location.homeSubtitle2),
+              child: TextCheck(
+                label: Location.homeSubtitle2,
+                textColor: textColor,
+                iconColor: iconColor,
+              ),
             ),
             FadeInLeft(
               delay: const Duration(milliseconds: 700),
-              child: const TextCheck(label: Location.homeSubtitle3),
+              child: TextCheck(
+                label: Location.homeSubtitle3,
+                textColor: textColor,
+                iconColor: iconColor,
+              ),
             ),
           ],
         ),
