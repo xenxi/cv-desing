@@ -90,34 +90,13 @@ class HomeSectionZoomResume extends StatelessWidget {
     );
   }
 
-  Positioned _buildResume(BuildContext context) {
+  Widget _buildResume(BuildContext context) {
+    final isSmallWindows = MediaQuery.of(context).size.width < 720;
     return Positioned(
       right: -120,
       top: -20,
       width: widthOfScreen(context) * .5,
-      child: FadeInUp(
-        child: Transform.rotate(
-          angle: -.15,
-          child: Container(
-            clipBehavior: Clip.hardEdge,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black54,
-                  blurRadius: 15,
-                  offset: Offset(-15, 10), //(x,y)
-                ),
-              ],
-            ),
-            child: Image.asset(
-              '${ImagePath.desingsDir}/CV12S.jpg',
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
-            ),
-          ),
-        ),
-      ),
+      child: const _Resume(),
     );
   }
 
@@ -137,4 +116,37 @@ class HomeSectionZoomResume extends StatelessWidget {
           child: children,
         ),
       );
+}
+
+class _Resume extends StatelessWidget {
+  const _Resume({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeInUp(
+      child: Transform.rotate(
+        angle: -.15,
+        child: Container(
+          clipBehavior: Clip.hardEdge,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(8)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black54,
+                blurRadius: 15,
+                offset: Offset(-15, 10), //(x,y)
+              ),
+            ],
+          ),
+          child: Image.asset(
+            '${ImagePath.desingsDir}/CV12S.jpg',
+            fit: BoxFit.cover,
+            alignment: Alignment.topCenter,
+          ),
+        ),
+      ),
+    );
+  }
 }
