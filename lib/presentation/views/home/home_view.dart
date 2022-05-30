@@ -2,6 +2,7 @@ import 'package:cv_desing_website_flutter/application/navigation/navigation_bloc
 import 'package:cv_desing_website_flutter/presentation/views/home/sections/business_cards_section.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/sections/flyers_section.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/sections/home/home_section.dart';
+import 'package:cv_desing_website_flutter/presentation/views/home/sections/home/home_section_zoom_resume.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/sections/resumes_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +16,7 @@ class HomeView extends StatelessWidget {
       scrollDirection: Axis.vertical,
       pageSnapping: false,
       children: [
-        HomeSection(
+        HomeSectionZoomResume(
           goToProjectSection: () => BlocProvider.of<NavigationBloc>(context)
               .add(const DesingsOpened()),
         ),
