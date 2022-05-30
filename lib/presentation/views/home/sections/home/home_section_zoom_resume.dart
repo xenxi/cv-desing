@@ -35,6 +35,9 @@ class HomeSectionZoomResume extends StatelessWidget {
               width: widthOfScreen(context) * .4,
               child: TextBanner(
                 onButtonTap: goToProjectSection,
+                textColor: CustomTheme.secondaryColor,
+                iconColor: Colors.white,
+                buttonColor: Colors.white,
               ),
             ),
           ),
