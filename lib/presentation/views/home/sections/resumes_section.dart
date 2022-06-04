@@ -23,7 +23,7 @@ class ResumesSection extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.bottomRight,
           end: Alignment.topLeft,
-          colors: CustomTheme.snowGradient,
+          colors: CustomTheme.batmanGradient,
         ),
       ),
       child: Column(
@@ -32,7 +32,9 @@ class ResumesSection extends StatelessWidget {
             title: Location.curriculums,
             subTitle: Location.portfolioSectionSubtitle,
             color: CustomTheme.primaryColor,
+            fontColor: Colors.white,
             trailing: ShowMoreButton(
+              color: Colors.white,
               onPressed: () => BlocProvider.of<NavigationBloc>(context)
                   .add(const DesingsOpened()),
             ),

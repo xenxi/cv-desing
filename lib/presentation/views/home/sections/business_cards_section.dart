@@ -24,7 +24,7 @@ class BusinessCardsSection extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.bottomRight,
           end: Alignment.topLeft,
-          colors: CustomTheme.blueGradient,
+          colors: CustomTheme.purpleGradient,
         ),
       ),
       child: Column(
@@ -33,9 +33,9 @@ class BusinessCardsSection extends StatelessWidget {
             title: Location.businessCards,
             subTitle: Location.portfolioSectionSubtitle,
             color: CustomTheme.primaryColor,
-            fontColor: CustomTheme.secondaryColor,
+            fontColor: Colors.white,
             trailing: ShowMoreButton(
-              color: CustomTheme.secondaryColor,
+              color: Colors.white,
               onPressed: () => BlocProvider.of<NavigationBloc>(context)
                   .add(const HomeOpened()),
             ),
