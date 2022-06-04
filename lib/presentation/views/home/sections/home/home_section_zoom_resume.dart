@@ -112,19 +112,30 @@ class HomeSectionZoomResume extends StatelessWidget {
     return Stack(
       children: [
         _buildResume(context),
-        Text(Location.homeTitle),
         Align(
-          alignment: Alignment.centerLeft,
+          alignment: Alignment.center,
           child: Container(
-            // color: Colors.red,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: CustomTheme.greenGradient
+                    .map((e) => e.withOpacity(.7))
+                    .toList(),
+              ),
+            ),
             alignment: Alignment.center,
             padding: const EdgeInsets.only(left: 8, right: 8),
-            width: currentWidth,
-            child: TextBanner(
-              onButtonTap: goToProjectSection,
-              textColor: CustomTheme.secondaryColor,
-              iconColor: Colors.white,
-              buttonColor: Colors.white,
+            // height: 350,
+            width: widthOfScreen(context),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 400),
+              child: TextBanner(
+                onButtonTap: goToProjectSection,
+                textColor: CustomTheme.secondaryColor,
+                iconColor: Colors.white,
+                buttonColor: Colors.white,
+              ),
             ),
           ),
         ),
@@ -133,28 +144,31 @@ class HomeSectionZoomResume extends StatelessWidget {
   }
 
   Widget _buildResume(BuildContext context) {
-    double currentWidth = widthOfScreen(context) * .6;
-    if (currentWidth > 800) {
-      currentWidth = 800;
-    }
-    if (currentWidth < 400) {
-      currentWidth = 400;
-    }
     if (isMobileScreen(context)) {
       final currentHeight = heightOfScreen(context) * .9;
-      currentWidth = currentHeight * .7;
+      double currentWidth = currentHeight * .7;
       final diff = 555 - widthOfScreen(context);
       if (diff > 0) {
         currentWidth += (diff * .6);
       }
       print('currentWidth: $currentWidth');
       print('currentHeight: $currentHeight');
+      return Positioned(
+        top: 20,
+        left: 40,
+        width: widthOfScreen(context),
+        height: heightOfScreen(context),
+        child: _Resume(
+          height: currentHeight,
+          angle: -.045,
+        ),
+      );
       return Positioned.fill(
         right: -currentWidth * .7,
         child: Align(
           alignment: Alignment.centerRight,
           child: _Resume(
-            height: currentHeight,
+            // height: currentHeight,
             angle: -.045,
           ),
         ),
@@ -164,7 +178,7 @@ class HomeSectionZoomResume extends StatelessWidget {
     return Positioned(
       right: -120,
       top: -20,
-      width: currentWidth,
+      width: widthOfScreen(context) * .6,
       height: heightOfScreen(context),
       child: const _Resume(
         height: 1180,
