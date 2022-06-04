@@ -32,52 +32,6 @@ class HomeSectionZoomResume extends StatelessWidget {
       ),
       child: isMobile ? _buildMobile(context) : _buildDesktop(context),
     );
-    return ResponsiveBuilder(
-      builder: (context, sizingInformation) {
-        return Container(
-          decoration: const BoxDecoration(
-            color: CustomTheme.secondaryColor,
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              opacity: .9,
-              image: AssetImage(ImagePath.bg7),
-            ),
-          ),
-          width: sizingInformation.screenSize.width,
-          alignment: Alignment.center,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              maxWidth: sizingInformation.isTablet ? 600 : 1200,
-            ),
-            child: _buildGlassContainer(
-              context,
-              children: Row(
-                children: [
-                  Expanded(
-                    child: TextBanner(
-                      onButtonTap: goToProjectSection,
-                    ),
-                  ),
-                  if (sizingInformation.isDesktop) ...[
-                    const SizedBox(
-                      width: CustomTheme.defaultPadding * 2,
-                    ),
-                    Expanded(
-                      child: ZoomIn(
-                        child: Image.asset(
-                          ImagePath.homeMainImage2,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
   }
 
   Widget _buildDesktop(BuildContext context) {
