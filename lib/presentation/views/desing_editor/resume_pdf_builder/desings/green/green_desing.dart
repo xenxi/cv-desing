@@ -9,6 +9,7 @@ import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/block.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/category.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/sub_category.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/url_text.dart';
@@ -97,7 +98,8 @@ Future<pw.Document> buildResume(Resume resume) async {
                     Category(title: Location.workExperience, color: lightGreen),
                     ...resume.workExperiences.value.map(
                       (workExperience) {
-                        return _Block(
+                        return Block(
+                          color: green,
                           title: workExperience.job.getOrCrash(),
                           text: workExperience.description.getOrCrash(),
                           trailingText: displayDateRange(
@@ -112,7 +114,8 @@ Future<pw.Document> buildResume(Resume resume) async {
                     Category(
                         title: Location.academicTraining, color: lightGreen),
                     ...resume.academyTrainings.value.map(
-                      (academyTraining) => _Block(
+                      (academyTraining) => Block(
+                        color: green,
                         title: academyTraining.title.getOrCrash(),
                         text: academyTraining.schoold.getOrCrash(),
                         trailingText: displayDateRange(
@@ -126,7 +129,8 @@ Future<pw.Document> buildResume(Resume resume) async {
                         title: Location.complementaryFormations,
                         color: lightGreen),
                     ...resume.complementaryTrainings.value.map(
-                      (complementaryTraining) => _Block(
+                      (complementaryTraining) => Block(
+                        color: green,
                         title: complementaryTraining.title.getOrCrash(),
                         text: complementaryTraining.schoold.getOrCrash(),
                         trailingText: displayDateRange(
@@ -369,70 +373,5 @@ class _Percent extends pw.StatelessWidget {
     widgets.add(title);
 
     return pw.Column(children: widgets);
-  }
-}
-
-class _Block extends pw.StatelessWidget {
-  _Block({
-    required this.title,
-    required this.text,
-    this.icon,
-    this.trailingText,
-  });
-
-  final String title;
-  final String text;
-  final pw.IconData? icon;
-  final String? trailingText;
-
-  @override
-  pw.Widget build(pw.Context context) {
-    return pw.Column(
-      crossAxisAlignment: pw.CrossAxisAlignment.start,
-      children: <pw.Widget>[
-        pw.Row(
-          crossAxisAlignment: pw.CrossAxisAlignment.start,
-          children: <pw.Widget>[
-            pw.Container(
-              width: 6,
-              height: 6,
-              margin: const pw.EdgeInsets.only(top: 5.5, left: 2, right: 5),
-              decoration: const pw.BoxDecoration(
-                color: green,
-                shape: pw.BoxShape.circle,
-              ),
-            ),
-            pw.Text(
-              title,
-              style: pw.Theme.of(context)
-                  .defaultTextStyle
-                  .copyWith(fontWeight: pw.FontWeight.bold),
-            ),
-            if (icon != null) pw.Icon(icon!, color: lightGreen, size: 18),
-            if (trailingText != null) ...[
-              pw.SizedBox(width: 10),
-              pw.Text(
-                trailingText!,
-                style:
-                    pw.TextStyle(fontWeight: pw.FontWeight.bold, color: green),
-              ),
-            ]
-          ],
-        ),
-        pw.Container(
-          decoration: const pw.BoxDecoration(
-            border: pw.Border(left: pw.BorderSide(color: green, width: 2)),
-          ),
-          padding: const pw.EdgeInsets.only(left: 10, top: 5, bottom: 5),
-          margin: const pw.EdgeInsets.only(left: 5),
-          child: pw.Column(
-            crossAxisAlignment: pw.CrossAxisAlignment.start,
-            children: <pw.Widget>[
-              pw.Text(text),
-            ],
-          ),
-        ),
-      ],
-    );
   }
 }
