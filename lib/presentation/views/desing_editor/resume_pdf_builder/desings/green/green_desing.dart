@@ -9,6 +9,7 @@ import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/url_text.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
@@ -67,12 +68,12 @@ Future<pw.Document> buildResume(Resume resume) async {
                               child: pw.Column(
                                 crossAxisAlignment: pw.CrossAxisAlignment.end,
                                 children: <pw.Widget>[
-                                  _UrlText(
+                                  UrlText(
                                     resume.contactInformation.phoneNumber
                                         .fold((l) => '', (r) => r),
                                     'tel:${resume.contactInformation.phoneNumber.fold((l) => '', (r) => r)}',
                                   ),
-                                  _UrlText(
+                                  UrlText(
                                     resume.contactInformation.emailAddress
                                         .fold((l) => '', (r) => r),
                                     'mailto:${resume.contactInformation.emailAddress.fold((l) => '', (r) => r)}',
@@ -266,27 +267,6 @@ Future<pw.PageTheme> _myPageTheme() async {
       );
     },
   );
-}
-
-class _UrlText extends pw.StatelessWidget {
-  _UrlText(this.text, this.url);
-
-  final String text;
-  final String url;
-
-  @override
-  pw.Widget build(pw.Context context) {
-    return pw.UrlLink(
-      destination: url,
-      child: pw.Text(
-        text,
-        style: const pw.TextStyle(
-          decoration: pw.TextDecoration.underline,
-          color: PdfColors.blue,
-        ),
-      ),
-    );
-  }
 }
 
 pw.Widget _buildJob(pw.Context context, {required Job job}) => pw.Text(
