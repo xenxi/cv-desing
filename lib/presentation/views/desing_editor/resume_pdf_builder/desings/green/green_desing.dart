@@ -24,260 +24,269 @@ const PdfColor lightGreen = PdfColor.fromInt(0xffcdf1e7);
 const sep = 120.0;
 final dateFormat = DateFormat('MM/yyy');
 
-Future<pw.Document> buildResume(Resume resume) async {
-  final bytes = await resume.personalInformation.avatarOption.fold(
-    () async => (await rootBundle.load(ImagePath.logo)).buffer.asUint8List(),
-    (a) => Future.value(a),
-  );
-  final profileImage = pw.MemoryImage(bytes);
+class GreenResume {
+  GreenResume(this.resume);
 
-  final doc = pw.Document(
-    title: resume.personalInformation.name
-        .fold((l) => Location.curriculum, (r) => r),
-    author: Location.appTitle,
-  );
-  final pageTheme = await PageThemeBuilder.build();
-  doc.addPage(
-    pw.MultiPage(
-      pageTheme: pageTheme,
-      build: (pw.Context context) => [
-        pw.Partitions(
-          children: [
-            pw.Partition(
-              width: 400,
-              child: pw.Column(
-                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                children: <pw.Widget>[
-                  pw.Container(
-                    padding: const pw.EdgeInsets.only(bottom: 8),
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
-                      children: <pw.Widget>[
-                        _buildName(context,
-                            name: resume.personalInformation.name),
-                        pw.SizedBox(height: 10),
-                        _buildJob(context, job: resume.personalInformation.job),
-                        pw.SizedBox(height: 20),
-                        pw.Row(
-                          crossAxisAlignment: pw.CrossAxisAlignment.start,
-                          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-                          children: <pw.Widget>[
-                            pw.Expanded(
-                              child: _buildLocality(context,
-                                  locality:
-                                      resume.personalInformation.locality),
-                            ),
-                            pw.Expanded(
-                              child: pw.Column(
-                                crossAxisAlignment: pw.CrossAxisAlignment.end,
-                                children: <pw.Widget>[
-                                  UrlText(
-                                    resume.contactInformation.phoneNumber
-                                        .fold((l) => '', (r) => r),
-                                    'tel:${resume.contactInformation.phoneNumber.fold((l) => '', (r) => r)}',
-                                  ),
-                                  UrlText(
-                                    resume.contactInformation.emailAddress
-                                        .fold((l) => '', (r) => r),
-                                    'mailto:${resume.contactInformation.emailAddress.fold((l) => '', (r) => r)}',
-                                  ),
-                                ],
-                              ),
-                            ),
-                            pw.SizedBox(width: 8),
-                          ],
-                        ),
-                        pw.SizedBox(height: 10),
-                        _buildDescription(context,
-                            description:
-                                resume.personalInformation.description),
-                      ],
-                    ),
-                  ),
-                  if (resume.workExperiences.value.isNotEmpty) ...[
-                    Category(title: Location.workExperience, color: lightGreen),
-                    ...resume.workExperiences.value.map(
-                      (workExperience) {
-                        return Block(
-                          color: green,
-                          title: workExperience.job.getOrCrash(),
-                          text: workExperience.description.getOrCrash(),
-                          trailingText: displayDateRange(
-                            workExperience.dateRange.getOrCrash(),
-                          ),
-                        );
-                      },
-                    ),
-                    pw.SizedBox(height: 20),
-                  ],
-                  if (resume.academyTrainings.value.isNotEmpty) ...[
-                    Category(
-                        title: Location.academicTraining, color: lightGreen),
-                    ...resume.academyTrainings.value.map(
-                      (academyTraining) => Block(
-                        color: green,
-                        title: academyTraining.title.getOrCrash(),
-                        text: academyTraining.schoold.getOrCrash(),
-                        trailingText: displayDateRange(
-                          academyTraining.dateRange.getOrCrash(),
-                        ),
-                      ),
-                    ),
-                  ],
-                  if (resume.complementaryTrainings.value.isNotEmpty) ...[
-                    Category(
-                        title: Location.complementaryFormations,
-                        color: lightGreen),
-                    ...resume.complementaryTrainings.value.map(
-                      (complementaryTraining) => Block(
-                        color: green,
-                        title: complementaryTraining.title.getOrCrash(),
-                        text: complementaryTraining.schoold.getOrCrash(),
-                        trailingText: displayDateRange(
-                          complementaryTraining.dateRange.getOrCrash(),
-                        ),
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-            ),
-            pw.Partition(
-              width: sep,
-              child: pw.Column(
-                children: [
-                  pw.Container(
-                    height: pageTheme.pageFormat.availableHeight,
-                    child: pw.Column(
-                      mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-                      children: <pw.Widget>[
-                        pw.ClipOval(
-                          child: pw.Container(
-                            width: 100,
-                            height: 100,
-                            color: lightGreen,
-                            child: pw.Image(profileImage),
-                          ),
-                        ),
-                        if (resume.softwareSkills.value.isNotEmpty) ...[
-                          pw.Column(
+  final Resume resume;
+
+  Future<pw.Document> build() async {
+    final bytes = await resume.personalInformation.avatarOption.fold(
+      () async => (await rootBundle.load(ImagePath.logo)).buffer.asUint8List(),
+      (a) => Future.value(a),
+    );
+    final profileImage = pw.MemoryImage(bytes);
+
+    final doc = pw.Document(
+      title: resume.personalInformation.name
+          .fold((l) => Location.curriculum, (r) => r),
+      author: Location.appTitle,
+    );
+    final pageTheme = await PageThemeBuilder.build();
+    doc.addPage(
+      pw.MultiPage(
+        pageTheme: pageTheme,
+        build: (pw.Context context) => [
+          pw.Partitions(
+            children: [
+              pw.Partition(
+                width: 400,
+                child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: <pw.Widget>[
+                    pw.Container(
+                      padding: const pw.EdgeInsets.only(bottom: 8),
+                      child: pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        children: <pw.Widget>[
+                          _buildName(context,
+                              name: resume.personalInformation.name),
+                          pw.SizedBox(height: 10),
+                          _buildJob(context,
+                              job: resume.personalInformation.job),
+                          pw.SizedBox(height: 20),
+                          pw.Row(
+                            crossAxisAlignment: pw.CrossAxisAlignment.start,
+                            mainAxisAlignment:
+                                pw.MainAxisAlignment.spaceBetween,
                             children: <pw.Widget>[
-                              ...resume.softwareSkills.value.map(
-                                (skill) => Percent(
-                                  color: green,
-                                  size: 60,
-                                  value: skill.percentage.getOrCrash() * .01,
-                                  title: pw.Text(skill.getOrCrash()),
-                                ),
+                              pw.Expanded(
+                                child: _buildLocality(context,
+                                    locality:
+                                        resume.personalInformation.locality),
                               ),
-                            ],
-                          ),
-                        ],
-                        if (resume.skills.value.isNotEmpty)
-                          pw.Column(
-                            children: [
-                              SubCategory(text: 'Habilidades'),
-                              pw.Wrap(
-                                children: [
-                                  ...resume.skills.value.map(
-                                    (skill) => pw.Container(
-                                      margin: const pw.EdgeInsets.all(1),
-                                      padding: const pw.EdgeInsets.symmetric(
-                                        vertical: 2,
-                                        horizontal: 4,
-                                      ),
-                                      decoration: pw.BoxDecoration(
-                                        color: lightGreen,
-                                        borderRadius:
-                                            pw.BorderRadius.circular(8),
-                                      ),
-                                      child: pw.Text(
-                                        skill,
-                                      ),
+                              pw.Expanded(
+                                child: pw.Column(
+                                  crossAxisAlignment: pw.CrossAxisAlignment.end,
+                                  children: <pw.Widget>[
+                                    UrlText(
+                                      resume.contactInformation.phoneNumber
+                                          .fold((l) => '', (r) => r),
+                                      'tel:${resume.contactInformation.phoneNumber.fold((l) => '', (r) => r)}',
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        if (resume.languages.value.isNotEmpty)
-                          pw.Column(
-                            children: [
-                              SubCategory(text: 'Idiomas'),
-                              ...resume.languages.value.map(
-                                (l) => pw.Column(
-                                  crossAxisAlignment:
-                                      pw.CrossAxisAlignment.stretch,
-                                  children: [
-                                    pw.Text(l.getOrCrash()),
-                                    pw.Text(
-                                      l.level,
-                                      textScaleFactor: .9,
-                                      style: pw.TextStyle(
-                                        fontWeight: pw.FontWeight.bold,
-                                        fontStyle: pw.FontStyle.italic,
-                                      ),
+                                    UrlText(
+                                      resume.contactInformation.emailAddress
+                                          .fold((l) => '', (r) => r),
+                                      'mailto:${resume.contactInformation.emailAddress.fold((l) => '', (r) => r)}',
                                     ),
-                                    pw.SizedBox(height: 4),
                                   ],
                                 ),
                               ),
+                              pw.SizedBox(width: 8),
                             ],
                           ),
-                      ],
+                          pw.SizedBox(height: 10),
+                          _buildDescription(context,
+                              description:
+                                  resume.personalInformation.description),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    if (resume.workExperiences.value.isNotEmpty) ...[
+                      Category(
+                          title: Location.workExperience, color: lightGreen),
+                      ...resume.workExperiences.value.map(
+                        (workExperience) {
+                          return Block(
+                            color: green,
+                            title: workExperience.job.getOrCrash(),
+                            text: workExperience.description.getOrCrash(),
+                            trailingText: displayDateRange(
+                              workExperience.dateRange.getOrCrash(),
+                            ),
+                          );
+                        },
+                      ),
+                      pw.SizedBox(height: 20),
+                    ],
+                    if (resume.academyTrainings.value.isNotEmpty) ...[
+                      Category(
+                          title: Location.academicTraining, color: lightGreen),
+                      ...resume.academyTrainings.value.map(
+                        (academyTraining) => Block(
+                          color: green,
+                          title: academyTraining.title.getOrCrash(),
+                          text: academyTraining.schoold.getOrCrash(),
+                          trailingText: displayDateRange(
+                            academyTraining.dateRange.getOrCrash(),
+                          ),
+                        ),
+                      ),
+                    ],
+                    if (resume.complementaryTrainings.value.isNotEmpty) ...[
+                      Category(
+                          title: Location.complementaryFormations,
+                          color: lightGreen),
+                      ...resume.complementaryTrainings.value.map(
+                        (complementaryTraining) => Block(
+                          color: green,
+                          title: complementaryTraining.title.getOrCrash(),
+                          text: complementaryTraining.schoold.getOrCrash(),
+                          trailingText: displayDateRange(
+                            complementaryTraining.dateRange.getOrCrash(),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
               ),
-            )
-          ],
-        ),
-      ],
-    ),
-  );
-  return doc;
-}
-
-pw.Widget _buildJob(pw.Context context, {required Job job}) => pw.Text(
-      job.fold((l) => '', (r) => r),
-      textScaleFactor: 1.2,
-      style: pw.Theme.of(context).defaultTextStyle.copyWith(
-            fontWeight: pw.FontWeight.bold,
-            color: green,
+              pw.Partition(
+                width: sep,
+                child: pw.Column(
+                  children: [
+                    pw.Container(
+                      height: pageTheme.pageFormat.availableHeight,
+                      child: pw.Column(
+                        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                        children: <pw.Widget>[
+                          pw.ClipOval(
+                            child: pw.Container(
+                              width: 100,
+                              height: 100,
+                              color: lightGreen,
+                              child: pw.Image(profileImage),
+                            ),
+                          ),
+                          if (resume.softwareSkills.value.isNotEmpty) ...[
+                            pw.Column(
+                              children: <pw.Widget>[
+                                ...resume.softwareSkills.value.map(
+                                  (skill) => Percent(
+                                    color: green,
+                                    size: 60,
+                                    value: skill.percentage.getOrCrash() * .01,
+                                    title: pw.Text(skill.getOrCrash()),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                          if (resume.skills.value.isNotEmpty)
+                            pw.Column(
+                              children: [
+                                SubCategory(text: 'Habilidades'),
+                                pw.Wrap(
+                                  children: [
+                                    ...resume.skills.value.map(
+                                      (skill) => pw.Container(
+                                        margin: const pw.EdgeInsets.all(1),
+                                        padding: const pw.EdgeInsets.symmetric(
+                                          vertical: 2,
+                                          horizontal: 4,
+                                        ),
+                                        decoration: pw.BoxDecoration(
+                                          color: lightGreen,
+                                          borderRadius:
+                                              pw.BorderRadius.circular(8),
+                                        ),
+                                        child: pw.Text(
+                                          skill,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          if (resume.languages.value.isNotEmpty)
+                            pw.Column(
+                              children: [
+                                SubCategory(text: 'Idiomas'),
+                                ...resume.languages.value.map(
+                                  (l) => pw.Column(
+                                    crossAxisAlignment:
+                                        pw.CrossAxisAlignment.stretch,
+                                    children: [
+                                      pw.Text(l.getOrCrash()),
+                                      pw.Text(
+                                        l.level,
+                                        textScaleFactor: .9,
+                                        style: pw.TextStyle(
+                                          fontWeight: pw.FontWeight.bold,
+                                          fontStyle: pw.FontStyle.italic,
+                                        ),
+                                      ),
+                                      pw.SizedBox(height: 4),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
           ),
-    );
-
-pw.Widget _buildName(pw.Context context, {required Name name}) => pw.Text(
-      name.fold((l) => '', (r) => r),
-      textScaleFactor: 2,
-      style: pw.Theme.of(context)
-          .defaultTextStyle
-          .copyWith(fontWeight: pw.FontWeight.bold),
-    );
-
-String displayDateRange(RangeOfDates dates) {
-  final endDate = dates.until.fold(
-    () => 'Act.',
-    (r) => dateFormat.format(r),
-  );
-  final dateRange = '${dateFormat.format(dates.since)} - $endDate';
-  return dateRange;
-}
-
-pw.Widget _buildLocality(pw.Context context, {required Locality locality}) =>
-    locality.fold(
-      (l) => pw.Container(),
-      (r) => pw.Text(r),
-    );
-
-pw.Widget _buildDescription(pw.Context context,
-        {required Description description}) =>
-    description.fold(
-      (l) => pw.Container(),
-      (r) => pw.Text(
-        r,
-        style: pw.TextStyle(
-          fontStyle: pw.FontStyle.italic,
-        ),
+        ],
       ),
     );
+    return doc;
+  }
+
+  pw.Widget _buildJob(pw.Context context, {required Job job}) => pw.Text(
+        job.fold((l) => '', (r) => r),
+        textScaleFactor: 1.2,
+        style: pw.Theme.of(context).defaultTextStyle.copyWith(
+              fontWeight: pw.FontWeight.bold,
+              color: green,
+            ),
+      );
+
+  pw.Widget _buildName(pw.Context context, {required Name name}) => pw.Text(
+        name.fold((l) => '', (r) => r),
+        textScaleFactor: 2,
+        style: pw.Theme.of(context)
+            .defaultTextStyle
+            .copyWith(fontWeight: pw.FontWeight.bold),
+      );
+
+  String displayDateRange(RangeOfDates dates) {
+    final endDate = dates.until.fold(
+      () => 'Act.',
+      (r) => dateFormat.format(r),
+    );
+    final dateRange = '${dateFormat.format(dates.since)} - $endDate';
+    return dateRange;
+  }
+
+  pw.Widget _buildLocality(pw.Context context, {required Locality locality}) =>
+      locality.fold(
+        (l) => pw.Container(),
+        (r) => pw.Text(r),
+      );
+
+  pw.Widget _buildDescription(pw.Context context,
+          {required Description description}) =>
+      description.fold(
+        (l) => pw.Container(),
+        (r) => pw.Text(
+          r,
+          style: pw.TextStyle(
+            fontStyle: pw.FontStyle.italic,
+          ),
+        ),
+      );
+}
