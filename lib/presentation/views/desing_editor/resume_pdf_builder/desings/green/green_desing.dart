@@ -9,6 +9,7 @@ import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/category.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/sub_category.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/url_text.dart';
 import 'package:flutter/services.dart';
@@ -93,7 +94,7 @@ Future<pw.Document> buildResume(Resume resume) async {
                     ),
                   ),
                   if (resume.workExperiences.value.isNotEmpty) ...[
-                    _Category(title: Location.workExperience),
+                    Category(title: Location.workExperience, color: lightGreen),
                     ...resume.workExperiences.value.map(
                       (workExperience) {
                         return _Block(
@@ -108,7 +109,8 @@ Future<pw.Document> buildResume(Resume resume) async {
                     pw.SizedBox(height: 20),
                   ],
                   if (resume.academyTrainings.value.isNotEmpty) ...[
-                    _Category(title: Location.academicTraining),
+                    Category(
+                        title: Location.academicTraining, color: lightGreen),
                     ...resume.academyTrainings.value.map(
                       (academyTraining) => _Block(
                         title: academyTraining.title.getOrCrash(),
@@ -120,7 +122,9 @@ Future<pw.Document> buildResume(Resume resume) async {
                     ),
                   ],
                   if (resume.complementaryTrainings.value.isNotEmpty) ...[
-                    _Category(title: Location.complementaryFormations),
+                    Category(
+                        title: Location.complementaryFormations,
+                        color: lightGreen),
                     ...resume.complementaryTrainings.value.map(
                       (complementaryTraining) => _Block(
                         title: complementaryTraining.title.getOrCrash(),
@@ -313,28 +317,6 @@ pw.Widget _buildDescription(pw.Context context,
         ),
       ),
     );
-
-class _Category extends pw.StatelessWidget {
-  _Category({required this.title});
-
-  final String title;
-
-  @override
-  pw.Widget build(pw.Context context) {
-    return pw.Container(
-      decoration: const pw.BoxDecoration(
-        color: lightGreen,
-        borderRadius: pw.BorderRadius.all(pw.Radius.circular(6)),
-      ),
-      margin: const pw.EdgeInsets.only(bottom: 10, top: 20),
-      padding: const pw.EdgeInsets.fromLTRB(10, 4, 10, 4),
-      child: pw.Text(
-        title,
-        textScaleFactor: 1.5,
-      ),
-    );
-  }
-}
 
 class _Percent extends pw.StatelessWidget {
   _Percent({
