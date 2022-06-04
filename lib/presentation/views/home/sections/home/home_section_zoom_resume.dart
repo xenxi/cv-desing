@@ -1,20 +1,16 @@
-import 'dart:ui';
-
 import 'package:animate_do/animate_do.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
-import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/views/home/sections/home/widgets/text_banner.dart';
+import 'package:flutter/material.dart';
 
 class HomeSectionZoomResume extends StatelessWidget {
   const HomeSectionZoomResume({
     Key? key,
     required this.goToProjectSection,
   }) : super(key: key);
+  static const List<Color> _colors = CustomTheme.greenGradient;
 
   final VoidCallback goToProjectSection;
 
@@ -27,7 +23,7 @@ class HomeSectionZoomResume extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: CustomTheme.greenGradient,
+          colors: _colors,
         ),
       ),
       child: isMobile ? _buildMobile(context) : _buildDesktop(context),
@@ -56,57 +52,40 @@ class HomeSectionZoomResume extends StatelessWidget {
     );
   }
 
-  Widget _buildMobile(BuildContext context) {
-    double currentWidth = widthOfScreen(context) * .6;
-    final diff = 555 - widthOfScreen(context);
-    if (diff > 0) {
-      currentWidth += (diff * .2);
-    }
-
-    return Stack(
-      children: [
-        _buildResume(context),
-        Align(
-          alignment: Alignment.center,
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: CustomTheme.greenGradient
-                    .map((e) => e.withOpacity(.7))
-                    .toList(),
+  Widget _buildMobile(BuildContext context) => Stack(
+        children: [
+          _buildResume(context),
+          Align(
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: _colors.map((e) => e.withOpacity(.75)).toList(),
+                ),
               ),
-            ),
-            alignment: Alignment.center,
-            padding: const EdgeInsets.only(left: 8, right: 8),
-            // height: 350,
-            width: widthOfScreen(context),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 400),
-              child: TextBanner(
-                onButtonTap: goToProjectSection,
-                textColor: CustomTheme.secondaryColor,
-                iconColor: Colors.white,
-                buttonColor: Colors.white,
+              alignment: Alignment.center,
+              padding: const EdgeInsets.only(left: 8, right: 8),
+              // height: 350,
+              width: widthOfScreen(context),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 400),
+                child: TextBanner(
+                  onButtonTap: goToProjectSection,
+                  textColor: CustomTheme.secondaryColor,
+                  iconColor: Colors.white,
+                  buttonColor: Colors.white,
+                ),
               ),
             ),
           ),
-        ),
-      ],
-    );
-  }
+        ],
+      );
 
   Widget _buildResume(BuildContext context) {
     if (isMobileScreen(context)) {
       final currentHeight = heightOfScreen(context) * .9;
-      double currentWidth = currentHeight * .7;
-      final diff = 555 - widthOfScreen(context);
-      if (diff > 0) {
-        currentWidth += (diff * .6);
-      }
-      print('currentWidth: $currentWidth');
-      print('currentHeight: $currentHeight');
+
       return Positioned(
         top: 20,
         left: 40,
