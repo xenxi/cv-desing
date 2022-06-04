@@ -117,16 +117,6 @@ class HomeSectionZoomResume extends StatelessWidget {
           angle: -.045,
         ),
       );
-      return Positioned.fill(
-        right: -currentWidth * .7,
-        child: Align(
-          alignment: Alignment.centerRight,
-          child: _Resume(
-            // height: currentHeight,
-            angle: -.045,
-          ),
-        ),
-      );
     }
 
     return Positioned(
