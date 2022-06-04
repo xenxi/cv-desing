@@ -9,6 +9,7 @@ import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/sub_category.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/url_text.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -166,7 +167,7 @@ Future<pw.Document> buildResume(Resume resume) async {
                         if (resume.skills.value.isNotEmpty)
                           pw.Column(
                             children: [
-                              _SubCategory(text: 'Habilidades'),
+                              SubCategory(text: 'Habilidades'),
                               pw.Wrap(
                                 children: [
                                   ...resume.skills.value.map(
@@ -193,7 +194,7 @@ Future<pw.Document> buildResume(Resume resume) async {
                         if (resume.languages.value.isNotEmpty)
                           pw.Column(
                             children: [
-                              _SubCategory(text: 'Idiomas'),
+                              SubCategory(text: 'Idiomas'),
                               ...resume.languages.value.map(
                                 (l) => pw.Column(
                                   crossAxisAlignment:
@@ -312,26 +313,6 @@ pw.Widget _buildDescription(pw.Context context,
         ),
       ),
     );
-
-class _SubCategory extends pw.StatelessWidget {
-  _SubCategory({required this.text});
-
-  final String text;
-
-  @override
-  pw.Widget build(pw.Context context) {
-    return pw.Padding(
-      padding: const pw.EdgeInsets.only(bottom: 4),
-      child: pw.Text(
-        text,
-        style: pw.TextStyle(
-          decoration: pw.TextDecoration.underline,
-          fontWeight: pw.FontWeight.bold,
-        ),
-      ),
-    );
-  }
-}
 
 class _Category extends pw.StatelessWidget {
   _Category({required this.title});
