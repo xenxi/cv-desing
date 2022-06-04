@@ -84,15 +84,13 @@ class HomeSectionZoomResume extends StatelessWidget {
 
   Widget _buildResume(BuildContext context) {
     if (isMobileScreen(context)) {
-      final currentHeight = heightOfScreen(context) * .9;
-
       return Positioned(
         top: 20,
         left: 40,
         width: widthOfScreen(context),
         height: heightOfScreen(context),
         child: _Resume(
-          height: currentHeight,
+          height: heightOfScreen(context) * .9,
           angle: -.045,
         ),
       );
