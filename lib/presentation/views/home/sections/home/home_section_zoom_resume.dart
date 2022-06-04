@@ -89,8 +89,7 @@ class HomeSectionZoomResume extends StatelessWidget {
         left: 40,
         width: widthOfScreen(context),
         height: heightOfScreen(context),
-        child: _Resume(
-          height: heightOfScreen(context) * .9,
+        child: const _Resume(
           angle: -.045,
         ),
       );
