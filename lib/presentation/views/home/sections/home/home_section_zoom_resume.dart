@@ -33,7 +33,15 @@ class HomeSectionZoomResume extends StatelessWidget {
   Widget _buildDesktop(BuildContext context) {
     return Stack(
       children: [
-        _buildResume(context),
+        Positioned(
+          right: -120,
+          top: -20,
+          width: widthOfScreen(context) * .6,
+          height: heightOfScreen(context),
+          child: const _Resume(
+            height: 1180,
+          ),
+        ),
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -54,7 +62,15 @@ class HomeSectionZoomResume extends StatelessWidget {
 
   Widget _buildMobile(BuildContext context) => Stack(
         children: [
-          _buildResume(context),
+          Positioned(
+            top: 20,
+            left: 40,
+            width: widthOfScreen(context),
+            height: heightOfScreen(context),
+            child: const _Resume(
+              angle: -.045,
+            ),
+          ),
           Align(
             child: Container(
               decoration: BoxDecoration(
@@ -81,30 +97,6 @@ class HomeSectionZoomResume extends StatelessWidget {
           ),
         ],
       );
-
-  Widget _buildResume(BuildContext context) {
-    if (isMobileScreen(context)) {
-      return Positioned(
-        top: 20,
-        left: 40,
-        width: widthOfScreen(context),
-        height: heightOfScreen(context),
-        child: const _Resume(
-          angle: -.045,
-        ),
-      );
-    }
-
-    return Positioned(
-      right: -120,
-      top: -20,
-      width: widthOfScreen(context) * .6,
-      height: heightOfScreen(context),
-      child: const _Resume(
-        height: 1180,
-      ),
-    );
-  }
 }
 
 class _Resume extends StatelessWidget {
