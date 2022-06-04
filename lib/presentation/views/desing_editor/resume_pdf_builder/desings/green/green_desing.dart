@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
@@ -9,6 +8,7 @@ import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/page_theme_builder.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/block.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/category.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/percent.dart';
@@ -18,7 +18,6 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:printing/printing.dart';
 
 const PdfColor green = PdfColor.fromInt(0xff9ce5d0);
 const PdfColor lightGreen = PdfColor.fromInt(0xffcdf1e7);
@@ -37,7 +36,7 @@ Future<pw.Document> buildResume(Resume resume) async {
         .fold((l) => Location.curriculum, (r) => r),
     author: Location.appTitle,
   );
-  final pageTheme = await _myPageTheme();
+  final pageTheme = await PageThemeBuilder.build();
   doc.addPage(
     pw.MultiPage(
       pageTheme: pageTheme,
@@ -237,47 +236,6 @@ Future<pw.Document> buildResume(Resume resume) async {
     ),
   );
   return doc;
-}
-
-Future<pw.PageTheme> _myPageTheme() async {
-  final bgShape = await rootBundle.loadString(ImagePath.templateResumeDefault);
-
-  final format = PdfPageFormat.a4.applyMargin(
-    left: 2.0 * PdfPageFormat.cm,
-    top: 4.0 * PdfPageFormat.cm,
-    right: 2.0 * PdfPageFormat.cm,
-    bottom: 2.0 * PdfPageFormat.cm,
-  );
-  return pw.PageTheme(
-    pageFormat: format,
-    theme: pw.ThemeData.withFont(
-      base: await PdfGoogleFonts.openSansRegular(),
-      bold: await PdfGoogleFonts.openSansBold(),
-      icons: await PdfGoogleFonts.materialIcons(),
-    ),
-    buildBackground: (pw.Context context) {
-      return pw.FullPage(
-        ignoreMargins: true,
-        child: pw.Stack(
-          children: [
-            pw.Positioned(
-              child: pw.SvgImage(svg: bgShape),
-              left: 0,
-              top: 0,
-            ),
-            pw.Positioned(
-              child: pw.Transform.rotate(
-                angle: pi,
-                child: pw.SvgImage(svg: bgShape),
-              ),
-              right: 0,
-              bottom: 0,
-            ),
-          ],
-        ),
-      );
-    },
-  );
 }
 
 pw.Widget _buildJob(pw.Context context, {required Job job}) => pw.Text(
