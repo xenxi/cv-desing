@@ -129,23 +129,6 @@ class HomeSectionZoomResume extends StatelessWidget {
       ),
     );
   }
-
-  Widget _buildGlassContainer(
-    BuildContext context, {
-    required Widget children,
-  }) =>
-      Container(
-        padding: const EdgeInsets.all(CustomTheme.defaultPadding * 2),
-        margin: const EdgeInsets.all(CustomTheme.defaultPadding),
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-          child: children,
-        ),
-      );
 }
 
 class _Resume extends StatelessWidget {
