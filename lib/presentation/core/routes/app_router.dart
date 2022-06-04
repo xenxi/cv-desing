@@ -29,6 +29,8 @@ class AppRouter {
     blog: (context, params) => const ComingSoonView(),
     auth: (context, params) => const AuthView(),
     editor: (context, params) {
+      return const DesingEditorView();
+
       if (context != null &&
           BlocProvider.of<AuthBloc>(context).state is Authenticated) {
         return const DesingEditorView();
