@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:animate_do/animate_do.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -111,6 +112,7 @@ class HomeSectionZoomResume extends StatelessWidget {
     return Stack(
       children: [
         _buildResume(context),
+        Text(Location.homeTitle),
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -140,7 +142,7 @@ class HomeSectionZoomResume extends StatelessWidget {
     }
     if (isMobileScreen(context)) {
       final currentHeight = heightOfScreen(context) * .9;
-      currentWidth = currentHeight * .7 * .6;
+      currentWidth = currentHeight * .7;
       final diff = 555 - widthOfScreen(context);
       if (diff > 0) {
         currentWidth += (diff * .6);
@@ -148,14 +150,13 @@ class HomeSectionZoomResume extends StatelessWidget {
       print('currentWidth: $currentWidth');
       print('currentHeight: $currentHeight');
       return Positioned.fill(
-        right: -currentWidth,
+        right: -currentWidth * .7,
         child: Align(
           alignment: Alignment.centerRight,
-          child: SizedBox(
-              height: currentHeight,
-              child: const _Resume(
-                angle: -.045,
-              )),
+          child: _Resume(
+            height: currentHeight,
+            angle: -.045,
+          ),
         ),
       );
     }
@@ -164,7 +165,10 @@ class HomeSectionZoomResume extends StatelessWidget {
       right: -120,
       top: -20,
       width: currentWidth,
-      child: const _Resume(),
+      height: heightOfScreen(context),
+      child: const _Resume(
+        height: 1180,
+      ),
     );
   }
 
@@ -190,8 +194,10 @@ class _Resume extends StatelessWidget {
   const _Resume({
     Key? key,
     this.angle = -.15,
+    this.height,
   }) : super(key: key);
   final double angle;
+  final double? height;
   @override
   Widget build(BuildContext context) {
     return FadeInUp(
@@ -201,6 +207,7 @@ class _Resume extends StatelessWidget {
           aspectRatio: .7,
           child: Container(
             clipBehavior: Clip.hardEdge,
+            height: height,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(8)),
               boxShadow: [
@@ -214,7 +221,7 @@ class _Resume extends StatelessWidget {
             child: Image.asset(
               '${ImagePath.desingsDir}/CV12S.jpg',
               fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
+              alignment: Alignment.topLeft,
             ),
           ),
         ),
