@@ -116,31 +116,6 @@ class Block extends pw.StatelessWidget {
         offset: const PdfPoint(-37.5, 0), child: widget);
   }
 
-  pw.Widget _buildBody({pw.EdgeInsets? padding}) => pw.Container(
-        decoration: const pw.BoxDecoration(
-          border:
-              pw.Border(left: pw.BorderSide(color: PdfColors.grey, width: 1)),
-        ),
-        padding: padding,
-        margin: const pw.EdgeInsets.only(left: 50),
-        child: pw.Column(
-          crossAxisAlignment: pw.CrossAxisAlignment.start,
-          children: <pw.Widget>[
-            if (subTitle?.isNotEmpty == true) ...[
-              pw.Text(
-                subTitle!,
-                style: pw.TextStyle(
-                  color: color,
-                  fontWeight: pw.FontWeight.bold,
-                ),
-              ),
-              pw.SizedBox(height: 5),
-            ],
-            pw.Text(text!, style: const pw.TextStyle(lineSpacing: 6)),
-            pw.SizedBox(height: 8)
-          ],
-        ),
-      );
   String displayStartDate(RangeOfDates dates) => dateFormat.format(dates.since);
 
   String displayEndDate(RangeOfDates dates) => dates.until.fold(
