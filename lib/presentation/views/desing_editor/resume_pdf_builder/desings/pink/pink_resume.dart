@@ -267,16 +267,24 @@ class PinkResume {
                               children: [
                                 SubCategory(text: 'Aptitudes'),
                                 ...resume.skills.value.map(
-                                  (skill) => pw.Container(
-                                    margin: const pw.EdgeInsets.only(bottom: 2),
-                                    decoration: pw.BoxDecoration(
-                                      color: lightGreen,
-                                      borderRadius: pw.BorderRadius.circular(8),
-                                    ),
-                                    child: pw.Text(
-                                      skill,
-                                    ),
-                                  ),
+                                  (skill) => pw.Column(
+                                      crossAxisAlignment:
+                                          pw.CrossAxisAlignment.start,
+                                      children: [
+                                        pw.Text(
+                                          skill,
+                                        ),
+                                        pw.SizedBox(
+                                          height: 2,
+                                          width: 10,
+                                          child: pw.LinearProgressIndicator(
+                                            value: 0,
+                                            backgroundColor:
+                                                PdfColor.fromHex('#d7d5d6'),
+                                          ),
+                                        ),
+                                        pw.SizedBox(height: 8),
+                                      ]),
                                 ),
                                 pw.SizedBox(height: 28),
                               ],
