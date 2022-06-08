@@ -211,7 +211,7 @@ class PinkResume {
                         (academyTraining) => Block(
                           color: accentColor,
                           title: academyTraining.title.getOrCrash(),
-                          text: academyTraining.schoold.getOrCrash(),
+                          subTitle: academyTraining.schoold.getOrCrash(),
                           dateRange: academyTraining.dateRange.getOrCrash(),
                           lastItem: resume.academyTrainings.value.last ==
                               academyTraining,
@@ -227,7 +227,7 @@ class PinkResume {
                         (complementaryTraining) => Block(
                           color: accentColor,
                           title: complementaryTraining.title.getOrCrash(),
-                          text: complementaryTraining.schoold.getOrCrash(),
+                          subTitle: complementaryTraining.schoold.getOrCrash(),
                           dateRange:
                               complementaryTraining.dateRange.getOrCrash(),
                           lastItem: resume.complementaryTrainings.value.last ==

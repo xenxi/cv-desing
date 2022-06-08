@@ -10,7 +10,7 @@ class Block extends pw.StatelessWidget {
   Block({
     required this.title,
     this.subTitle,
-    required this.text,
+    this.text,
     required this.color,
     required this.lastItem,
     required this.dateRange,
@@ -18,7 +18,7 @@ class Block extends pw.StatelessWidget {
 
   final String title;
   final String? subTitle;
-  final String text;
+  final String? text;
   final PdfColor color;
   final bool lastItem;
   final RangeOfDates dateRange;
@@ -72,12 +72,13 @@ class Block extends pw.StatelessWidget {
                         subTitle!,
                         style: pw.TextStyle(
                           color: color,
-                          // fontWeight: pw.FontWeight.bold,
+                          fontWeight: pw.FontWeight.bold,
                         ),
                       ),
                       pw.SizedBox(height: 5),
                     ],
-                    pw.Text(text, style: const pw.TextStyle(lineSpacing: 2)),
+                    if (text?.isNotEmpty == true)
+                      pw.Text(text!, style: const pw.TextStyle(lineSpacing: 2)),
                     if (!lastItem) pw.SizedBox(height: 20),
                   ],
                 ),
@@ -135,7 +136,7 @@ class Block extends pw.StatelessWidget {
               ),
               pw.SizedBox(height: 5),
             ],
-            pw.Text(text, style: const pw.TextStyle(lineSpacing: 6)),
+            pw.Text(text!, style: const pw.TextStyle(lineSpacing: 6)),
             pw.SizedBox(height: 8)
           ],
         ),
