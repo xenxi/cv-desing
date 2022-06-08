@@ -3,49 +3,33 @@ import 'package:pdf/widgets.dart' as pw;
 
 class Percent extends pw.StatelessWidget {
   Percent({
-    required this.size,
     required this.value,
     required this.title,
-    required this.color,
   });
 
-  final double size;
   final double value;
-  final pw.Widget title;
+  final String title;
   static const fontSize = 1.2;
-  final PdfColor color;
   static const backgroundColor = PdfColors.grey300;
   static const strokeWidth = 5.0;
 
   @override
   pw.Widget build(pw.Context context) {
-    final widgets = <pw.Widget>[
-      pw.Container(
-        width: size,
-        height: size,
-        child: pw.Stack(
-          alignment: pw.Alignment.center,
-          fit: pw.StackFit.expand,
-          children: <pw.Widget>[
-            pw.Center(
-              child: pw.Text(
-                '${(value * 100).round().toInt()}%',
-                textScaleFactor: fontSize,
-              ),
-            ),
-            pw.CircularProgressIndicator(
-              value: value,
-              backgroundColor: backgroundColor,
-              color: color,
-              strokeWidth: strokeWidth,
-            ),
-          ],
+    return pw.Column(
+      crossAxisAlignment: pw.CrossAxisAlignment.start,
+      children: <pw.Widget>[
+        pw.Text(title),
+        pw.SizedBox(height: 2),
+        pw.SizedBox(
+          height: 2,
+          child: pw.LinearProgressIndicator(
+            value: value,
+            valueColor: PdfColor.fromHex('#8f8f8f'),
+            backgroundColor: PdfColor.fromHex('#d7d5d6'),
+          ),
         ),
-      )
-    ];
-
-    widgets.add(title);
-
-    return pw.Column(children: widgets);
+        pw.SizedBox(height: 8),
+      ],
+    );
   }
 }

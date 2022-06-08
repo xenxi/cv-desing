@@ -245,51 +245,45 @@ class PinkResume {
                     pw.Container(
                       height: pageTheme.pageFormat.availableHeight,
                       child: pw.Column(
-                        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                         children: <pw.Widget>[
                           if (resume.softwareSkills.value.isNotEmpty) ...[
                             pw.Column(
+                              crossAxisAlignment: pw.CrossAxisAlignment.stretch,
                               children: <pw.Widget>[
+                                SubCategory(text: 'Tecnologías'),
                                 ...resume.softwareSkills.value.map(
                                   (skill) => Percent(
-                                    color: pink,
-                                    size: 60,
                                     value: skill.percentage.getOrCrash() * .01,
-                                    title: pw.Text(skill.getOrCrash()),
+                                    title: skill.getOrCrash(),
                                   ),
                                 ),
+                                pw.SizedBox(height: 30),
                               ],
                             ),
                           ],
                           if (resume.skills.value.isNotEmpty)
                             pw.Column(
+                              crossAxisAlignment: pw.CrossAxisAlignment.stretch,
                               children: [
-                                SubCategory(text: 'Habilidades'),
-                                pw.Wrap(
-                                  children: [
-                                    ...resume.skills.value.map(
-                                      (skill) => pw.Container(
-                                        margin: const pw.EdgeInsets.all(1),
-                                        padding: const pw.EdgeInsets.symmetric(
-                                          vertical: 2,
-                                          horizontal: 4,
-                                        ),
-                                        decoration: pw.BoxDecoration(
-                                          color: lightGreen,
-                                          borderRadius:
-                                              pw.BorderRadius.circular(8),
-                                        ),
-                                        child: pw.Text(
-                                          skill,
-                                        ),
-                                      ),
+                                SubCategory(text: 'Aptitudes'),
+                                ...resume.skills.value.map(
+                                  (skill) => pw.Container(
+                                    margin: const pw.EdgeInsets.only(bottom: 2),
+                                    decoration: pw.BoxDecoration(
+                                      color: lightGreen,
+                                      borderRadius: pw.BorderRadius.circular(8),
                                     ),
-                                  ],
+                                    child: pw.Text(
+                                      skill,
+                                    ),
+                                  ),
                                 ),
+                                pw.SizedBox(height: 28),
                               ],
                             ),
                           if (resume.languages.value.isNotEmpty)
                             pw.Column(
+                              crossAxisAlignment: pw.CrossAxisAlignment.stretch,
                               children: [
                                 SubCategory(text: 'Idiomas'),
                                 ...resume.languages.value.map(
