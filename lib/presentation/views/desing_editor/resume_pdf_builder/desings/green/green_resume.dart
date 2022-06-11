@@ -109,6 +109,7 @@ class GreenResume {
                           return Block(
                             color: green,
                             title: workExperience.job.getOrCrash(),
+                            subTitle: workExperience.employer.getOrCrash(),
                             text: workExperience.description.getOrCrash(),
                             trailingText: displayDateRange(
                               workExperience.dateRange.getOrCrash(),
@@ -125,7 +126,7 @@ class GreenResume {
                         (academyTraining) => Block(
                           color: green,
                           title: academyTraining.title.getOrCrash(),
-                          text: academyTraining.schoold.getOrCrash(),
+                          subTitle: academyTraining.schoold.getOrCrash(),
                           trailingText: displayDateRange(
                             academyTraining.dateRange.getOrCrash(),
                           ),
@@ -140,7 +141,7 @@ class GreenResume {
                         (complementaryTraining) => Block(
                           color: green,
                           title: complementaryTraining.title.getOrCrash(),
-                          text: complementaryTraining.schoold.getOrCrash(),
+                          subTitle: complementaryTraining.schoold.getOrCrash(),
                           trailingText: displayDateRange(
                             complementaryTraining.dateRange.getOrCrash(),
                           ),

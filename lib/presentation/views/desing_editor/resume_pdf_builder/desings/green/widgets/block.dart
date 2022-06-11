@@ -4,13 +4,15 @@ import 'package:pdf/widgets.dart' as pw;
 class Block extends pw.StatelessWidget {
   Block({
     required this.title,
-    required this.text,
+    this.text,
+    required this.subTitle,
     required this.color,
     this.trailingText,
   });
 
   final String title;
-  final String text;
+  final String? text;
+  final String subTitle;
   final PdfColor color;
   final String? trailingText;
 
@@ -51,12 +53,21 @@ class Block extends pw.StatelessWidget {
           decoration: pw.BoxDecoration(
             border: pw.Border(left: pw.BorderSide(color: color, width: 2)),
           ),
-          padding: const pw.EdgeInsets.only(left: 10, top: 5, bottom: 5),
+          padding: const pw.EdgeInsets.only(left: 10, bottom: 6),
           margin: const pw.EdgeInsets.only(left: 5),
           child: pw.Column(
             crossAxisAlignment: pw.CrossAxisAlignment.start,
             children: <pw.Widget>[
-              pw.Text(text),
+              pw.Text(
+                subTitle,
+                style: pw.Theme.of(context)
+                    .defaultTextStyle
+                    .copyWith(fontStyle: pw.FontStyle.italic),
+              ),
+              if (text?.isNotEmpty == true) ...[
+                pw.SizedBox(height: 4),
+                pw.Text(text!),
+              ],
             ],
           ),
         ),
