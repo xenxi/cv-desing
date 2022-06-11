@@ -80,8 +80,7 @@ class DesingEditorView extends StatelessWidget {
             child: Column(
               children: [
                 ResumePreview(
-                  resume: ExampleResumeData.jonDoe,
-                  // resume: state.resume,
+                  resume: state.resume,
                 ),
               ],
             ),
