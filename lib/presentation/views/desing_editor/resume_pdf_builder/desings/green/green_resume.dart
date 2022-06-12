@@ -15,6 +15,7 @@ import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resum
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/percent.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/sub_category.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/url_text.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/widgets/profile_avatar.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
@@ -161,13 +162,10 @@ class GreenResume {
                       child: pw.Column(
                         mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                         children: <pw.Widget>[
-                          pw.ClipOval(
-                            child: pw.Container(
-                              width: 100,
-                              height: 100,
-                              color: lightGreen,
-                              child: pw.Image(profileImage),
-                            ),
+                          ProfileAvatar(
+                            width: 100,
+                            height: 100,
+                            image: bytes,
                           ),
                           if (resume.softwareSkills.value.isNotEmpty) ...[
                             pw.Column(

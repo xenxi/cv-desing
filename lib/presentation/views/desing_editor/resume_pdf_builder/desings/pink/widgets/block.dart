@@ -1,8 +1,7 @@
+import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-
-import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
 
 final dateFormat = DateFormat('MM/yyy');
 

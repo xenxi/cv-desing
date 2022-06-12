@@ -16,6 +16,7 @@ import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resum
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/pink/widgets/percent.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/pink/widgets/sub_category.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/pink/widgets/url_text.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/widgets/profile_avatar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
@@ -138,17 +139,7 @@ class PinkResume {
             pw.Align(
               child: pw.Transform.translate(
                 offset: const PdfPoint(0, -50),
-                child: pw.ClipOval(
-                  child: pw.Container(
-                    width: 150,
-                    height: 150,
-                    color: PdfColors.white,
-                    child: pw.Image(
-                      profileImage,
-                      fit: pw.BoxFit.cover,
-                    ),
-                  ),
-                ),
+                child: ProfileAvatar(width: 150, height: 150, image: bytes),
               ),
             ),
           ],
