@@ -143,7 +143,10 @@ class PinkResume {
                     width: 150,
                     height: 150,
                     color: PdfColors.white,
-                    child: pw.Image(profileImage),
+                    child: pw.Image(
+                      profileImage,
+                      fit: pw.BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
