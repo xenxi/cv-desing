@@ -32,12 +32,6 @@ class GreenResume {
   final Resume resume;
 
   Future<pw.Document> build() async {
-    final bytes = await resume.personalInformation.avatarOption.fold(
-      () async => (await rootBundle.load(ImagePath.logo)).buffer.asUint8List(),
-      (a) => Future.value(a),
-    );
-    final profileImage = pw.MemoryImage(bytes);
-
     final doc = pw.Document(
       title: resume.personalInformation.name
           .fold((l) => Location.curriculum, (r) => r),
