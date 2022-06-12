@@ -129,28 +129,35 @@ class PinkResume {
                       description: resume.personalInformation.description,
                     ),
                     pw.Column(
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          UrlText(
-                              resume.contactInformation.phoneNumber
-                                  .fold((l) => '', (r) => r),
-                              'tel:${resume.contactInformation.phoneNumber.fold((l) => '', (r) => r)}',
-                              color: PdfColors.black),
-                          UrlText(
-                              resume.contactInformation.emailAddress
-                                  .fold((l) => '', (r) => r),
-                              'mailto:${resume.contactInformation.emailAddress.fold((l) => '', (r) => r)}',
-                              color: PdfColors.black),
-                          UrlText('www.jondoe.com', 'www.jondoe.com',
-                              color: PdfColors.black),
-                          pw.SizedBox(height: 20),
-                          pw.SizedBox(
-                              width: 200,
-                              child: _buildLocality(
-                                context,
-                                locality: resume.personalInformation.locality,
-                              )),
-                        ])
+                      mainAxisAlignment: pw.MainAxisAlignment.center,
+                      children: [
+                        UrlText(
+                          resume.contactInformation.phoneNumber
+                              .fold((l) => '', (r) => r),
+                          'tel:${resume.contactInformation.phoneNumber.fold((l) => '', (r) => r)}',
+                          color: PdfColors.black,
+                        ),
+                        UrlText(
+                          resume.contactInformation.emailAddress
+                              .fold((l) => '', (r) => r),
+                          'mailto:${resume.contactInformation.emailAddress.fold((l) => '', (r) => r)}',
+                          color: PdfColors.black,
+                        ),
+                        UrlText(
+                          'www.jondoe.com',
+                          'www.jondoe.com',
+                          color: PdfColors.black,
+                        ),
+                        pw.SizedBox(height: 20),
+                        pw.SizedBox(
+                          width: 200,
+                          child: _buildLocality(
+                            context,
+                            locality: resume.personalInformation.locality,
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -269,23 +276,24 @@ class PinkResume {
                                 SubCategory(text: 'Aptitudes'),
                                 ...resume.skills.value.map(
                                   (skill) => pw.Column(
-                                      crossAxisAlignment:
-                                          pw.CrossAxisAlignment.start,
-                                      children: [
-                                        pw.Text(
-                                          skill,
+                                    crossAxisAlignment:
+                                        pw.CrossAxisAlignment.start,
+                                    children: [
+                                      pw.Text(
+                                        skill,
+                                      ),
+                                      pw.SizedBox(
+                                        height: 2,
+                                        width: 10,
+                                        child: pw.LinearProgressIndicator(
+                                          value: 0,
+                                          backgroundColor:
+                                              PdfColor.fromHex('#d7d5d6'),
                                         ),
-                                        pw.SizedBox(
-                                          height: 2,
-                                          width: 10,
-                                          child: pw.LinearProgressIndicator(
-                                            value: 0,
-                                            backgroundColor:
-                                                PdfColor.fromHex('#d7d5d6'),
-                                          ),
-                                        ),
-                                        pw.SizedBox(height: 8),
-                                      ]),
+                                      ),
+                                      pw.SizedBox(height: 8),
+                                    ],
+                                  ),
                                 ),
                                 pw.SizedBox(height: 28),
                               ],
@@ -296,21 +304,9 @@ class PinkResume {
                               children: [
                                 SubCategory(text: 'Idiomas'),
                                 ...resume.languages.value.map(
-                                  (l) => pw.Column(
-                                    crossAxisAlignment:
-                                        pw.CrossAxisAlignment.stretch,
-                                    children: [
-                                      pw.Text(l.getOrCrash()),
-                                      pw.Text(
-                                        l.level.displayName,
-                                        textScaleFactor: .9,
-                                        style: pw.TextStyle(
-                                          fontWeight: pw.FontWeight.bold,
-                                          fontStyle: pw.FontStyle.italic,
-                                        ),
-                                      ),
-                                      pw.SizedBox(height: 4),
-                                    ],
+                                  (language) => Percent(
+                                    value: language.level.percentage,
+                                    title: language.getOrCrash(),
                                   ),
                                 ),
                               ],
@@ -357,29 +353,35 @@ class PinkResume {
     required Description description,
   }) =>
       description.fold(
-          (l) => pw.Container(),
-          (r) => pw.RichText(
-                softWrap: true,
-                textAlign: pw.TextAlign.center,
-                tightBounds: true,
-                text: pw.TextSpan(
-                    text: '"',
-                    style: pw.TextStyle(
-                        fontSize: 24, fontWeight: pw.FontWeight.bold),
-                    children: [
-                      pw.TextSpan(
-                        text: r,
-                        style: pw.TextStyle(
-                          fontSize: 20,
-                          fontWeight: pw.FontWeight.normal,
-                          fontStyle: pw.FontStyle.italic,
-                        ),
-                      ),
-                      pw.TextSpan(
-                        text: '"',
-                        style: pw.TextStyle(
-                            fontSize: 24, fontWeight: pw.FontWeight.bold),
-                      ),
-                    ]),
-              ));
+        (l) => pw.Container(),
+        (r) => pw.RichText(
+          softWrap: true,
+          textAlign: pw.TextAlign.center,
+          tightBounds: true,
+          text: pw.TextSpan(
+            text: '"',
+            style: pw.TextStyle(
+              fontSize: 24,
+              fontWeight: pw.FontWeight.bold,
+            ),
+            children: [
+              pw.TextSpan(
+                text: r,
+                style: pw.TextStyle(
+                  fontSize: 20,
+                  fontWeight: pw.FontWeight.normal,
+                  fontStyle: pw.FontStyle.italic,
+                ),
+              ),
+              pw.TextSpan(
+                text: '"',
+                style: pw.TextStyle(
+                  fontSize: 24,
+                  fontWeight: pw.FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
 }

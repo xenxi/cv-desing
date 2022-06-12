@@ -1,4 +1,5 @@
 import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/percentage.dart';
 
 extension LanguageLevelExtension on LanguageLevel {
   String get displayName {
@@ -10,8 +11,8 @@ extension LanguageLevelExtension on LanguageLevel {
       case LanguageLevel.native:
         return 'Nativo';
     }
-
-    // ignore: dead_code
-    return toString();
   }
+
+  double get percentage =>
+      (LanguageLevel.values.indexOf(this) + 1) / LanguageLevel.values.length;
 }
