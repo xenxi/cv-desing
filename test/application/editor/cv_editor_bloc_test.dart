@@ -170,26 +170,29 @@ void main() {
       'update languages',
       build: () => CvEditorBloc(),
       act: (bloc) => bloc
-        ..add(const LanguageAdded('anyLanguage', level: 'anyLevel'))
-        ..add(const LanguageAdded('otherLanguage', level: 'otherLevel'))
+        ..add(const LanguageAdded('anyLanguage', level: LanguageLevel.native))
+        ..add(const LanguageAdded('otherLanguage',
+            level: LanguageLevel.intermediate))
         ..add(const LanguageDeleted('otherLanguage')),
       expect: () => <CvEditorState>[
         initialState.copyWith(
           resume: initialState.resume.copyWith(
-            languages: Languages([Language('anyLanguage', level: 'anyLevel')]),
+            languages: Languages(
+                [Language('anyLanguage', level: LanguageLevel.native)]),
           ),
         ),
         initialState.copyWith(
           resume: initialState.resume.copyWith(
             languages: Languages([
-              Language('anyLanguage', level: 'anyLevel'),
-              Language('otherLanguage', level: 'otherLevel')
+              Language('anyLanguage', level: LanguageLevel.native),
+              Language('otherLanguage', level: LanguageLevel.intermediate)
             ]),
           ),
         ),
         initialState.copyWith(
           resume: initialState.resume.copyWith(
-            languages: Languages([Language('anyLanguage', level: 'anyLevel')]),
+            languages: Languages(
+                [Language('anyLanguage', level: LanguageLevel.native)]),
           ),
         ),
       ],

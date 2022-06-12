@@ -7,7 +7,7 @@ import 'package:equatable/equatable.dart';
 enum LanguageLevel {
   beginner,
   intermediate,
-  advanced,
+  native,
 }
 
 class Language extends ValueObject<String> {

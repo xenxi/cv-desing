@@ -7,7 +7,7 @@ extension LanguageLevelExtension on LanguageLevel {
         return 'Básico';
       case LanguageLevel.intermediate:
         return 'Intermedio';
-      case LanguageLevel.advanced:
+      case LanguageLevel.native:
         return 'Nativo';
     }
 
