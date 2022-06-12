@@ -139,7 +139,10 @@ class PinkResume {
             pw.Align(
               child: pw.Transform.translate(
                 offset: const PdfPoint(0, -50),
-                child: ProfileAvatar(width: 150, height: 150, image: bytes),
+                child: ProfileAvatar(
+                    width: 150,
+                    height: 150,
+                    imageOption: resume.personalInformation.avatarOption),
               ),
             ),
           ],

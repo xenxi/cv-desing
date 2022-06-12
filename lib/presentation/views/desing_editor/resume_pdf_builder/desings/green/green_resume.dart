@@ -165,7 +165,8 @@ class GreenResume {
                           ProfileAvatar(
                             width: 100,
                             height: 100,
-                            image: bytes,
+                            imageOption:
+                                resume.personalInformation.avatarOption,
                           ),
                           if (resume.softwareSkills.value.isNotEmpty) ...[
                             pw.Column(
