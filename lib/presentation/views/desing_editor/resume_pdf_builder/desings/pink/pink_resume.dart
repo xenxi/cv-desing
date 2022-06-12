@@ -16,6 +16,7 @@ import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resum
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/pink/widgets/percent.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/pink/widgets/sub_category.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/pink/widgets/url_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
 import 'package:pdf/pdf.dart';
@@ -121,43 +122,15 @@ class PinkResume {
                 color: pink,
                 padding: const pw.EdgeInsets.only(left: 60, right: 60, top: 40),
                 child: pw.Column(
-                  mainAxisAlignment: pw.MainAxisAlignment.spaceAround,
-                  mainAxisSize: pw.MainAxisSize.max,
                   children: [
+                    pw.SizedBox(height: 36),
                     _buildDescription(
                       context,
                       description: resume.personalInformation.description,
                     ),
-                    pw.Column(
-                      mainAxisAlignment: pw.MainAxisAlignment.center,
-                      children: [
-                        UrlText(
-                          resume.contactInformation.phoneNumber
-                              .fold((l) => '', (r) => r),
-                          'tel:${resume.contactInformation.phoneNumber.fold((l) => '', (r) => r)}',
-                          color: PdfColors.black,
-                        ),
-                        UrlText(
-                          resume.contactInformation.emailAddress
-                              .fold((l) => '', (r) => r),
-                          'mailto:${resume.contactInformation.emailAddress.fold((l) => '', (r) => r)}',
-                          color: PdfColors.black,
-                        ),
-                        UrlText(
-                          'www.jondoe.com',
-                          'www.jondoe.com',
-                          color: PdfColors.black,
-                        ),
-                        pw.SizedBox(height: 20),
-                        pw.SizedBox(
-                          width: 200,
-                          child: _buildLocality(
-                            context,
-                            locality: resume.personalInformation.locality,
-                          ),
-                        ),
-                      ],
-                    )
+                    pw.Expanded(child: pw.SizedBox()),
+                    _buildFooter(context),
+                    pw.SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -345,7 +318,7 @@ class PinkResume {
   pw.Widget _buildLocality(pw.Context context, {required Locality locality}) =>
       locality.fold(
         (l) => pw.Container(),
-        (r) => pw.Text(r, textAlign: pw.TextAlign.center),
+        (r) => pw.Text(r, textAlign: pw.TextAlign.right),
       );
 
   pw.Widget _buildDescription(
@@ -383,5 +356,41 @@ class PinkResume {
             ],
           ),
         ),
+      );
+
+  pw.Widget _buildFooter(pw.Context context) => pw.Row(
+        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: pw.CrossAxisAlignment.end,
+        children: [
+          pw.Column(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            mainAxisAlignment: pw.MainAxisAlignment.end,
+            children: [
+              UrlText(
+                resume.contactInformation.phoneNumber.fold((l) => '', (r) => r),
+                'tel:${resume.contactInformation.phoneNumber.fold((l) => '', (r) => r)}',
+                color: PdfColors.black,
+              ),
+              UrlText(
+                resume.contactInformation.emailAddress
+                    .fold((l) => '', (r) => r),
+                'mailto:${resume.contactInformation.emailAddress.fold((l) => '', (r) => r)}',
+                color: PdfColors.black,
+              ),
+              UrlText(
+                'www.jondoe.com',
+                'www.jondoe.com',
+                color: PdfColors.black,
+              ),
+            ],
+          ),
+          pw.SizedBox(
+            width: 100,
+            child: _buildLocality(
+              context,
+              locality: resume.personalInformation.locality,
+            ),
+          ),
+        ],
       );
 }
