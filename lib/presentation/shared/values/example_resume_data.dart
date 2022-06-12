@@ -35,7 +35,7 @@ class ExampleResumeData {
       description: Description(
         'A hard-working mechanic for 2 big-time energy factories. Familiar in repair and safety standards. Has experience in various repair and maintenance works.F',
       ),
-      avatarOption: none(),
+      avatarOption: some(_defaultImage),
     ),
     contactInformation: ContactInformation(
       emailAddress: EmailAddress('jonDoe@gmail.com'),
@@ -119,7 +119,7 @@ class ExampleResumeData {
   );
 }
 
-Uint8List defaultImage = Uint8List.fromList([
+Uint8List _defaultImage = Uint8List.fromList([
   137,
   80,
   78,
