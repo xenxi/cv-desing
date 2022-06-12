@@ -6,6 +6,7 @@ import 'package:cv_desing_website_flutter/domain/value_objects/description.dart'
 import 'package:cv_desing_website_flutter/domain/value_objects/job.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/components/language_level_extensions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/page_theme_builder.dart';
@@ -220,7 +221,7 @@ class GreenResume {
                                     children: [
                                       pw.Text(l.getOrCrash()),
                                       pw.Text(
-                                        l.level,
+                                        l.level.displayName,
                                         textScaleFactor: .9,
                                         style: pw.TextStyle(
                                           fontWeight: pw.FontWeight.bold,

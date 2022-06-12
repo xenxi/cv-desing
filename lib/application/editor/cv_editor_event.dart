@@ -71,7 +71,7 @@ class LanguageAdded extends CvEditorEvent {
     required this.level,
   });
   final String language;
-  final String level;
+  final LanguageLevel level;
 
   @override
   List<Object> get props => [language, level];

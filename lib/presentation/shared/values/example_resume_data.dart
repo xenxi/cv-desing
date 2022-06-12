@@ -101,8 +101,8 @@ class ExampleResumeData {
       ),
     ]),
     languages: Languages([
-      Language('English', level: 'Native'),
-      Language('Espanish', level: 'Intermediate'),
+      Language('English', level: LanguageLevel.beginner),
+      Language('Espanish', level: LanguageLevel.intermediate),
     ]),
     softwareSkills: SoftwareSkills([
       SoftwareSkill('Word', percentage: Percentage(100)),

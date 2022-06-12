@@ -1,4 +1,6 @@
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/components/language_level_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -17,7 +19,7 @@ class LanguagesForm extends StatelessWidget {
               ...state.resume.languages.value.map(
                 (language) => ListTile(
                   title: Text(language.getOrCrash()),
-                  subtitle: Chip(label: Text(language.level)),
+                  subtitle: Chip(label: Text(language.level.displayName)),
                   leading: const Icon(Icons.language_outlined),
                   trailing: IconButton(
                     icon: const Icon(Icons.delete),
@@ -43,7 +45,7 @@ class _Editor extends HookWidget {
   Widget build(BuildContext context) {
     final controller = useTextEditingController();
     final text = useState<String>('');
-    final level = useState<String>('Básico');
+    final level = useState<LanguageLevel>(LanguageLevel.beginner);
 
     return Row(
       children: [
@@ -60,18 +62,19 @@ class _Editor extends HookWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(top: 19, left: 8),
-            child: DropdownButton<String>(
+            child: DropdownButton<LanguageLevel>(
+              isExpanded: true,
               value: level.value,
               hint: const Text('Nivel'),
-              items:
-                  const ['Nativo', 'Intermedio', 'Básico'].map((String value) {
-                return DropdownMenuItem<String>(
+              items: LanguageLevel.values.map((LanguageLevel value) {
+                return DropdownMenuItem<LanguageLevel>(
                   value: value,
-                  child: Text(value),
+                  child: Text(value.displayName),
                 );
               }).toList(),
               onChanged: controller.text.isNotEmpty
-                  ? (String? value) => level.value = value ?? 'Básico'
+                  ? (LanguageLevel? value) =>
+                      level.value = value ?? LanguageLevel.beginner
                   : null,
             ),
           ),
@@ -87,7 +90,7 @@ class _Editor extends HookWidget {
                   );
 
                   controller.clear();
-                  level.value = 'Básico';
+                  level.value = LanguageLevel.beginner;
                 }
               : null,
           icon: const Icon(Icons.save),
