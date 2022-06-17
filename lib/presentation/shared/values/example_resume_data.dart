@@ -5,6 +5,7 @@ import 'package:cv_desing_website_flutter/domain/resumes/entities/academy_traini
 import 'package:cv_desing_website_flutter/domain/resumes/entities/complementary_training.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/contact_information.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/personal_information.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/social_media.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/work_experience.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/course_hours.dart';
@@ -22,6 +23,7 @@ import 'package:cv_desing_website_flutter/domain/value_objects/skills.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/unique_id.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:dartz/dartz.dart';
 
 class ExampleResumeData {
@@ -40,6 +42,16 @@ class ExampleResumeData {
     contactInformation: ContactInformation(
       emailAddress: EmailAddress('jonDoe@gmail.com'),
       phoneNumber: PhoneNumber('+1 (403) 555-1212'),
+      socialMedias: SocialMedias(
+        facebookOption: some(Url('https://www.facebook.com/jonDoe')),
+        linkedinOption: some(Url('https://www.linkedin.com/in/jonDoe')),
+        twitterOption: some(Url('https://twitter.com/jonDoe')),
+        githubOption: some(Url('https://github.com/jonDoe')),
+        instagramOption: some(Url('https://www.instagram.com/jonDoe')),
+        personalOption: some(Url('https://www.jonDoe.com')),
+        twitchOption: some(Url('https://www.twitch.com/jonDoe')),
+        youtubeOption: some(Url('https://www.youtube.com/jonDoe')),
+      ),
     ),
     academyTrainings: AcademyTrainings([
       AcademyTraining(

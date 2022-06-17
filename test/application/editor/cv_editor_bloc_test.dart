@@ -6,6 +6,7 @@ import 'package:cv_desing_website_flutter/domain/resumes/entities/academy_traini
 import 'package:cv_desing_website_flutter/domain/resumes/entities/complementary_training.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/contact_information.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/personal_information.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/entities/social_media.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/work_experience.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/course_hours.dart';
@@ -24,6 +25,7 @@ import 'package:cv_desing_website_flutter/domain/value_objects/skills.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/title.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/unique_id.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -36,6 +38,16 @@ void main() {
       contactInformation: ContactInformation(
         emailAddress: EmailAddress(''),
         phoneNumber: PhoneNumber(''),
+        socialMedias: SocialMedias(
+          facebookOption: none(),
+          linkedinOption: none(),
+          twitterOption: none(),
+          githubOption: none(),
+          instagramOption: none(),
+          youtubeOption: none(),
+          twitchOption: none(),
+          personalOption: none(),
+        ),
       ),
       languages: const Languages([]),
       skills: const Skills([]),
@@ -171,14 +183,19 @@ void main() {
       build: () => CvEditorBloc(),
       act: (bloc) => bloc
         ..add(const LanguageAdded('anyLanguage', level: LanguageLevel.native))
-        ..add(const LanguageAdded('otherLanguage',
-            level: LanguageLevel.intermediate))
+        ..add(
+          const LanguageAdded(
+            'otherLanguage',
+            level: LanguageLevel.intermediate,
+          ),
+        )
         ..add(const LanguageDeleted('otherLanguage')),
       expect: () => <CvEditorState>[
         initialState.copyWith(
           resume: initialState.resume.copyWith(
             languages: Languages(
-                [Language('anyLanguage', level: LanguageLevel.native)]),
+              [Language('anyLanguage', level: LanguageLevel.native)],
+            ),
           ),
         ),
         initialState.copyWith(
@@ -192,7 +209,8 @@ void main() {
         initialState.copyWith(
           resume: initialState.resume.copyWith(
             languages: Languages(
-                [Language('anyLanguage', level: LanguageLevel.native)]),
+              [Language('anyLanguage', level: LanguageLevel.native)],
+            ),
           ),
         ),
       ],
@@ -266,6 +284,9 @@ void main() {
             contactInformation: ContactInformation(
               emailAddress: EmailAddress('anyEmail'),
               phoneNumber: PhoneNumber('anyPhoneNumber'),
+              socialMedias: SocialMedias.empty().copyWith(
+                twitterOption: some(Url('https://twitter.com/anyTwitter')),
+              ),
             ),
           ),
         ),
@@ -275,6 +296,9 @@ void main() {
             contactInformation: ContactInformation(
               emailAddress: EmailAddress('anyEmail'),
               phoneNumber: PhoneNumber('anyPhoneNumber'),
+              socialMedias: SocialMedias.empty().copyWith(
+                twitterOption: some(Url('https://twitter.com/anyTwitter')),
+              ),
             ),
           ),
         ),
