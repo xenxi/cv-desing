@@ -105,6 +105,16 @@ class ContactInfoForm extends StatelessWidget {
                         .add(InstagramUrlChanged(val)),
                 icon: FontAwesomeIcons.instagram,
               ),
+              CustomFormField(
+                initialized: state.isLoaded,
+                text: 'Tu youtube',
+                value: state.contactInformation.socialMedias.youtubeOption
+                    .fold(() => null, (a) => a),
+                onChanged: (val) =>
+                    BlocProvider.of<ContactInformationFormBloc>(context)
+                        .add(YoutubeUrlChanged(val)),
+                icon: FontAwesomeIcons.youtube,
+              ),
               const SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () => BlocProvider.of<ContactInformationFormBloc>(
