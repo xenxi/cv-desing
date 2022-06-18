@@ -2,18 +2,6 @@ import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
-enum SocialMediaType {
-  facebook,
-  twitter,
-  linkedin,
-  github,
-  instagram,
-  youtube,
-  twitch,
-  mixer,
-  patreon,
-}
-
 class SocialMedias extends Equatable {
   factory SocialMedias.empty() => SocialMedias(
         facebookOption: none(),
