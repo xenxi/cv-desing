@@ -125,6 +125,16 @@ class ContactInfoForm extends StatelessWidget {
                         .add(TwitchUrlChanged(val)),
                 icon: FontAwesomeIcons.twitch,
               ),
+              CustomFormField(
+                initialized: state.isLoaded,
+                text: 'Tu WebSite',
+                value: state.contactInformation.socialMedias.personalOption
+                    .fold(() => null, (a) => a),
+                onChanged: (val) =>
+                    BlocProvider.of<ContactInformationFormBloc>(context)
+                        .add(PersonalUrlChanged(val)),
+                icon: Icons.web,
+              ),
               const SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () => BlocProvider.of<ContactInformationFormBloc>(
