@@ -75,6 +75,16 @@ class ContactInfoForm extends StatelessWidget {
                         .add(FacebookUrlChanged(val)),
                 icon: FontAwesomeIcons.twitter,
               ),
+              CustomFormField(
+                initialized: state.isLoaded,
+                text: 'Tu Linkedin',
+                value: state.contactInformation.socialMedias.linkedinOption
+                    .fold(() => null, (a) => a),
+                onChanged: (val) =>
+                    BlocProvider.of<ContactInformationFormBloc>(context)
+                        .add(FacebookUrlChanged(val)),
+                icon: FontAwesomeIcons.linkedin,
+              ),
               const SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () => BlocProvider.of<ContactInformationFormBloc>(
