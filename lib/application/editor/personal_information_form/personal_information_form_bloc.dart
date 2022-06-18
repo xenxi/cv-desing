@@ -22,32 +22,32 @@ class PersonalInformationFormBloc
     on<PersonalInformationFormEvent>((event, emit) async {
       if (event is NameChanged) {
         emit(
-          state.copyWith(
-            personalInformation: state.personalInformation.copyWith(
+          updatePersonalInformation(
+            state.personalInformation.copyWith(
               name: Name(event.name),
             ),
           ),
         );
       } else if (event is LocalityChanged) {
         emit(
-          state.copyWith(
-            personalInformation: state.personalInformation.copyWith(
+          updatePersonalInformation(
+            state.personalInformation.copyWith(
               locality: Locality(event.locality),
             ),
           ),
         );
       } else if (event is ProfessionChanged) {
         emit(
-          state.copyWith(
-            personalInformation: state.personalInformation.copyWith(
+          updatePersonalInformation(
+            state.personalInformation.copyWith(
               job: Job(event.profession),
             ),
           ),
         );
       } else if (event is PersonalDescriptionChanged) {
         emit(
-          state.copyWith(
-            personalInformation: state.personalInformation.copyWith(
+          updatePersonalInformation(
+            state.personalInformation.copyWith(
               description: Description(event.personalDescription),
             ),
           ),
@@ -66,16 +66,16 @@ class PersonalInformationFormBloc
       } else if (event is AvatarChanged) {
         final imageOption = await _imagePicker.pickImage();
         emit(
-          state.copyWith(
-            personalInformation: state.personalInformation.copyWith(
+          updatePersonalInformation(
+            state.personalInformation.copyWith(
               avatarOption: imageOption,
             ),
           ),
         );
       } else if (event is AvatarDeleted) {
         emit(
-          state.copyWith(
-            personalInformation: state.personalInformation.copyWith(
+          updatePersonalInformation(
+            state.personalInformation.copyWith(
               avatarOption: none(),
             ),
           ),
@@ -84,4 +84,13 @@ class PersonalInformationFormBloc
     });
   }
   final ImagePicker _imagePicker;
+
+  PersonalInformationFormState updatePersonalInformation(
+    PersonalInformation personalInformation,
+  ) =>
+      state.copyWith(
+        saveFailureOrSuccessOption: none(),
+        showErrorMessages: false,
+        personalInformation: personalInformation,
+      );
 }
