@@ -1,20 +1,14 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
-import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/complementary_training.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/contact_information.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/personal_information.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/work_experience.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
-import 'package:cv_desing_website_flutter/domain/value_objects/description.dart';
-import 'package:cv_desing_website_flutter/domain/value_objects/job.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
-import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
-import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/percentage.dart';
-import 'package:cv_desing_website_flutter/domain/value_objects/phone_number.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
@@ -26,7 +20,6 @@ part 'cv_editor_state.dart';
 class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
   CvEditorBloc() : super(CvEditorState.initial()) {
     on<CvEditorEvent>((event, emit) {
-      print(event);
       if (event is SectionChanged) {
         emit(state.copyWith(section: event.section));
       } else if (event is SkillAdded) {
