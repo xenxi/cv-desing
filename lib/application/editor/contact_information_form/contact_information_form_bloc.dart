@@ -18,20 +18,16 @@ class ContactInformationFormBloc
     on<ContactInformationFormEvent>((event, emit) {
       if (event is EmailChanged) {
         emit(
-          state.copyWith(
-            saveFailureOrSuccessOption: none(),
-            showErrorMessages: false,
-            contactInformation: state.contactInformation.copyWith(
+          updateContactInformation(
+            state.contactInformation.copyWith(
               emailAddress: EmailAddress(event.email),
             ),
           ),
         );
       } else if (event is PhoneNumberChanged) {
         emit(
-          state.copyWith(
-            saveFailureOrSuccessOption: none(),
-            showErrorMessages: false,
-            contactInformation: state.contactInformation.copyWith(
+          updateContactInformation(
+            state.contactInformation.copyWith(
               phoneNumber: PhoneNumber(event.phoneNumber),
             ),
           ),
@@ -49,10 +45,8 @@ class ContactInformationFormBloc
         );
       } else if (event is FacebookUrlChanged) {
         emit(
-          state.copyWith(
-            saveFailureOrSuccessOption: none(),
-            showErrorMessages: false,
-            contactInformation: state.contactInformation.copyWith(
+          updateContactInformation(
+            state.contactInformation.copyWith(
               socialMedias: state.contactInformation.socialMedias.copyWith(
                 facebookOption: _urlOption(event.url),
               ),
@@ -61,10 +55,8 @@ class ContactInformationFormBloc
         );
       } else if (event is LinkedinUrlChanged) {
         emit(
-          state.copyWith(
-            saveFailureOrSuccessOption: none(),
-            showErrorMessages: false,
-            contactInformation: state.contactInformation.copyWith(
+          updateContactInformation(
+            state.contactInformation.copyWith(
               socialMedias: state.contactInformation.socialMedias.copyWith(
                 linkedinOption: _urlOption(event.url),
               ),
@@ -73,10 +65,8 @@ class ContactInformationFormBloc
         );
       } else if (event is TwitterUrlChanged) {
         emit(
-          state.copyWith(
-            saveFailureOrSuccessOption: none(),
-            showErrorMessages: false,
-            contactInformation: state.contactInformation.copyWith(
+          updateContactInformation(
+            state.contactInformation.copyWith(
               socialMedias: state.contactInformation.socialMedias.copyWith(
                 twitterOption: _urlOption(event.url),
               ),
@@ -85,10 +75,8 @@ class ContactInformationFormBloc
         );
       } else if (event is GithubUrlChanged) {
         emit(
-          state.copyWith(
-            saveFailureOrSuccessOption: none(),
-            showErrorMessages: false,
-            contactInformation: state.contactInformation.copyWith(
+          updateContactInformation(
+            state.contactInformation.copyWith(
               socialMedias: state.contactInformation.socialMedias.copyWith(
                 githubOption: _urlOption(event.url),
               ),
@@ -97,10 +85,8 @@ class ContactInformationFormBloc
         );
       } else if (event is InstagramUrlChanged) {
         emit(
-          state.copyWith(
-            saveFailureOrSuccessOption: none(),
-            showErrorMessages: false,
-            contactInformation: state.contactInformation.copyWith(
+          updateContactInformation(
+            state.contactInformation.copyWith(
               socialMedias: state.contactInformation.socialMedias.copyWith(
                 instagramOption: _urlOption(event.url),
               ),
@@ -109,10 +95,8 @@ class ContactInformationFormBloc
         );
       } else if (event is YoutubeUrlChanged) {
         emit(
-          state.copyWith(
-            saveFailureOrSuccessOption: none(),
-            showErrorMessages: false,
-            contactInformation: state.contactInformation.copyWith(
+          updateContactInformation(
+            state.contactInformation.copyWith(
               socialMedias: state.contactInformation.socialMedias.copyWith(
                 youtubeOption: _urlOption(event.url),
               ),
@@ -121,10 +105,8 @@ class ContactInformationFormBloc
         );
       } else if (event is TwitchUrlChanged) {
         emit(
-          state.copyWith(
-            saveFailureOrSuccessOption: none(),
-            showErrorMessages: false,
-            contactInformation: state.contactInformation.copyWith(
+          updateContactInformation(
+            state.contactInformation.copyWith(
               socialMedias: state.contactInformation.socialMedias.copyWith(
                 twitchOption: _urlOption(event.url),
               ),
@@ -133,10 +115,8 @@ class ContactInformationFormBloc
         );
       } else if (event is PersonalUrlChanged) {
         emit(
-          state.copyWith(
-            saveFailureOrSuccessOption: none(),
-            showErrorMessages: false,
-            contactInformation: state.contactInformation.copyWith(
+          updateContactInformation(
+            state.contactInformation.copyWith(
               socialMedias: state.contactInformation.socialMedias.copyWith(
                 personalOption: _urlOption(event.url),
               ),
@@ -146,6 +126,14 @@ class ContactInformationFormBloc
       }
     });
   }
+  ContactInformationFormState updateContactInformation(
+    ContactInformation contactInformation,
+  ) =>
+      state.copyWith(
+        saveFailureOrSuccessOption: none(),
+        showErrorMessages: false,
+        contactInformation: contactInformation,
+      );
 }
 
 Option<Url> _urlOption(String url) => url.isEmpty ? none() : some(Url(url));
