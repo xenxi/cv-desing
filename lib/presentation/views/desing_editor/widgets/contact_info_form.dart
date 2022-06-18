@@ -54,6 +54,16 @@ class ContactInfoForm extends StatelessWidget {
                         .add(PhoneNumberChanged(val)),
                 icon: Icons.phone_outlined,
               ),
+              CustomFormField(
+                initialized: state.isLoaded,
+                text: 'Tu Facebook',
+                value: state.contactInformation.socialMedias.facebookOption
+                    .fold(() => null, (a) => a),
+                onChanged: (val) =>
+                    BlocProvider.of<ContactInformationFormBloc>(context)
+                        .add(FacebookUrlChanged(val)),
+                icon: Icons.facebook_outlined,
+              ),
               const SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () => BlocProvider.of<ContactInformationFormBloc>(
