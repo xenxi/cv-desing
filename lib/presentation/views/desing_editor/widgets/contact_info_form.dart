@@ -107,13 +107,23 @@ class ContactInfoForm extends StatelessWidget {
               ),
               CustomFormField(
                 initialized: state.isLoaded,
-                text: 'Tu youtube',
+                text: 'Tu Youtube',
                 value: state.contactInformation.socialMedias.youtubeOption
                     .fold(() => null, (a) => a),
                 onChanged: (val) =>
                     BlocProvider.of<ContactInformationFormBloc>(context)
                         .add(YoutubeUrlChanged(val)),
                 icon: FontAwesomeIcons.youtube,
+              ),
+              CustomFormField(
+                initialized: state.isLoaded,
+                text: 'Tu Twitch',
+                value: state.contactInformation.socialMedias.twitchOption
+                    .fold(() => null, (a) => a),
+                onChanged: (val) =>
+                    BlocProvider.of<ContactInformationFormBloc>(context)
+                        .add(TwitchUrlChanged(val)),
+                icon: FontAwesomeIcons.twitch,
               ),
               const SizedBox(height: 20),
               ElevatedButton.icon(
