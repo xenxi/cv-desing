@@ -3,6 +3,7 @@ import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ContactInfoForm extends StatelessWidget {
   const ContactInfoForm({
@@ -63,6 +64,16 @@ class ContactInfoForm extends StatelessWidget {
                     BlocProvider.of<ContactInformationFormBloc>(context)
                         .add(FacebookUrlChanged(val)),
                 icon: Icons.facebook_outlined,
+              ),
+              CustomFormField(
+                initialized: state.isLoaded,
+                text: 'Tu Twitter',
+                value: state.contactInformation.socialMedias.twitchOption
+                    .fold(() => null, (a) => a),
+                onChanged: (val) =>
+                    BlocProvider.of<ContactInformationFormBloc>(context)
+                        .add(FacebookUrlChanged(val)),
+                icon: FontAwesomeIcons.twitter,
               ),
               const SizedBox(height: 20),
               ElevatedButton.icon(
