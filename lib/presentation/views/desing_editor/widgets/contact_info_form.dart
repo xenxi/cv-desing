@@ -72,7 +72,7 @@ class ContactInfoForm extends StatelessWidget {
                     .fold(() => null, (a) => a),
                 onChanged: (val) =>
                     BlocProvider.of<ContactInformationFormBloc>(context)
-                        .add(FacebookUrlChanged(val)),
+                        .add(TwitterUrlChanged(val)),
                 icon: FontAwesomeIcons.twitter,
               ),
               CustomFormField(
@@ -82,7 +82,7 @@ class ContactInfoForm extends StatelessWidget {
                     .fold(() => null, (a) => a),
                 onChanged: (val) =>
                     BlocProvider.of<ContactInformationFormBloc>(context)
-                        .add(FacebookUrlChanged(val)),
+                        .add(LinkedinUrlChanged(val)),
                 icon: FontAwesomeIcons.linkedin,
               ),
               const SizedBox(height: 20),
