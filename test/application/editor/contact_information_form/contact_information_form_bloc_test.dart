@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/auth/failures/email_address_failure.dart';
+import 'package:cv_desing_website_flutter/domain/auth/failures/url_failure.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/contact_information.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/social_media.dart';
@@ -253,6 +254,31 @@ void main() {
         showErrorMessages: true,
         saveFailureOrSuccessOption:
             some(left(const InvalidEmailFailure(failedValue: ''))),
+      ),
+    ],
+  );
+  blocTest<ContactInformationFormBloc, ContactInformationFormState>(
+    'not allow save contact information when social media is wrong',
+    build: () => ContactInformationFormBloc(),
+    seed: () => initialState.copyWith(
+        contactInformation: initialState.contactInformation.copyWith(
+            emailAddress: EmailAddress('anyValidEmail@email.com'),
+            phoneNumber: PhoneNumber('654654673'),
+            socialMedias: SocialMedias.empty().copyWith(
+              facebookOption: some(Url('invalidUrl')),
+            ))),
+    act: (bloc) => bloc..add(Saved()),
+    expect: () => <ContactInformationFormState>[
+      initialState.copyWith(
+        showErrorMessages: true,
+        contactInformation: initialState.contactInformation.copyWith(
+            emailAddress: EmailAddress('anyValidEmail@email.com'),
+            phoneNumber: PhoneNumber('654654673'),
+            socialMedias: SocialMedias.empty().copyWith(
+              facebookOption: some(Url('invalidUrl')),
+            )),
+        saveFailureOrSuccessOption:
+            some(left(const InvalidUrlFailure(failedValue: 'invalidUrl'))),
       ),
     ],
   );

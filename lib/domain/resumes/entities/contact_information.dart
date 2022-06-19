@@ -37,5 +37,6 @@ class ContactInformation extends Equatable {
 
   Option<Failure> get failureOption => emailAddress.failureOrUnit
       .andThen(phoneNumber.failureOrUnit)
+      .andThen(socialMedias.failureOrUnit)
       .fold((l) => some(l), (_) => none());
 }

@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/domain/failure.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
@@ -64,5 +65,42 @@ class SocialMedias extends Equatable {
       twitchOption: twitchOption ?? this.twitchOption,
       personalOption: personalOption ?? this.personalOption,
     );
+  }
+
+  Either<Failure, Unit> get failureOrUnit {
+    return facebookOption
+        .map((a) => a.failureOrUnit)
+        .getOrElse(() => right(unit))
+        .andThen(
+          linkedinOption
+              .map((a) => a.failureOrUnit)
+              .getOrElse(() => right(unit)),
+        )
+        .andThen(
+          twitterOption
+              .map((a) => a.failureOrUnit)
+              .getOrElse(() => right(unit)),
+        )
+        .andThen(
+          githubOption.map((a) => a.failureOrUnit).getOrElse(() => right(unit)),
+        )
+        .andThen(
+          instagramOption
+              .map((a) => a.failureOrUnit)
+              .getOrElse(() => right(unit)),
+        )
+        .andThen(
+          youtubeOption
+              .map((a) => a.failureOrUnit)
+              .getOrElse(() => right(unit)),
+        )
+        .andThen(
+          twitchOption.map((a) => a.failureOrUnit).getOrElse(() => right(unit)),
+        )
+        .andThen(
+          personalOption
+              .map((a) => a.failureOrUnit)
+              .getOrElse(() => right(unit)),
+        );
   }
 }

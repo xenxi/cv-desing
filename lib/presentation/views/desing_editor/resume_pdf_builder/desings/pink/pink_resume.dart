@@ -82,11 +82,35 @@ class PinkResume {
                       crossAxisAlignment: pw.CrossAxisAlignment.start,
                       mainAxisAlignment: pw.MainAxisAlignment.center,
                       children: [
-                        UrlText(
-                          'twitter.com/jon.smit',
-                          'https://twitter.com/?lang=es',
-                          svgIcon: twitterIcon,
-                          color: accentColor,
+                        resume.contactInformation.socialMedias.twitterOption
+                            .fold(
+                          () => pw.Container(),
+                          (r) => UrlText(
+                            r.getOrCrash(),
+                            r.getOrCrash(),
+                            svgIcon: twitterIcon,
+                            color: accentColor,
+                          ),
+                        ),
+                        resume.contactInformation.socialMedias.linkedinOption
+                            .fold(
+                          () => pw.Container(),
+                          (r) => UrlText(
+                            r.getOrCrash(),
+                            r.getOrCrash(),
+                            svgIcon: linkedinIcon,
+                            color: accentColor,
+                          ),
+                        ),
+                        resume.contactInformation.socialMedias.githubOption
+                            .fold(
+                          () => pw.Container(),
+                          (r) => UrlText(
+                            r.getOrCrash(),
+                            r.getOrCrash(),
+                            svgIcon: githubIcon,
+                            color: accentColor,
+                          ),
                         ),
                         pw.SizedBox(height: 8),
                         UrlText(
