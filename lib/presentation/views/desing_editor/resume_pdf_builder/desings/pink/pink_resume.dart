@@ -389,10 +389,16 @@ class PinkResume {
                 'mailto:${resume.contactInformation.emailAddress.fold((l) => '', (r) => r)}',
                 color: PdfColors.black,
               ),
-              UrlText(
-                'www.jondoe.com',
-                'www.jondoe.com',
-                color: PdfColors.black,
+              resume.contactInformation.socialMedias.personalOption.fold(
+                () => pw.Container(),
+                (r) {
+                  final url = r.getOrCrash();
+                  return UrlText(
+                    url,
+                    url,
+                    color: PdfColors.black,
+                  );
+                },
               ),
             ],
           ),
