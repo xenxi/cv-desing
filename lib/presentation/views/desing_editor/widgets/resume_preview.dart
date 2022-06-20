@@ -49,9 +49,8 @@ class ResumePreview extends StatelessWidget {
                 build: (format) => snapshot.data!.save(),
               ),
             );
-          } else {
-            return Container();
           }
+          return Container();
         },
         future: PdfResumeBuilder.build(resume),
       ),
