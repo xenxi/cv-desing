@@ -42,6 +42,10 @@ class ResumePreview extends StatelessWidget {
             return PdfPreview(
               canChangeOrientation: false,
               canDebug: false,
+              dynamicLayout: false,
+              loadingWidget: const Center(
+                child: CircularProgressIndicator(),
+              ),
               canChangePageFormat: false,
               build: (format) => snapshot.data!.save(),
             );
