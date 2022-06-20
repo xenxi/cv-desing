@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:cv_desing_website_flutter/domain/resumes/entities/social_media.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/description.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/job.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/language_level_extensions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/icons_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
@@ -15,6 +17,7 @@ import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resum
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/pink/widgets/sub_category.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/pink/widgets/url_text.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/widgets/profile_avatar.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 
 import 'package:pdf/pdf.dart';
@@ -78,7 +81,12 @@ class PinkResume {
                       ],
                     ),
                     pw.SizedBox(width: 50),
-                    _buildSocialMedia(twitterIcon, linkedinIcon, githubIcon),
+                    _buildSocialMedias(
+                      resume.contactInformation.socialMedias,
+                      twitterIcon: twitterIcon,
+                      linkedinIcon: linkedinIcon,
+                      githubIcon: githubIcon,
+                    ),
                   ],
                 ),
               ),
@@ -107,9 +115,10 @@ class PinkResume {
               child: pw.Transform.translate(
                 offset: const PdfPoint(0, -50),
                 child: ProfileAvatar(
-                    width: 150,
-                    height: 150,
-                    imageOption: resume.personalInformation.avatarOption),
+                  width: 150,
+                  height: 150,
+                  imageOption: resume.personalInformation.avatarOption,
+                ),
               ),
             ),
           ],
@@ -262,51 +271,44 @@ class PinkResume {
     return doc;
   }
 
-  pw.Column _buildSocialMedia(
-      String twitterIcon, String linkedinIcon, String githubIcon) {
-    return pw.Column(
-      crossAxisAlignment: pw.CrossAxisAlignment.start,
-      mainAxisAlignment: pw.MainAxisAlignment.center,
-      children: [
-        ...resume.contactInformation.socialMedias.twitterOption.fold(
-          () => [pw.Container()],
-          (r) => [
-            UrlText(
-              r.getOrCrash(),
-              r.getOrCrash(),
-              svgIcon: twitterIcon,
-              color: accentColor,
-            ),
-            pw.SizedBox(height: 8),
-          ],
-        ),
-        ...resume.contactInformation.socialMedias.linkedinOption.fold(
-          () => [pw.Container()],
-          (r) => [
-            UrlText(
-              r.getOrCrash(),
-              r.getOrCrash(),
-              svgIcon: linkedinIcon,
-              color: accentColor,
-            ),
-            pw.SizedBox(height: 8),
-          ],
-        ),
-        ...resume.contactInformation.socialMedias.githubOption.fold(
-          () => [pw.Container()],
-          (r) => [
-            UrlText(
-              r.getOrCrash(),
-              r.getOrCrash(),
-              svgIcon: githubIcon,
-              color: accentColor,
-            ),
-            pw.SizedBox(height: 8),
-          ],
-        ),
-      ],
-    );
-  }
+  Iterable<pw.Widget> _buildSocialMedia(
+    Option<Url> urlOption, {
+    required String iconData,
+  }) =>
+      urlOption.fold(
+        () => [pw.Container()],
+        (r) => [
+          UrlText(
+            r.getOrCrash(),
+            r.getOrCrash(),
+            svgIcon: iconData,
+            color: accentColor,
+          ),
+          pw.SizedBox(height: 8),
+        ],
+      );
+
+  pw.Widget _buildSocialMedias(
+    SocialMedias socialMedias, {
+    required String twitterIcon,
+    required String linkedinIcon,
+    required String githubIcon,
+  }) =>
+      pw.Column(
+        crossAxisAlignment: pw.CrossAxisAlignment.start,
+        mainAxisAlignment: pw.MainAxisAlignment.center,
+        children: [
+          ..._buildSocialMedia(
+            socialMedias.twitterOption,
+            iconData: twitterIcon,
+          ),
+          ..._buildSocialMedia(
+            socialMedias.linkedinOption,
+            iconData: linkedinIcon,
+          ),
+          ..._buildSocialMedia(socialMedias.githubOption, iconData: githubIcon),
+        ],
+      );
 
   pw.Widget _buildJob(pw.Context context, {required Job job}) => pw.Text(
         job.fold((l) => '', (r) => r),
