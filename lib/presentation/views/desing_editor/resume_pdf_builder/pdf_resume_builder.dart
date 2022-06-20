@@ -6,6 +6,7 @@ import 'package:pdf/widgets.dart' as pw;
 
 class PdfResumeBuilder {
   static Future<pw.Document> build(Resume resume) {
+    return PinkResume(ExampleResumeData.jonDoe).build();
     return PinkResume(resume).build();
     return GreenResume(ExampleResumeData.jonDoe).build();
   }

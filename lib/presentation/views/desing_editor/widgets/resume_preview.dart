@@ -46,6 +46,8 @@ class ResumePreview extends StatelessWidget {
               loadingWidget: const Center(
                 child: CircularProgressIndicator(),
               ),
+              previewPageMargin: EdgeInsets.zero,
+              useActions: false,
               canChangePageFormat: false,
               build: (format) => snapshot.data!.save(),
             );
