@@ -39,15 +39,11 @@ class ResumePreview extends StatelessWidget {
       child: FutureBuilder<pw.Document>(
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return SizedBox(
-              width: 500,
-              height: 700,
-              child: PdfPreview(
-                canChangeOrientation: false,
-                canDebug: false,
-                canChangePageFormat: false,
-                build: (format) => snapshot.data!.save(),
-              ),
+            return PdfPreview(
+              canChangeOrientation: false,
+              canDebug: false,
+              canChangePageFormat: false,
+              build: (format) => snapshot.data!.save(),
             );
           }
           return Container();

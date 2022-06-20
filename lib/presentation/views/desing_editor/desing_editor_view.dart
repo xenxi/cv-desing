@@ -76,14 +76,8 @@ class DesingEditorView extends StatelessWidget {
       buildWhen: (previous, current) => previous.resume != current.resume,
       builder: (context, state) {
         return Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                ResumePreview(
-                  resume: state.resume,
-                ),
-              ],
-            ),
+          child: ResumePreview(
+            resume: state.resume,
           ),
         );
       },
