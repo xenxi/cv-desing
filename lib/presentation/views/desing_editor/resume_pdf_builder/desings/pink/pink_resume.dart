@@ -78,51 +78,7 @@ class PinkResume {
                       ],
                     ),
                     pw.SizedBox(width: 50),
-                    pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
-                      mainAxisAlignment: pw.MainAxisAlignment.center,
-                      children: [
-                        ...resume.contactInformation.socialMedias.twitterOption
-                            .fold(
-                          () => [pw.Container()],
-                          (r) => [
-                            UrlText(
-                              r.getOrCrash(),
-                              r.getOrCrash(),
-                              svgIcon: twitterIcon,
-                              color: accentColor,
-                            ),
-                            pw.SizedBox(height: 8),
-                          ],
-                        ),
-                        ...resume.contactInformation.socialMedias.linkedinOption
-                            .fold(
-                          () => [pw.Container()],
-                          (r) => [
-                            UrlText(
-                              r.getOrCrash(),
-                              r.getOrCrash(),
-                              svgIcon: linkedinIcon,
-                              color: accentColor,
-                            ),
-                            pw.SizedBox(height: 8),
-                          ],
-                        ),
-                        ...resume.contactInformation.socialMedias.githubOption
-                            .fold(
-                          () => [pw.Container()],
-                          (r) => [
-                            UrlText(
-                              r.getOrCrash(),
-                              r.getOrCrash(),
-                              svgIcon: githubIcon,
-                              color: accentColor,
-                            ),
-                            pw.SizedBox(height: 8),
-                          ],
-                        ),
-                      ],
-                    ),
+                    _buildSocialMedia(twitterIcon, linkedinIcon, githubIcon),
                   ],
                 ),
               ),
@@ -304,6 +260,52 @@ class PinkResume {
       ),
     );
     return doc;
+  }
+
+  pw.Column _buildSocialMedia(
+      String twitterIcon, String linkedinIcon, String githubIcon) {
+    return pw.Column(
+      crossAxisAlignment: pw.CrossAxisAlignment.start,
+      mainAxisAlignment: pw.MainAxisAlignment.center,
+      children: [
+        ...resume.contactInformation.socialMedias.twitterOption.fold(
+          () => [pw.Container()],
+          (r) => [
+            UrlText(
+              r.getOrCrash(),
+              r.getOrCrash(),
+              svgIcon: twitterIcon,
+              color: accentColor,
+            ),
+            pw.SizedBox(height: 8),
+          ],
+        ),
+        ...resume.contactInformation.socialMedias.linkedinOption.fold(
+          () => [pw.Container()],
+          (r) => [
+            UrlText(
+              r.getOrCrash(),
+              r.getOrCrash(),
+              svgIcon: linkedinIcon,
+              color: accentColor,
+            ),
+            pw.SizedBox(height: 8),
+          ],
+        ),
+        ...resume.contactInformation.socialMedias.githubOption.fold(
+          () => [pw.Container()],
+          (r) => [
+            UrlText(
+              r.getOrCrash(),
+              r.getOrCrash(),
+              svgIcon: githubIcon,
+              color: accentColor,
+            ),
+            pw.SizedBox(height: 8),
+          ],
+        ),
+      ],
+    );
   }
 
   pw.Widget _buildJob(pw.Context context, {required Job job}) => pw.Text(
