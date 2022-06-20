@@ -82,49 +82,44 @@ class PinkResume {
                       crossAxisAlignment: pw.CrossAxisAlignment.start,
                       mainAxisAlignment: pw.MainAxisAlignment.center,
                       children: [
-                        resume.contactInformation.socialMedias.twitterOption
+                        ...resume.contactInformation.socialMedias.twitterOption
                             .fold(
-                          () => pw.Container(),
-                          (r) => UrlText(
-                            r.getOrCrash(),
-                            r.getOrCrash(),
-                            svgIcon: twitterIcon,
-                            color: accentColor,
-                          ),
+                          () => [pw.Container()],
+                          (r) => [
+                            UrlText(
+                              r.getOrCrash(),
+                              r.getOrCrash(),
+                              svgIcon: twitterIcon,
+                              color: accentColor,
+                            ),
+                            pw.SizedBox(height: 8),
+                          ],
                         ),
-                        resume.contactInformation.socialMedias.linkedinOption
+                        ...resume.contactInformation.socialMedias.linkedinOption
                             .fold(
-                          () => pw.Container(),
-                          (r) => UrlText(
-                            r.getOrCrash(),
-                            r.getOrCrash(),
-                            svgIcon: linkedinIcon,
-                            color: accentColor,
-                          ),
+                          () => [pw.Container()],
+                          (r) => [
+                            UrlText(
+                              r.getOrCrash(),
+                              r.getOrCrash(),
+                              svgIcon: linkedinIcon,
+                              color: accentColor,
+                            ),
+                            pw.SizedBox(height: 8),
+                          ],
                         ),
-                        resume.contactInformation.socialMedias.githubOption
+                        ...resume.contactInformation.socialMedias.githubOption
                             .fold(
-                          () => pw.Container(),
-                          (r) => UrlText(
-                            r.getOrCrash(),
-                            r.getOrCrash(),
-                            svgIcon: githubIcon,
-                            color: accentColor,
-                          ),
-                        ),
-                        pw.SizedBox(height: 8),
-                        UrlText(
-                          'twitter.com/jon.smit',
-                          'https://twitter.com/?lang=es',
-                          svgIcon: linkedinIcon,
-                          color: accentColor,
-                        ),
-                        pw.SizedBox(height: 8),
-                        UrlText(
-                          'twitter.com/jon.smit',
-                          'https://twitter.com/?lang=es',
-                          svgIcon: githubIcon,
-                          color: accentColor,
+                          () => [pw.Container()],
+                          (r) => [
+                            UrlText(
+                              r.getOrCrash(),
+                              r.getOrCrash(),
+                              svgIcon: githubIcon,
+                              color: accentColor,
+                            ),
+                            pw.SizedBox(height: 8),
+                          ],
                         ),
                       ],
                     ),
