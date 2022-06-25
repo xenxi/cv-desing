@@ -1,4 +1,6 @@
 import 'package:cv_desing_website_flutter/application/auth/auth_bloc.dart';
+import 'package:cv_desing_website_flutter/application/navigation/navigation_bloc.dart';
+import 'package:cv_desing_website_flutter/presentation/layouts/editor_layout.dart';
 import 'package:cv_desing_website_flutter/presentation/views/auth/auth_view.dart';
 import 'package:cv_desing_website_flutter/presentation/views/coming_soon/coming_soon_view.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_details/desing_details_view.dart';
@@ -29,6 +31,11 @@ class AppRouter {
     blog: (context, params) => const ComingSoonView(),
     auth: (context, params) => const AuthView(),
     editor: (context, params) {
+      final bloc = BlocProvider.of<NavigationBloc>(context!);
+      if (bloc.state.path != AppRouter.editor) {
+        bloc.add(const CvEditorOpened());
+      }
+
       return const DesingEditorView();
 
       if (context != null &&

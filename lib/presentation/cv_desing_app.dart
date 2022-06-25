@@ -4,6 +4,7 @@ import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/routes/app_router.dart';
 import 'package:cv_desing_website_flutter/presentation/core/routes/fluro_route_generator.dart';
+import 'package:cv_desing_website_flutter/presentation/layouts/editor_layout.dart';
 import 'package:cv_desing_website_flutter/presentation/layouts/public_layout.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:flutter/gestures.dart';
@@ -37,7 +38,16 @@ class CvDesingApp extends StatelessWidget {
           title: Location.appTitle,
           initialRoute: AppRouter.initial,
           onGenerateRoute: FluroRouteGenerator().generateRoute,
-          builder: (context, child) => PublicLayout(child: child!),
+          builder: (context, child) {
+            return BlocBuilder<NavigationBloc, NavigationState>(
+              builder: (context, state) {
+                if (state.path == AppRouter.editor) {
+                  return EditorLayout(child: child!);
+                }
+                return PublicLayout(child: child!);
+              },
+            );
+          },
           theme: CustomTheme.lightTheme,
         ),
       ),

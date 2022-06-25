@@ -9,6 +9,6 @@ class EditorLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return child;
+    return Material(child: child);
   }
 }
