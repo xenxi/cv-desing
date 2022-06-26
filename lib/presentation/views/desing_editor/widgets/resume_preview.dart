@@ -21,18 +21,13 @@ class ResumePreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(
-        left: 8,
-        top: 8,
-        right: 8,
-        bottom: 12,
-      ),
       decoration: const BoxDecoration(
         color: Colors.white,
         boxShadow: <BoxShadow>[
           BoxShadow(
-            offset: Offset(0, 3),
-            blurRadius: 5,
+            color: Colors.black45,
+            offset: Offset(-2, 4),
+            blurRadius: 11,
           ),
         ],
       ),

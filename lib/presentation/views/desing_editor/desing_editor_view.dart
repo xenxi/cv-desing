@@ -6,6 +6,7 @@ import 'package:cv_desing_website_flutter/presentation/shared/components/adaptat
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/resume_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/resume_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DesingEditorView extends StatelessWidget {
@@ -70,13 +71,42 @@ class DesingEditorView extends StatelessWidget {
     );
   }
 
-  BlocBuilder<CvEditorBloc, CvEditorState> _buildPreview() {
+  Widget _buildPreview() {
     return BlocBuilder<CvEditorBloc, CvEditorState>(
       buildWhen: (previous, current) => previous.resume != current.resume,
       builder: (context, state) {
         return Expanded(
-          child: ResumePreview(
-            resume: state.resume,
+          child: Container(
+            padding: const EdgeInsets.only(left: 28, right: 28, top: 18),
+            color: const Color.fromRGBO(243, 245, 250, 1),
+            // color: const Color.fromRGBO(249, 250, 253, 1),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.art_track),
+                      label: const Text('Cambiar diseño'),
+                    ),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    OutlinedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.download_done_outlined),
+                      label: const Text('Descargar'),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Expanded(
+                  child: ResumePreview(
+                    resume: state.resume,
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
