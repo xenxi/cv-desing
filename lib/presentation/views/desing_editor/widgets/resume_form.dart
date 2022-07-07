@@ -12,6 +12,7 @@ import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widge
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/work_experience_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ResumeForm extends StatelessWidget {
   const ResumeForm({Key? key}) : super(key: key);
@@ -74,7 +75,7 @@ class ResumeForm extends StatelessWidget {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  child: Icon(Icons.telegram),
+                  child: _buildStepIcon(section),
                 ),
                 const SizedBox(
                   width: 8,
@@ -134,6 +135,27 @@ class ResumeForm extends StatelessWidget {
         return const SoftwareSkillsForm();
       case Section.skillsandAptitudes:
         return SkillsForm();
+    }
+  }
+
+  Widget _buildStepIcon(Section section) {
+    switch (section) {
+      case Section.personalInformation:
+        return const Icon(Icons.person_outline);
+      case Section.contactInformation:
+        return const Icon(Icons.email_outlined);
+      case Section.academicTraining:
+        return const Icon(Icons.school_outlined);
+      case Section.complementaryFormations:
+        return const Icon(Icons.title_outlined);
+      case Section.workExperience:
+        return const Icon(Icons.work_outlined);
+      case Section.languages:
+        return const Icon(Icons.language_outlined);
+      case Section.softwareSkills:
+        return const Icon(Icons.person);
+      case Section.skillsandAptitudes:
+        return const Icon(Icons.person);
     }
   }
 }
