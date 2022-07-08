@@ -1,5 +1,8 @@
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
+import 'package:cv_desing_website_flutter/application/navigation/navigation_bloc.dart';
+import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/components/section_extensions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/academic_training_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/complementary_formations_form.dart';
@@ -24,11 +27,22 @@ class ResumeForm extends StatelessWidget {
         return Row(
           children: [
             Container(
-              color: Colors.red,
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: CustomTheme.batmanGradient)),
               width: 200,
               child: Column(
                 children: [
-                  const Logo(height: 120),
+                  const SizedBox(
+                    height: 22,
+                  ),
+                  Logo(
+                    height: 120,
+                    onTap: () => BlocProvider.of<NavigationBloc>(context)
+                        .add(const HomeOpened()),
+                  ),
                   const SizedBox(
                     height: 22,
                   ),
@@ -72,7 +86,7 @@ class ResumeForm extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: CustomTheme.primaryColor,
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: _buildStepIcon(section),
@@ -81,7 +95,10 @@ class ResumeForm extends StatelessWidget {
                   width: 8,
                 ),
                 Expanded(
-                  child: Text('$section'),
+                  child: Text(
+                    section.displayName,
+                    style: const TextStyle(color: CustomTheme.primaryText1),
+                  ),
                 )
               ],
             ),
@@ -94,7 +111,7 @@ class ResumeForm extends StatelessWidget {
                 height: 20,
                 child: const VerticalDivider(
                   thickness: 3,
-                  color: Colors.black,
+                  color: CustomTheme.primaryColor,
                 ),
               ),
             )
@@ -149,13 +166,13 @@ class ResumeForm extends StatelessWidget {
       case Section.complementaryFormations:
         return const Icon(Icons.title_outlined);
       case Section.workExperience:
-        return const Icon(Icons.work_outlined);
+        return const Icon(Icons.work_outline);
       case Section.languages:
         return const Icon(Icons.language_outlined);
       case Section.softwareSkills:
-        return const Icon(Icons.person);
+        return const Icon(Icons.featured_play_list_outlined);
       case Section.skillsandAptitudes:
-        return const Icon(Icons.person);
+        return const Icon(Icons.article_outlined);
     }
   }
 }
