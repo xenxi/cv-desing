@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
+import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -98,13 +99,18 @@ class PersonalInfoForm extends StatelessWidget {
   }
 
   Widget _buildAvatar(Option<Uint8List> avatarOption) => CircleAvatar(
+        backgroundColor: CustomTheme.primaryColor,
         backgroundImage: avatarOption.fold(
           () => null,
           (a) => MemoryImage(a),
         ),
         radius: 50,
         child: avatarOption.fold(
-          () => const Icon(Icons.add_a_photo_outlined, size: 60),
+          () => const Icon(
+            Icons.add_a_photo_outlined,
+            color: Colors.white,
+            size: 60,
+          ),
           (a) => null,
         ),
       );
