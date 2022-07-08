@@ -15,7 +15,6 @@ import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widge
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/work_experience_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ResumeForm extends StatelessWidget {
   const ResumeForm({Key? key}) : super(key: key);
@@ -59,14 +58,6 @@ class ResumeForm extends StatelessWidget {
               child: _buildForm(state.section),
             ))
           ],
-        );
-        return Stepper(
-          controlsBuilder: (context, details) {
-            return Container();
-          },
-          currentStep: _getCurrentStepFrom(state),
-          onStepTapped: (index) => _updateSelectedSection(context, index),
-          steps: [..._buildStepForms()],
         );
       },
     );
