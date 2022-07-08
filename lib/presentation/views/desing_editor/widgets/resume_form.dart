@@ -7,7 +7,6 @@ import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/academic_training_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/complementary_formations_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/contact_info_form.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/form_step_builder.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/languages_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/personal_info_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/skills_form.dart';
@@ -27,10 +26,12 @@ class ResumeForm extends StatelessWidget {
           children: [
             Container(
               decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: CustomTheme.batmanGradient)),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: CustomTheme.batmanGradient,
+                ),
+              ),
               width: 200,
               child: Column(
                 children: [
@@ -46,25 +47,33 @@ class ResumeForm extends StatelessWidget {
                     height: 22,
                   ),
                   ...Section.values.map(
-                    (e) => _buildStepTitle(context,
-                        section: e, selected: state.section == e),
+                    (e) => _buildStepTitle(
+                      context,
+                      section: e,
+                      selected: state.section == e,
+                    ),
                   )
                 ],
               ),
             ),
             Expanded(
-                child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-              child: _buildForm(state.section),
-            ))
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                child: _buildForm(state.section),
+              ),
+            )
           ],
         );
       },
     );
   }
 
-  Widget _buildStepTitle(BuildContext context,
-      {required Section section, required bool selected}) {
+  Widget _buildStepTitle(
+    BuildContext context, {
+    required Section section,
+    required bool selected,
+  }) {
     return InkWell(
       onTap: () => _updateSection(context, section: section),
       child: Column(
@@ -114,10 +123,6 @@ class ResumeForm extends StatelessWidget {
   void _updateSection(BuildContext context, {required Section section}) =>
       BlocProvider.of<CvEditorBloc>(context)
           .add(SectionChanged(section: section));
-
-  Iterable<Step> _buildStepForms() => Section.values.map(
-        (section) => FormStepBuilder.fromSection(section),
-      );
 
   Widget _buildForm(Section section) {
     switch (section) {
