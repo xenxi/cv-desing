@@ -114,12 +114,6 @@ class ResumeForm extends StatelessWidget {
   void _updateSection(BuildContext context, {required Section section}) =>
       BlocProvider.of<CvEditorBloc>(context)
           .add(SectionChanged(section: section));
-  void _updateSelectedSection(BuildContext context, int index) =>
-      BlocProvider.of<CvEditorBloc>(context)
-          .add(SectionChanged(section: Section.values[index]));
-
-  int _getCurrentStepFrom(CvEditorState state) =>
-      Section.values.indexOf(state.section);
 
   Iterable<Step> _buildStepForms() => Section.values.map(
         (section) => FormStepBuilder.fromSection(section),
