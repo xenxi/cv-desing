@@ -1,6 +1,6 @@
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/form_step_builder.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/mobile/form_step_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

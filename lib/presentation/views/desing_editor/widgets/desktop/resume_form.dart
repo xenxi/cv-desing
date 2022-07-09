@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/application/navigation/navigation_bloc.dart';
@@ -127,9 +128,9 @@ class ResumeForm extends StatelessWidget {
   Widget _buildForm(Section section) {
     switch (section) {
       case Section.personalInformation:
-        return const PersonalInfoForm();
+        return JelloIn(child: const PersonalInfoForm());
       case Section.contactInformation:
-        return const ContactInfoForm();
+        return JelloIn(child: const ContactInfoForm());
       case Section.academicTraining:
         return const AcademicTrainingForm();
       case Section.complementaryFormations:
