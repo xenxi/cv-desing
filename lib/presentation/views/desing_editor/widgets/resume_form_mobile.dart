@@ -4,8 +4,8 @@ import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widge
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ResumeForm extends StatelessWidget {
-  const ResumeForm({Key? key}) : super(key: key);
+class ResumeFormMobile extends StatelessWidget {
+  const ResumeFormMobile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
