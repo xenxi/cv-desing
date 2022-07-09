@@ -1,13 +1,13 @@
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/section_extensions.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/academic_training_form.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/complementary_formations_form.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/contact_info_form.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/languages_form.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/personal_info_form.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/skills_form.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/software_skills_form.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/work_experience_form.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/academic_training_form.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/complementary_formations_form.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/contact_info_form.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/languages_form.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/personal_info_form.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/skills_form.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/software_skills_form.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/work_experience_form.dart';
 import 'package:flutter/material.dart';
 
 class FormStepBuilder extends Step {
