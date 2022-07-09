@@ -4,6 +4,7 @@ import 'package:cv_desing_website_flutter/application/editor/personal_informatio
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/resume_form.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/resume_form_mobile.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/resume_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -55,7 +56,7 @@ class DesingEditorView extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            const ResumeForm(),
+            const ResumeFormMobile(),
             BlocBuilder<CvEditorBloc, CvEditorState>(
               buildWhen: (previous, current) =>
                   previous.resume != current.resume,
