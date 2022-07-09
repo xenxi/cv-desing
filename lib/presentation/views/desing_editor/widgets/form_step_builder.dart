@@ -1,4 +1,5 @@
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/components/section_extensions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/academic_training_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/complementary_formations_form.dart';
@@ -16,7 +17,7 @@ class FormStepBuilder extends Step {
 
   factory FormStepBuilder.fromSection(Section section) {
     return FormStepBuilder(
-      title: Text(_buildTitle(section)),
+      title: Text(section.displayName),
       content: _buildContent(section),
     );
   }
