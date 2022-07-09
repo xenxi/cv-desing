@@ -27,8 +27,8 @@ class ResumeForm extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+                  begin: Alignment.bottomRight,
+                  end: Alignment.topLeft,
                   colors: CustomTheme.batmanGradient,
                 ),
               ),
