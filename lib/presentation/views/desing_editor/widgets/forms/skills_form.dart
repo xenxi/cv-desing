@@ -14,28 +14,27 @@ class SkillsForm extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.resume.skills != current.resume.skills,
       builder: (context, state) {
-        return Row(
+        return Column(
           children: [
-            Expanded(
-              child: TextField(
-                focusNode: focusNode,
-                controller: controller,
-                decoration: InputDecoration(
-                  suffix: IconButton(
-                    onPressed: () => _saveSkill(context),
-                    icon: const Icon(Icons.save),
-                  ),
-                  prefixIcon: const Icon(Icons.featured_play_list_outlined),
-                  labelText: 'Competencia o habilidad',
-                  helperText: 'Pulse enter para agregar',
+            TextField(
+              focusNode: focusNode,
+              controller: controller,
+              decoration: InputDecoration(
+                suffix: IconButton(
+                  onPressed: () => _saveSkill(context),
+                  icon: const Icon(Icons.save),
                 ),
-                onSubmitted: (_) => _saveSkill(context),
+                prefixIcon: const Icon(Icons.featured_play_list_outlined),
+                labelText: 'Competencia o habilidad',
+                helperText: 'Pulse enter para agregar',
               ),
+              onSubmitted: (_) => _saveSkill(context),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 18),
             if (_hasAnySkill(state))
               Expanded(
                 child: Wrap(
+                  spacing: 8,
                   children: [
                     ...state.resume.skills.value.map(
                       (skill) => FlipInX(
