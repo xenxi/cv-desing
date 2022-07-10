@@ -13,6 +13,7 @@ class StepList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CvEditorBloc, CvEditorState>(
+      buildWhen: (previous, current) => previous.section != current.section,
       builder: (context, state) {
         return Container(
           decoration: const BoxDecoration(
