@@ -41,10 +41,10 @@ class ResumeForm extends StatelessWidget {
                     height: 22,
                   ),
                   ...Section.values.map(
-                    (e) => _buildStepTitle(
-                      context,
+                    (e) => StepTitle(
                       section: e,
                       selected: state.section == e,
+                      onTap: () => _updateSection(context, section: e),
                     ),
                   )
                 ],
@@ -59,18 +59,6 @@ class ResumeForm extends StatelessWidget {
           ],
         );
       },
-    );
-  }
-
-  Widget _buildStepTitle(
-    BuildContext context, {
-    required Section section,
-    required bool selected,
-  }) {
-    return StepTitle(
-      section: section,
-      selected: selected,
-      onTap: () => _updateSection(context, section: section),
     );
   }
 
