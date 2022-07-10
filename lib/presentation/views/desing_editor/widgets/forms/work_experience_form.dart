@@ -13,6 +13,8 @@ class WorkExperienceForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CvEditorBloc, CvEditorState>(
+      buildWhen: (previous, current) =>
+          previous.resume.workExperiences != current.resume.workExperiences,
       builder: (context, state) {
         return Column(
           children: [
