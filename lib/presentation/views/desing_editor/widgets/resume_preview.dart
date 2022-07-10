@@ -44,6 +44,7 @@ class ResumePreview extends StatelessWidget {
               previewPageMargin: EdgeInsets.zero,
               useActions: false,
               canChangePageFormat: false,
+              initialPageFormat: PdfPageFormat.a4,
               build: (format) => snapshot.data!.save(),
             );
           }

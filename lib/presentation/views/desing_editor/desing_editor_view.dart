@@ -1,13 +1,16 @@
 import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/pdf_resume_builder.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/mobile/resume_form_mobile.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/desktop/resume_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/resume_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:printing/printing.dart';
 
 class DesingEditorView extends StatelessWidget {
   const DesingEditorView({Key? key}) : super(key: key);
@@ -93,7 +96,7 @@ class DesingEditorView extends StatelessWidget {
                       width: 12,
                     ),
                     OutlinedButton.icon(
-                      onPressed: () {},
+                      onPressed: () => download(state.resume),
                       icon: const Icon(Icons.download_done_outlined),
                       label: const Text('Descargar'),
                     )
@@ -111,5 +114,10 @@ class DesingEditorView extends StatelessWidget {
         );
       },
     );
+  }
+
+  Future<void> download(Resume resume) async {
+    final doc = PdfResumeBuilder.build(resume).then((value) => value.save());
+    await Printing.sharePdf(bytes: await doc);
   }
 }
