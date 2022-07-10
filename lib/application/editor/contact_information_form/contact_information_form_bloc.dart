@@ -123,6 +123,10 @@ class ContactInformationFormBloc
             ),
           ),
         );
+      } else if (event is ContactInformationLoaded) {
+        emit(state.copyWith(
+          contactInformation: event.contactInformation,
+        ));
       }
     });
   }

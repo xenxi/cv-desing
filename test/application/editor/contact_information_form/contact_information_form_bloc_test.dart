@@ -261,24 +261,46 @@ void main() {
     'not allow save contact information when social media is wrong',
     build: () => ContactInformationFormBloc(),
     seed: () => initialState.copyWith(
-        contactInformation: initialState.contactInformation.copyWith(
-            emailAddress: EmailAddress('anyValidEmail@email.com'),
-            phoneNumber: PhoneNumber('654654673'),
-            socialMedias: SocialMedias.empty().copyWith(
-              facebookOption: some(Url('invalidUrl')),
-            ))),
+      contactInformation: initialState.contactInformation.copyWith(
+        emailAddress: EmailAddress('anyValidEmail@email.com'),
+        phoneNumber: PhoneNumber('654654673'),
+        socialMedias: SocialMedias.empty().copyWith(
+          facebookOption: some(Url('invalidUrl')),
+        ),
+      ),
+    ),
     act: (bloc) => bloc..add(Saved()),
     expect: () => <ContactInformationFormState>[
       initialState.copyWith(
         showErrorMessages: true,
         contactInformation: initialState.contactInformation.copyWith(
-            emailAddress: EmailAddress('anyValidEmail@email.com'),
-            phoneNumber: PhoneNumber('654654673'),
-            socialMedias: SocialMedias.empty().copyWith(
-              facebookOption: some(Url('invalidUrl')),
-            )),
+          emailAddress: EmailAddress('anyValidEmail@email.com'),
+          phoneNumber: PhoneNumber('654654673'),
+          socialMedias: SocialMedias.empty().copyWith(
+            facebookOption: some(Url('invalidUrl')),
+          ),
+        ),
         saveFailureOrSuccessOption:
             some(left(const InvalidUrlFailure(failedValue: 'invalidUrl'))),
+      ),
+    ],
+  );
+
+  blocTest<ContactInformationFormBloc, ContactInformationFormState>(
+    'load contact information',
+    build: () => ContactInformationFormBloc(),
+    seed: () => initialState,
+    act: (bloc) => bloc
+      ..add(
+        ContactInformationLoaded(
+          ContactInformation.empty()
+              .copyWith(emailAddress: EmailAddress('anyEmailAddress')),
+        ),
+      ),
+    expect: () => <ContactInformationFormState>[
+      initialState.copyWith(
+        contactInformation: ContactInformation.empty()
+            .copyWith(emailAddress: EmailAddress('anyEmailAddress')),
       ),
     ],
   );

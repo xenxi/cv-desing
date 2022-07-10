@@ -90,3 +90,10 @@ class PersonalUrlChanged extends ContactInformationFormEvent {
   @override
   List<Object> get props => [url];
 }
+
+class ContactInformationLoaded extends ContactInformationFormEvent {
+  const ContactInformationLoaded(this.contactInformation);
+  final ContactInformation contactInformation;
+  @override
+  List<Object> get props => [contactInformation];
+}
