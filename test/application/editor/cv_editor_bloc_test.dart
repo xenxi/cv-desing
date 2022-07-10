@@ -559,7 +559,6 @@ void main() {
       resume: initialState.resume.copyWith(skills: const Skills(['anySkill'])),
       section: Section.contactInformation,
     ),
-    wait: const Duration(seconds: 1),
     act: (bloc) => bloc
       ..add(
         const Cleaned(),
