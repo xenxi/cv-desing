@@ -533,7 +533,6 @@ void main() {
     seed: () => initialState.copyWith(
       resume: initialState.resume.copyWith(skills: const Skills(['anySkill'])),
     ),
-    wait: const Duration(seconds: 1),
     act: (bloc) => bloc
       ..add(
         Loaded(Resume.empty().copyWith(skills: const Skills(['otherSkill']))),
