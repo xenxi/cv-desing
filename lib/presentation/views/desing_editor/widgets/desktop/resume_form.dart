@@ -5,6 +5,7 @@ import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/section_extensions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/logo.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/desktop/form_builder.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/desktop/step_list.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/desktop/step_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,40 +18,9 @@ class ResumeForm extends StatelessWidget {
     return BlocBuilder<CvEditorBloc, CvEditorState>(
       builder: (context, state) {
         return Row(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.bottomRight,
-                  end: Alignment.topLeft,
-                  colors: CustomTheme.batmanGradient,
-                ),
-              ),
-              width: 200,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 22,
-                  ),
-                  Logo(
-                    height: 120,
-                    onTap: () => BlocProvider.of<NavigationBloc>(context)
-                        .add(const HomeOpened()),
-                  ),
-                  const SizedBox(
-                    height: 22,
-                  ),
-                  ...Section.values.map(
-                    (e) => StepTitle(
-                      section: e,
-                      selected: state.section == e,
-                      onTap: () => _updateSection(context, section: e),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            const Expanded(
+          children: const [
+            StepList(),
+            Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                 child: FormBuilder(),
@@ -61,8 +31,4 @@ class ResumeForm extends StatelessWidget {
       },
     );
   }
-
-  void _updateSection(BuildContext context, {required Section section}) =>
-      BlocProvider.of<CvEditorBloc>(context)
-          .add(SectionChanged(section: section));
 }
