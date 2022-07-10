@@ -80,6 +80,8 @@ class PersonalInformationFormBloc
             ),
           ),
         );
+      } else if (event is PersonalInformationLoaded) {
+        emit(state.copyWith(personalInformation: event.personalInformation));
       }
     });
   }

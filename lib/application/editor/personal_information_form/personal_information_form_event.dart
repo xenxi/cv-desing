@@ -61,3 +61,11 @@ class AvatarDeleted extends PersonalInformationFormEvent {
   @override
   List<Object> get props => [];
 }
+
+class PersonalInformationLoaded extends PersonalInformationFormEvent {
+  const PersonalInformationLoaded(this.personalInformation);
+
+  final PersonalInformation personalInformation;
+  @override
+  List<Object> get props => [personalInformation];
+}

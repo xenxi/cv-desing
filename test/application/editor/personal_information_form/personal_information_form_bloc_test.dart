@@ -200,5 +200,24 @@ void main() {
         ),
       ],
     );
+
+    blocTest<PersonalInformationFormBloc, PersonalInformationFormState>(
+      'load contact information',
+      build: () => bloc,
+      seed: () => initialState,
+      act: (bloc) => bloc
+        ..add(
+          PersonalInformationLoaded(
+            PersonalInformation.empty()
+                .copyWith(description: domain.Description('anyDescription')),
+          ),
+        ),
+      expect: () => <PersonalInformationFormState>[
+        initialState.copyWith(
+          personalInformation: PersonalInformation.empty()
+              .copyWith(description: domain.Description('anyDescription')),
+        ),
+      ],
+    );
   });
 }
