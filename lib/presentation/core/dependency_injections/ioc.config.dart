@@ -20,8 +20,8 @@ import '../../../application/editor/academy_training_form/academy_training_form_
 import '../../../application/editor/complementary_training_form/complementary_training_form_bloc.dart'
     as _i4;
 import '../../../application/editor/contact_information_form/contact_information_form_bloc.dart'
-    as _i6;
-import '../../../application/editor/cv_editor_bloc.dart' as _i5;
+    as _i5;
+import '../../../application/editor/cv_editor_bloc.dart' as _i6;
 import '../../../application/editor/personal_information_form/personal_information_form_bloc.dart'
     as _i18;
 import '../../../application/navigation/navigation_bloc.dart' as _i17;
@@ -45,8 +45,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i3.AcademyTrainingFormBloc>(() => _i3.AcademyTrainingFormBloc());
   gh.factory<_i4.ComplementaryTrainingFormBloc>(
       () => _i4.ComplementaryTrainingFormBloc());
-  gh.factory<_i5.CvEditorBloc>(
-      () => _i5.CvEditorBloc(get<_i6.ContactInformationFormBloc>()));
+  gh.factory<_i5.ContactInformationFormBloc>(
+      () => _i5.ContactInformationFormBloc());
+  gh.factory<_i6.CvEditorBloc>(
+      () => _i6.CvEditorBloc(get<_i5.ContactInformationFormBloc>()));
   gh.lazySingleton<_i7.FirebaseAuth>(() => registerModule.firebaseAuth);
   gh.lazySingleton<_i8.GlobalKey<_i8.NavigatorState>>(() => registerModule.key);
   gh.lazySingleton<_i9.GoogleSignIn>(() => registerModule.googleSignIn);

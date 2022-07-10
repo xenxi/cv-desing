@@ -8,10 +8,12 @@ import 'package:cv_desing_website_flutter/domain/value_objects/phone_number.dart
 import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 
 part 'contact_information_form_event.dart';
 part 'contact_information_form_state.dart';
 
+@injectable
 class ContactInformationFormBloc
     extends Bloc<ContactInformationFormEvent, ContactInformationFormState> {
   ContactInformationFormBloc() : super(ContactInformationFormState.initial()) {
