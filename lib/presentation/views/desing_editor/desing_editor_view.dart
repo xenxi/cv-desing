@@ -96,10 +96,15 @@ class DesingEditorView extends StatelessWidget {
                       width: 12,
                     ),
                     OutlinedButton.icon(
-                      onPressed: () => download(state.resume),
+                      onPressed: () async => download(state.resume),
                       icon: const Icon(Icons.download_done_outlined),
                       label: const Text('Descargar'),
-                    )
+                    ),
+                    OutlinedButton.icon(
+                      onPressed: () async => print(state.resume),
+                      icon: const Icon(Icons.download_done_outlined),
+                      label: const Text('Imprimir'),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 8),
@@ -114,6 +119,11 @@ class DesingEditorView extends StatelessWidget {
         );
       },
     );
+  }
+
+  Future<void> print(Resume resume) async {
+    final doc = PdfResumeBuilder.build(resume).then((value) => value.save());
+    await Printing.layoutPdf(onLayout: (format) => doc);
   }
 
   Future<void> download(Resume resume) async {
