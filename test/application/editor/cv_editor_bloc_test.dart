@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
@@ -28,8 +29,18 @@ import 'package:cv_desing_website_flutter/domain/value_objects/unique_id.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockContactInformationFormBloc extends Mock
+    implements ContactInformationFormBloc {}
 
 void main() {
+  late CvEditorBloc bloc;
+  setUp(() {
+    bloc = CvEditorBloc(
+      MockContactInformationFormBloc(),
+    );
+  });
   final initialState = CvEditorState(
     section: Section.personalInformation,
     resume: Resume(
@@ -104,8 +115,6 @@ void main() {
 
   group('CvEditorBloc should', () {
     test('has empty as initial state', () {
-      final bloc = CvEditorBloc();
-      // assert
       expect(
         bloc.state,
         equals(
@@ -116,7 +125,7 @@ void main() {
 
     blocTest<CvEditorBloc, CvEditorState>(
       'change to contact info section',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.contactInformation)),
       expect: () => <CvEditorState>[
@@ -126,7 +135,7 @@ void main() {
 
     blocTest<CvEditorBloc, CvEditorState>(
       'change to academic training section',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.academicTraining)),
       expect: () => <CvEditorState>[
@@ -136,7 +145,7 @@ void main() {
 
     blocTest<CvEditorBloc, CvEditorState>(
       'change to complementary formations section',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) => bloc
           .add(const SectionChanged(section: Section.complementaryFormations)),
       expect: () => <CvEditorState>[
@@ -145,7 +154,7 @@ void main() {
     );
     blocTest<CvEditorBloc, CvEditorState>(
       'change to work experience section',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.workExperience)),
       expect: () => <CvEditorState>[
@@ -154,14 +163,14 @@ void main() {
     );
     blocTest<CvEditorBloc, CvEditorState>(
       'change to languages section',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) => bloc.add(const SectionChanged(section: Section.languages)),
       expect: () =>
           <CvEditorState>[initialState.copyWith(section: Section.languages)],
     );
     blocTest<CvEditorBloc, CvEditorState>(
       'change to software skills section',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.softwareSkills)),
       expect: () => <CvEditorState>[
@@ -170,7 +179,7 @@ void main() {
     );
     blocTest<CvEditorBloc, CvEditorState>(
       'change to skills and aptitudes section',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) =>
           bloc.add(const SectionChanged(section: Section.skillsandAptitudes)),
       expect: () => <CvEditorState>[
@@ -180,7 +189,7 @@ void main() {
 
     blocTest<CvEditorBloc, CvEditorState>(
       'update languages',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) => bloc
         ..add(const LanguageAdded('anyLanguage', level: LanguageLevel.native))
         ..add(
@@ -217,7 +226,7 @@ void main() {
     );
     blocTest<CvEditorBloc, CvEditorState>(
       'update skills',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) => bloc
         ..add(const SkillAdded(skill: 'anySkill'))
         ..add(const SkillAdded(skill: 'otherSkill'))
@@ -248,7 +257,7 @@ void main() {
     );
     blocTest<CvEditorBloc, CvEditorState>(
       'update personal information',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) => bloc
         ..add(
           PersonalInformationUpdated(
@@ -277,7 +286,7 @@ void main() {
     );
     blocTest<CvEditorBloc, CvEditorState>(
       'update contact information',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) => bloc
         ..add(
           ContactInformationUpdated(
@@ -306,7 +315,7 @@ void main() {
     );
     blocTest<CvEditorBloc, CvEditorState>(
       'update academy training',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) => bloc
         ..add(
           AcademyTrainingAdded(anyAcademyTraining),
@@ -354,7 +363,7 @@ void main() {
     );
     blocTest<CvEditorBloc, CvEditorState>(
       'update complementary training',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) => bloc
         ..add(
           ComplementaryTrainingAdded(anyComplementaryTraining),
@@ -403,7 +412,7 @@ void main() {
 
     blocTest<CvEditorBloc, CvEditorState>(
       'update software skills',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) => bloc
         ..add(
           const SoftwareSkillAdded(name: 'anySoftwareSkillA', percentage: 50),
@@ -479,7 +488,7 @@ void main() {
     );
     blocTest<CvEditorBloc, CvEditorState>(
       'update work experience',
-      build: () => CvEditorBloc(),
+      build: () => bloc,
       act: (bloc) => bloc
         ..add(
           WorkExperienceAdded(anyWorkExperience),
@@ -529,7 +538,7 @@ void main() {
 
   blocTest<CvEditorBloc, CvEditorState>(
     'load resume',
-    build: () => CvEditorBloc(),
+    build: () => bloc,
     seed: () => initialState.copyWith(
       resume: initialState.resume.copyWith(skills: const Skills(['anySkill'])),
     ),
@@ -545,7 +554,7 @@ void main() {
   );
   blocTest<CvEditorBloc, CvEditorState>(
     'clear resume',
-    build: () => CvEditorBloc(),
+    build: () => bloc,
     seed: () => initialState.copyWith(
       resume: initialState.resume.copyWith(skills: const Skills(['anySkill'])),
       section: Section.contactInformation,

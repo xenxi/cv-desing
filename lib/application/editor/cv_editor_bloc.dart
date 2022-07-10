@@ -1,5 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
+import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/complementary_training.dart';
@@ -18,7 +19,9 @@ part 'cv_editor_state.dart';
 
 @injectable
 class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
-  CvEditorBloc() : super(CvEditorState.initial()) {
+  CvEditorBloc(
+    this.contactInformationFormBloc,
+  ) : super(CvEditorState.initial()) {
     on<CvEditorEvent>((event, emit) {
       if (event is SectionChanged) {
         emit(state.copyWith(section: event.section));
@@ -159,4 +162,5 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
       }
     });
   }
+  final ContactInformationFormBloc contactInformationFormBloc;
 }

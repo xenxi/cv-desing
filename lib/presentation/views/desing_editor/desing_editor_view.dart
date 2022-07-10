@@ -18,16 +18,17 @@ class DesingEditorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = getIt<CvEditorBloc>();
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<CvEditorBloc>(),
+          create: (context) => bloc,
         ),
         BlocProvider(
           create: (context) => getIt<PersonalInformationFormBloc>(),
         ),
         BlocProvider(
-          create: (context) => ContactInformationFormBloc(),
+          create: (context) => bloc.contactInformationFormBloc,
         ),
       ],
       child: isMobileScreen(context)
