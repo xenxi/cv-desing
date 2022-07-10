@@ -4,6 +4,7 @@ import 'package:cv_desing_website_flutter/application/editor/personal_informatio
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/example_resume_data.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/pdf_resume_builder.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/desktop/resume_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/mobile/resume_form_mobile.dart';
@@ -96,7 +97,7 @@ class DesingEditorView extends StatelessWidget {
                       width: 12,
                     ),
                     OutlinedButton.icon(
-                      onPressed: () async => download(state.resume),
+                      onPressed: () async => download(ExampleResumeData.jonDoe),
                       icon: const Icon(Icons.download),
                       label: const Text('Descargar'),
                     ),
@@ -104,7 +105,7 @@ class DesingEditorView extends StatelessWidget {
                       width: 12,
                     ),
                     OutlinedButton.icon(
-                      onPressed: () async => print(state.resume),
+                      onPressed: () async => print(ExampleResumeData.jonDoe),
                       icon: const Icon(Icons.print),
                       label: const Text('Imprimir'),
                     ),
@@ -112,7 +113,7 @@ class DesingEditorView extends StatelessWidget {
                       width: 12,
                     ),
                     OutlinedButton.icon(
-                      onPressed: () async => print(state.resume),
+                      onPressed: () => _clear(context),
                       icon: const Icon(Icons.clear),
                       label: const Text('Limpiar'),
                     ),
@@ -120,7 +121,7 @@ class DesingEditorView extends StatelessWidget {
                       width: 12,
                     ),
                     OutlinedButton.icon(
-                      onPressed: () async => print(state.resume),
+                      onPressed: () => _loadDemoData(context),
                       icon: const Icon(Icons.import_contacts),
                       label: const Text('Cargar datos de ejemplo'),
                     ),
@@ -155,4 +156,10 @@ class DesingEditorView extends StatelessWidget {
 
   String _fileName(Resume resume) =>
       'CV ${resume.personalInformation.name.getOrCrash()}.pdf';
+
+  void _loadDemoData(BuildContext context) =>
+      BlocProvider.of<CvEditorBloc>(context)
+          .add(Loaded(ExampleResumeData.jonDoe));
+  void _clear(BuildContext context) =>
+      BlocProvider.of<CvEditorBloc>(context).add(const Cleaned());
 }
