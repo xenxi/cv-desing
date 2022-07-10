@@ -5,8 +5,8 @@ import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:cv_desing_website_flutter/presentation/core/dependency_injections/ioc.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/pdf_resume_builder.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/mobile/resume_form_mobile.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/desktop/resume_form.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/mobile/resume_form_mobile.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/resume_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -100,6 +100,9 @@ class DesingEditorView extends StatelessWidget {
                       icon: const Icon(Icons.download_done_outlined),
                       label: const Text('Descargar'),
                     ),
+                    const SizedBox(
+                      width: 12,
+                    ),
                     OutlinedButton.icon(
                       onPressed: () async => print(state.resume),
                       icon: const Icon(Icons.download_done_outlined),
@@ -123,11 +126,17 @@ class DesingEditorView extends StatelessWidget {
 
   Future<void> print(Resume resume) async {
     final doc = PdfResumeBuilder.build(resume).then((value) => value.save());
-    await Printing.layoutPdf(onLayout: (format) => doc);
+    await Printing.layoutPdf(
+      onLayout: (format) => doc,
+      name: _fileName(resume),
+    );
   }
 
   Future<void> download(Resume resume) async {
     final doc = PdfResumeBuilder.build(resume).then((value) => value.save());
-    await Printing.sharePdf(bytes: await doc);
+    await Printing.sharePdf(bytes: await doc, filename: _fileName(resume));
   }
+
+  String _fileName(Resume resume) =>
+      'CV ${resume.personalInformation.name.getOrCrash()}.pdf';
 }
