@@ -97,7 +97,7 @@ class DesingEditorView extends StatelessWidget {
                     ),
                     OutlinedButton.icon(
                       onPressed: () async => download(state.resume),
-                      icon: const Icon(Icons.download_done_outlined),
+                      icon: const Icon(Icons.download),
                       label: const Text('Descargar'),
                     ),
                     const SizedBox(
@@ -105,7 +105,7 @@ class DesingEditorView extends StatelessWidget {
                     ),
                     OutlinedButton.icon(
                       onPressed: () async => print(state.resume),
-                      icon: const Icon(Icons.download_done_outlined),
+                      icon: const Icon(Icons.print),
                       label: const Text('Imprimir'),
                     ),
                   ],
