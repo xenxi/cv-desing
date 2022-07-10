@@ -72,50 +72,6 @@ class ResumeForm extends StatelessWidget {
       selected: selected,
       onTap: () => _updateSection(context, section: section),
     );
-    return InkWell(
-      onTap: () => _updateSection(context, section: section),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            color: selected ? Colors.white24 : Colors.transparent,
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: Row(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: CustomTheme.primaryColor,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: section.icon,
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                Expanded(
-                  child: Text(
-                    section.displayName,
-                    style: const TextStyle(color: CustomTheme.primaryText1),
-                  ),
-                )
-              ],
-            ),
-          ),
-          if (Section.values.indexOf(section) < Section.values.length - 1)
-            Transform.scale(
-              scaleY: 2,
-              child: Container(
-                padding: const EdgeInsets.only(left: 17),
-                height: 20,
-                child: const VerticalDivider(
-                  thickness: 3,
-                  color: CustomTheme.primaryColor,
-                ),
-              ),
-            )
-        ],
-      ),
-    );
   }
 
   void _updateSection(BuildContext context, {required Section section}) =>
