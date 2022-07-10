@@ -81,7 +81,7 @@ class ResumeForm extends StatelessWidget {
                     color: CustomTheme.primaryColor,
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  child: _buildStepIcon(section),
+                  child: section.icon,
                 ),
                 const SizedBox(
                   width: 8,
@@ -115,25 +115,4 @@ class ResumeForm extends StatelessWidget {
   void _updateSection(BuildContext context, {required Section section}) =>
       BlocProvider.of<CvEditorBloc>(context)
           .add(SectionChanged(section: section));
-
-  Widget _buildStepIcon(Section section) {
-    switch (section) {
-      case Section.personalInformation:
-        return const Icon(Icons.person_outline);
-      case Section.contactInformation:
-        return const Icon(Icons.email_outlined);
-      case Section.academicTraining:
-        return const Icon(Icons.school_outlined);
-      case Section.complementaryFormations:
-        return const Icon(Icons.title_outlined);
-      case Section.workExperience:
-        return const Icon(Icons.work_outline);
-      case Section.languages:
-        return const Icon(Icons.language_outlined);
-      case Section.softwareSkills:
-        return const Icon(Icons.featured_play_list_outlined);
-      case Section.skillsandAptitudes:
-        return const Icon(Icons.article_outlined);
-    }
-  }
 }
