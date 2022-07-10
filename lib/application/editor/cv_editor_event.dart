@@ -146,3 +146,12 @@ class WorkExperienceDeleted extends CvEditorEvent {
   @override
   List<Object> get props => [workExperience];
 }
+
+class Loaded extends CvEditorEvent {
+  const Loaded(this.resume);
+
+  final Resume resume;
+
+  @override
+  List<Object?> get props => [resume];
+}

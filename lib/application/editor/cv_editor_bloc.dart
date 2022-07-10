@@ -10,6 +10,7 @@ import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/languages.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/percentage.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/software_skill.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
@@ -152,6 +153,8 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
             ),
           ),
         );
+      } else if (event is Loaded) {
+        emit(state.copyWith(resume: event.resume));
       }
     });
   }

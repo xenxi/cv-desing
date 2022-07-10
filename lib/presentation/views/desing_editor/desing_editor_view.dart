@@ -108,6 +108,22 @@ class DesingEditorView extends StatelessWidget {
                       icon: const Icon(Icons.print),
                       label: const Text('Imprimir'),
                     ),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    OutlinedButton.icon(
+                      onPressed: () async => print(state.resume),
+                      icon: const Icon(Icons.clear),
+                      label: const Text('Limpiar'),
+                    ),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    OutlinedButton.icon(
+                      onPressed: () async => print(state.resume),
+                      icon: const Icon(Icons.import_contacts),
+                      label: const Text('Cargar datos de ejemplo'),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 8),

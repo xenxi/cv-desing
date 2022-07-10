@@ -526,4 +526,22 @@ void main() {
       ],
     );
   });
+
+  blocTest<CvEditorBloc, CvEditorState>(
+    'load resume',
+    build: () => CvEditorBloc(),
+    seed: () => initialState.copyWith(
+      resume: initialState.resume.copyWith(skills: const Skills(['anySkill'])),
+    ),
+    wait: const Duration(seconds: 1),
+    act: (bloc) => bloc
+      ..add(
+        Loaded(Resume.empty().copyWith(skills: const Skills(['otherSkill']))),
+      ),
+    expect: () => <CvEditorState>[
+      initialState.copyWith(
+        resume: Resume.empty().copyWith(skills: const Skills(['otherSkill'])),
+      ),
+    ],
+  );
 }
