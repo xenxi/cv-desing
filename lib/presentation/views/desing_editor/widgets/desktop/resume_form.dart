@@ -49,13 +49,10 @@ class ResumeForm extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
+            const Expanded(
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-                child: FormBuilder(
-                  section: state.section,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                child: FormBuilder(),
               ),
             )
           ],
