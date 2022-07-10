@@ -538,27 +538,39 @@ void main() {
     );
   });
 
+  final anyContactInformation = ContactInformation.empty()
+      .copyWith(emailAddress: EmailAddress('anyEmail'));
   blocTest<CvEditorBloc, CvEditorState>(
     'load resume',
     build: () => bloc,
     seed: () => initialState.copyWith(
       resume: initialState.resume.copyWith(skills: const Skills(['anySkill'])),
     ),
+    verify: (_) => verify(
+      () => contactInformationFormBloc
+          .add(ContactInformationLoaded(anyContactInformation)),
+    ).called(1),
     act: (bloc) => bloc
       ..add(
-        Loaded(Resume.empty().copyWith(skills: const Skills(['otherSkill']))),
+        Loaded(
+            Resume.empty().copyWith(contactInformation: anyContactInformation)),
       ),
     expect: () => <CvEditorState>[
       initialState.copyWith(
-        resume: Resume.empty().copyWith(skills: const Skills(['otherSkill'])),
+        resume:
+            Resume.empty().copyWith(contactInformation: anyContactInformation),
       ),
     ],
   );
+
   blocTest<CvEditorBloc, CvEditorState>(
     'clear resume',
     build: () => bloc,
     seed: () => initialState.copyWith(
-      resume: initialState.resume.copyWith(skills: const Skills(['anySkill'])),
+      resume: initialState.resume.copyWith(
+        skills: const Skills(['anySkill']),
+        contactInformation: anyContactInformation,
+      ),
       section: Section.contactInformation,
     ),
     act: (bloc) => bloc
