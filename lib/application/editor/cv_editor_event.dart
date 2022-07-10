@@ -155,3 +155,10 @@ class Loaded extends CvEditorEvent {
   @override
   List<Object?> get props => [resume];
 }
+
+class Cleaned extends CvEditorEvent {
+  const Cleaned();
+
+  @override
+  List<Object?> get props => [];
+}

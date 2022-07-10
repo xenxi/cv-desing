@@ -544,4 +544,23 @@ void main() {
       ),
     ],
   );
+  blocTest<CvEditorBloc, CvEditorState>(
+    'clear resume',
+    build: () => CvEditorBloc(),
+    seed: () => initialState.copyWith(
+      resume: initialState.resume.copyWith(skills: const Skills(['anySkill'])),
+      section: Section.contactInformation,
+    ),
+    wait: const Duration(seconds: 1),
+    act: (bloc) => bloc
+      ..add(
+        const Cleaned(),
+      ),
+    expect: () => <CvEditorState>[
+      initialState.copyWith(
+        resume: Resume.empty(),
+        section: Section.contactInformation,
+      ),
+    ],
+  );
 }
