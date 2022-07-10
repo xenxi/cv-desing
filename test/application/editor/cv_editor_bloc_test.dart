@@ -36,9 +36,11 @@ class MockContactInformationFormBloc extends Mock
 
 void main() {
   late CvEditorBloc bloc;
+  late MockContactInformationFormBloc contactInformationFormBloc;
   setUp(() {
+    contactInformationFormBloc = MockContactInformationFormBloc();
     bloc = CvEditorBloc(
-      MockContactInformationFormBloc(),
+      contactInformationFormBloc,
     );
   });
   final initialState = CvEditorState(
