@@ -45,8 +45,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i3.AcademyTrainingFormBloc>(() => _i3.AcademyTrainingFormBloc());
   gh.factory<_i4.ComplementaryTrainingFormBloc>(
       () => _i4.ComplementaryTrainingFormBloc());
-  gh.factory<_i5.ContactInformationFormBloc>(
-      () => _i5.ContactInformationFormBloc());
+  gh.singleton<_i5.ContactInformationFormBloc>(
+      _i5.ContactInformationFormBloc());
   gh.factory<_i6.CvEditorBloc>(
       () => _i6.CvEditorBloc(get<_i5.ContactInformationFormBloc>()));
   gh.lazySingleton<_i7.FirebaseAuth>(() => registerModule.firebaseAuth);

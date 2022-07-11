@@ -13,7 +13,7 @@ import 'package:injectable/injectable.dart';
 part 'contact_information_form_event.dart';
 part 'contact_information_form_state.dart';
 
-@injectable
+@singleton
 class ContactInformationFormBloc
     extends Bloc<ContactInformationFormEvent, ContactInformationFormState> {
   ContactInformationFormBloc() : super(ContactInformationFormState.initial()) {
@@ -126,9 +126,12 @@ class ContactInformationFormBloc
           ),
         );
       } else if (event is ContactInformationLoaded) {
-        emit(state.copyWith(
-          contactInformation: event.contactInformation,
-        ));
+        emit(
+          state.copyWith(
+            contactInformation: event.contactInformation,
+            isLoaded: true,
+          ),
+        );
       }
     });
   }
@@ -136,6 +139,7 @@ class ContactInformationFormBloc
     ContactInformation contactInformation,
   ) =>
       state.copyWith(
+        isLoaded: false,
         saveFailureOrSuccessOption: none(),
         showErrorMessages: false,
         contactInformation: contactInformation,

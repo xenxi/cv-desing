@@ -30,7 +30,11 @@ class ContactInfoForm extends StatelessWidget {
           ),
         );
       },
+      buildWhen: (previous, current) =>
+          previous.contactInformation != current.contactInformation,
       builder: (context, state) {
+        print(state.contactInformation.emailAddress);
+        print(state.isLoaded);
         return Form(
           autovalidateMode: state.showErrorMessages
               ? AutovalidateMode.always
@@ -38,7 +42,7 @@ class ContactInfoForm extends StatelessWidget {
           child: Column(
             children: [
               CustomFormField(
-                initialized: state.isLoaded,
+                initialized: true,
                 text: 'Tu email',
                 value: state.contactInformation.emailAddress,
                 onChanged: (val) =>
