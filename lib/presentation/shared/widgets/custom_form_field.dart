@@ -34,10 +34,7 @@ class CustomFormField extends HookWidget {
         valueOption.fold(
           () {},
           (value) {
-            final textvalue = value.fold(
-              (l) => '${l.failedValue ?? (inputTypeNumber ? '0' : '')}',
-              (r) => '$r',
-            );
+            final textvalue = _toString(value);
 
             controller.text = textvalue;
             final initialCharacter =
@@ -79,6 +76,11 @@ class CustomFormField extends HookWidget {
           .getOrElse(() => null),
     );
   }
+
+  String _toString(ValueObject<dynamic> value) => value.fold(
+        (l) => '${l.failedValue ?? (inputTypeNumber ? '0' : '')}',
+        (r) => '$r',
+      );
 
   bool get inputTypeNumber =>
       inputType != null && inputType == TextInputType.number;
