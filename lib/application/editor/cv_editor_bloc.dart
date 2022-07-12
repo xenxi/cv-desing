@@ -161,6 +161,8 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
             .add(ContactInformationLoaded(event.resume.contactInformation));
       } else if (event is Cleaned) {
         emit(state.copyWith(resume: Resume.empty()));
+        contactInformationFormBloc
+            .add(ContactInformationLoaded(ContactInformation.empty()));
       }
     });
   }

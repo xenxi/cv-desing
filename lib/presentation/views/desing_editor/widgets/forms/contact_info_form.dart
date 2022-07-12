@@ -33,8 +33,6 @@ class ContactInfoForm extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.contactInformation != current.contactInformation,
       builder: (context, state) {
-        print(state.contactInformation.emailAddress);
-        print(state.isLoaded);
         return Form(
           autovalidateMode: state.showErrorMessages
               ? AutovalidateMode.always
