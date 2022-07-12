@@ -1,5 +1,6 @@
 import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -61,7 +62,7 @@ class ContactInfoForm extends StatelessWidget {
                 initialized: state.isLoaded,
                 text: 'Tu Facebook',
                 value: state.contactInformation.socialMedias.facebookOption
-                    .fold(() => null, (a) => a),
+                    .fold(() => Url.empty(), (a) => a),
                 onChanged: (val) =>
                     BlocProvider.of<ContactInformationFormBloc>(context)
                         .add(FacebookUrlChanged(val)),
@@ -71,7 +72,7 @@ class ContactInfoForm extends StatelessWidget {
                 initialized: state.isLoaded,
                 text: 'Tu Twitter',
                 value: state.contactInformation.socialMedias.twitchOption
-                    .fold(() => null, (a) => a),
+                    .fold(() => Url.empty(), (a) => a),
                 onChanged: (val) =>
                     BlocProvider.of<ContactInformationFormBloc>(context)
                         .add(TwitterUrlChanged(val)),
@@ -81,7 +82,7 @@ class ContactInfoForm extends StatelessWidget {
                 initialized: state.isLoaded,
                 text: 'Tu Linkedin',
                 value: state.contactInformation.socialMedias.linkedinOption
-                    .fold(() => null, (a) => a),
+                    .fold(() => Url.empty(), (a) => a),
                 onChanged: (val) =>
                     BlocProvider.of<ContactInformationFormBloc>(context)
                         .add(LinkedinUrlChanged(val)),
@@ -91,7 +92,7 @@ class ContactInfoForm extends StatelessWidget {
                 initialized: state.isLoaded,
                 text: 'Tu Github',
                 value: state.contactInformation.socialMedias.githubOption
-                    .fold(() => null, (a) => a),
+                    .fold(() => Url.empty(), (a) => a),
                 onChanged: (val) =>
                     BlocProvider.of<ContactInformationFormBloc>(context)
                         .add(GithubUrlChanged(val)),
@@ -101,7 +102,7 @@ class ContactInfoForm extends StatelessWidget {
                 initialized: state.isLoaded,
                 text: 'Tu Instagram',
                 value: state.contactInformation.socialMedias.instagramOption
-                    .fold(() => null, (a) => a),
+                    .fold(() => Url.empty(), (a) => a),
                 onChanged: (val) =>
                     BlocProvider.of<ContactInformationFormBloc>(context)
                         .add(InstagramUrlChanged(val)),
@@ -111,7 +112,7 @@ class ContactInfoForm extends StatelessWidget {
                 initialized: state.isLoaded,
                 text: 'Tu Youtube',
                 value: state.contactInformation.socialMedias.youtubeOption
-                    .fold(() => null, (a) => a),
+                    .fold(() => Url.empty(), (a) => a),
                 onChanged: (val) =>
                     BlocProvider.of<ContactInformationFormBloc>(context)
                         .add(YoutubeUrlChanged(val)),
@@ -121,7 +122,7 @@ class ContactInfoForm extends StatelessWidget {
                 initialized: state.isLoaded,
                 text: 'Tu Twitch',
                 value: state.contactInformation.socialMedias.twitchOption
-                    .fold(() => null, (a) => a),
+                    .fold(() => Url.empty(), (a) => a),
                 onChanged: (val) =>
                     BlocProvider.of<ContactInformationFormBloc>(context)
                         .add(TwitchUrlChanged(val)),
@@ -131,7 +132,7 @@ class ContactInfoForm extends StatelessWidget {
                 initialized: state.isLoaded,
                 text: 'Tu WebSite',
                 value: state.contactInformation.socialMedias.personalOption
-                    .fold(() => null, (a) => a),
+                    .fold(() => Url.empty(), (a) => a),
                 onChanged: (val) =>
                     BlocProvider.of<ContactInformationFormBloc>(context)
                         .add(PersonalUrlChanged(val)),
