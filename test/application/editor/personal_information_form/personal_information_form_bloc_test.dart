@@ -204,7 +204,9 @@ void main() {
     blocTest<PersonalInformationFormBloc, PersonalInformationFormState>(
       'load contact information',
       build: () => bloc,
-      seed: () => initialState,
+      seed: () => initialState.copyWith(
+        isLoaded: false,
+      ),
       act: (bloc) => bloc
         ..add(
           PersonalInformationLoaded(
@@ -214,6 +216,7 @@ void main() {
         ),
       expect: () => <PersonalInformationFormState>[
         initialState.copyWith(
+          isLoaded: true,
           personalInformation: PersonalInformation.empty()
               .copyWith(description: domain.Description('anyDescription')),
         ),
