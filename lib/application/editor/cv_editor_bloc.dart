@@ -1,6 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
+import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/academy_training.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/complementary_training.dart';
@@ -21,6 +22,7 @@ part 'cv_editor_state.dart';
 class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
   CvEditorBloc(
     this.contactInformationFormBloc,
+    this.personalInformationFormBloc,
   ) : super(CvEditorState.initial()) {
     on<CvEditorEvent>((event, emit) {
       if (event is SectionChanged) {
@@ -159,6 +161,8 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
         emit(state.copyWith(resume: event.resume));
         contactInformationFormBloc
             .add(ContactInformationLoaded(event.resume.contactInformation));
+        personalInformationFormBloc
+            .add(PersonalInformationLoaded(event.resume.personalInformation));
       } else if (event is Cleaned) {
         emit(state.copyWith(resume: Resume.empty()));
         contactInformationFormBloc
@@ -167,4 +171,5 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
     });
   }
   final ContactInformationFormBloc contactInformationFormBloc;
+  final PersonalInformationFormBloc personalInformationFormBloc;
 }

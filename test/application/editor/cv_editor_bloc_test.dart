@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
+import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/domain/auth/value_objects/email_address.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/academy_training.dart';
@@ -34,13 +35,19 @@ import 'package:mocktail/mocktail.dart';
 class MockContactInformationFormBloc extends Mock
     implements ContactInformationFormBloc {}
 
+class MockPersonalInformationFormBloc extends Mock
+    implements PersonalInformationFormBloc {}
+
 void main() {
   late CvEditorBloc bloc;
   late MockContactInformationFormBloc contactInformationFormBloc;
+  late MockPersonalInformationFormBloc personalInformationFormBloc;
   setUp(() {
     contactInformationFormBloc = MockContactInformationFormBloc();
+    personalInformationFormBloc = MockPersonalInformationFormBloc();
     bloc = CvEditorBloc(
       contactInformationFormBloc,
+      personalInformationFormBloc,
     );
   });
   final initialState = CvEditorState(
@@ -540,25 +547,39 @@ void main() {
 
   final anyContactInformation = ContactInformation.empty()
       .copyWith(emailAddress: EmailAddress('anyEmail'));
+  final anyPersonalInformation =
+      PersonalInformation.empty().copyWith(name: Name('anyName'));
   blocTest<CvEditorBloc, CvEditorState>(
     'load resume',
     build: () => bloc,
     seed: () => initialState.copyWith(
       resume: initialState.resume.copyWith(skills: const Skills(['anySkill'])),
     ),
-    verify: (_) => verify(
-      () => contactInformationFormBloc
-          .add(ContactInformationLoaded(anyContactInformation)),
-    ).called(1),
+    verify: (_) {
+      verify(
+        () => contactInformationFormBloc
+            .add(ContactInformationLoaded(anyContactInformation)),
+      ).called(1);
+      verify(
+        () => personalInformationFormBloc
+            .add(PersonalInformationLoaded(anyPersonalInformation)),
+      ).called(1);
+    },
     act: (bloc) => bloc
       ..add(
         Loaded(
-            Resume.empty().copyWith(contactInformation: anyContactInformation)),
+          Resume.empty().copyWith(
+            contactInformation: anyContactInformation,
+            personalInformation: anyPersonalInformation,
+          ),
+        ),
       ),
     expect: () => <CvEditorState>[
       initialState.copyWith(
-        resume:
-            Resume.empty().copyWith(contactInformation: anyContactInformation),
+        resume: Resume.empty().copyWith(
+          contactInformation: anyContactInformation,
+          personalInformation: anyPersonalInformation,
+        ),
       ),
     ],
   );

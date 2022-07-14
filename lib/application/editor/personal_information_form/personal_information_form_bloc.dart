@@ -14,7 +14,7 @@ import 'package:injectable/injectable.dart';
 part 'personal_information_form_event.dart';
 part 'personal_information_form_state.dart';
 
-@injectable
+@singleton
 class PersonalInformationFormBloc
     extends Bloc<PersonalInformationFormEvent, PersonalInformationFormState> {
   PersonalInformationFormBloc(this._imagePicker)
