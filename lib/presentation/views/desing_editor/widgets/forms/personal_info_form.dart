@@ -33,6 +33,8 @@ class PersonalInfoForm extends StatelessWidget {
           ),
         );
       },
+      buildWhen: (previous, current) =>
+          previous.showErrorMessages != current.showErrorMessages,
       builder: (context, state) {
         return Form(
           autovalidateMode: state.showErrorMessages
@@ -46,15 +48,7 @@ class PersonalInfoForm extends StatelessWidget {
                         .add(AvatarChanged()),
                 child: _buildAvatar(state.personalInformation.avatarOption),
               ),
-              CustomFormField(
-                icon: Icons.person_outlined,
-                text: 'Tu nombre',
-                onChanged: (val) =>
-                    BlocProvider.of<PersonalInformationFormBloc>(context)
-                        .add(NameChanged(val)),
-                value: state.personalInformation.name,
-                initialized: state.isLoaded,
-              ),
+              const _NameField(),
               CustomFormField(
                 icon: Icons.location_on_outlined,
                 text: 'Tu localidad',
@@ -114,4 +108,39 @@ class PersonalInfoForm extends StatelessWidget {
           (a) => null,
         ),
       );
+}
+
+class _NameField extends StatelessWidget {
+  const _NameField({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = TextEditingController();
+    return BlocListener<PersonalInformationFormBloc,
+        PersonalInformationFormState>(
+      listenWhen: (previous, current) => previous.isLoaded != current.isLoaded,
+      listener: (context, state) {
+        controller.text = state.personalInformation.name
+            .fold((l) => l.failedValue ?? '', (r) => r);
+      },
+      child: TextFormField(
+        controller: controller,
+        decoration: const InputDecoration(
+          icon: Icon(Icons.person_outline_outlined),
+          labelText: 'Tu nombre',
+        ),
+        onChanged: (val) =>
+            BlocProvider.of<PersonalInformationFormBloc>(context).add(
+          NameChanged(val),
+        ),
+        validator: (_) => BlocProvider.of<PersonalInformationFormBloc>(context)
+            .state
+            .personalInformation
+            .name
+            .fold((l) => '$l', (_) => null),
+      ),
+    );
+  }
 }
