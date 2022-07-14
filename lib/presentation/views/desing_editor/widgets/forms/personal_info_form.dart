@@ -49,15 +49,7 @@ class PersonalInfoForm extends StatelessWidget {
                 child: _buildAvatar(state.personalInformation.avatarOption),
               ),
               const _NameField(),
-              CustomFormField(
-                icon: Icons.location_on_outlined,
-                text: 'Tu localidad',
-                onChanged: (val) =>
-                    BlocProvider.of<PersonalInformationFormBloc>(context)
-                        .add(LocalityChanged(val)),
-                value: state.personalInformation.locality,
-                initialized: state.isLoaded,
-              ),
+              const _LocalityField(),
               CustomFormField(
                 icon: Icons.work_outline,
                 text: 'Tu profesión o actividad',
@@ -139,6 +131,41 @@ class _NameField extends StatelessWidget {
             .state
             .personalInformation
             .name
+            .fold((l) => '$l', (_) => null),
+      ),
+    );
+  }
+}
+
+class _LocalityField extends StatelessWidget {
+  const _LocalityField({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = TextEditingController();
+    return BlocListener<PersonalInformationFormBloc,
+        PersonalInformationFormState>(
+      listenWhen: (previous, current) => previous.isLoaded != current.isLoaded,
+      listener: (context, state) {
+        controller.text = state.personalInformation.locality
+            .fold((l) => l.failedValue ?? '', (r) => r);
+      },
+      child: TextFormField(
+        controller: controller,
+        decoration: const InputDecoration(
+          icon: Icon(Icons.location_city_outlined),
+          labelText: 'Tu localidad',
+        ),
+        onChanged: (val) =>
+            BlocProvider.of<PersonalInformationFormBloc>(context).add(
+          LocalityChanged(val),
+        ),
+        validator: (_) => BlocProvider.of<PersonalInformationFormBloc>(context)
+            .state
+            .personalInformation
+            .locality
             .fold((l) => '$l', (_) => null),
       ),
     );
