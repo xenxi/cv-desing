@@ -594,10 +594,16 @@ void main() {
       ),
       section: Section.contactInformation,
     ),
-    verify: (_) => verify(
-      () => contactInformationFormBloc
-          .add(ContactInformationLoaded(ContactInformation.empty())),
-    ).called(1),
+    verify: (_) {
+      verify(
+        () => contactInformationFormBloc
+            .add(ContactInformationLoaded(ContactInformation.empty())),
+      ).called(1);
+      verify(
+        () => personalInformationFormBloc
+            .add(PersonalInformationLoaded(PersonalInformation.empty())),
+      ).called(1);
+    },
     act: (bloc) => bloc
       ..add(
         const Cleaned(),
