@@ -8,8 +8,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PersonalInfoForm extends StatelessWidget {
-  const PersonalInfoForm({
+class PersonalInformationForm extends StatelessWidget {
+  const PersonalInformationForm({
     Key? key,
   }) : super(key: key);
 

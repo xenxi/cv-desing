@@ -4,7 +4,7 @@ import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widge
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/complementary_formations_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/contact_info_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/languages_form.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/personal_info_form.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/personal_information_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/skills_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/software_skills_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/work_experience_form.dart';
@@ -33,7 +33,7 @@ class FormBuilder extends StatelessWidget {
         onPageChanged: (index) => BlocProvider.of<CvEditorBloc>(context)
             .add(SectionChanged(section: Section.values[index])),
         children: [
-          const PersonalInfoForm(),
+          const PersonalInformationForm(),
           const ContactInfoForm(),
           const AcademicTrainingForm(),
           const ComplementaryFormationsForm(),
