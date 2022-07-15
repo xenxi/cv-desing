@@ -3,11 +3,11 @@ import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart
 import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/email_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/facebook_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/phone_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'fields/phone_field.dart';
 
 class ContactInfoForm extends StatelessWidget {
   const ContactInfoForm({
@@ -45,16 +45,7 @@ class ContactInfoForm extends StatelessWidget {
             children: [
               const EmailField(),
               const PhoneField(),
-              CustomFormField(
-                initialized: state.isLoaded,
-                text: 'Tu Facebook',
-                value: state.contactInformation.socialMedias.facebookOption
-                    .fold(() => Url.empty(), (a) => a),
-                onChanged: (val) =>
-                    BlocProvider.of<ContactInformationFormBloc>(context)
-                        .add(FacebookUrlChanged(val)),
-                icon: Icons.facebook_outlined,
-              ),
+              const FacebookField(),
               CustomFormField(
                 initialized: state.isLoaded,
                 text: 'Tu Twitter',
