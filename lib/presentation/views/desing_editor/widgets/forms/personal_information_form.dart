@@ -50,15 +50,7 @@ class PersonalInformationForm extends StatelessWidget {
               ),
               const _NameField(),
               const _LocalityField(),
-              CustomFormField(
-                icon: Icons.work_outline,
-                text: 'Tu profesión o actividad',
-                onChanged: (val) =>
-                    BlocProvider.of<PersonalInformationFormBloc>(context)
-                        .add(ProfessionChanged(val)),
-                value: state.personalInformation.job,
-                initialized: state.isLoaded,
-              ),
+              const _ProfessionField(),
               CustomFormField(
                 icon: Icons.info_outline,
                 inputType: TextInputType.multiline,
@@ -100,6 +92,40 @@ class PersonalInformationForm extends StatelessWidget {
           (a) => null,
         ),
       );
+}
+
+class _ProfessionField extends StatelessWidget {
+  const _ProfessionField({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = TextEditingController();
+    return BlocListener<PersonalInformationFormBloc,
+        PersonalInformationFormState>(
+      listenWhen: (previous, current) => previous.isLoaded != current.isLoaded,
+      listener: (context, state) {
+        controller.text = state.personalInformation.job
+            .fold((l) => l.failedValue ?? '', (r) => r);
+      },
+      child: TextFormField(
+        controller: controller,
+        decoration: const InputDecoration(
+          icon: Icon(Icons.work_outline),
+          labelText: 'Tu profesión o actividad',
+        ),
+        onChanged: (val) =>
+            BlocProvider.of<PersonalInformationFormBloc>(context)
+                .add(ProfessionChanged(val)),
+        validator: (_) => BlocProvider.of<PersonalInformationFormBloc>(context)
+            .state
+            .personalInformation
+            .job
+            .fold((l) => '$l', (_) => null),
+      ),
+    );
+  }
 }
 
 class _NameField extends StatelessWidget {
