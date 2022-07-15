@@ -2,6 +2,7 @@ import 'package:cv_desing_website_flutter/application/editor/contact_information
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/email_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -40,15 +41,7 @@ class ContactInfoForm extends StatelessWidget {
               : AutovalidateMode.disabled,
           child: Column(
             children: [
-              CustomFormField(
-                initialized: true,
-                text: 'Tu email',
-                value: state.contactInformation.emailAddress,
-                onChanged: (val) =>
-                    BlocProvider.of<ContactInformationFormBloc>(context)
-                        .add(EmailChanged(val)),
-                icon: Icons.email_outlined,
-              ),
+              const EmailField(),
               CustomFormField(
                 initialized: state.isLoaded,
                 text: 'Tu teléfono',
