@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,16 +50,7 @@ class PersonalInformationForm extends StatelessWidget {
               const _NameField(),
               const _LocalityField(),
               const _ProfessionField(),
-              CustomFormField(
-                icon: Icons.info_outline,
-                inputType: TextInputType.multiline,
-                text: 'Algo sobre ti',
-                onChanged: (val) =>
-                    BlocProvider.of<PersonalInformationFormBloc>(context)
-                        .add(PersonalDescriptionChanged(val)),
-                value: state.personalInformation.description,
-                initialized: state.isLoaded,
-              ),
+              const _DescriptionField(),
               const SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () => BlocProvider.of<PersonalInformationFormBloc>(
@@ -118,6 +108,40 @@ class _ProfessionField extends StatelessWidget {
         onChanged: (val) =>
             BlocProvider.of<PersonalInformationFormBloc>(context)
                 .add(ProfessionChanged(val)),
+        validator: (_) => BlocProvider.of<PersonalInformationFormBloc>(context)
+            .state
+            .personalInformation
+            .job
+            .fold((l) => '$l', (_) => null),
+      ),
+    );
+  }
+}
+
+class _DescriptionField extends StatelessWidget {
+  const _DescriptionField({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = TextEditingController();
+    return BlocListener<PersonalInformationFormBloc,
+        PersonalInformationFormState>(
+      listenWhen: (previous, current) => previous.isLoaded != current.isLoaded,
+      listener: (context, state) {
+        controller.text = state.personalInformation.description
+            .fold((l) => l.failedValue ?? '', (r) => r);
+      },
+      child: TextFormField(
+        controller: controller,
+        decoration: const InputDecoration(
+          icon: Icon(Icons.info_outline),
+          labelText: 'Algo sobre ti',
+        ),
+        onChanged: (val) =>
+            BlocProvider.of<PersonalInformationFormBloc>(context)
+                .add(PersonalDescriptionChanged(val)),
         validator: (_) => BlocProvider.of<PersonalInformationFormBloc>(context)
             .state
             .personalInformation
