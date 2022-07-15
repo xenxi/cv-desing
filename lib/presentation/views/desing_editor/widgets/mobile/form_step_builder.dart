@@ -2,7 +2,7 @@ import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/section_extensions.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/academic_training_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/complementary_formations_form.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/contact_info_form.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/contact_information_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/languages_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/personal_information_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/skills_form.dart';
@@ -26,7 +26,7 @@ class FormStepBuilder extends Step {
       case Section.personalInformation:
         return const PersonalInformationForm();
       case Section.contactInformation:
-        return const ContactInfoForm();
+        return const ContactInformationForm();
       case Section.academicTraining:
         return const AcademicTrainingForm();
       case Section.complementaryFormations:
