@@ -91,6 +91,9 @@ void main() {
       act: (bloc) => bloc
         ..add(const ProfessionChanged('anyProfession'))
         ..add(const ProfessionChanged('otherProfession')),
+      seed: () => initialState.copyWith(
+        isLoaded: true,
+      ),
       expect: () => <PersonalInformationFormState>[
         initialState.copyWith(
           personalInformation: initialState.personalInformation.copyWith(
@@ -115,11 +118,13 @@ void main() {
           personalInformation: initialState.personalInformation.copyWith(
             description: domain.Description('anyPersonalDescription'),
           ),
+          isLoaded: false,
         ),
         initialState.copyWith(
           personalInformation: initialState.personalInformation.copyWith(
             description: domain.Description('otherPersonalDescription'),
           ),
+          isLoaded: false,
         ),
       ],
     );

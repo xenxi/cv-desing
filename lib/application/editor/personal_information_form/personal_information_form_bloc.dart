@@ -95,5 +95,6 @@ class PersonalInformationFormBloc
         saveFailureOrSuccessOption: none(),
         showErrorMessages: false,
         personalInformation: personalInformation,
+        isLoaded: false,
       );
 }

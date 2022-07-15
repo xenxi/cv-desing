@@ -94,7 +94,7 @@ class _ProfessionField extends StatelessWidget {
     final controller = TextEditingController();
     return BlocListener<PersonalInformationFormBloc,
         PersonalInformationFormState>(
-      listenWhen: (previous, current) => previous.isLoaded != current.isLoaded,
+      listenWhen: (previous, current) => current.isLoaded,
       listener: (context, state) {
         controller.text = state.personalInformation.job
             .fold((l) => l.failedValue ?? '', (r) => r);
@@ -128,7 +128,7 @@ class _DescriptionField extends StatelessWidget {
     final controller = TextEditingController();
     return BlocListener<PersonalInformationFormBloc,
         PersonalInformationFormState>(
-      listenWhen: (previous, current) => previous.isLoaded != current.isLoaded,
+      listenWhen: (previous, current) => current.isLoaded,
       listener: (context, state) {
         controller.text = state.personalInformation.description
             .fold((l) => l.failedValue ?? '', (r) => r);
@@ -162,7 +162,7 @@ class _NameField extends StatelessWidget {
     final controller = TextEditingController();
     return BlocListener<PersonalInformationFormBloc,
         PersonalInformationFormState>(
-      listenWhen: (previous, current) => previous.isLoaded != current.isLoaded,
+      listenWhen: (previous, current) => current.isLoaded,
       listener: (context, state) {
         controller.text = state.personalInformation.name
             .fold((l) => l.failedValue ?? '', (r) => r);
@@ -197,7 +197,7 @@ class _LocalityField extends StatelessWidget {
     final controller = TextEditingController();
     return BlocListener<PersonalInformationFormBloc,
         PersonalInformationFormState>(
-      listenWhen: (previous, current) => previous.isLoaded != current.isLoaded,
+      listenWhen: (previous, current) => current.isLoaded,
       listener: (context, state) {
         controller.text = state.personalInformation.locality
             .fold((l) => l.failedValue ?? '', (r) => r);
