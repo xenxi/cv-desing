@@ -9,11 +9,7 @@ class NameField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController(
-      text: _getValue(
-        BlocProvider.of<PersonalInformationFormBloc>(context).state,
-      ),
-    );
+    final controller = _createController(context);
     return BlocListener<PersonalInformationFormBloc,
         PersonalInformationFormState>(
       listenWhen: (previous, current) =>
@@ -38,6 +34,15 @@ class NameField extends StatelessWidget {
             .fold((l) => '$l', (_) => null),
       ),
     );
+  }
+
+  TextEditingController _createController(BuildContext context) {
+    final controller = TextEditingController(
+      text: _getValue(
+        BlocProvider.of<PersonalInformationFormBloc>(context).state,
+      ),
+    );
+    return controller;
   }
 
   String _getValue(PersonalInformationFormState state) =>
