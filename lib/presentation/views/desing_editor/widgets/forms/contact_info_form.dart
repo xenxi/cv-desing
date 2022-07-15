@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'fields/phone_field.dart';
+
 class ContactInfoForm extends StatelessWidget {
   const ContactInfoForm({
     Key? key,
@@ -42,15 +44,7 @@ class ContactInfoForm extends StatelessWidget {
           child: Column(
             children: [
               const EmailField(),
-              CustomFormField(
-                initialized: state.isLoaded,
-                text: 'Tu teléfono',
-                value: state.contactInformation.phoneNumber,
-                onChanged: (val) =>
-                    BlocProvider.of<ContactInformationFormBloc>(context)
-                        .add(PhoneNumberChanged(val)),
-                icon: Icons.phone_outlined,
-              ),
+              const PhoneField(),
               CustomFormField(
                 initialized: state.isLoaded,
                 text: 'Tu Facebook',
