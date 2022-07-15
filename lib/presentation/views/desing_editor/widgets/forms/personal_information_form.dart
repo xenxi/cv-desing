@@ -3,9 +3,9 @@ import 'dart:typed_data';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/description_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/locality_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/name_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/personal_description_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/profession_field.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +54,7 @@ class PersonalInformationForm extends StatelessWidget {
               const NameField(),
               const LocalityField(),
               const ProfessionField(),
-              const DescriptionField(),
+              const PersonalDescriptionField(),
               const SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () => BlocProvider.of<PersonalInformationFormBloc>(

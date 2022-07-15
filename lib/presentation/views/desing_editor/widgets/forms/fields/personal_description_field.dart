@@ -2,8 +2,8 @@ import 'package:cv_desing_website_flutter/application/editor/personal_informatio
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DescriptionField extends StatelessWidget {
-  const DescriptionField({
+class PersonalDescriptionField extends StatelessWidget {
+  const PersonalDescriptionField({
     Key? key,
   }) : super(key: key);
 
