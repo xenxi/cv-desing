@@ -3,6 +3,10 @@ import 'dart:typed_data';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/description_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/locality_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/name_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/profession_field.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -82,142 +86,4 @@ class PersonalInformationForm extends StatelessWidget {
           (a) => null,
         ),
       );
-}
-
-class ProfessionField extends StatelessWidget {
-  const ProfessionField({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final controller = TextEditingController();
-    return BlocListener<PersonalInformationFormBloc,
-        PersonalInformationFormState>(
-      listenWhen: (previous, current) => current.isLoaded,
-      listener: (context, state) {
-        controller.text = state.personalInformation.job
-            .fold((l) => l.failedValue ?? '', (r) => r);
-      },
-      child: TextFormField(
-        controller: controller,
-        decoration: const InputDecoration(
-          icon: Icon(Icons.work_outline),
-          labelText: 'Tu profesión o actividad',
-        ),
-        onChanged: (val) =>
-            BlocProvider.of<PersonalInformationFormBloc>(context)
-                .add(ProfessionChanged(val)),
-        validator: (_) => BlocProvider.of<PersonalInformationFormBloc>(context)
-            .state
-            .personalInformation
-            .job
-            .fold((l) => '$l', (_) => null),
-      ),
-    );
-  }
-}
-
-class DescriptionField extends StatelessWidget {
-  const DescriptionField({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final controller = TextEditingController();
-    return BlocListener<PersonalInformationFormBloc,
-        PersonalInformationFormState>(
-      listenWhen: (previous, current) => current.isLoaded,
-      listener: (context, state) {
-        controller.text = state.personalInformation.description
-            .fold((l) => l.failedValue ?? '', (r) => r);
-      },
-      child: TextFormField(
-        controller: controller,
-        decoration: const InputDecoration(
-          icon: Icon(Icons.info_outline),
-          labelText: 'Algo sobre ti',
-        ),
-        onChanged: (val) =>
-            BlocProvider.of<PersonalInformationFormBloc>(context)
-                .add(PersonalDescriptionChanged(val)),
-        validator: (_) => BlocProvider.of<PersonalInformationFormBloc>(context)
-            .state
-            .personalInformation
-            .job
-            .fold((l) => '$l', (_) => null),
-      ),
-    );
-  }
-}
-
-class NameField extends StatelessWidget {
-  const NameField({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final controller = TextEditingController();
-    return BlocListener<PersonalInformationFormBloc,
-        PersonalInformationFormState>(
-      listenWhen: (previous, current) => current.isLoaded,
-      listener: (context, state) {
-        controller.text = state.personalInformation.name
-            .fold((l) => l.failedValue ?? '', (r) => r);
-      },
-      child: TextFormField(
-        controller: controller,
-        decoration: const InputDecoration(
-          icon: Icon(Icons.person_outline_outlined),
-          labelText: 'Tu nombre',
-        ),
-        onChanged: (val) =>
-            BlocProvider.of<PersonalInformationFormBloc>(context).add(
-          NameChanged(val),
-        ),
-        validator: (_) => BlocProvider.of<PersonalInformationFormBloc>(context)
-            .state
-            .personalInformation
-            .name
-            .fold((l) => '$l', (_) => null),
-      ),
-    );
-  }
-}
-
-class LocalityField extends StatelessWidget {
-  const LocalityField({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final controller = TextEditingController();
-    return BlocListener<PersonalInformationFormBloc,
-        PersonalInformationFormState>(
-      listenWhen: (previous, current) => current.isLoaded,
-      listener: (context, state) {
-        controller.text = state.personalInformation.locality
-            .fold((l) => l.failedValue ?? '', (r) => r);
-      },
-      child: TextFormField(
-        controller: controller,
-        decoration: const InputDecoration(
-          icon: Icon(Icons.location_city_outlined),
-          labelText: 'Tu localidad',
-        ),
-        onChanged: (val) =>
-            BlocProvider.of<PersonalInformationFormBloc>(context).add(
-          LocalityChanged(val),
-        ),
-        validator: (_) => BlocProvider.of<PersonalInformationFormBloc>(context)
-            .state
-            .personalInformation
-            .locality
-            .fold((l) => '$l', (_) => null),
-      ),
-    );
-  }
 }
