@@ -47,10 +47,10 @@ class PersonalInformationForm extends StatelessWidget {
                         .add(AvatarChanged()),
                 child: _buildAvatar(state.personalInformation.avatarOption),
               ),
-              const _NameField(),
-              const _LocalityField(),
-              const _ProfessionField(),
-              const _DescriptionField(),
+              const NameField(),
+              const LocalityField(),
+              const ProfessionField(),
+              const DescriptionField(),
               const SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () => BlocProvider.of<PersonalInformationFormBloc>(
@@ -84,8 +84,8 @@ class PersonalInformationForm extends StatelessWidget {
       );
 }
 
-class _ProfessionField extends StatelessWidget {
-  const _ProfessionField({
+class ProfessionField extends StatelessWidget {
+  const ProfessionField({
     Key? key,
   }) : super(key: key);
 
@@ -118,8 +118,8 @@ class _ProfessionField extends StatelessWidget {
   }
 }
 
-class _DescriptionField extends StatelessWidget {
-  const _DescriptionField({
+class DescriptionField extends StatelessWidget {
+  const DescriptionField({
     Key? key,
   }) : super(key: key);
 
@@ -152,8 +152,8 @@ class _DescriptionField extends StatelessWidget {
   }
 }
 
-class _NameField extends StatelessWidget {
-  const _NameField({
+class NameField extends StatelessWidget {
+  const NameField({
     Key? key,
   }) : super(key: key);
 
@@ -187,8 +187,8 @@ class _NameField extends StatelessWidget {
   }
 }
 
-class _LocalityField extends StatelessWidget {
-  const _LocalityField({
+class LocalityField extends StatelessWidget {
+  const LocalityField({
     Key? key,
   }) : super(key: key);
 
