@@ -12,10 +12,10 @@ class NameField extends StatelessWidget {
     final controller = TextEditingController();
     return BlocListener<PersonalInformationFormBloc,
         PersonalInformationFormState>(
-      listenWhen: (previous, current) => current.isLoaded,
+      listenWhen: (previous, current) =>
+          current.isLoaded || controller.text.isEmpty,
       listener: (context, state) {
-        controller.text = state.personalInformation.name
-            .fold((l) => l.failedValue ?? '', (r) => r);
+        controller.text = _getValue(state);
       },
       child: TextFormField(
         controller: controller,
@@ -35,4 +35,7 @@ class NameField extends StatelessWidget {
       ),
     );
   }
+
+  String _getValue(PersonalInformationFormState state) =>
+      state.personalInformation.name.fold((l) => l.failedValue ?? '', (r) => r);
 }

@@ -5,6 +5,7 @@ import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_for
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/email_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/facebook_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/phone_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/twitter_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -46,6 +47,7 @@ class ContactInfoForm extends StatelessWidget {
               const EmailField(),
               const PhoneField(),
               const FacebookField(),
+              const TwitterField(),
               CustomFormField(
                 initialized: state.isLoaded,
                 text: 'Tu Twitter',
