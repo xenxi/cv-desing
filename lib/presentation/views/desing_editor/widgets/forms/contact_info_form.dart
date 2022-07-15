@@ -32,7 +32,7 @@ class ContactInfoForm extends StatelessWidget {
         );
       },
       buildWhen: (previous, current) =>
-          previous.contactInformation != current.contactInformation,
+          previous.showErrorMessages != current.showErrorMessages,
       builder: (context, state) {
         return Form(
           autovalidateMode: state.showErrorMessages
