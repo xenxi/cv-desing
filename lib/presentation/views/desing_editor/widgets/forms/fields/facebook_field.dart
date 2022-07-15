@@ -9,16 +9,12 @@ class FacebookField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController();
+    final controller = _createController(context);
     return BlocListener<ContactInformationFormBloc,
         ContactInformationFormState>(
       listenWhen: (previous, current) => current.isLoaded,
       listener: (context, state) {
-        controller.text =
-            state.contactInformation.socialMedias.facebookOption.fold(
-          () => '',
-          (s) => s.fold((l) => l.failedValue ?? '', (r) => r),
-        );
+        controller.text = _getValue(state);
       },
       child: TextFormField(
         controller: controller,
@@ -39,4 +35,19 @@ class FacebookField extends StatelessWidget {
       ),
     );
   }
+
+  TextEditingController _createController(BuildContext context) {
+    final controller = TextEditingController(
+      text: _getValue(
+        BlocProvider.of<ContactInformationFormBloc>(context).state,
+      ),
+    );
+    return controller;
+  }
+
+  String _getValue(ContactInformationFormState state) =>
+      state.contactInformation.socialMedias.facebookOption.fold(
+        () => '',
+        (s) => s.fold((l) => l.failedValue ?? '', (r) => r),
+      );
 }

@@ -9,13 +9,12 @@ class ProfessionField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController();
+    final controller = _createController(context);
     return BlocListener<PersonalInformationFormBloc,
         PersonalInformationFormState>(
       listenWhen: (previous, current) => current.isLoaded,
       listener: (context, state) {
-        controller.text = state.personalInformation.job
-            .fold((l) => l.failedValue ?? '', (r) => r);
+        controller.text = _getValue(state);
       },
       child: TextFormField(
         controller: controller,
@@ -34,4 +33,16 @@ class ProfessionField extends StatelessWidget {
       ),
     );
   }
+
+  TextEditingController _createController(BuildContext context) {
+    final controller = TextEditingController(
+      text: _getValue(
+        BlocProvider.of<PersonalInformationFormBloc>(context).state,
+      ),
+    );
+    return controller;
+  }
+
+  String _getValue(PersonalInformationFormState state) =>
+      state.personalInformation.job.fold((l) => l.failedValue ?? '', (r) => r);
 }
