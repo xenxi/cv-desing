@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class TwitterField extends StatelessWidget {
-  const TwitterField({
+class LinkedinField extends StatelessWidget {
+  const LinkedinField({
     Key? key,
   }) : super(key: key);
 
@@ -20,12 +20,12 @@ class TwitterField extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         decoration: const InputDecoration(
-          icon: Icon(FontAwesomeIcons.twitter),
-          labelText: 'Tu Twitter',
+          icon: Icon(FontAwesomeIcons.linkedin),
+          labelText: 'Tu Linkedin',
         ),
         onChanged: (val) =>
             BlocProvider.of<ContactInformationFormBloc>(context).add(
-          TwitterUrlChanged(val),
+          LinkedinUrlChanged(val),
         ),
         validator: (_) => BlocProvider.of<ContactInformationFormBloc>(context)
             .state
@@ -47,7 +47,7 @@ class TwitterField extends StatelessWidget {
   }
 
   String _getValue(ContactInformationFormState state) =>
-      state.contactInformation.socialMedias.twitterOption.fold(
+      state.contactInformation.socialMedias.linkedinOption.fold(
         () => '',
         (s) => s.fold((l) => l.failedValue ?? '', (r) => r),
       );

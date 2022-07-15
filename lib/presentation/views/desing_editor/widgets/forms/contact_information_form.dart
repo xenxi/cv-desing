@@ -4,6 +4,7 @@ import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/email_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/facebook_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/linkedin_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/phone_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/twitter_field.dart';
 import 'package:flutter/material.dart';
@@ -48,26 +49,7 @@ class ContactInformationForm extends StatelessWidget {
               const PhoneField(),
               const FacebookField(),
               const TwitterField(),
-              CustomFormField(
-                initialized: state.isLoaded,
-                text: 'Tu Twitter',
-                value: state.contactInformation.socialMedias.twitchOption
-                    .fold(() => Url.empty(), (a) => a),
-                onChanged: (val) =>
-                    BlocProvider.of<ContactInformationFormBloc>(context)
-                        .add(TwitterUrlChanged(val)),
-                icon: FontAwesomeIcons.twitter,
-              ),
-              CustomFormField(
-                initialized: state.isLoaded,
-                text: 'Tu Linkedin',
-                value: state.contactInformation.socialMedias.linkedinOption
-                    .fold(() => Url.empty(), (a) => a),
-                onChanged: (val) =>
-                    BlocProvider.of<ContactInformationFormBloc>(context)
-                        .add(LinkedinUrlChanged(val)),
-                icon: FontAwesomeIcons.linkedin,
-              ),
+              const LinkedinField(),
               CustomFormField(
                 initialized: state.isLoaded,
                 text: 'Tu Github',
