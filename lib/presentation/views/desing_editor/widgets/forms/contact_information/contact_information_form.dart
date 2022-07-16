@@ -1,20 +1,17 @@
 import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
-import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/email_field.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/facebook_field.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/github_field.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/instagram_field.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/linkedin_field.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/personal_website_field.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/phone_field.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/twitch_field.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/twitter_field.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/youtube_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/contact_information/fields/email_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/contact_information/fields/facebook_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/contact_information/fields/github_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/contact_information/fields/instagram_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/contact_information/fields/linkedin_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/contact_information/fields/personal_website_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/contact_information/fields/phone_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/contact_information/fields/twitch_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/contact_information/fields/twitter_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/contact_information/fields/youtube_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ContactInformationForm extends StatelessWidget {
   const ContactInformationForm({
