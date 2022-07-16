@@ -4,6 +4,7 @@ import 'package:cv_desing_website_flutter/domain/value_objects/url.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/email_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/facebook_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/github_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/linkedin_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/phone_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/twitter_field.dart';
@@ -50,16 +51,7 @@ class ContactInformationForm extends StatelessWidget {
               const FacebookField(),
               const TwitterField(),
               const LinkedinField(),
-              CustomFormField(
-                initialized: state.isLoaded,
-                text: 'Tu Github',
-                value: state.contactInformation.socialMedias.githubOption
-                    .fold(() => Url.empty(), (a) => a),
-                onChanged: (val) =>
-                    BlocProvider.of<ContactInformationFormBloc>(context)
-                        .add(GithubUrlChanged(val)),
-                icon: FontAwesomeIcons.github,
-              ),
+              const GithubField(),
               CustomFormField(
                 initialized: state.isLoaded,
                 text: 'Tu Instagram',
