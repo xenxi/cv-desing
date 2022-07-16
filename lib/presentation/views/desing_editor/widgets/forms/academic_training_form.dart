@@ -63,16 +63,6 @@ class AcademicTrainingForm extends StatelessWidget {
                 const TitleField(),
                 CustomFormField(
                   initialized: state.isLoaded,
-                  text: 'Titulo',
-                  icon: Icons.science_outlined,
-                  value: state.academyTraining.title,
-                  onChanged: (val) =>
-                      BlocProvider.of<AcademyTrainingFormBloc>(context).add(
-                    TitleChanged(val),
-                  ),
-                ),
-                CustomFormField(
-                  initialized: state.isLoaded,
                   text: 'Escuela, instito o universidad',
                   icon: Icons.school_outlined,
                   value: state.academyTraining.schoold,
