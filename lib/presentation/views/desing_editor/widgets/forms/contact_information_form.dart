@@ -56,26 +56,6 @@ class ContactInformationForm extends StatelessWidget {
               const InstagramField(),
               CustomFormField(
                 initialized: state.isLoaded,
-                text: 'Tu Youtube',
-                value: state.contactInformation.socialMedias.youtubeOption
-                    .fold(() => Url.empty(), (a) => a),
-                onChanged: (val) =>
-                    BlocProvider.of<ContactInformationFormBloc>(context)
-                        .add(YoutubeUrlChanged(val)),
-                icon: FontAwesomeIcons.youtube,
-              ),
-              CustomFormField(
-                initialized: state.isLoaded,
-                text: 'Tu Twitch',
-                value: state.contactInformation.socialMedias.twitchOption
-                    .fold(() => Url.empty(), (a) => a),
-                onChanged: (val) =>
-                    BlocProvider.of<ContactInformationFormBloc>(context)
-                        .add(TwitchUrlChanged(val)),
-                icon: FontAwesomeIcons.twitch,
-              ),
-              CustomFormField(
-                initialized: state.isLoaded,
                 text: 'Tu WebSite',
                 value: state.contactInformation.socialMedias.personalOption
                     .fold(() => Url.empty(), (a) => a),
