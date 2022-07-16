@@ -2,7 +2,7 @@ import 'package:cv_desing_website_flutter/application/editor/academy_training_fo
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/academy_training.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_date_range_picker.dart';
-import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/academic_training/fields/school_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/academic_training/fields/title_field.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -61,16 +61,7 @@ class AcademicTrainingForm extends StatelessWidget {
             child: Column(
               children: [
                 const TitleField(),
-                CustomFormField(
-                  initialized: state.isLoaded,
-                  text: 'Escuela, instito o universidad',
-                  icon: Icons.school_outlined,
-                  value: state.academyTraining.schoold,
-                  onChanged: (val) =>
-                      BlocProvider.of<AcademyTrainingFormBloc>(context).add(
-                    SchooldChanged(val),
-                  ),
-                ),
+                const SchooldField(),
                 CustomDateRangePicker(
                   dateRange: state.academyTraining.dateRange,
                   onChanged: (start, end) =>
