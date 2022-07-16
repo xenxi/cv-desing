@@ -13,19 +13,21 @@ class AcademicTrainingForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CvEditorBloc, CvEditorState>(
-      builder: (context, state) {
-        return Column(
-          children: [
-            _buildAcademyTraining(),
-            ...state.resume.academyTrainings.value.map(
-              (academyTraining) => _buildAcademyTraining(
-                editedAcademicTraining: academyTraining,
+    return SingleChildScrollView(
+      child: BlocBuilder<CvEditorBloc, CvEditorState>(
+        builder: (context, state) {
+          return Column(
+            children: [
+              _buildAcademyTraining(),
+              ...state.resume.academyTrainings.value.map(
+                (academyTraining) => _buildAcademyTraining(
+                  editedAcademicTraining: academyTraining,
+                ),
               ),
-            ),
-          ],
-        );
-      },
+            ],
+          );
+        },
+      ),
     );
   }
 
