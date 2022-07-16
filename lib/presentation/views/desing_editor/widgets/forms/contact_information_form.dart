@@ -7,8 +7,11 @@ import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widge
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/github_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/instagram_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/linkedin_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/personal_website_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/phone_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/twitch_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/twitter_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/youtube_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -54,16 +57,9 @@ class ContactInformationForm extends StatelessWidget {
               const LinkedinField(),
               const GithubField(),
               const InstagramField(),
-              CustomFormField(
-                initialized: state.isLoaded,
-                text: 'Tu WebSite',
-                value: state.contactInformation.socialMedias.personalOption
-                    .fold(() => Url.empty(), (a) => a),
-                onChanged: (val) =>
-                    BlocProvider.of<ContactInformationFormBloc>(context)
-                        .add(PersonalUrlChanged(val)),
-                icon: Icons.web,
-              ),
+              const TwitchField(),
+              const YoutubeField(),
+              const PersonalWebSiteField(),
               const SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () => BlocProvider.of<ContactInformationFormBloc>(
