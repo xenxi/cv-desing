@@ -3,6 +3,7 @@ import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart
 import 'package:cv_desing_website_flutter/domain/resumes/entities/academy_training.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_date_range_picker.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_form_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/youtube_field%20copy.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,6 +58,7 @@ class AcademicTrainingForm extends StatelessWidget {
                 : AutovalidateMode.disabled,
             child: Column(
               children: [
+                const TitleField(),
                 CustomFormField(
                   initialized: state.isLoaded,
                   text: 'Titulo',
