@@ -5,6 +5,7 @@ import 'package:cv_desing_website_flutter/presentation/shared/widgets/custom_for
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/email_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/facebook_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/github_field.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/instagram_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/linkedin_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/phone_field.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/forms/fields/twitter_field.dart';
@@ -52,16 +53,7 @@ class ContactInformationForm extends StatelessWidget {
               const TwitterField(),
               const LinkedinField(),
               const GithubField(),
-              CustomFormField(
-                initialized: state.isLoaded,
-                text: 'Tu Instagram',
-                value: state.contactInformation.socialMedias.instagramOption
-                    .fold(() => Url.empty(), (a) => a),
-                onChanged: (val) =>
-                    BlocProvider.of<ContactInformationFormBloc>(context)
-                        .add(InstagramUrlChanged(val)),
-                icon: FontAwesomeIcons.instagram,
-              ),
+              const InstagramField(),
               CustomFormField(
                 initialized: state.isLoaded,
                 text: 'Tu Youtube',
