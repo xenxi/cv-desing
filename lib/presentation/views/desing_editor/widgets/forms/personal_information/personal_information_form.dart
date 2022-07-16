@@ -71,7 +71,9 @@ class PersonalInformationForm extends StatelessWidget {
   }
 
   Widget _buildAvatar(Option<Uint8List> avatarOption) => CircleAvatar(
-        backgroundColor: CustomTheme.primaryColor,
+        backgroundColor: avatarOption.isSome()
+            ? Colors.transparent
+            : CustomTheme.primaryColor,
         backgroundImage: avatarOption.fold(
           () => null,
           (a) => MemoryImage(a),
