@@ -7,4 +7,12 @@ class CvEditorActorState extends Equatable {
   final CvTemplates template;
   @override
   List<Object> get props => [template];
+
+  CvEditorActorState copyWith({
+    CvTemplates? template,
+  }) {
+    return CvEditorActorState(
+      template: template ?? this.template,
+    );
+  }
 }
