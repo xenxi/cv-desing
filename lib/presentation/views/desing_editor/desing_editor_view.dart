@@ -108,7 +108,10 @@ class DesingEditorView extends StatelessWidget {
                                   Radio<CvTemplates>(
                                     value: e,
                                     groupValue: state.template,
-                                    onChanged: (_) {},
+                                    onChanged: (_) =>
+                                        BlocProvider.of<CvEditorActorBloc>(
+                                                context)
+                                            .add(TemplateChanged(e)),
                                   ),
                                   Text(e.name)
                                 ],
