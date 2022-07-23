@@ -1,6 +1,5 @@
 import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_editor_actor_bloc.dart';
-import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_templates.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
@@ -8,6 +7,7 @@ import 'package:cv_desing_website_flutter/presentation/core/dependency_injection
 import 'package:cv_desing_website_flutter/presentation/shared/components/adaptative_funtions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/example_resume_data.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/pdf_resume_builder.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/cv_template_button.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/desktop/resume_form.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/mobile/resume_form_mobile.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/resume_preview.dart';
@@ -93,36 +93,7 @@ class DesingEditorView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Card(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ...CvTemplates.values.map(
-                          (e) => Row(
-                            children: [
-                              Row(
-                                children: [
-                                  Radio<CvTemplates>(
-                                    value: e,
-                                    groupValue: state.template,
-                                    onChanged: (_) =>
-                                        BlocProvider.of<CvEditorActorBloc>(
-                                                context)
-                                            .add(TemplateChanged(e)),
-                                  ),
-                                  Text(e.name)
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                const CvTemplateButton(),
                 Row(
                   children: [
                     ElevatedButton.icon(
