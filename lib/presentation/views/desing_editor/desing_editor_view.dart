@@ -1,4 +1,6 @@
 import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
+import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_editor_actor_bloc.dart';
+import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_templates.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
@@ -28,6 +30,9 @@ class DesingEditorView extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getIt<ContactInformationFormBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<CvEditorActorBloc>(),
         ),
       ],
       child: isMobileScreen(context)
@@ -60,12 +65,13 @@ class DesingEditorView extends StatelessWidget {
         body: TabBarView(
           children: [
             const ResumeFormMobile(),
-            BlocBuilder<CvEditorBloc, CvEditorState>(
+            BlocBuilder<CvEditorActorBloc, CvEditorActorState>(
               buildWhen: (previous, current) =>
-                  previous.resume != current.resume,
+                  previous.template != current.template,
               builder: (context, state) {
                 return ResumePreview(
-                  resume: state.resume,
+                  resume: BlocProvider.of<CvEditorBloc>(context).state.resume,
+                  template: state.template,
                 );
               },
             ),
@@ -76,8 +82,8 @@ class DesingEditorView extends StatelessWidget {
   }
 
   Widget _buildPreview() {
-    return BlocBuilder<CvEditorBloc, CvEditorState>(
-      buildWhen: (previous, current) => previous.resume != current.resume,
+    return BlocBuilder<CvEditorActorBloc, CvEditorActorState>(
+      buildWhen: (previous, current) => previous.template != current.template,
       builder: (context, state) {
         return Expanded(
           child: Container(
@@ -85,7 +91,35 @@ class DesingEditorView extends StatelessWidget {
             color: const Color.fromRGBO(243, 245, 250, 1),
             // color: const Color.fromRGBO(249, 250, 253, 1),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Card(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ...CvTemplates.values.map(
+                          (e) => Row(
+                            children: [
+                              Row(
+                                children: [
+                                  Radio<CvTemplates>(
+                                    value: e,
+                                    groupValue: state.template,
+                                    onChanged: (_) {},
+                                  ),
+                                  Text(e.name)
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 Row(
                   children: [
                     ElevatedButton.icon(
@@ -97,7 +131,7 @@ class DesingEditorView extends StatelessWidget {
                       width: 12,
                     ),
                     OutlinedButton.icon(
-                      onPressed: () async => download(ExampleResumeData.jonDoe),
+                      onPressed: () async => download(context),
                       icon: const Icon(Icons.download),
                       label: const Text('Descargar'),
                     ),
@@ -105,7 +139,7 @@ class DesingEditorView extends StatelessWidget {
                       width: 12,
                     ),
                     OutlinedButton.icon(
-                      onPressed: () async => print(ExampleResumeData.jonDoe),
+                      onPressed: () async => print(context),
                       icon: const Icon(Icons.print),
                       label: const Text('Imprimir'),
                     ),
@@ -130,7 +164,8 @@ class DesingEditorView extends StatelessWidget {
                 const SizedBox(height: 8),
                 Expanded(
                   child: ResumePreview(
-                    resume: state.resume,
+                    resume: BlocProvider.of<CvEditorBloc>(context).state.resume,
+                    template: state.template,
                   ),
                 ),
               ],
@@ -141,16 +176,23 @@ class DesingEditorView extends StatelessWidget {
     );
   }
 
-  Future<void> print(Resume resume) async {
-    final doc = PdfResumeBuilder.build(resume).then((value) => value.save());
+  Future<void> print(BuildContext context) async {
+    final resume = BlocProvider.of<CvEditorBloc>(context).state.resume;
+    final template = BlocProvider.of<CvEditorActorBloc>(context).state.template;
+
+    final doc = PdfResumeBuilder.build(resume, template: template)
+        .then((value) => value.save());
     await Printing.layoutPdf(
       onLayout: (format) => doc,
       name: _fileName(resume),
     );
   }
 
-  Future<void> download(Resume resume) async {
-    final doc = PdfResumeBuilder.build(resume).then((value) => value.save());
+  Future<void> download(BuildContext context) async {
+    final resume = BlocProvider.of<CvEditorBloc>(context).state.resume;
+    final template = BlocProvider.of<CvEditorActorBloc>(context).state.template;
+    final doc = PdfResumeBuilder.build(resume, template: template)
+        .then((value) => value.save());
     await Printing.sharePdf(bytes: await doc, filename: _fileName(resume));
   }
 

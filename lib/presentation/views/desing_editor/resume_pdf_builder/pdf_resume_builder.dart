@@ -1,12 +1,21 @@
+import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_templates.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/green_resume.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/pink/pink_resume.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 class PdfResumeBuilder {
-  static Future<pw.Document> build(Resume resume) {
-    return GreenResume(resume).build();
+  static Future<pw.Document> build(
+    Resume resume, {
+    required CvTemplates template,
+  }) async {
+    switch (template) {
+      case CvTemplates.green:
+        return GreenResume(resume).build();
+      case CvTemplates.pink:
+        return PinkResume(resume).build();
+    }
 
-    return PinkResume(resume).build();
+    return Future.error('Template not found');
   }
 }

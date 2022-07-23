@@ -1,3 +1,4 @@
+import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_templates.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/pdf_resume_builder.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +16,10 @@ class ResumePreview extends StatelessWidget {
   const ResumePreview({
     Key? key,
     required this.resume,
+    required this.template,
   }) : super(key: key);
   final Resume resume;
-
+  final CvTemplates template;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,7 +52,7 @@ class ResumePreview extends StatelessWidget {
           }
           return Container();
         },
-        future: PdfResumeBuilder.build(resume),
+        future: PdfResumeBuilder.build(resume, template: template),
       ),
     );
   }
