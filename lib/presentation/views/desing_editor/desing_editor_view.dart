@@ -83,7 +83,6 @@ class DesingEditorView extends StatelessWidget {
 
   Widget _buildPreview() {
     return BlocBuilder<CvEditorActorBloc, CvEditorActorState>(
-      buildWhen: (previous, current) => previous.template != current.template,
       builder: (context, state) {
         return Expanded(
           child: Container(
