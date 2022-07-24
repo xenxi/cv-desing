@@ -41,7 +41,6 @@ class CvDesingApp extends StatelessWidget {
           builder: (context, child) {
             return BlocBuilder<NavigationBloc, NavigationState>(
               builder: (context, state) {
-                print(state);
                 if (state.path == AppRouter.editor) {
                   return EditorLayout(child: child!);
                 }

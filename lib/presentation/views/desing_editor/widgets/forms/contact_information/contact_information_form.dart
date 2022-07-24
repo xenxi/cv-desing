@@ -46,25 +46,17 @@ class ContactInformationForm extends StatelessWidget {
               ? AutovalidateMode.always
               : AutovalidateMode.disabled,
           child: Column(
-            children: [
-              const EmailField(),
-              const PhoneField(),
-              const FacebookField(),
-              const TwitterField(),
-              const LinkedinField(),
-              const GithubField(),
-              const InstagramField(),
-              const TwitchField(),
-              const YoutubeField(),
-              const PersonalWebSiteField(),
-              const SizedBox(height: 20),
-              ElevatedButton.icon(
-                onPressed: () => BlocProvider.of<ContactInformationFormBloc>(
-                  context,
-                ).add(Saved()),
-                icon: const Icon(Icons.save_alt_outlined),
-                label: const Text('Guardar'),
-              ),
+            children: const [
+              EmailField(),
+              PhoneField(),
+              FacebookField(),
+              TwitterField(),
+              LinkedinField(),
+              GithubField(),
+              InstagramField(),
+              TwitchField(),
+              YoutubeField(),
+              PersonalWebSiteField(),
             ],
           ),
         );

@@ -115,7 +115,7 @@ class DesingEditorView extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             vertical: 12.5, horizontal: 8),
                       ),
-                      onPressed: () async => print(context),
+                      onPressed: () async => printResume(context),
                       icon: const Icon(Icons.print),
                       label: const Text('Imprimir'),
                     ),
@@ -148,7 +148,7 @@ class DesingEditorView extends StatelessWidget {
                 const SizedBox(height: 8),
                 Expanded(
                   child: ResumePreview(
-                    resume: BlocProvider.of<CvEditorBloc>(context).state.resume,
+                    resume: state.resume,
                     template: state.template,
                   ),
                 ),
@@ -160,7 +160,7 @@ class DesingEditorView extends StatelessWidget {
     );
   }
 
-  Future<void> print(BuildContext context) async {
+  Future<void> printResume(BuildContext context) async {
     final resume = BlocProvider.of<CvEditorBloc>(context).state.resume;
     final template = BlocProvider.of<CvEditorActorBloc>(context).state.template;
 

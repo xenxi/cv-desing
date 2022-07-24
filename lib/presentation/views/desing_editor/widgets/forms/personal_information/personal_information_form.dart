@@ -56,13 +56,6 @@ class PersonalInformationForm extends StatelessWidget {
               const ProfessionField(),
               const PersonalDescriptionField(),
               const SizedBox(height: 20),
-              ElevatedButton.icon(
-                onPressed: () => BlocProvider.of<PersonalInformationFormBloc>(
-                  context,
-                ).add(Saved()),
-                icon: const Icon(Icons.save_alt_outlined),
-                label: const Text('Guardar'),
-              ),
             ],
           ),
         );
