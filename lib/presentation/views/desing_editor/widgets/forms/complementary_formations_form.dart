@@ -14,15 +14,17 @@ class ComplementaryFormationsForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CvEditorBloc, CvEditorState>(
       builder: (context, state) {
-        return Column(
-          children: [
-            _buildComplementaryTraining(),
-            ...state.resume.complementaryTrainings.value.map(
-              (complementaryTraining) => _buildComplementaryTraining(
-                editedComplementaryTraining: complementaryTraining,
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildComplementaryTraining(),
+              ...state.resume.complementaryTrainings.value.map(
+                (complementaryTraining) => _buildComplementaryTraining(
+                  editedComplementaryTraining: complementaryTraining,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
     );

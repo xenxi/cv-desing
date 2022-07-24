@@ -29,6 +29,7 @@ class FormBuilder extends StatelessWidget {
       },
       child: PageView(
         scrollDirection: Axis.vertical,
+        physics: const NeverScrollableScrollPhysics(),
         controller: controller,
         onPageChanged: (index) => BlocProvider.of<CvEditorBloc>(context)
             .add(SectionChanged(section: Section.values[index])),

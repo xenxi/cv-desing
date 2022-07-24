@@ -16,15 +16,17 @@ class WorkExperienceForm extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.resume.workExperiences != current.resume.workExperiences,
       builder: (context, state) {
-        return Column(
-          children: [
-            _buildWorkExperience(),
-            ...state.resume.workExperiences.value.map(
-              (workExperience) => _buildWorkExperience(
-                editedWorkExperience: workExperience,
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildWorkExperience(),
+              ...state.resume.workExperiences.value.map(
+                (workExperience) => _buildWorkExperience(
+                  editedWorkExperience: workExperience,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
     );
