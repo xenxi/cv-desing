@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_templates.dart';
+import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
@@ -12,6 +13,8 @@ class CvEditorActorBloc extends Bloc<CvEditorActorEvent, CvEditorActorState> {
     on<CvEditorActorEvent>((event, emit) {
       if (event is TemplateChanged) {
         emit(state.copyWith(template: event.template));
+      } else if (event is ResumeChanged) {
+        emit(state.copyWith(resume: event.resume));
       }
     });
   }

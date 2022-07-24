@@ -14,3 +14,11 @@ class TemplateChanged extends CvEditorActorEvent {
   @override
   List<Object> get props => [template];
 }
+
+class ResumeChanged extends CvEditorActorEvent {
+  const ResumeChanged(this.resume);
+  final Resume resume;
+
+  @override
+  List<Object> get props => [resume];
+}
