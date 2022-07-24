@@ -1,6 +1,6 @@
-import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_editor_actor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/value_object_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,50 +11,33 @@ class NameField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = _createController(context);
-    final focusNode = FocusNode();
+    final name = _getName(context);
+    final controller = ValueObjectTextField.controllerFrom(name);
     return BlocListener<PersonalInformationFormBloc,
         PersonalInformationFormState>(
       listenWhen: (previous, current) =>
           current.isLoaded || controller.text.isEmpty,
       listener: (context, state) {
-        controller.text = _getValue(state);
+        controller.text =
+            ValueObjectTextField.valueFrom(state.personalInformation.name);
       },
-      child: TextFormField(
+      child: ValueObjectTextField(
         controller: controller,
-        focusNode: focusNode
-          ..addListener(() {
-            if (!focusNode.hasFocus) {
-              BlocProvider.of<PersonalInformationFormBloc>(context)
-                  .add(Saved());
-            }
-          }),
-        decoration: const InputDecoration(
-          icon: Icon(Icons.person_outline_outlined),
-          labelText: 'Tu nombre',
-        ),
+        onLoseFocus: () =>
+            BlocProvider.of<PersonalInformationFormBloc>(context).add(Saved()),
+        icon: Icons.person_outline_outlined,
+        label: 'Tu nombre',
         onChanged: (val) =>
             BlocProvider.of<PersonalInformationFormBloc>(context).add(
           NameChanged(val),
         ),
-        validator: (_) => BlocProvider.of<PersonalInformationFormBloc>(context)
-            .state
-            .personalInformation
-            .name
-            .fold((l) => '$l', (_) => null),
+        validator: (_) => _getName(context).fold((l) => '$l', (_) => null),
       ),
     );
   }
 
-  TextEditingController _createController(BuildContext context) {
-    final controller = TextEditingController(
-      text: _getValue(
-        BlocProvider.of<PersonalInformationFormBloc>(context).state,
-      ),
-    );
-    return controller;
+  Name _getName(BuildContext context) {
+    final bloc = BlocProvider.of<PersonalInformationFormBloc>(context);
+    return bloc.state.personalInformation.name;
   }
-
-  String _getValue(PersonalInformationFormState state) =>
-      state.personalInformation.name.fold((l) => l.failedValue ?? '', (r) => r);
 }

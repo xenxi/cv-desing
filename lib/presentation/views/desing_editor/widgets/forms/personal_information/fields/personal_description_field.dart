@@ -1,4 +1,6 @@
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/description.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/value_object_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,41 +11,32 @@ class PersonalDescriptionField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = _createController(context);
+    final description = _getDescription(context);
+    final controller = ValueObjectTextField.controllerFrom(description);
     return BlocListener<PersonalInformationFormBloc,
         PersonalInformationFormState>(
       listenWhen: (previous, current) => current.isLoaded,
       listener: (context, state) {
-        controller.text = _getValue(state);
+        controller.text = ValueObjectTextField.valueFrom(
+            state.personalInformation.description);
       },
-      child: TextFormField(
+      child: ValueObjectTextField(
         controller: controller,
-        decoration: const InputDecoration(
-          icon: Icon(Icons.info_outline),
-          labelText: 'Algo sobre ti',
-        ),
+        onLoseFocus: () =>
+            BlocProvider.of<PersonalInformationFormBloc>(context).add(Saved()),
+        icon: Icons.info_outline,
+        label: 'Algo sobre ti',
         onChanged: (val) =>
             BlocProvider.of<PersonalInformationFormBloc>(context)
                 .add(PersonalDescriptionChanged(val)),
-        validator: (_) => BlocProvider.of<PersonalInformationFormBloc>(context)
-            .state
-            .personalInformation
-            .job
-            .fold((l) => '$l', (_) => null),
+        validator: (_) =>
+            _getDescription(context).fold((l) => '$l', (_) => null),
       ),
     );
   }
 
-  TextEditingController _createController(BuildContext context) {
-    final controller = TextEditingController(
-      text: _getValue(
-        BlocProvider.of<PersonalInformationFormBloc>(context).state,
-      ),
-    );
-    return controller;
+  Description _getDescription(BuildContext context) {
+    final bloc = BlocProvider.of<PersonalInformationFormBloc>(context);
+    return bloc.state.personalInformation.description;
   }
-
-  String _getValue(PersonalInformationFormState state) =>
-      state.personalInformation.description
-          .fold((l) => l.failedValue ?? '', (r) => r);
 }

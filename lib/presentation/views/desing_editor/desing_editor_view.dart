@@ -148,7 +148,7 @@ class DesingEditorView extends StatelessWidget {
                 const SizedBox(height: 8),
                 Expanded(
                   child: ResumePreview(
-                    resume: state.resume,
+                    resume: BlocProvider.of<CvEditorBloc>(context).state.resume,
                     template: state.template,
                   ),
                 ),

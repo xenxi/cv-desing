@@ -1,4 +1,6 @@
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/widgets/value_object_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,42 +11,32 @@ class LocalityField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = _createController(context);
+    final locality = _getLocality(context);
+    final controller = ValueObjectTextField.controllerFrom(locality);
     return BlocListener<PersonalInformationFormBloc,
         PersonalInformationFormState>(
       listenWhen: (previous, current) => current.isLoaded,
       listener: (context, state) {
-        controller.text = _getValue(state);
+        controller.text =
+            ValueObjectTextField.valueFrom(state.personalInformation.locality);
       },
-      child: TextFormField(
+      child: ValueObjectTextField(
+        onLoseFocus: () =>
+            BlocProvider.of<PersonalInformationFormBloc>(context).add(Saved()),
         controller: controller,
-        decoration: const InputDecoration(
-          icon: Icon(Icons.location_city_outlined),
-          labelText: 'Tu localidad',
-        ),
+        icon: Icons.location_city_outlined,
+        label: 'Tu localidad',
         onChanged: (val) =>
             BlocProvider.of<PersonalInformationFormBloc>(context).add(
           LocalityChanged(val),
         ),
-        validator: (_) => BlocProvider.of<PersonalInformationFormBloc>(context)
-            .state
-            .personalInformation
-            .locality
-            .fold((l) => '$l', (_) => null),
+        validator: (_) => _getLocality(context).fold((l) => '$l', (_) => null),
       ),
     );
   }
 
-  TextEditingController _createController(BuildContext context) {
-    final controller = TextEditingController(
-      text: _getValue(
-        BlocProvider.of<PersonalInformationFormBloc>(context).state,
-      ),
-    );
-    return controller;
+  Locality _getLocality(BuildContext context) {
+    final bloc = BlocProvider.of<PersonalInformationFormBloc>(context);
+    return bloc.state.personalInformation.locality;
   }
-
-  String _getValue(PersonalInformationFormState state) =>
-      state.personalInformation.locality
-          .fold((l) => l.failedValue ?? '', (r) => r);
 }
