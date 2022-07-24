@@ -92,18 +92,17 @@ class DesingEditorView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CvTemplateButton(),
-                Row(
+                Wrap(
                   children: [
-                    ElevatedButton.icon(
-                      onPressed: () {},
-                      icon: const Icon(Icons.art_track),
-                      label: const Text('Cambiar diseño'),
-                    ),
+                    const CvTemplateButton(),
                     const SizedBox(
                       width: 12,
                     ),
                     OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12.5, horizontal: 8),
+                      ),
                       onPressed: () async => download(context),
                       icon: const Icon(Icons.download),
                       label: const Text('Descargar'),
@@ -112,6 +111,10 @@ class DesingEditorView extends StatelessWidget {
                       width: 12,
                     ),
                     OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12.5, horizontal: 8),
+                      ),
                       onPressed: () async => print(context),
                       icon: const Icon(Icons.print),
                       label: const Text('Imprimir'),
@@ -120,6 +123,10 @@ class DesingEditorView extends StatelessWidget {
                       width: 12,
                     ),
                     OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12.5, horizontal: 8),
+                      ),
                       onPressed: () => _clear(context),
                       icon: const Icon(Icons.clear),
                       label: const Text('Limpiar'),
@@ -128,6 +135,10 @@ class DesingEditorView extends StatelessWidget {
                       width: 12,
                     ),
                     OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12.5, horizontal: 8),
+                      ),
                       onPressed: () => _loadDemoData(context),
                       icon: const Icon(Icons.import_contacts),
                       label: const Text('Cargar datos de ejemplo'),
