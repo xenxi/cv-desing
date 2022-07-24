@@ -1,4 +1,6 @@
+import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_editor_actor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
+import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,6 +12,7 @@ class NameField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = _createController(context);
+    final focusNode = FocusNode();
     return BlocListener<PersonalInformationFormBloc,
         PersonalInformationFormState>(
       listenWhen: (previous, current) =>
@@ -19,6 +22,13 @@ class NameField extends StatelessWidget {
       },
       child: TextFormField(
         controller: controller,
+        focusNode: focusNode
+          ..addListener(() {
+            if (!focusNode.hasFocus) {
+              BlocProvider.of<PersonalInformationFormBloc>(context)
+                  .add(Saved());
+            }
+          }),
         decoration: const InputDecoration(
           icon: Icon(Icons.person_outline_outlined),
           labelText: 'Tu nombre',
