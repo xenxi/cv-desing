@@ -1,6 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
+import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_templates.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/entities/academy_training.dart';
@@ -169,6 +170,8 @@ class CvEditorBloc extends Bloc<CvEditorEvent, CvEditorState> {
             .add(ContactInformationLoaded(ContactInformation.empty()));
         personalInformationFormBloc
             .add(PersonalInformationLoaded(PersonalInformation.empty()));
+      } else if (event is TemplateChanged) {
+        emit(state.copyWith(template: event.template));
       }
     });
   }

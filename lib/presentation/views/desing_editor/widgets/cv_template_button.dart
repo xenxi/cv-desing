@@ -1,5 +1,5 @@
-import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_editor_actor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_templates.dart';
+import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +11,7 @@ class CvTemplateButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CvEditorActorBloc, CvEditorActorState>(
+    return BlocBuilder<CvEditorBloc, CvEditorState>(
       buildWhen: (previous, current) => previous.template != current.template,
       builder: (context, state) {
         return Card(
@@ -39,7 +39,7 @@ class CvTemplateButton extends StatelessWidget {
                             value: e,
                             groupValue: state.template,
                             onChanged: (_) =>
-                                BlocProvider.of<CvEditorActorBloc>(context)
+                                BlocProvider.of<CvEditorBloc>(context)
                                     .add(TemplateChanged(e)),
                           ),
                           Text(

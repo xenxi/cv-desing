@@ -162,3 +162,11 @@ class Cleaned extends CvEditorEvent {
   @override
   List<Object?> get props => [];
 }
+
+class TemplateChanged extends CvEditorEvent {
+  const TemplateChanged(this.template);
+  final CvTemplates template;
+
+  @override
+  List<Object> get props => [template];
+}

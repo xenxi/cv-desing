@@ -11,9 +11,7 @@ part 'cv_editor_actor_state.dart';
 class CvEditorActorBloc extends Bloc<CvEditorActorEvent, CvEditorActorState> {
   CvEditorActorBloc() : super(CvEditorActorState.initial()) {
     on<CvEditorActorEvent>((event, emit) {
-      if (event is TemplateChanged) {
-        emit(state.copyWith(template: event.template));
-      } else if (event is ResumeChanged) {
+      if (event is ResumeChanged) {
         emit(state.copyWith(resume: event.resume));
       }
     });

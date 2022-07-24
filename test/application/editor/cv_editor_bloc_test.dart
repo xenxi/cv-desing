@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
+import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_templates.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
@@ -52,6 +53,7 @@ void main() {
   });
   final initialState = CvEditorState(
     section: Section.personalInformation,
+    template: CvTemplates.green,
     resume: Resume(
       academyTrainings: const AcademyTrainings([]),
       complementaryTrainings: const ComplementaryTrainings([]),
@@ -612,6 +614,22 @@ void main() {
       initialState.copyWith(
         resume: Resume.empty(),
         section: Section.contactInformation,
+      ),
+    ],
+  );
+
+  blocTest<CvEditorBloc, CvEditorState>(
+    'update template',
+    build: () => bloc,
+    act: (bloc) => bloc
+      ..add(const TemplateChanged(CvTemplates.pink))
+      ..add(const TemplateChanged(CvTemplates.green)),
+    expect: () => <CvEditorState>[
+      initialState.copyWith(
+        template: CvTemplates.pink,
+      ),
+      initialState.copyWith(
+        template: CvTemplates.green,
       ),
     ],
   );

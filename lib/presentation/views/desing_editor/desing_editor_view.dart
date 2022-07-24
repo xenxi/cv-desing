@@ -65,12 +65,13 @@ class DesingEditorView extends StatelessWidget {
         body: TabBarView(
           children: [
             const ResumeFormMobile(),
-            BlocBuilder<CvEditorActorBloc, CvEditorActorState>(
+            BlocBuilder<CvEditorBloc, CvEditorState>(
               buildWhen: (previous, current) =>
-                  previous.template != current.template,
+                  previous.template != current.template ||
+                  previous.resume != current.resume,
               builder: (context, state) {
                 return ResumePreview(
-                  resume: BlocProvider.of<CvEditorBloc>(context).state.resume,
+                  resume: state.resume,
                   template: state.template,
                 );
               },
@@ -82,7 +83,7 @@ class DesingEditorView extends StatelessWidget {
   }
 
   Widget _buildPreview() {
-    return BlocBuilder<CvEditorActorBloc, CvEditorActorState>(
+    return BlocBuilder<CvEditorBloc, CvEditorState>(
       builder: (context, state) {
         return Expanded(
           child: Container(
@@ -148,7 +149,7 @@ class DesingEditorView extends StatelessWidget {
                 const SizedBox(height: 8),
                 Expanded(
                   child: ResumePreview(
-                    resume: BlocProvider.of<CvEditorBloc>(context).state.resume,
+                    resume: state.resume,
                     template: state.template,
                   ),
                 ),
@@ -161,8 +162,9 @@ class DesingEditorView extends StatelessWidget {
   }
 
   Future<void> printResume(BuildContext context) async {
-    final resume = BlocProvider.of<CvEditorBloc>(context).state.resume;
-    final template = BlocProvider.of<CvEditorActorBloc>(context).state.template;
+    // final resume = BlocProvider.of<CvEditorBloc>(context).state.resume;
+    final resume = ExampleResumeData.jonDoe;
+    final template = BlocProvider.of<CvEditorBloc>(context).state.template;
 
     final doc = PdfResumeBuilder.build(resume, template: template)
         .then((value) => value.save());
@@ -173,10 +175,12 @@ class DesingEditorView extends StatelessWidget {
   }
 
   Future<void> download(BuildContext context) async {
-    final resume = BlocProvider.of<CvEditorBloc>(context).state.resume;
-    final template = BlocProvider.of<CvEditorActorBloc>(context).state.template;
-    final doc = PdfResumeBuilder.build(resume, template: template)
-        .then((value) => value.save());
+    // final resume = BlocProvider.of<CvEditorBloc>(context).state.resume;
+    final resume = ExampleResumeData.jonDoe;
+    final template = BlocProvider.of<CvEditorBloc>(context).state.template;
+    final doc =
+        PdfResumeBuilder.build(ExampleResumeData.jonDoe, template: template)
+            .then((value) => value.save());
     await Printing.sharePdf(bytes: await doc, filename: _fileName(resume));
   }
 
