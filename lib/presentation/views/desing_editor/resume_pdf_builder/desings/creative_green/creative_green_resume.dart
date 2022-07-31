@@ -67,63 +67,94 @@ class CreativeGreenResume {
                 imageOption: resume.personalInformation.avatarOption,
                 rounded: false,
               ),
-              if (resume.personalInformation.locality.isValid())
-                pw.Column(children: [
-                  SubCategory(text: Location.address, color: green),
-                  _buildLocality(
-                    context,
-                    locality: resume.personalInformation.locality,
-                  )
-                ]),
-              if (resume.skills.value.isNotEmpty)
-                pw.Column(
+              pw.Padding(
+                padding: const pw.EdgeInsets.symmetric(horizontal: 12),
+                child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.center,
+                  mainAxisAlignment: pw.MainAxisAlignment.spaceAround,
                   children: [
-                    SubCategory(text: 'Habilidades', color: green),
-                    pw.Wrap(
-                      children: [
-                        ...resume.skills.value.map(
-                          (skill) => pw.Container(
-                            margin: const pw.EdgeInsets.all(1),
-                            padding: const pw.EdgeInsets.symmetric(
-                              vertical: 2,
-                              horizontal: 4,
-                            ),
-                            decoration: pw.BoxDecoration(
-                              color: green,
-                              borderRadius: pw.BorderRadius.circular(8),
-                            ),
-                            child: pw.Text(
-                              skill,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              if (resume.languages.value.isNotEmpty)
-                pw.Column(
-                  children: [
-                    SubCategory(text: 'Idiomas', color: green),
-                    ...resume.languages.value.map(
-                      (l) => pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.stretch,
+                    if (resume.personalInformation.locality.isValid())
+                      pw.Column(
                         children: [
-                          pw.Text(l.getOrCrash()),
-                          pw.Text(
-                            l.level.displayName,
-                            textScaleFactor: .9,
-                            style: pw.TextStyle(
-                              fontWeight: pw.FontWeight.bold,
-                              fontStyle: pw.FontStyle.italic,
-                            ),
-                          ),
-                          pw.SizedBox(height: 4),
+                          SubCategory(text: Location.address, color: green),
+                          _buildLocality(
+                            context,
+                            locality: resume.personalInformation.locality,
+                          )
                         ],
                       ),
-                    ),
+                    if (resume.contactInformation.phoneNumber.isValid())
+                      pw.Column(
+                        children: [
+                          SubCategory(text: Location.phone, color: green),
+                          UrlText(
+                            resume.contactInformation.phoneNumber.getOrCrash(),
+                            'tel:${resume.contactInformation.phoneNumber.getOrCrash()}',
+                          ),
+                        ],
+                      ),
+                    if (resume.contactInformation.emailAddress.isValid())
+                      pw.Column(
+                        children: [
+                          SubCategory(text: Location.email, color: green),
+                          UrlText(
+                            resume.contactInformation.emailAddress.getOrCrash(),
+                            'tel:${resume.contactInformation.emailAddress.getOrCrash()}',
+                          ),
+                        ],
+                      ),
+                    if (resume.skills.value.isNotEmpty)
+                      pw.Column(
+                        children: [
+                          SubCategory(text: 'Habilidades', color: green),
+                          pw.Wrap(
+                            children: [
+                              ...resume.skills.value.map(
+                                (skill) => pw.Container(
+                                  margin: const pw.EdgeInsets.all(1),
+                                  padding: const pw.EdgeInsets.symmetric(
+                                    vertical: 2,
+                                    horizontal: 4,
+                                  ),
+                                  decoration: pw.BoxDecoration(
+                                    color: green,
+                                    borderRadius: pw.BorderRadius.circular(8),
+                                  ),
+                                  child: pw.Text(
+                                    skill,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    if (resume.languages.value.isNotEmpty)
+                      pw.Column(
+                        children: [
+                          SubCategory(text: 'Idiomas', color: green),
+                          ...resume.languages.value.map(
+                            (l) => pw.Column(
+                              crossAxisAlignment: pw.CrossAxisAlignment.stretch,
+                              children: [
+                                pw.Text(l.getOrCrash()),
+                                pw.Text(
+                                  l.level.displayName,
+                                  textScaleFactor: .9,
+                                  style: pw.TextStyle(
+                                    fontWeight: pw.FontWeight.bold,
+                                    fontStyle: pw.FontStyle.italic,
+                                  ),
+                                ),
+                                pw.SizedBox(height: 4),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                   ],
                 ),
+              )
             ],
           ),
         ],
@@ -182,18 +213,7 @@ class CreativeGreenResume {
                     pw.Expanded(
                       child: pw.Column(
                         crossAxisAlignment: pw.CrossAxisAlignment.end,
-                        children: <pw.Widget>[
-                          UrlText(
-                            resume.contactInformation.phoneNumber
-                                .fold((l) => '', (r) => r),
-                            'tel:${resume.contactInformation.phoneNumber.fold((l) => '', (r) => r)}',
-                          ),
-                          UrlText(
-                            resume.contactInformation.emailAddress
-                                .fold((l) => '', (r) => r),
-                            'mailto:${resume.contactInformation.emailAddress.fold((l) => '', (r) => r)}',
-                          ),
-                        ],
+                        children: <pw.Widget>[],
                       ),
                     ),
                     pw.SizedBox(width: 8),
@@ -286,7 +306,7 @@ class CreativeGreenResume {
   pw.Widget _buildLocality(pw.Context context, {required Locality locality}) =>
       locality.fold(
         (l) => pw.Container(),
-        (r) => pw.Text(r),
+        (r) => pw.Text(r, textAlign: pw.TextAlign.center),
       );
 
   pw.Widget _buildDescription(

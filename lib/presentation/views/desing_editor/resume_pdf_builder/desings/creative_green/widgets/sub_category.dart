@@ -12,7 +12,7 @@ class SubCategory extends pw.StatelessWidget {
   @override
   pw.Widget build(pw.Context context) {
     return pw.Padding(
-      padding: const pw.EdgeInsets.only(bottom: 2),
+      padding: const pw.EdgeInsets.symmetric(vertical: 2),
       child: pw.Text(
         text.toUpperCase(),
         style: pw.TextStyle(

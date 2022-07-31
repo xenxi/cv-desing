@@ -64,4 +64,5 @@ class Location {
   static const skillsandAptitudes = 'Competencias y habilidades';
   static const aboutMe = 'Sobre mí';
   static const address = 'Dirección';
+  static const phone = 'Teléfono';
 }
