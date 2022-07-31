@@ -230,10 +230,13 @@ class CreativeGreenResume {
           ),
           if (resume.workExperiences.value.isNotEmpty) ...[
             Category(title: Location.workExperience, color: green),
-            pw.Wrap(spacing: 10, runSpacing: 10, children: [
-              ...resume.workExperiences.value.map(
-                (workExperience) {
-                  return pw.SizedBox(
+            pw.Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              children: [
+                ...resume.workExperiences.value.map(
+                  (workExperience) {
+                    return pw.SizedBox(
                       width: (bodyWidth / 2) - 20,
                       child: Block(
                         color: green,
@@ -243,37 +246,49 @@ class CreativeGreenResume {
                         trailingText: displayDateRange(
                           workExperience.dateRange.getOrCrash(),
                         ),
-                      ));
-                },
-              ),
-            ]),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
             pw.SizedBox(height: 20),
           ],
           if (resume.academyTrainings.value.isNotEmpty) ...[
             Category(title: Location.academicTraining, color: green),
-            ...resume.academyTrainings.value.map(
-              (academyTraining) => Block(
-                color: green,
-                title: academyTraining.title.getOrCrash(),
-                subTitle: academyTraining.schoold.getOrCrash(),
-                trailingText: displayDateRange(
-                  academyTraining.dateRange.getOrCrash(),
+            pw.Wrap(runSpacing: 10, spacing: 10, children: [
+              ...resume.academyTrainings.value.map(
+                (academyTraining) => pw.SizedBox(
+                  width: (bodyWidth / 2) - 20,
+                  child: Block(
+                    color: green,
+                    title: academyTraining.title.getOrCrash(),
+                    subTitle: academyTraining.schoold.getOrCrash(),
+                    trailingText: displayDateRange(
+                      academyTraining.dateRange.getOrCrash(),
+                    ),
+                  ),
                 ),
               ),
-            ),
+            ]),
           ],
           if (resume.complementaryTrainings.value.isNotEmpty) ...[
             Category(title: Location.complementaryFormations, color: green),
-            ...resume.complementaryTrainings.value.map(
-              (complementaryTraining) => Block(
-                color: green,
-                title: complementaryTraining.title.getOrCrash(),
-                subTitle: complementaryTraining.schoold.getOrCrash(),
-                trailingText: displayDateRange(
-                  complementaryTraining.dateRange.getOrCrash(),
+            pw.Wrap(runSpacing: 10, spacing: 10, children: [
+              ...resume.complementaryTrainings.value.map(
+                (complementaryTraining) => pw.SizedBox(
+                  width: (bodyWidth / 2) - 20,
+                  child: Block(
+                    color: green,
+                    title: complementaryTraining.title.getOrCrash(),
+                    subTitle: complementaryTraining.schoold.getOrCrash(),
+                    trailingText: displayDateRange(
+                      complementaryTraining.dateRange.getOrCrash(),
+                    ),
+                  ),
                 ),
               ),
-            ),
+            ]),
           ],
         ],
       ),

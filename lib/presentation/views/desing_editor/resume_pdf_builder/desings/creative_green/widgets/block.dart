@@ -26,16 +26,20 @@ class Block extends pw.StatelessWidget {
             trailingText!,
             tightBounds: true,
             style: pw.TextStyle(
-                fontWeight: pw.FontWeight.bold, color: PdfColors.black),
+              fontWeight: pw.FontWeight.bold,
+              color: PdfColors.black,
+            ),
           ),
           pw.SizedBox(height: 6),
         ],
         pw.Text(
           title.toUpperCase(),
           tightBounds: true,
-          style: pw.Theme.of(context)
-              .defaultTextStyle
-              .copyWith(fontWeight: pw.FontWeight.bold, color: color),
+          style: pw.Theme.of(context).defaultTextStyle.copyWith(
+                fontWeight: pw.FontWeight.bold,
+                color: color,
+                lineSpacing: 3,
+              ),
         ),
         pw.SizedBox(height: 6),
         pw.Text(
