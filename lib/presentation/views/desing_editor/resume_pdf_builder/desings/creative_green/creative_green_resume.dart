@@ -8,12 +8,12 @@ import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/language_level_extensions.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/page_theme_builder.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/block.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/category.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/percent.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/sub_category.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/green/widgets/url_text.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/page_theme_builder.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/block.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/category.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/percent.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/sub_category.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/url_text.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/widgets/profile_avatar.dart';
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
@@ -54,8 +54,9 @@ class CreativeGreenResume {
 
   pw.Partition _buildAside(pw.PageTheme pageTheme) {
     final formart = pageTheme.pageFormat;
+    const width = 7.6 * PdfPageFormat.cm;
     return pw.Partition(
-      width: sep,
+      width: width,
       child: pw.Column(
         children: [
           pw.Container(
@@ -64,7 +65,7 @@ class CreativeGreenResume {
               mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
               children: <pw.Widget>[
                 ProfileAvatar(
-                  width: 100,
+                  width: width,
                   height: formart.availableHeight / 2,
                   imageOption: resume.personalInformation.avatarOption,
                 ),

@@ -163,7 +163,7 @@ class DesingEditorView extends StatelessWidget {
 
   Future<void> printResume(BuildContext context) async {
     // final resume = BlocProvider.of<CvEditorBloc>(context).state.resume;
-    final resume = ExampleResumeData.jonDoe;
+    final resume = getIt<ExampleResumeData>().jonDoe;
     final template = BlocProvider.of<CvEditorBloc>(context).state.template;
 
     final doc = PdfResumeBuilder.build(resume, template: template)
@@ -176,11 +176,10 @@ class DesingEditorView extends StatelessWidget {
 
   Future<void> download(BuildContext context) async {
     // final resume = BlocProvider.of<CvEditorBloc>(context).state.resume;
-    final resume = ExampleResumeData.jonDoe;
+    final resume = getIt<ExampleResumeData>().jonDoe;
     final template = BlocProvider.of<CvEditorBloc>(context).state.template;
-    final doc =
-        PdfResumeBuilder.build(ExampleResumeData.jonDoe, template: template)
-            .then((value) => value.save());
+    final doc = PdfResumeBuilder.build(resume, template: template)
+        .then((value) => value.save());
     await Printing.sharePdf(bytes: await doc, filename: _fileName(resume));
   }
 
@@ -189,7 +188,7 @@ class DesingEditorView extends StatelessWidget {
 
   void _loadDemoData(BuildContext context) =>
       BlocProvider.of<CvEditorBloc>(context)
-          .add(Loaded(ExampleResumeData.jonDoe));
+          .add(Loaded(getIt<ExampleResumeData>().jonDoe));
   void _clear(BuildContext context) =>
       BlocProvider.of<CvEditorBloc>(context).add(const Cleaned());
 }

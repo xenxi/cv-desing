@@ -1,10 +1,15 @@
 part of 'cv_editor_bloc.dart';
 
 class CvEditorState extends Equatable {
+  // factory CvEditorState.initial() => CvEditorState(
+  //       section: Section.personalInformation,
+  //       resume: Resume.empty(),
+  //       template: CvTemplates.green,
+  //     );
   factory CvEditorState.initial() => CvEditorState(
         section: Section.personalInformation,
-        resume: Resume.empty(),
-        template: CvTemplates.green,
+        resume: getIt<ExampleResumeData>().jonDoe,
+        template: CvTemplates.creativeGreen,
       );
   const CvEditorState({
     required this.template,
