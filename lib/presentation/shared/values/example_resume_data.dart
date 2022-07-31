@@ -112,7 +112,29 @@ class ExampleResumeData {
           WorkExperience(
             job: Job('Deepfields energies'),
             employer: Employer('Atomic power solutions'),
-            dateRange: DateRange(since: DateTime.now(), until: null),
+            dateRange: DateRange(
+                since: DateTime.now(),
+                until: DateTime.now().add(const Duration(days: 4))),
+            uniqueId: UniqueId(),
+            description: Description(
+                'Perform monthly diagnosis of hardware equipments. Worked nightshift every 2 monthos for on call duties.'),
+          ),
+          WorkExperience(
+            job: Job('Mechanical Technician'),
+            employer: Employer('Atomic power solutions'),
+            dateRange: DateRange(
+                since: DateTime.now(),
+                until: DateTime.now().add(const Duration(days: 4))),
+            uniqueId: UniqueId(),
+            description: Description(
+                'Inspects, maintains and repairs the power tools in the factory. Cleans the parts and pieces of the power tools and lubricates them.'),
+          ),
+          WorkExperience(
+            job: Job('Deepfields energies'),
+            employer: Employer('Atomic power solutions'),
+            dateRange: DateRange(
+                since: DateTime.now(),
+                until: DateTime.now().add(const Duration(days: 4))),
             uniqueId: UniqueId(),
             description: Description(
                 'Perform monthly diagnosis of hardware equipments. Worked nightshift every 2 monthos for on call duties.'),

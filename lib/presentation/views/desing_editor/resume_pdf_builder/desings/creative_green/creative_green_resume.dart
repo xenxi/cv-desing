@@ -163,8 +163,9 @@ class CreativeGreenResume {
   }
 
   pw.Partition _buildBody(pw.Context context, pw.PageTheme pageTheme) {
+    final bodyWidth = pageTheme.pageFormat.width - asideWidth;
     return pw.Partition(
-      width: pageTheme.pageFormat.width - asideWidth,
+      width: bodyWidth,
       child: pw.Column(
         crossAxisAlignment: pw.CrossAxisAlignment.start,
         children: <pw.Widget>[
@@ -229,19 +230,23 @@ class CreativeGreenResume {
           ),
           if (resume.workExperiences.value.isNotEmpty) ...[
             Category(title: Location.workExperience, color: green),
-            ...resume.workExperiences.value.map(
-              (workExperience) {
-                return Block(
-                  color: green,
-                  title: workExperience.job.getOrCrash(),
-                  subTitle: workExperience.employer.getOrCrash(),
-                  text: workExperience.description.getOrCrash(),
-                  trailingText: displayDateRange(
-                    workExperience.dateRange.getOrCrash(),
-                  ),
-                );
-              },
-            ),
+            pw.Wrap(spacing: 10, runSpacing: 10, children: [
+              ...resume.workExperiences.value.map(
+                (workExperience) {
+                  return pw.SizedBox(
+                      width: (bodyWidth / 2) - 20,
+                      child: Block(
+                        color: green,
+                        title: workExperience.job.getOrCrash(),
+                        subTitle: workExperience.employer.getOrCrash(),
+                        text: workExperience.description.getOrCrash(),
+                        trailingText: displayDateRange(
+                          workExperience.dateRange.getOrCrash(),
+                        ),
+                      ));
+                },
+              ),
+            ]),
             pw.SizedBox(height: 20),
           ],
           if (resume.academyTrainings.value.isNotEmpty) ...[
