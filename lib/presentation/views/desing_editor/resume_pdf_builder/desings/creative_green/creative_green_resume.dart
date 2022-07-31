@@ -65,7 +65,7 @@ class CreativeGreenResume {
               children: <pw.Widget>[
                 ProfileAvatar(
                   width: 100,
-                  height: 100,
+                  height: formart.availableHeight / 2,
                   imageOption: resume.personalInformation.avatarOption,
                 ),
                 if (resume.softwareSkills.value.isNotEmpty) ...[
