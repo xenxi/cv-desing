@@ -58,76 +58,73 @@ class CreativeGreenResume {
       width: asideWidth,
       child: pw.Column(
         children: [
-          pw.Container(
-            height: formart.availableHeight,
-            child: pw.Column(
-              mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-              children: <pw.Widget>[
-                ProfileAvatar(
-                  width: asideWidth,
-                  height: formart.availableHeight / 2,
-                  imageOption: resume.personalInformation.avatarOption,
-                  rounded: false,
-                ),
-                if (resume.personalInformation.locality.isValid())
-                  pw.Column(children: [
-                    SubCategory(text: Location.address, color: green),
-                    _buildLocality(
-                      context,
-                      locality: resume.personalInformation.locality,
-                    )
-                  ]),
-                if (resume.skills.value.isNotEmpty)
-                  pw.Column(
-                    children: [
-                      SubCategory(text: 'Habilidades', color: green),
-                      pw.Wrap(
-                        children: [
-                          ...resume.skills.value.map(
-                            (skill) => pw.Container(
-                              margin: const pw.EdgeInsets.all(1),
-                              padding: const pw.EdgeInsets.symmetric(
-                                vertical: 2,
-                                horizontal: 4,
-                              ),
-                              decoration: pw.BoxDecoration(
-                                color: green,
-                                borderRadius: pw.BorderRadius.circular(8),
-                              ),
-                              child: pw.Text(
-                                skill,
-                              ),
+          pw.Column(
+            mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+            children: <pw.Widget>[
+              ProfileAvatar(
+                width: asideWidth,
+                height: formart.availableHeight / 2,
+                imageOption: resume.personalInformation.avatarOption,
+                rounded: false,
+              ),
+              if (resume.personalInformation.locality.isValid())
+                pw.Column(children: [
+                  SubCategory(text: Location.address, color: green),
+                  _buildLocality(
+                    context,
+                    locality: resume.personalInformation.locality,
+                  )
+                ]),
+              if (resume.skills.value.isNotEmpty)
+                pw.Column(
+                  children: [
+                    SubCategory(text: 'Habilidades', color: green),
+                    pw.Wrap(
+                      children: [
+                        ...resume.skills.value.map(
+                          (skill) => pw.Container(
+                            margin: const pw.EdgeInsets.all(1),
+                            padding: const pw.EdgeInsets.symmetric(
+                              vertical: 2,
+                              horizontal: 4,
+                            ),
+                            decoration: pw.BoxDecoration(
+                              color: green,
+                              borderRadius: pw.BorderRadius.circular(8),
+                            ),
+                            child: pw.Text(
+                              skill,
                             ),
                           ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              if (resume.languages.value.isNotEmpty)
+                pw.Column(
+                  children: [
+                    SubCategory(text: 'Idiomas', color: green),
+                    ...resume.languages.value.map(
+                      (l) => pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.stretch,
+                        children: [
+                          pw.Text(l.getOrCrash()),
+                          pw.Text(
+                            l.level.displayName,
+                            textScaleFactor: .9,
+                            style: pw.TextStyle(
+                              fontWeight: pw.FontWeight.bold,
+                              fontStyle: pw.FontStyle.italic,
+                            ),
+                          ),
+                          pw.SizedBox(height: 4),
                         ],
                       ),
-                    ],
-                  ),
-                if (resume.languages.value.isNotEmpty)
-                  pw.Column(
-                    children: [
-                      SubCategory(text: 'Idiomas', color: green),
-                      ...resume.languages.value.map(
-                        (l) => pw.Column(
-                          crossAxisAlignment: pw.CrossAxisAlignment.stretch,
-                          children: [
-                            pw.Text(l.getOrCrash()),
-                            pw.Text(
-                              l.level.displayName,
-                              textScaleFactor: .9,
-                              style: pw.TextStyle(
-                                fontWeight: pw.FontWeight.bold,
-                                fontStyle: pw.FontStyle.italic,
-                              ),
-                            ),
-                            pw.SizedBox(height: 4),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-              ],
-            ),
+                    ),
+                  ],
+                ),
+            ],
           ),
         ],
       ),
