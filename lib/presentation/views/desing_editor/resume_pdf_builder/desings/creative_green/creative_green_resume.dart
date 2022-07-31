@@ -19,9 +19,9 @@ import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
-const PdfColor green = PdfColor.fromInt(0xff9ce5d0);
+PdfColor green = PdfColor.fromHex('#5a9b43');
 const PdfColor lightGreen = PdfColor.fromInt(0xffcdf1e7);
-const sep = 120.0;
+const asideWidth = 7.6 * PdfPageFormat.cm;
 final dateFormat = DateFormat('MM/yyy');
 
 class CreativeGreenResume {
@@ -43,7 +43,7 @@ class CreativeGreenResume {
           pw.Partitions(
             children: [
               _buildAside(pageTheme),
-              _buildBody(context),
+              _buildBody(context, pageTheme),
             ],
           ),
         ],
@@ -54,9 +54,9 @@ class CreativeGreenResume {
 
   pw.Partition _buildAside(pw.PageTheme pageTheme) {
     final formart = pageTheme.pageFormat;
-    const width = 7.6 * PdfPageFormat.cm;
+
     return pw.Partition(
-      width: width,
+      width: asideWidth,
       child: pw.Column(
         children: [
           pw.Container(
@@ -65,7 +65,7 @@ class CreativeGreenResume {
               mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
               children: <pw.Widget>[
                 ProfileAvatar(
-                  width: width,
+                  width: asideWidth,
                   height: formart.availableHeight / 2,
                   imageOption: resume.personalInformation.avatarOption,
                   rounded: false,
@@ -141,14 +141,14 @@ class CreativeGreenResume {
     );
   }
 
-  pw.Partition _buildBody(pw.Context context) {
+  pw.Partition _buildBody(pw.Context context, pw.PageTheme pageTheme) {
     return pw.Partition(
-      width: 400,
+      width: pageTheme.pageFormat.width - asideWidth,
       child: pw.Column(
         crossAxisAlignment: pw.CrossAxisAlignment.start,
         children: <pw.Widget>[
           pw.Container(
-            padding: const pw.EdgeInsets.only(bottom: 8),
+            padding: const pw.EdgeInsets.only(bottom: 8, top: 18),
             child: pw.Column(
               crossAxisAlignment: pw.CrossAxisAlignment.start,
               children: <pw.Widget>[
@@ -249,11 +249,12 @@ class CreativeGreenResume {
       );
 
   pw.Widget _buildName(pw.Context context, {required Name name}) => pw.Text(
-        name.fold((l) => '', (r) => r),
-        textScaleFactor: 2,
-        style: pw.Theme.of(context)
-            .defaultTextStyle
-            .copyWith(fontWeight: pw.FontWeight.bold),
+        name.fold((l) => '', (r) => r.toUpperCase()),
+        style: pw.Theme.of(context).defaultTextStyle.copyWith(
+            fontWeight: pw.FontWeight.bold,
+            fontSize: 60,
+            lineSpacing: -15,
+            color: PdfColors.black),
       );
 
   String displayDateRange(RangeOfDates dates) {

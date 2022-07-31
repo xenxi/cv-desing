@@ -36,7 +36,7 @@ class ExampleResumeData {
           locality: Locality(
             '568 Port Washington Road Nordegg, AB T0M 2H0 FCanada, ON',
           ),
-          name: Name('Jon Doe'),
+          name: Name('Johnson Doe'),
           job: Job('Mechanical Technician'),
           description: Description(
             'A hard-working mechanic for 2 big-time energy factories. Familiar in repair and safety standards. Has experience in various repair and maintenance works.F',
