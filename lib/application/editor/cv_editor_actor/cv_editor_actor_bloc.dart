@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_templates.dart';
+import 'package:cv_desing_website_flutter/application/editor/cv_templates.dart';
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';

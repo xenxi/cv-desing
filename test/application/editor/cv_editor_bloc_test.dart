@@ -1,6 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cv_desing_website_flutter/application/editor/contact_information_form/contact_information_form_bloc.dart';
-import 'package:cv_desing_website_flutter/application/editor/cv_editor_actor/cv_templates.dart';
+import 'package:cv_desing_website_flutter/application/editor/cv_templates.dart';
 import 'package:cv_desing_website_flutter/application/editor/cv_editor_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/personal_information_form/personal_information_form_bloc.dart';
 import 'package:cv_desing_website_flutter/application/editor/sections.dart';
