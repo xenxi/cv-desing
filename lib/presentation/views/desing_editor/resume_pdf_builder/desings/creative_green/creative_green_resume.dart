@@ -20,7 +20,6 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 PdfColor green = PdfColor.fromHex('#5a9b43');
-const PdfColor lightGreen = PdfColor.fromInt(0xffcdf1e7);
 const asideWidth = 7.6 * PdfPageFormat.cm;
 final dateFormat = DateFormat('MM/yyy');
 
@@ -98,7 +97,7 @@ class CreativeGreenResume {
                                 horizontal: 4,
                               ),
                               decoration: pw.BoxDecoration(
-                                color: lightGreen,
+                                color: green,
                                 borderRadius: pw.BorderRadius.circular(8),
                               ),
                               child: pw.Text(
@@ -153,7 +152,7 @@ class CreativeGreenResume {
               crossAxisAlignment: pw.CrossAxisAlignment.start,
               children: <pw.Widget>[
                 _buildName(context, name: resume.personalInformation.name),
-                pw.SizedBox(height: 10),
+                pw.SizedBox(height: 4),
                 _buildJob(context, job: resume.personalInformation.job),
                 pw.SizedBox(height: 20),
                 pw.Row(
@@ -191,7 +190,7 @@ class CreativeGreenResume {
             ),
           ),
           if (resume.workExperiences.value.isNotEmpty) ...[
-            Category(title: Location.workExperience, color: lightGreen),
+            Category(title: Location.workExperience, color: green),
             ...resume.workExperiences.value.map(
               (workExperience) {
                 return Block(
@@ -208,7 +207,7 @@ class CreativeGreenResume {
             pw.SizedBox(height: 20),
           ],
           if (resume.academyTrainings.value.isNotEmpty) ...[
-            Category(title: Location.academicTraining, color: lightGreen),
+            Category(title: Location.academicTraining, color: green),
             ...resume.academyTrainings.value.map(
               (academyTraining) => Block(
                 color: green,
@@ -221,8 +220,7 @@ class CreativeGreenResume {
             ),
           ],
           if (resume.complementaryTrainings.value.isNotEmpty) ...[
-            Category(
-                title: Location.complementaryFormations, color: lightGreen),
+            Category(title: Location.complementaryFormations, color: green),
             ...resume.complementaryTrainings.value.map(
               (complementaryTraining) => Block(
                 color: green,
@@ -240,20 +238,20 @@ class CreativeGreenResume {
   }
 
   pw.Widget _buildJob(pw.Context context, {required Job job}) => pw.Text(
-        job.fold((l) => '', (r) => r),
-        textScaleFactor: 1.2,
+        job.fold((l) => '', (r) => r.toUpperCase()),
         style: pw.Theme.of(context).defaultTextStyle.copyWith(
               fontWeight: pw.FontWeight.bold,
-              color: green,
+              fontSize: 17,
             ),
       );
 
   pw.Widget _buildName(pw.Context context, {required Name name}) => pw.Text(
         name.fold((l) => '', (r) => r.toUpperCase()),
+        tightBounds: true,
         style: pw.Theme.of(context).defaultTextStyle.copyWith(
-            fontWeight: pw.FontWeight.bold,
             fontSize: 60,
-            lineSpacing: -15,
+            fontStyle: pw.FontStyle.italic,
+            lineSpacing: -115,
             color: PdfColors.black),
       );
 

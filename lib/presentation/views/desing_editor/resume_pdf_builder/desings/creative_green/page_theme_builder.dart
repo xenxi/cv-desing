@@ -9,10 +9,12 @@ class PageThemeBuilder {
           PdfPageFormat.a4.applyMargin(left: 0, top: 0, right: 0, bottom: 0),
       margin: pw.EdgeInsets.zero,
       theme: pw.ThemeData.withFont(
-        base: await PdfGoogleFonts.montserratMedium(),
-        bold: await PdfGoogleFonts.bebasNeueRegular(),
+        italic: await PdfGoogleFonts.oswaldBold(),
+        base: await PdfGoogleFonts.oswaldLight(),
+        bold: await PdfGoogleFonts.oswaldBold(),
         icons: await PdfGoogleFonts.materialIcons(),
-      ),
+      ).copyWith(
+          defaultTextStyle: pw.TextStyle(color: PdfColor.fromHex('#7c7c7c'))),
     );
   }
 }

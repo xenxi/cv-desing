@@ -12,17 +12,34 @@ class Category extends pw.StatelessWidget {
 
   @override
   pw.Widget build(pw.Context context) {
-    return pw.Container(
-      decoration: pw.BoxDecoration(
-        color: color,
-        borderRadius: const pw.BorderRadius.all(pw.Radius.circular(6)),
+    return pw.Stack(alignment: pw.Alignment.center, children: [
+      pw.Padding(
+        padding: const pw.EdgeInsets.only(left: 8),
+        child: pw.Divider(
+          color: color,
+          thickness: 3,
+        ),
       ),
-      margin: const pw.EdgeInsets.only(bottom: 10, top: 20),
-      padding: const pw.EdgeInsets.fromLTRB(10, 4, 10, 4),
-      child: pw.Text(
-        title,
-        textScaleFactor: 1.5,
-      ),
-    );
+      pw.Align(
+        alignment: pw.Alignment.centerLeft,
+        child: pw.Container(
+          decoration: pw.BoxDecoration(
+            color: color,
+            borderRadius: const pw.BorderRadius.all(pw.Radius.circular(10)),
+          ),
+          padding: const pw.EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 1,
+          ),
+          child: pw.Text(
+            title.toUpperCase(),
+            style: const pw.TextStyle(
+              color: PdfColors.white,
+              fontSize: 12.9,
+            ),
+          ),
+        ),
+      )
+    ]);
   }
 }
