@@ -41,7 +41,7 @@ class CreativeGreenResume {
         build: (pw.Context context) => [
           pw.Partitions(
             children: [
-              _buildAside(pageTheme),
+              _buildAside(context, pageTheme),
               _buildBody(context, pageTheme),
             ],
           ),
@@ -51,7 +51,7 @@ class CreativeGreenResume {
     return doc;
   }
 
-  pw.Partition _buildAside(pw.PageTheme pageTheme) {
+  pw.Partition _buildAside(pw.Context context, pw.PageTheme pageTheme) {
     final formart = pageTheme.pageFormat;
 
     return pw.Partition(
@@ -69,10 +69,18 @@ class CreativeGreenResume {
                   imageOption: resume.personalInformation.avatarOption,
                   rounded: false,
                 ),
+                if (resume.personalInformation.locality.isValid())
+                  pw.Column(children: [
+                    SubCategory(text: Location.address, color: green),
+                    _buildLocality(
+                      context,
+                      locality: resume.personalInformation.locality,
+                    )
+                  ]),
                 if (resume.skills.value.isNotEmpty)
                   pw.Column(
                     children: [
-                      SubCategory(text: 'Habilidades'),
+                      SubCategory(text: 'Habilidades', color: green),
                       pw.Wrap(
                         children: [
                           ...resume.skills.value.map(
@@ -98,7 +106,7 @@ class CreativeGreenResume {
                 if (resume.languages.value.isNotEmpty)
                   pw.Column(
                     children: [
-                      SubCategory(text: 'Idiomas'),
+                      SubCategory(text: 'Idiomas', color: green),
                       ...resume.languages.value.map(
                         (l) => pw.Column(
                           crossAxisAlignment: pw.CrossAxisAlignment.stretch,
@@ -174,12 +182,6 @@ class CreativeGreenResume {
                   crossAxisAlignment: pw.CrossAxisAlignment.start,
                   mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                   children: <pw.Widget>[
-                    pw.Expanded(
-                      child: _buildLocality(
-                        context,
-                        locality: resume.personalInformation.locality,
-                      ),
-                    ),
                     pw.Expanded(
                       child: pw.Column(
                         crossAxisAlignment: pw.CrossAxisAlignment.end,

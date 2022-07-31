@@ -63,4 +63,5 @@ class Location {
   static const softwareSkills = 'Software y Tecnologías';
   static const skillsandAptitudes = 'Competencias y habilidades';
   static const aboutMe = 'Sobre mí';
+  static const address = 'Dirección';
 }
