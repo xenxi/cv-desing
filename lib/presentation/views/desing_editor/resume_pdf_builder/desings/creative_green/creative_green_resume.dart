@@ -186,43 +186,7 @@ class CreativeGreenResume {
                 _buildName(context, name: resume.personalInformation.name),
                 pw.SizedBox(height: 4),
                 _buildJob(context, job: resume.personalInformation.job),
-                if (resume.personalInformation.description.isValid())
-                  Section(
-                    category: Location.aboutMe,
-                    color: green,
-                    image: _bg,
-                    padding: padding,
-                    child: pw.Column(
-                      children: [
-                        _buildDescription(
-                          context,
-                          description: resume.personalInformation.description,
-                        ),
-                        if (resume.softwareSkills.value.isNotEmpty) ...[
-                          pw.SizedBox(height: 14),
-                          pw.SizedBox(
-                            width: double.infinity,
-                            child: pw.Wrap(
-                              alignment: pw.WrapAlignment.spaceAround,
-                              crossAxisAlignment: pw.WrapCrossAlignment.center,
-                              spacing: 20,
-                              runSpacing: 10,
-                              children: [
-                                ...resume.softwareSkills.value.map(
-                                  (skill) => Percent(
-                                    color: green,
-                                    size: 60,
-                                    value: skill.percentage.getOrCrash() * .01,
-                                    title: pw.Text(skill.getOrCrash()),
-                                  ),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ],
-                    ),
-                  ),
+                _buildAboutMe(context, padding: padding),
                 pw.SizedBox(height: 20),
                 pw.Row(
                   crossAxisAlignment: pw.CrossAxisAlignment.start,
@@ -309,6 +273,49 @@ class CreativeGreenResume {
                 ),
               ],
             ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  pw.Widget _buildAboutMe(pw.Context context, {required double padding}) {
+    if (!resume.personalInformation.description.isValid() &&
+        resume.softwareSkills.value.isNotEmpty) {
+      return pw.SizedBox();
+    }
+    return Section(
+      category: Location.aboutMe,
+      color: green,
+      image: _bg,
+      padding: padding,
+      child: pw.Column(
+        children: [
+          _buildDescription(
+            context,
+            description: resume.personalInformation.description,
+          ),
+          if (resume.softwareSkills.value.isNotEmpty) ...[
+            pw.SizedBox(height: 14),
+            pw.SizedBox(
+              width: double.infinity,
+              child: pw.Wrap(
+                alignment: pw.WrapAlignment.spaceAround,
+                crossAxisAlignment: pw.WrapCrossAlignment.center,
+                spacing: 20,
+                runSpacing: 10,
+                children: [
+                  ...resume.softwareSkills.value.map(
+                    (skill) => Percent(
+                      color: green,
+                      size: 60,
+                      value: skill.percentage.getOrCrash() * .01,
+                      title: pw.Text(skill.getOrCrash()),
+                    ),
+                  )
+                ],
+              ),
+            )
           ],
         ],
       ),
