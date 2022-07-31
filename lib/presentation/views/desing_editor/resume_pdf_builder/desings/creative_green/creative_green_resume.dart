@@ -68,6 +68,7 @@ class CreativeGreenResume {
                   width: width,
                   height: formart.availableHeight / 2,
                   imageOption: resume.personalInformation.avatarOption,
+                  rounded: false,
                 ),
                 if (resume.softwareSkills.value.isNotEmpty) ...[
                   pw.Column(
