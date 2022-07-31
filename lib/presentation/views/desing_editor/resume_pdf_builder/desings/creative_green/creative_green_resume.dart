@@ -171,6 +171,7 @@ class CreativeGreenResume {
 
   pw.Partition _buildBody(pw.Context context, pw.PageTheme pageTheme) {
     final bodyWidth = pageTheme.pageFormat.width - asideWidth;
+    const padding = 10.0;
     return pw.Partition(
       width: bodyWidth,
       child: pw.Column(
@@ -185,47 +186,60 @@ class CreativeGreenResume {
                 pw.SizedBox(height: 4),
                 _buildJob(context, job: resume.personalInformation.job),
                 if (resume.personalInformation.description.isValid()) ...[
-                  Category(color: green, title: Location.aboutMe),
-                  pw.Container(
-                      padding: const pw.EdgeInsets.symmetric(horizontal: 10),
-                      decoration: pw.BoxDecoration(
-                        image: pw.DecorationImage(
-                          image: pw.MemoryImage(_bg),
-                          fit: pw.BoxFit.cover,
+                  pw.Stack(
+                    children: [
+                      pw.Container(
+                        margin: const pw.EdgeInsets.only(top: 10),
+                        padding: const pw.EdgeInsets.symmetric(
+                          horizontal: padding,
+                          vertical: 26,
+                        ),
+                        decoration: pw.BoxDecoration(
+                          image: pw.DecorationImage(
+                            image: pw.MemoryImage(_bg),
+                            fit: pw.BoxFit.cover,
+                          ),
+                        ),
+                        child: pw.Column(
+                          children: [
+                            _buildDescription(
+                              context,
+                              description:
+                                  resume.personalInformation.description,
+                            ),
+                            if (resume.softwareSkills.value.isNotEmpty) ...[
+                              pw.SizedBox(height: 14),
+                              pw.SizedBox(
+                                width: double.infinity,
+                                child: pw.Wrap(
+                                  alignment: pw.WrapAlignment.spaceAround,
+                                  crossAxisAlignment:
+                                      pw.WrapCrossAlignment.center,
+                                  spacing: 20,
+                                  runSpacing: 10,
+                                  children: [
+                                    ...resume.softwareSkills.value.map(
+                                      (skill) => Percent(
+                                        color: green,
+                                        size: 60,
+                                        value:
+                                            skill.percentage.getOrCrash() * .01,
+                                        title: pw.Text(skill.getOrCrash()),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ],
                         ),
                       ),
-                      child: pw.Column(
-                        children: [
-                          _buildDescription(
-                            context,
-                            description: resume.personalInformation.description,
-                          ),
-                          if (resume.softwareSkills.value.isNotEmpty) ...[
-                            pw.SizedBox(height: 14),
-                            pw.SizedBox(
-                              width: double.infinity,
-                              child: pw.Wrap(
-                                alignment: pw.WrapAlignment.spaceAround,
-                                crossAxisAlignment:
-                                    pw.WrapCrossAlignment.center,
-                                spacing: 20,
-                                runSpacing: 10,
-                                children: [
-                                  ...resume.softwareSkills.value.map(
-                                    (skill) => Percent(
-                                      color: green,
-                                      size: 60,
-                                      value:
-                                          skill.percentage.getOrCrash() * .01,
-                                      title: pw.Text(skill.getOrCrash()),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ],
-                      )),
+                      pw.Padding(
+                        padding: const pw.EdgeInsets.only(left: padding),
+                        child: Category(color: green, title: Location.aboutMe),
+                      ),
+                    ],
+                  ),
                 ],
                 pw.SizedBox(height: 20),
                 pw.Row(
@@ -272,39 +286,47 @@ class CreativeGreenResume {
           ],
           if (resume.academyTrainings.value.isNotEmpty) ...[
             Category(title: Location.academicTraining, color: green),
-            pw.Wrap(runSpacing: 10, spacing: 10, children: [
-              ...resume.academyTrainings.value.map(
-                (academyTraining) => pw.SizedBox(
-                  width: (bodyWidth / 2) - 20,
-                  child: Block(
-                    color: green,
-                    title: academyTraining.title.getOrCrash(),
-                    subTitle: academyTraining.schoold.getOrCrash(),
-                    trailingText: displayDateRange(
-                      academyTraining.dateRange.getOrCrash(),
+            pw.Wrap(
+              runSpacing: 10,
+              spacing: 10,
+              children: [
+                ...resume.academyTrainings.value.map(
+                  (academyTraining) => pw.SizedBox(
+                    width: (bodyWidth / 2) - 20,
+                    child: Block(
+                      color: green,
+                      title: academyTraining.title.getOrCrash(),
+                      subTitle: academyTraining.schoold.getOrCrash(),
+                      trailingText: displayDateRange(
+                        academyTraining.dateRange.getOrCrash(),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ]),
+              ],
+            ),
           ],
           if (resume.complementaryTrainings.value.isNotEmpty) ...[
             Category(title: Location.complementaryFormations, color: green),
-            pw.Wrap(runSpacing: 10, spacing: 10, children: [
-              ...resume.complementaryTrainings.value.map(
-                (complementaryTraining) => pw.SizedBox(
-                  width: (bodyWidth / 2) - 20,
-                  child: Block(
-                    color: green,
-                    title: complementaryTraining.title.getOrCrash(),
-                    subTitle: complementaryTraining.schoold.getOrCrash(),
-                    trailingText: displayDateRange(
-                      complementaryTraining.dateRange.getOrCrash(),
+            pw.Wrap(
+              runSpacing: 10,
+              spacing: 10,
+              children: [
+                ...resume.complementaryTrainings.value.map(
+                  (complementaryTraining) => pw.SizedBox(
+                    width: (bodyWidth / 2) - 20,
+                    child: Block(
+                      color: green,
+                      title: complementaryTraining.title.getOrCrash(),
+                      subTitle: complementaryTraining.schoold.getOrCrash(),
+                      trailingText: displayDateRange(
+                        complementaryTraining.dateRange.getOrCrash(),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ]),
+              ],
+            ),
           ],
         ],
       ),
@@ -353,7 +375,7 @@ class CreativeGreenResume {
         (l) => pw.Container(),
         (r) => pw.Text(
           r,
-          style: pw.TextStyle(
+          style: const pw.TextStyle(
             fontSize: 12,
           ),
         ),
