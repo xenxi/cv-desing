@@ -1,1 +1,1 @@
-enum CvTemplates { green, pink }
+enum CvTemplates { green, pink, creativeGreen }
