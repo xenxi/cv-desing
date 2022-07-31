@@ -53,12 +53,13 @@ class CreativeGreenResume {
   }
 
   pw.Partition _buildAside(pw.PageTheme pageTheme) {
+    final formart = pageTheme.pageFormat;
     return pw.Partition(
       width: sep,
       child: pw.Column(
         children: [
           pw.Container(
-            height: pageTheme.pageFormat.availableHeight,
+            height: formart.availableHeight,
             child: pw.Column(
               mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
               children: <pw.Widget>[
