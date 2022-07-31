@@ -42,109 +42,7 @@ class GreenResume {
         build: (pw.Context context) => [
           pw.Partitions(
             children: [
-              pw.Partition(
-                width: 400,
-                child: pw.Column(
-                  crossAxisAlignment: pw.CrossAxisAlignment.start,
-                  children: <pw.Widget>[
-                    pw.Container(
-                      padding: const pw.EdgeInsets.only(bottom: 8),
-                      child: pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.start,
-                        children: <pw.Widget>[
-                          _buildName(context,
-                              name: resume.personalInformation.name),
-                          pw.SizedBox(height: 10),
-                          _buildJob(context,
-                              job: resume.personalInformation.job),
-                          pw.SizedBox(height: 20),
-                          pw.Row(
-                            crossAxisAlignment: pw.CrossAxisAlignment.start,
-                            mainAxisAlignment:
-                                pw.MainAxisAlignment.spaceBetween,
-                            children: <pw.Widget>[
-                              pw.Expanded(
-                                child: _buildLocality(context,
-                                    locality:
-                                        resume.personalInformation.locality),
-                              ),
-                              pw.Expanded(
-                                child: pw.Column(
-                                  crossAxisAlignment: pw.CrossAxisAlignment.end,
-                                  children: <pw.Widget>[
-                                    UrlText(
-                                      resume.contactInformation.phoneNumber
-                                          .fold((l) => '', (r) => r),
-                                      'tel:${resume.contactInformation.phoneNumber.fold((l) => '', (r) => r)}',
-                                    ),
-                                    UrlText(
-                                      resume.contactInformation.emailAddress
-                                          .fold((l) => '', (r) => r),
-                                      'mailto:${resume.contactInformation.emailAddress.fold((l) => '', (r) => r)}',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              pw.SizedBox(width: 8),
-                            ],
-                          ),
-                          pw.SizedBox(height: 10),
-                          _buildDescription(context,
-                              description:
-                                  resume.personalInformation.description),
-                        ],
-                      ),
-                    ),
-                    if (resume.workExperiences.value.isNotEmpty) ...[
-                      Category(
-                          title: Location.workExperience, color: lightGreen),
-                      ...resume.workExperiences.value.map(
-                        (workExperience) {
-                          return Block(
-                            color: green,
-                            title: workExperience.job.getOrCrash(),
-                            subTitle: workExperience.employer.getOrCrash(),
-                            text: workExperience.description.getOrCrash(),
-                            trailingText: displayDateRange(
-                              workExperience.dateRange.getOrCrash(),
-                            ),
-                          );
-                        },
-                      ),
-                      pw.SizedBox(height: 20),
-                    ],
-                    if (resume.academyTrainings.value.isNotEmpty) ...[
-                      Category(
-                          title: Location.academicTraining, color: lightGreen),
-                      ...resume.academyTrainings.value.map(
-                        (academyTraining) => Block(
-                          color: green,
-                          title: academyTraining.title.getOrCrash(),
-                          subTitle: academyTraining.schoold.getOrCrash(),
-                          trailingText: displayDateRange(
-                            academyTraining.dateRange.getOrCrash(),
-                          ),
-                        ),
-                      ),
-                    ],
-                    if (resume.complementaryTrainings.value.isNotEmpty) ...[
-                      Category(
-                          title: Location.complementaryFormations,
-                          color: lightGreen),
-                      ...resume.complementaryTrainings.value.map(
-                        (complementaryTraining) => Block(
-                          color: green,
-                          title: complementaryTraining.title.getOrCrash(),
-                          subTitle: complementaryTraining.schoold.getOrCrash(),
-                          trailingText: displayDateRange(
-                            complementaryTraining.dateRange.getOrCrash(),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-              ),
+              _buildBody(context),
               pw.Partition(
                 width: sep,
                 child: pw.Column(
@@ -237,6 +135,104 @@ class GreenResume {
       ),
     );
     return doc;
+  }
+
+  pw.Partition _buildBody(pw.Context context) {
+    return pw.Partition(
+      width: 400,
+      child: pw.Column(
+        crossAxisAlignment: pw.CrossAxisAlignment.start,
+        children: <pw.Widget>[
+          pw.Container(
+            padding: const pw.EdgeInsets.only(bottom: 8),
+            child: pw.Column(
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: <pw.Widget>[
+                _buildName(context, name: resume.personalInformation.name),
+                pw.SizedBox(height: 10),
+                _buildJob(context, job: resume.personalInformation.job),
+                pw.SizedBox(height: 20),
+                pw.Row(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                  children: <pw.Widget>[
+                    pw.Expanded(
+                      child: _buildLocality(context,
+                          locality: resume.personalInformation.locality),
+                    ),
+                    pw.Expanded(
+                      child: pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.end,
+                        children: <pw.Widget>[
+                          UrlText(
+                            resume.contactInformation.phoneNumber
+                                .fold((l) => '', (r) => r),
+                            'tel:${resume.contactInformation.phoneNumber.fold((l) => '', (r) => r)}',
+                          ),
+                          UrlText(
+                            resume.contactInformation.emailAddress
+                                .fold((l) => '', (r) => r),
+                            'mailto:${resume.contactInformation.emailAddress.fold((l) => '', (r) => r)}',
+                          ),
+                        ],
+                      ),
+                    ),
+                    pw.SizedBox(width: 8),
+                  ],
+                ),
+                pw.SizedBox(height: 10),
+                _buildDescription(context,
+                    description: resume.personalInformation.description),
+              ],
+            ),
+          ),
+          if (resume.workExperiences.value.isNotEmpty) ...[
+            Category(title: Location.workExperience, color: lightGreen),
+            ...resume.workExperiences.value.map(
+              (workExperience) {
+                return Block(
+                  color: green,
+                  title: workExperience.job.getOrCrash(),
+                  subTitle: workExperience.employer.getOrCrash(),
+                  text: workExperience.description.getOrCrash(),
+                  trailingText: displayDateRange(
+                    workExperience.dateRange.getOrCrash(),
+                  ),
+                );
+              },
+            ),
+            pw.SizedBox(height: 20),
+          ],
+          if (resume.academyTrainings.value.isNotEmpty) ...[
+            Category(title: Location.academicTraining, color: lightGreen),
+            ...resume.academyTrainings.value.map(
+              (academyTraining) => Block(
+                color: green,
+                title: academyTraining.title.getOrCrash(),
+                subTitle: academyTraining.schoold.getOrCrash(),
+                trailingText: displayDateRange(
+                  academyTraining.dateRange.getOrCrash(),
+                ),
+              ),
+            ),
+          ],
+          if (resume.complementaryTrainings.value.isNotEmpty) ...[
+            Category(
+                title: Location.complementaryFormations, color: lightGreen),
+            ...resume.complementaryTrainings.value.map(
+              (complementaryTraining) => Block(
+                color: green,
+                title: complementaryTraining.title.getOrCrash(),
+                subTitle: complementaryTraining.schoold.getOrCrash(),
+                trailingText: displayDateRange(
+                  complementaryTraining.dateRange.getOrCrash(),
+                ),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
   }
 
   pw.Widget _buildJob(pw.Context context, {required Job job}) => pw.Text(
