@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
@@ -7,6 +8,7 @@ import 'package:cv_desing_website_flutter/domain/value_objects/job.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/locality.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/name.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/language_level_extensions.dart';
+import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/page_theme_builder.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/block.dart';
@@ -15,6 +17,7 @@ import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resum
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/sub_category.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/url_text.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/widgets/profile_avatar.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -27,7 +30,7 @@ class CreativeGreenResume {
   CreativeGreenResume(this.resume);
 
   final Resume resume;
-
+  late Uint8List _bg;
   Future<pw.Document> build() async {
     final doc = pw.Document(
       title: resume.personalInformation.name
@@ -35,6 +38,10 @@ class CreativeGreenResume {
       author: Location.appTitle,
     );
     final pageTheme = await PageThemeBuilder.build();
+
+    final bytes = await rootBundle.load(ImagePath.resumeBg2);
+    _bg = bytes.buffer.asUint8List();
+
     doc.addPage(
       pw.MultiPage(
         pageTheme: pageTheme,
@@ -179,32 +186,46 @@ class CreativeGreenResume {
                 _buildJob(context, job: resume.personalInformation.job),
                 if (resume.personalInformation.description.isValid()) ...[
                   Category(color: green, title: Location.aboutMe),
-                  _buildDescription(
-                    context,
-                    description: resume.personalInformation.description,
-                  ),
-                  if (resume.softwareSkills.value.isNotEmpty) ...[
-                    pw.SizedBox(height: 14),
-                    pw.SizedBox(
-                      width: double.infinity,
-                      child: pw.Wrap(
-                        alignment: pw.WrapAlignment.spaceAround,
-                        crossAxisAlignment: pw.WrapCrossAlignment.center,
-                        spacing: 20,
-                        runSpacing: 10,
-                        children: [
-                          ...resume.softwareSkills.value.map(
-                            (skill) => Percent(
-                              color: green,
-                              size: 60,
-                              value: skill.percentage.getOrCrash() * .01,
-                              title: pw.Text(skill.getOrCrash()),
-                            ),
-                          )
-                        ],
+                  pw.Container(
+                      padding: const pw.EdgeInsets.symmetric(horizontal: 10),
+                      decoration: pw.BoxDecoration(
+                        image: pw.DecorationImage(
+                          image: pw.MemoryImage(_bg),
+                          fit: pw.BoxFit.cover,
+                        ),
                       ),
-                    )
-                  ],
+                      child: pw.Column(
+                        children: [
+                          _buildDescription(
+                            context,
+                            description: resume.personalInformation.description,
+                          ),
+                          if (resume.softwareSkills.value.isNotEmpty) ...[
+                            pw.SizedBox(height: 14),
+                            pw.SizedBox(
+                              width: double.infinity,
+                              child: pw.Wrap(
+                                alignment: pw.WrapAlignment.spaceAround,
+                                crossAxisAlignment:
+                                    pw.WrapCrossAlignment.center,
+                                spacing: 20,
+                                runSpacing: 10,
+                                children: [
+                                  ...resume.softwareSkills.value.map(
+                                    (skill) => Percent(
+                                      color: green,
+                                      size: 60,
+                                      value:
+                                          skill.percentage.getOrCrash() * .01,
+                                      title: pw.Text(skill.getOrCrash()),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ],
+                      )),
                 ],
                 pw.SizedBox(height: 20),
                 pw.Row(
@@ -219,11 +240,6 @@ class CreativeGreenResume {
                     ),
                     pw.SizedBox(width: 8),
                   ],
-                ),
-                pw.SizedBox(height: 10),
-                _buildDescription(
-                  context,
-                  description: resume.personalInformation.description,
                 ),
               ],
             ),

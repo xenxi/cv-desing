@@ -22,6 +22,7 @@ class ImagePath {
   static const String googleIcon = '$imageDir/google.png';
   static const String templateResumeDefault = '$imageDir/resume.svg';
   static const String jonDoe = '$imageDir/jonDoe.jpg';
+  static const String resumeBg2 = '$imageDir/resume_bg_02.png';
 
   static const spainFlag = '$imageDir/spain.png';
 
