@@ -12,34 +12,40 @@ class Category extends pw.StatelessWidget {
 
   @override
   pw.Widget build(pw.Context context) {
-    return pw.Stack(alignment: pw.Alignment.center, children: [
-      pw.Padding(
-        padding: const pw.EdgeInsets.only(left: 8),
-        child: pw.Divider(
-          color: color,
-          thickness: 3,
-        ),
-      ),
-      pw.Align(
-        alignment: pw.Alignment.centerLeft,
-        child: pw.Container(
-          decoration: pw.BoxDecoration(
-            color: color,
-            borderRadius: const pw.BorderRadius.all(pw.Radius.circular(10)),
-          ),
-          padding: const pw.EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 1,
-          ),
-          child: pw.Text(
-            title.toUpperCase(),
-            style: const pw.TextStyle(
-              color: PdfColors.white,
-              fontSize: 12.9,
+    return pw.Padding(
+      padding: pw.EdgeInsets.symmetric(vertical: 14),
+      child: pw.Stack(
+        alignment: pw.Alignment.center,
+        children: [
+          pw.Padding(
+            padding: const pw.EdgeInsets.only(left: 8),
+            child: pw.Divider(
+              color: color,
+              thickness: 3,
             ),
           ),
-        ),
-      )
-    ]);
+          pw.Align(
+            alignment: pw.Alignment.centerLeft,
+            child: pw.Container(
+              decoration: pw.BoxDecoration(
+                color: color,
+                borderRadius: const pw.BorderRadius.all(pw.Radius.circular(10)),
+              ),
+              padding: const pw.EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 1,
+              ),
+              child: pw.Text(
+                title.toUpperCase(),
+                style: const pw.TextStyle(
+                  color: PdfColors.white,
+                  fontSize: 12.9,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

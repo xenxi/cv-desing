@@ -69,20 +69,6 @@ class CreativeGreenResume {
                   imageOption: resume.personalInformation.avatarOption,
                   rounded: false,
                 ),
-                if (resume.softwareSkills.value.isNotEmpty) ...[
-                  pw.Column(
-                    children: <pw.Widget>[
-                      ...resume.softwareSkills.value.map(
-                        (skill) => Percent(
-                          color: green,
-                          size: 60,
-                          value: skill.percentage.getOrCrash() * .01,
-                          title: pw.Text(skill.getOrCrash()),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
                 if (resume.skills.value.isNotEmpty)
                   pw.Column(
                     children: [
@@ -154,14 +140,45 @@ class CreativeGreenResume {
                 _buildName(context, name: resume.personalInformation.name),
                 pw.SizedBox(height: 4),
                 _buildJob(context, job: resume.personalInformation.job),
+                if (resume.personalInformation.description.isValid()) ...[
+                  Category(color: green, title: Location.aboutMe),
+                  _buildDescription(
+                    context,
+                    description: resume.personalInformation.description,
+                  ),
+                  if (resume.softwareSkills.value.isNotEmpty) ...[
+                    pw.SizedBox(height: 14),
+                    pw.SizedBox(
+                      width: double.infinity,
+                      child: pw.Wrap(
+                        alignment: pw.WrapAlignment.spaceAround,
+                        crossAxisAlignment: pw.WrapCrossAlignment.center,
+                        spacing: 20,
+                        runSpacing: 10,
+                        children: [
+                          ...resume.softwareSkills.value.map(
+                            (skill) => Percent(
+                              color: green,
+                              size: 60,
+                              value: skill.percentage.getOrCrash() * .01,
+                              title: pw.Text(skill.getOrCrash()),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ],
                 pw.SizedBox(height: 20),
                 pw.Row(
                   crossAxisAlignment: pw.CrossAxisAlignment.start,
                   mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                   children: <pw.Widget>[
                     pw.Expanded(
-                      child: _buildLocality(context,
-                          locality: resume.personalInformation.locality),
+                      child: _buildLocality(
+                        context,
+                        locality: resume.personalInformation.locality,
+                      ),
                     ),
                     pw.Expanded(
                       child: pw.Column(
@@ -184,8 +201,10 @@ class CreativeGreenResume {
                   ],
                 ),
                 pw.SizedBox(height: 10),
-                _buildDescription(context,
-                    description: resume.personalInformation.description),
+                _buildDescription(
+                  context,
+                  description: resume.personalInformation.description,
+                ),
               ],
             ),
           ),
@@ -249,10 +268,11 @@ class CreativeGreenResume {
         name.fold((l) => '', (r) => r.toUpperCase()),
         tightBounds: true,
         style: pw.Theme.of(context).defaultTextStyle.copyWith(
-            fontSize: 60,
-            fontStyle: pw.FontStyle.italic,
-            lineSpacing: -115,
-            color: PdfColors.black),
+              fontSize: 60,
+              fontStyle: pw.FontStyle.italic,
+              lineSpacing: -115,
+              color: PdfColors.black,
+            ),
       );
 
   String displayDateRange(RangeOfDates dates) {
@@ -270,14 +290,16 @@ class CreativeGreenResume {
         (r) => pw.Text(r),
       );
 
-  pw.Widget _buildDescription(pw.Context context,
-          {required Description description}) =>
+  pw.Widget _buildDescription(
+    pw.Context context, {
+    required Description description,
+  }) =>
       description.fold(
         (l) => pw.Container(),
         (r) => pw.Text(
           r,
           style: pw.TextStyle(
-            fontStyle: pw.FontStyle.italic,
+            fontSize: 12,
           ),
         ),
       );

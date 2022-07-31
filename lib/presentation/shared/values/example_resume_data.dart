@@ -126,6 +126,10 @@ class ExampleResumeData {
           SoftwareSkill('Word', percentage: Percentage(100)),
           SoftwareSkill('Excel', percentage: Percentage(10)),
           SoftwareSkill('Powerpoint', percentage: Percentage(50)),
+          SoftwareSkill('Photoshop', percentage: Percentage(70)),
+          SoftwareSkill('After Effects', percentage: Percentage(40)),
+          SoftwareSkill('Blender', percentage: Percentage(80)),
+          SoftwareSkill('Figma', percentage: Percentage(27)),
         ]),
         skills: const Skills([
           'Mechanical',
