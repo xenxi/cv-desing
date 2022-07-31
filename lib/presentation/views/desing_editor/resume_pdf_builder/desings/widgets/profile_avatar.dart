@@ -9,17 +9,19 @@ class ProfileAvatar extends pw.StatelessWidget {
     required this.imageOption,
     this.width,
     this.height,
+    this.rounded = true,
   });
 
   final Option<Uint8List> imageOption;
   final double? width;
   final double? height;
+  final bool rounded;
   @override
   pw.Widget build(pw.Context context) {
     return imageOption.fold(
       () => pw.Container(),
-      (image) => pw.ClipOval(
-        child: pw.Container(
+      (image) {
+        final avatar = pw.Container(
           width: width,
           height: height,
           color: PdfColors.white,
@@ -27,8 +29,14 @@ class ProfileAvatar extends pw.StatelessWidget {
             pw.MemoryImage(image),
             fit: pw.BoxFit.cover,
           ),
-        ),
-      ),
+        );
+        if (rounded) {
+          return pw.ClipOval(
+            child: avatar,
+          );
+        }
+        return avatar;
+      },
     );
   }
 }
