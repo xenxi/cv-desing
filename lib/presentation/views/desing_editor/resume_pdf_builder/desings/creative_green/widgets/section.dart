@@ -23,6 +23,7 @@ class Section extends pw.StatelessWidget {
     return pw.Stack(
       children: [
         pw.Container(
+          width: double.infinity,
           margin: const pw.EdgeInsets.only(top: 10),
           padding: pw.EdgeInsets.symmetric(
             horizontal: padding,

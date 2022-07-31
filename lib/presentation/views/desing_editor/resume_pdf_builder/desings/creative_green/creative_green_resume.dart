@@ -187,35 +187,11 @@ class CreativeGreenResume {
                 pw.SizedBox(height: 4),
                 _buildJob(context, job: resume.personalInformation.job),
                 _buildAboutMe(context, padding: padding),
+                _buildWorkExperience(context,
+                    padding: padding, bodyWidth: bodyWidth),
               ],
             ),
           ),
-          if (resume.workExperiences.value.isNotEmpty) ...[
-            Category(title: Location.workExperience, color: green),
-            pw.Wrap(
-              spacing: 10,
-              runSpacing: 10,
-              children: [
-                ...resume.workExperiences.value.map(
-                  (workExperience) {
-                    return pw.SizedBox(
-                      width: (bodyWidth / 2) - 20,
-                      child: Block(
-                        color: green,
-                        title: workExperience.job.getOrCrash(),
-                        subTitle: workExperience.employer.getOrCrash(),
-                        text: workExperience.description.getOrCrash(),
-                        trailingText: displayDateRange(
-                          workExperience.dateRange.getOrCrash(),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-            pw.SizedBox(height: 20),
-          ],
           if (resume.academyTrainings.value.isNotEmpty) ...[
             Category(title: Location.academicTraining, color: green),
             pw.Wrap(
@@ -260,6 +236,42 @@ class CreativeGreenResume {
               ],
             ),
           ],
+        ],
+      ),
+    );
+  }
+
+  pw.Widget _buildWorkExperience(pw.Context context,
+      {required double padding, required double bodyWidth}) {
+    if (resume.workExperiences.value.isEmpty) {
+      return pw.SizedBox();
+    }
+
+    return Section(
+      category: Location.workExperience,
+      color: green,
+      padding: padding,
+      image: _bg,
+      child: pw.Wrap(
+        spacing: 10,
+        runSpacing: 10,
+        children: [
+          ...resume.workExperiences.value.map(
+            (workExperience) {
+              return pw.SizedBox(
+                width: (bodyWidth / 2) - 20,
+                child: Block(
+                  color: green,
+                  title: workExperience.job.getOrCrash(),
+                  subTitle: workExperience.employer.getOrCrash(),
+                  text: workExperience.description.getOrCrash(),
+                  trailingText: displayDateRange(
+                    workExperience.dateRange.getOrCrash(),
+                  ),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
