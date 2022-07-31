@@ -14,6 +14,7 @@ import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resum
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/block.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/category.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/percent.dart';
+import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/section.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/sub_category.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/url_text.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/widgets/profile_avatar.dart';
@@ -185,62 +186,43 @@ class CreativeGreenResume {
                 _buildName(context, name: resume.personalInformation.name),
                 pw.SizedBox(height: 4),
                 _buildJob(context, job: resume.personalInformation.job),
-                if (resume.personalInformation.description.isValid()) ...[
-                  pw.Stack(
-                    children: [
-                      pw.Container(
-                        margin: const pw.EdgeInsets.only(top: 10),
-                        padding: const pw.EdgeInsets.symmetric(
-                          horizontal: padding,
-                          vertical: 26,
+                if (resume.personalInformation.description.isValid())
+                  Section(
+                    category: Location.aboutMe,
+                    color: green,
+                    image: _bg,
+                    padding: padding,
+                    child: pw.Column(
+                      children: [
+                        _buildDescription(
+                          context,
+                          description: resume.personalInformation.description,
                         ),
-                        decoration: pw.BoxDecoration(
-                          image: pw.DecorationImage(
-                            image: pw.MemoryImage(_bg),
-                            fit: pw.BoxFit.cover,
-                          ),
-                        ),
-                        child: pw.Column(
-                          children: [
-                            _buildDescription(
-                              context,
-                              description:
-                                  resume.personalInformation.description,
+                        if (resume.softwareSkills.value.isNotEmpty) ...[
+                          pw.SizedBox(height: 14),
+                          pw.SizedBox(
+                            width: double.infinity,
+                            child: pw.Wrap(
+                              alignment: pw.WrapAlignment.spaceAround,
+                              crossAxisAlignment: pw.WrapCrossAlignment.center,
+                              spacing: 20,
+                              runSpacing: 10,
+                              children: [
+                                ...resume.softwareSkills.value.map(
+                                  (skill) => Percent(
+                                    color: green,
+                                    size: 60,
+                                    value: skill.percentage.getOrCrash() * .01,
+                                    title: pw.Text(skill.getOrCrash()),
+                                  ),
+                                )
+                              ],
                             ),
-                            if (resume.softwareSkills.value.isNotEmpty) ...[
-                              pw.SizedBox(height: 14),
-                              pw.SizedBox(
-                                width: double.infinity,
-                                child: pw.Wrap(
-                                  alignment: pw.WrapAlignment.spaceAround,
-                                  crossAxisAlignment:
-                                      pw.WrapCrossAlignment.center,
-                                  spacing: 20,
-                                  runSpacing: 10,
-                                  children: [
-                                    ...resume.softwareSkills.value.map(
-                                      (skill) => Percent(
-                                        color: green,
-                                        size: 60,
-                                        value:
-                                            skill.percentage.getOrCrash() * .01,
-                                        title: pw.Text(skill.getOrCrash()),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ],
-                        ),
-                      ),
-                      pw.Padding(
-                        padding: const pw.EdgeInsets.only(left: padding),
-                        child: Category(color: green, title: Location.aboutMe),
-                      ),
-                    ],
+                          )
+                        ],
+                      ],
+                    ),
                   ),
-                ],
                 pw.SizedBox(height: 20),
                 pw.Row(
                   crossAxisAlignment: pw.CrossAxisAlignment.start,
