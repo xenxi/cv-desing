@@ -10,14 +10,14 @@ class Section extends pw.StatelessWidget {
     required this.child,
     required this.color,
     required this.padding,
-    required this.image,
+    this.image,
   });
 
   final String category;
   final pw.Widget child;
   final PdfColor color;
   final double padding;
-  final Uint8List image;
+  final Uint8List? image;
   @override
   pw.Widget build(pw.Context context) {
     return pw.Stack(
@@ -29,12 +29,14 @@ class Section extends pw.StatelessWidget {
             horizontal: padding,
             vertical: 26,
           ),
-          decoration: pw.BoxDecoration(
-            image: pw.DecorationImage(
-              image: pw.MemoryImage(image),
-              fit: pw.BoxFit.cover,
-            ),
-          ),
+          decoration: image?.isNotEmpty == true
+              ? pw.BoxDecoration(
+                  image: pw.DecorationImage(
+                    image: pw.MemoryImage(image!),
+                    fit: pw.BoxFit.cover,
+                  ),
+                )
+              : null,
           child: child,
         ),
         pw.Padding(

@@ -251,7 +251,6 @@ class CreativeGreenResume {
       category: Location.workExperience,
       color: green,
       padding: padding,
-      image: _bg,
       child: pw.Wrap(
         spacing: 10,
         runSpacing: 10,
