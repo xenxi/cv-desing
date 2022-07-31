@@ -187,20 +187,6 @@ class CreativeGreenResume {
                 pw.SizedBox(height: 4),
                 _buildJob(context, job: resume.personalInformation.job),
                 _buildAboutMe(context, padding: padding),
-                pw.SizedBox(height: 20),
-                pw.Row(
-                  crossAxisAlignment: pw.CrossAxisAlignment.start,
-                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-                  children: <pw.Widget>[
-                    pw.Expanded(
-                      child: pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.end,
-                        children: <pw.Widget>[],
-                      ),
-                    ),
-                    pw.SizedBox(width: 8),
-                  ],
-                ),
               ],
             ),
           ),
