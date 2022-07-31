@@ -43,92 +43,10 @@ class GreenResume {
           pw.Partitions(
             children: [
               _buildBody(context),
-              pw.Partition(
-                width: sep,
-                child: pw.Column(
-                  children: [
-                    pw.Container(
-                      height: pageTheme.pageFormat.availableHeight,
-                      child: pw.Column(
-                        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-                        children: <pw.Widget>[
-                          ProfileAvatar(
-                            width: 100,
-                            height: 100,
-                            imageOption:
-                                resume.personalInformation.avatarOption,
-                          ),
-                          if (resume.softwareSkills.value.isNotEmpty) ...[
-                            pw.Column(
-                              children: <pw.Widget>[
-                                ...resume.softwareSkills.value.map(
-                                  (skill) => Percent(
-                                    color: green,
-                                    size: 60,
-                                    value: skill.percentage.getOrCrash() * .01,
-                                    title: pw.Text(skill.getOrCrash()),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                          if (resume.skills.value.isNotEmpty)
-                            pw.Column(
-                              children: [
-                                SubCategory(text: 'Habilidades'),
-                                pw.Wrap(
-                                  children: [
-                                    ...resume.skills.value.map(
-                                      (skill) => pw.Container(
-                                        margin: const pw.EdgeInsets.all(1),
-                                        padding: const pw.EdgeInsets.symmetric(
-                                          vertical: 2,
-                                          horizontal: 4,
-                                        ),
-                                        decoration: pw.BoxDecoration(
-                                          color: lightGreen,
-                                          borderRadius:
-                                              pw.BorderRadius.circular(8),
-                                        ),
-                                        child: pw.Text(
-                                          skill,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          if (resume.languages.value.isNotEmpty)
-                            pw.Column(
-                              children: [
-                                SubCategory(text: 'Idiomas'),
-                                ...resume.languages.value.map(
-                                  (l) => pw.Column(
-                                    crossAxisAlignment:
-                                        pw.CrossAxisAlignment.stretch,
-                                    children: [
-                                      pw.Text(l.getOrCrash()),
-                                      pw.Text(
-                                        l.level.displayName,
-                                        textScaleFactor: .9,
-                                        style: pw.TextStyle(
-                                          fontWeight: pw.FontWeight.bold,
-                                          fontStyle: pw.FontStyle.italic,
-                                        ),
-                                      ),
-                                      pw.SizedBox(height: 4),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              )
+              _buildAside(
+                context,
+                height: pageTheme.pageFormat.availableHeight,
+              ),
             ],
           ),
         ],
@@ -136,6 +54,91 @@ class GreenResume {
     );
     return doc;
   }
+
+  pw.Partition _buildAside(pw.Context context, {required double height}) =>
+      pw.Partition(
+        width: sep,
+        child: pw.Column(
+          children: [
+            pw.Container(
+              height: height,
+              child: pw.Column(
+                mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                children: <pw.Widget>[
+                  ProfileAvatar(
+                    width: 100,
+                    height: 100,
+                    imageOption: resume.personalInformation.avatarOption,
+                  ),
+                  if (resume.softwareSkills.value.isNotEmpty) ...[
+                    pw.Column(
+                      children: <pw.Widget>[
+                        ...resume.softwareSkills.value.map(
+                          (skill) => Percent(
+                            color: green,
+                            size: 60,
+                            value: skill.percentage.getOrCrash() * .01,
+                            title: pw.Text(skill.getOrCrash()),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                  if (resume.skills.value.isNotEmpty)
+                    pw.Column(
+                      children: [
+                        SubCategory(text: 'Habilidades'),
+                        pw.Wrap(
+                          children: [
+                            ...resume.skills.value.map(
+                              (skill) => pw.Container(
+                                margin: const pw.EdgeInsets.all(1),
+                                padding: const pw.EdgeInsets.symmetric(
+                                  vertical: 2,
+                                  horizontal: 4,
+                                ),
+                                decoration: pw.BoxDecoration(
+                                  color: lightGreen,
+                                  borderRadius: pw.BorderRadius.circular(8),
+                                ),
+                                child: pw.Text(
+                                  skill,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  if (resume.languages.value.isNotEmpty)
+                    pw.Column(
+                      children: [
+                        SubCategory(text: 'Idiomas'),
+                        ...resume.languages.value.map(
+                          (l) => pw.Column(
+                            crossAxisAlignment: pw.CrossAxisAlignment.stretch,
+                            children: [
+                              pw.Text(l.getOrCrash()),
+                              pw.Text(
+                                l.level.displayName,
+                                textScaleFactor: .9,
+                                style: pw.TextStyle(
+                                  fontWeight: pw.FontWeight.bold,
+                                  fontStyle: pw.FontStyle.italic,
+                                ),
+                              ),
+                              pw.SizedBox(height: 4),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
 
   pw.Partition _buildBody(pw.Context context) {
     return pw.Partition(
