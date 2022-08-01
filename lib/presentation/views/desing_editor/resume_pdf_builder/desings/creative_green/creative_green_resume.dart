@@ -330,7 +330,7 @@ class CreativeGreenResume {
                 children: [
                   ...resume.softwareSkills.value.map(
                     (skill) => Percent(
-                      color: green,
+                      color: PdfColors.black,
                       size: 55,
                       value: skill.percentage.getOrCrash() * .01,
                       title: pw.Text(skill.getOrCrash()),

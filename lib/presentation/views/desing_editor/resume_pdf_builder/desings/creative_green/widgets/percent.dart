@@ -15,7 +15,7 @@ class Percent extends pw.StatelessWidget {
   static const fontSize = 1.2;
   final PdfColor color;
   static const backgroundColor = PdfColors.grey300;
-  static const strokeWidth = 5.0;
+  static const strokeWidth = 4.0;
 
   @override
   pw.Widget build(pw.Context context) {
