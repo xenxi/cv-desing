@@ -175,67 +175,74 @@ class CreativeGreenResume {
     const padding = 10.0;
     return pw.Partition(
       width: bodyWidth,
-      child: pw.Column(
-        crossAxisAlignment: pw.CrossAxisAlignment.start,
-        children: <pw.Widget>[
-          pw.Container(
-            padding: const pw.EdgeInsets.only(bottom: 8, top: 18),
-            child: pw.Column(
-              crossAxisAlignment: pw.CrossAxisAlignment.start,
-              children: <pw.Widget>[
-                _buildName(context, name: resume.personalInformation.name),
-                pw.SizedBox(height: 4),
-                _buildJob(context, job: resume.personalInformation.job),
-                _buildAboutMe(context, padding: padding),
-                _buildWorkExperience(context,
-                    padding: padding, bodyWidth: bodyWidth),
-              ],
+      child: pw.Container(
+        padding: const pw.EdgeInsets.only(bottom: 8, top: 18),
+        child: pw.Column(
+          crossAxisAlignment: pw.CrossAxisAlignment.start,
+          children: <pw.Widget>[
+            _buildName(context, name: resume.personalInformation.name),
+            pw.SizedBox(height: 4),
+            _buildJob(context, job: resume.personalInformation.job),
+            _buildAboutMe(context, padding: padding),
+            _buildWorkExperience(context,
+                padding: padding, bodyWidth: bodyWidth),
+            _buildAcademyTraining(context,
+                padding: padding, bodyWidth: bodyWidth),
+            if (resume.complementaryTrainings.value.isNotEmpty) ...[
+              Category(title: Location.complementaryFormations, color: green),
+              pw.Wrap(
+                runSpacing: 10,
+                spacing: 10,
+                children: [
+                  ...resume.complementaryTrainings.value.map(
+                    (complementaryTraining) => pw.SizedBox(
+                      width: (bodyWidth / 2) - 20,
+                      child: Block(
+                        color: green,
+                        title: complementaryTraining.title.getOrCrash(),
+                        subTitle: complementaryTraining.schoold.getOrCrash(),
+                        trailingText: displayDateRange(
+                          complementaryTraining.dateRange.getOrCrash(),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  pw.Widget _buildAcademyTraining(pw.Context context,
+      {required double padding, required double bodyWidth}) {
+    if (resume.academyTrainings.value.isEmpty) {
+      return pw.SizedBox();
+    }
+    return Section(
+      category: Location.academicTraining,
+      color: green,
+      padding: padding,
+      image: _bg,
+      child: pw.Wrap(
+        runSpacing: 10,
+        spacing: 10,
+        children: [
+          ...resume.academyTrainings.value.map(
+            (academyTraining) => pw.SizedBox(
+              width: (bodyWidth / 2) - 20,
+              child: Block(
+                color: green,
+                title: academyTraining.title.getOrCrash(),
+                subTitle: academyTraining.schoold.getOrCrash(),
+                trailingText: displayDateRange(
+                  academyTraining.dateRange.getOrCrash(),
+                ),
+              ),
             ),
           ),
-          if (resume.academyTrainings.value.isNotEmpty) ...[
-            Category(title: Location.academicTraining, color: green),
-            pw.Wrap(
-              runSpacing: 10,
-              spacing: 10,
-              children: [
-                ...resume.academyTrainings.value.map(
-                  (academyTraining) => pw.SizedBox(
-                    width: (bodyWidth / 2) - 20,
-                    child: Block(
-                      color: green,
-                      title: academyTraining.title.getOrCrash(),
-                      subTitle: academyTraining.schoold.getOrCrash(),
-                      trailingText: displayDateRange(
-                        academyTraining.dateRange.getOrCrash(),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-          if (resume.complementaryTrainings.value.isNotEmpty) ...[
-            Category(title: Location.complementaryFormations, color: green),
-            pw.Wrap(
-              runSpacing: 10,
-              spacing: 10,
-              children: [
-                ...resume.complementaryTrainings.value.map(
-                  (complementaryTraining) => pw.SizedBox(
-                    width: (bodyWidth / 2) - 20,
-                    child: Block(
-                      color: green,
-                      title: complementaryTraining.title.getOrCrash(),
-                      subTitle: complementaryTraining.schoold.getOrCrash(),
-                      trailingText: displayDateRange(
-                        complementaryTraining.dateRange.getOrCrash(),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
         ],
       ),
     );
