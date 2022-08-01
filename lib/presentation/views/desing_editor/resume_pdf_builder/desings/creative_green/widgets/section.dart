@@ -36,7 +36,7 @@ class Section extends pw.StatelessWidget {
             width: double.infinity,
             padding: pw.EdgeInsets.symmetric(
               horizontal: padding,
-              vertical: 26,
+              vertical: 22,
             ),
             child: child,
           ),

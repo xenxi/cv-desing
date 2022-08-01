@@ -12,7 +12,6 @@ import 'package:cv_desing_website_flutter/presentation/shared/values/image_path.
 import 'package:cv_desing_website_flutter/presentation/shared/values/location.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/page_theme_builder.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/block.dart';
-import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/category.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/percent.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/section.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desing_editor/resume_pdf_builder/desings/creative_green/widgets/sub_category.dart';
@@ -180,9 +179,16 @@ class CreativeGreenResume {
         child: pw.Column(
           crossAxisAlignment: pw.CrossAxisAlignment.start,
           children: <pw.Widget>[
-            _buildName(context, name: resume.personalInformation.name),
+            pw.Padding(
+              padding: const pw.EdgeInsets.symmetric(horizontal: padding),
+              child: _buildName(context, name: resume.personalInformation.name),
+            ),
             pw.SizedBox(height: 4),
-            _buildJob(context, job: resume.personalInformation.job),
+            pw.Padding(
+              padding: const pw.EdgeInsets.symmetric(horizontal: padding),
+              child: _buildJob(context, job: resume.personalInformation.job),
+            ),
+            pw.SizedBox(height: 18),
             _buildAboutMe(context, padding: padding),
             _buildWorkExperience(context,
                 padding: padding, bodyWidth: bodyWidth),
@@ -319,13 +325,13 @@ class CreativeGreenResume {
               child: pw.Wrap(
                 alignment: pw.WrapAlignment.spaceAround,
                 crossAxisAlignment: pw.WrapCrossAlignment.center,
-                spacing: 20,
+                spacing: 22,
                 runSpacing: 10,
                 children: [
                   ...resume.softwareSkills.value.map(
                     (skill) => Percent(
                       color: green,
-                      size: 60,
+                      size: 55,
                       value: skill.percentage.getOrCrash() * .01,
                       title: pw.Text(skill.getOrCrash()),
                     ),
@@ -351,7 +357,7 @@ class CreativeGreenResume {
         name.fold((l) => '', (r) => r.toUpperCase()),
         tightBounds: true,
         style: pw.Theme.of(context).defaultTextStyle.copyWith(
-              fontSize: 60,
+              fontSize: 55,
               fontStyle: pw.FontStyle.italic,
               lineSpacing: -115,
               color: PdfColors.black,
