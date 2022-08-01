@@ -20,30 +20,32 @@ class Section extends pw.StatelessWidget {
   final Uint8List? image;
   @override
   pw.Widget build(pw.Context context) {
-    return pw.Stack(
-      children: [
-        pw.Container(
-          width: double.infinity,
-          margin: const pw.EdgeInsets.only(top: 10),
-          padding: pw.EdgeInsets.symmetric(
-            horizontal: padding,
-            vertical: 26,
+    return pw.Container(
+      decoration: image?.isNotEmpty == true
+          ? pw.BoxDecoration(
+              image: pw.DecorationImage(
+                image: pw.MemoryImage(image!),
+                fit: pw.BoxFit.cover,
+              ),
+            )
+          : null,
+      child: pw.Stack(
+        overflow: pw.Overflow.visible,
+        children: [
+          pw.Container(
+            width: double.infinity,
+            padding: pw.EdgeInsets.symmetric(
+              horizontal: padding,
+              vertical: 26,
+            ),
+            child: child,
           ),
-          decoration: image?.isNotEmpty == true
-              ? pw.BoxDecoration(
-                  image: pw.DecorationImage(
-                    image: pw.MemoryImage(image!),
-                    fit: pw.BoxFit.cover,
-                  ),
-                )
-              : null,
-          child: child,
-        ),
-        pw.Padding(
-          padding: pw.EdgeInsets.only(left: padding),
-          child: Category(color: color, title: category),
-        ),
-      ],
+          pw.Transform.translate(
+            offset: PdfPoint(padding, 10),
+            child: Category(color: color, title: category),
+          ),
+        ],
+      ),
     );
   }
 }
