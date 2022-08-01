@@ -188,28 +188,8 @@ class CreativeGreenResume {
                 padding: padding, bodyWidth: bodyWidth),
             _buildAcademyTraining(context,
                 padding: padding, bodyWidth: bodyWidth),
-            if (resume.complementaryTrainings.value.isNotEmpty) ...[
-              Category(title: Location.complementaryFormations, color: green),
-              pw.Wrap(
-                runSpacing: 10,
-                spacing: 10,
-                children: [
-                  ...resume.complementaryTrainings.value.map(
-                    (complementaryTraining) => pw.SizedBox(
-                      width: (bodyWidth / 2) - 20,
-                      child: Block(
-                        color: green,
-                        title: complementaryTraining.title.getOrCrash(),
-                        subTitle: complementaryTraining.schoold.getOrCrash(),
-                        trailingText: displayDateRange(
-                          complementaryTraining.dateRange.getOrCrash(),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
+            _buildComplementaryFormations(context,
+                padding: padding, bodyWidth: bodyWidth),
           ],
         ),
       ),
@@ -242,6 +222,39 @@ class CreativeGreenResume {
                 ),
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  pw.Widget _buildComplementaryFormations(pw.Context context,
+      {required double padding, required double bodyWidth}) {
+    if (resume.complementaryTrainings.value.isEmpty) {
+      return pw.SizedBox();
+    }
+    return Section(
+      category: Location.complementaryFormations,
+      color: green,
+      padding: padding,
+      child: pw.Wrap(
+        spacing: 10,
+        runSpacing: 10,
+        children: [
+          ...resume.complementaryTrainings.value.map(
+            (complementaryTraining) {
+              return pw.SizedBox(
+                width: (bodyWidth / 2) - 20,
+                child: Block(
+                  color: green,
+                  title: complementaryTraining.title.getOrCrash(),
+                  subTitle: complementaryTraining.schoold.getOrCrash(),
+                  trailingText: displayDateRange(
+                    complementaryTraining.dateRange.getOrCrash(),
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -285,7 +298,7 @@ class CreativeGreenResume {
 
   pw.Widget _buildAboutMe(pw.Context context, {required double padding}) {
     if (!resume.personalInformation.description.isValid() &&
-        resume.softwareSkills.value.isNotEmpty) {
+        resume.softwareSkills.value.isEmpty) {
       return pw.SizedBox();
     }
     return Section(
