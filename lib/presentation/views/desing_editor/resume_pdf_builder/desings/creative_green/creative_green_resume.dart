@@ -110,32 +110,7 @@ class CreativeGreenResume {
                           ),
                         ],
                       ),
-                    if (resume.skills.value.isNotEmpty)
-                      pw.Column(
-                        children: [
-                          SubCategory(text: 'Habilidades', color: green),
-                          pw.Wrap(
-                            children: [
-                              ...resume.skills.value.map(
-                                (skill) => pw.Container(
-                                  margin: const pw.EdgeInsets.all(1),
-                                  padding: const pw.EdgeInsets.symmetric(
-                                    vertical: 2,
-                                    horizontal: 4,
-                                  ),
-                                  decoration: pw.BoxDecoration(
-                                    color: green,
-                                    borderRadius: pw.BorderRadius.circular(8),
-                                  ),
-                                  child: pw.Text(
-                                    skill,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                    _buildSkills(),
                     if (resume.languages.value.isNotEmpty)
                       pw.Column(
                         children: [
@@ -166,6 +141,37 @@ class CreativeGreenResume {
           ),
         ],
       ),
+    );
+  }
+
+  pw.Widget _buildSkills() {
+    if (resume.skills.value.isEmpty) {
+      return pw.SizedBox();
+    }
+    return pw.Column(
+      children: [
+        SubCategory(text: 'Habilidades', color: green),
+        pw.Wrap(
+          children: [
+            ...resume.skills.value.map(
+              (skill) => pw.Container(
+                margin: const pw.EdgeInsets.all(1),
+                padding: const pw.EdgeInsets.symmetric(
+                  vertical: 2,
+                  horizontal: 4,
+                ),
+                decoration: pw.BoxDecoration(
+                  color: green,
+                  borderRadius: pw.BorderRadius.circular(8),
+                ),
+                child: pw.Text(
+                  skill,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
