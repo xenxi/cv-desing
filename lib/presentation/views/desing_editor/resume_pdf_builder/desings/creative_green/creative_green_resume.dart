@@ -150,23 +150,32 @@ class CreativeGreenResume {
     }
     return pw.Column(
       children: [
-        SubCategory(text: 'Habilidades', color: green),
+        SubCategory(text: Location.skillsandAptitudes, color: green),
         pw.Wrap(
+          spacing: 8,
+          runSpacing: 4,
           children: [
             ...resume.skills.value.map(
               (skill) => pw.Container(
                 margin: const pw.EdgeInsets.all(1),
                 padding: const pw.EdgeInsets.symmetric(
                   vertical: 2,
-                  horizontal: 4,
+                  horizontal: 8,
                 ),
                 decoration: pw.BoxDecoration(
-                  color: green,
+                  // color: green,
+                  border: pw.Border.fromBorderSide(
+                    pw.BorderSide(color: green, width: 1.4),
+                  ),
                   borderRadius: pw.BorderRadius.circular(8),
                 ),
-                child: pw.Text(
-                  skill,
-                ),
+                child: pw.Row(mainAxisSize: pw.MainAxisSize.min, children: [
+                  pw.Icon(const pw.IconData(0xe5ca), color: green, size: 18),
+                  pw.SizedBox(width: 2),
+                  pw.Text(
+                    skill.toUpperCase(),
+                  )
+                ]),
               ),
             ),
           ],
