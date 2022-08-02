@@ -111,29 +111,7 @@ class CreativeGreenResume {
                         ],
                       ),
                     _buildSkills(),
-                    if (resume.languages.value.isNotEmpty)
-                      pw.Column(
-                        children: [
-                          SubCategory(text: 'Idiomas', color: green),
-                          ...resume.languages.value.map(
-                            (l) => pw.Column(
-                              crossAxisAlignment: pw.CrossAxisAlignment.stretch,
-                              children: [
-                                pw.Text(l.getOrCrash()),
-                                pw.Text(
-                                  l.level.displayName,
-                                  textScaleFactor: .9,
-                                  style: pw.TextStyle(
-                                    fontWeight: pw.FontWeight.bold,
-                                    fontStyle: pw.FontStyle.italic,
-                                  ),
-                                ),
-                                pw.SizedBox(height: 4),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                    _buildLanguages(),
                   ],
                 ),
               )
@@ -141,6 +119,34 @@ class CreativeGreenResume {
           ),
         ],
       ),
+    );
+  }
+
+  pw.Widget _buildLanguages() {
+    if (resume.languages.value.isEmpty) {
+      return pw.SizedBox();
+    }
+    return pw.Column(
+      children: [
+        SubCategory(text: 'Idiomas', color: green),
+        ...resume.languages.value.map(
+          (l) => pw.Column(
+            crossAxisAlignment: pw.CrossAxisAlignment.stretch,
+            children: [
+              pw.Text(l.getOrCrash()),
+              pw.Text(
+                l.level.displayName,
+                textScaleFactor: .9,
+                style: pw.TextStyle(
+                  fontWeight: pw.FontWeight.bold,
+                  fontStyle: pw.FontStyle.italic,
+                ),
+              ),
+              pw.SizedBox(height: 4),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
