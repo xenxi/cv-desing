@@ -127,25 +127,54 @@ class CreativeGreenResume {
     if (resume.languages.value.isEmpty) {
       return pw.SizedBox();
     }
+
     return pw.Column(
       children: [
         SubCategory(text: 'Idiomas', color: green),
-        ...resume.languages.value.map(
-          (l) => pw.Row(
-            children: [
-              pw.Text(l.getOrCrash()),
-              pw.Text(
-                l.level.displayName,
-                textScaleFactor: .9,
-                style: pw.TextStyle(
-                  fontWeight: pw.FontWeight.bold,
-                  fontStyle: pw.FontStyle.italic,
+        pw.Table(
+          children: resume.languages.value
+              .map(
+                (l) => TableRow(
+                  verticalAlignment: TableCellVerticalAlignment.middle,
+                  children: [
+                    pw.Align(
+                      alignment: Alignment.centerRight,
+                      child: pw.Text(l.getOrCrash()),
+                    ),
+                    pw.SizedBox(width: 4),
+                    pw.Align(
+                      alignment: Alignment.centerLeft,
+                      child: pw.Text(
+                        l.level.displayName,
+                        textScaleFactor: .9,
+                        style: pw.TextStyle(
+                          fontWeight: pw.FontWeight.bold,
+                          fontStyle: pw.FontStyle.italic,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              pw.SizedBox(height: 4),
-            ],
-          ),
+              )
+              .toList(),
         ),
+        // ...resume.languages.value.map(
+        //   (l) => pw.Row(
+        //     children: [
+        //       pw.Text(l.getOrCrash()),
+        //       pw.SizedBox(width: 2),
+        //       pw.Text(
+        //         l.level.displayName,
+        //         textScaleFactor: .9,
+        //         style: pw.TextStyle(
+        //           fontWeight: pw.FontWeight.bold,
+        //           fontStyle: pw.FontStyle.italic,
+        //         ),
+        //       ),
+        //       pw.SizedBox(height: 4),
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }
@@ -175,13 +204,16 @@ class CreativeGreenResume {
                   ),
                   borderRadius: pw.BorderRadius.circular(8),
                 ),
-                child: pw.Row(mainAxisSize: pw.MainAxisSize.min, children: [
-                  pw.Icon(const pw.IconData(0xe5ca), color: green, size: 18),
-                  pw.SizedBox(width: 2),
-                  pw.Text(
-                    skill.toUpperCase(),
-                  )
-                ]),
+                child: pw.Row(
+                  mainAxisSize: pw.MainAxisSize.min,
+                  children: [
+                    pw.Icon(const pw.IconData(0xe5ca), color: green, size: 18),
+                    pw.SizedBox(width: 2),
+                    pw.Text(
+                      skill.toUpperCase(),
+                    )
+                  ],
+                ),
               ),
             ),
           ],
@@ -194,37 +226,49 @@ class CreativeGreenResume {
     final bodyWidth = pageTheme.pageFormat.width - asideWidth;
     const padding = 10.0;
     return pw.Partition(
-        width: bodyWidth,
-        child: pw.Padding(
-          padding: const EdgeInsets.only(top: 18, bottom: 8),
-          child: pw.Column(
-            crossAxisAlignment: pw.CrossAxisAlignment.start,
-            children: <pw.Widget>[
-              pw.Padding(
-                padding: const pw.EdgeInsets.symmetric(horizontal: padding),
-                child:
-                    _buildName(context, name: resume.personalInformation.name),
-              ),
-              pw.SizedBox(height: 4),
-              pw.Padding(
-                padding: const pw.EdgeInsets.symmetric(horizontal: padding),
-                child: _buildJob(context, job: resume.personalInformation.job),
-              ),
-              pw.SizedBox(height: 18),
-              _buildAboutMe(context, padding: padding),
-              _buildWorkExperience(context,
-                  padding: padding, bodyWidth: bodyWidth),
-              _buildAcademyTraining(context,
-                  padding: padding, bodyWidth: bodyWidth),
-              _buildComplementaryFormations(context,
-                  padding: padding, bodyWidth: bodyWidth),
-            ],
-          ),
-        ));
+      width: bodyWidth,
+      child: pw.Padding(
+        padding: const EdgeInsets.only(top: 18, bottom: 8),
+        child: pw.Column(
+          crossAxisAlignment: pw.CrossAxisAlignment.start,
+          children: <pw.Widget>[
+            pw.Padding(
+              padding: const pw.EdgeInsets.symmetric(horizontal: padding),
+              child: _buildName(context, name: resume.personalInformation.name),
+            ),
+            pw.SizedBox(height: 4),
+            pw.Padding(
+              padding: const pw.EdgeInsets.symmetric(horizontal: padding),
+              child: _buildJob(context, job: resume.personalInformation.job),
+            ),
+            pw.SizedBox(height: 18),
+            _buildAboutMe(context, padding: padding),
+            _buildWorkExperience(
+              context,
+              padding: padding,
+              bodyWidth: bodyWidth,
+            ),
+            _buildAcademyTraining(
+              context,
+              padding: padding,
+              bodyWidth: bodyWidth,
+            ),
+            _buildComplementaryFormations(
+              context,
+              padding: padding,
+              bodyWidth: bodyWidth,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
-  pw.Widget _buildAcademyTraining(pw.Context context,
-      {required double padding, required double bodyWidth}) {
+  pw.Widget _buildAcademyTraining(
+    pw.Context context, {
+    required double padding,
+    required double bodyWidth,
+  }) {
     if (resume.academyTrainings.value.isEmpty) {
       return pw.SizedBox();
     }
@@ -255,8 +299,11 @@ class CreativeGreenResume {
     );
   }
 
-  pw.Widget _buildComplementaryFormations(pw.Context context,
-      {required double padding, required double bodyWidth}) {
+  pw.Widget _buildComplementaryFormations(
+    pw.Context context, {
+    required double padding,
+    required double bodyWidth,
+  }) {
     if (resume.complementaryTrainings.value.isEmpty) {
       return pw.SizedBox();
     }
@@ -288,8 +335,11 @@ class CreativeGreenResume {
     );
   }
 
-  pw.Widget _buildWorkExperience(pw.Context context,
-      {required double padding, required double bodyWidth}) {
+  pw.Widget _buildWorkExperience(
+    pw.Context context, {
+    required double padding,
+    required double bodyWidth,
+  }) {
     if (resume.workExperiences.value.isEmpty) {
       return pw.SizedBox();
     }
