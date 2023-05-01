@@ -21,7 +21,7 @@ class UserAvatar extends StatelessWidget {
           (_) => const Icon(Icons.person),
           (a) => FadeInImage.assetNetwork(
             fit: BoxFit.cover,
-            placeholder: ImagePath.loader,
+            placeholder: ImagePath.logo,
             image: a,
           ),
         ),

@@ -25,6 +25,4 @@ class ImagePath {
   static const String resumeBg2 = '$imageDir/resume_bg_02.png';
 
   static const spainFlag = '$imageDir/spain.png';
-
-  static const loader = '$imageDir/loader.gif';
 }
