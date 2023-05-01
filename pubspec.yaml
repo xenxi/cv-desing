@@ -32,9 +32,9 @@ dependencies:
   dartz: ^0.10.1
   equatable: ^2.0.3
   file_picker: ^4.6.0
-  firebase_analytics: ^9.1.2
-  firebase_auth: ^3.3.11
-  firebase_core: ^1.13.1
+  firebase_analytics: ^10.2.1
+  firebase_auth: ^4.4.2
+  firebase_core: ^2.10.0
   fluro: ^2.0.3
   flutter:
     sdk: flutter

@@ -43,7 +43,7 @@ class DetailsBody extends StatelessWidget {
                     const SizedBox(width: CustomTheme.defaultPadding),
                     ShareButton(
                       category: desing.category,
-                      url: getHref() ?? '',
+                      url: href ?? '',
                     ),
                   ],
                 ),

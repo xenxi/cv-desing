@@ -4,6 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:firebase_auth/firebase_auth.dart' as _i8;
 import 'package:flutter/material.dart' as _i9;
 import 'package:get_it/get_it.dart' as _i1;
@@ -41,9 +42,16 @@ import '../routes/navigators/i_navigator.dart'
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
-Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
-    {String? environment, _i2.EnvironmentFilter? environmentFilter}) async {
-  final gh = _i2.GetItHelper(get, environment, environmentFilter);
+Future<_i1.GetIt> $initGetIt(
+  _i1.GetIt get, {
+  String? environment,
+  _i2.EnvironmentFilter? environmentFilter,
+}) async {
+  final gh = _i2.GetItHelper(
+    get,
+    environment,
+    environmentFilter,
+  );
   final registerModule = _$RegisterModule();
   gh.factory<_i3.AcademyTrainingFormBloc>(() => _i3.AcademyTrainingFormBloc());
   gh.factory<_i4.ComplementaryTrainingFormBloc>(
@@ -52,13 +60,16 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       _i5.ContactInformationFormBloc());
   gh.factory<_i6.CvEditorActorBloc>(() => _i6.CvEditorActorBloc());
   await gh.lazySingletonAsync<_i7.ExampleResumeData>(
-      () => registerModule.demoResume,
-      preResolve: true);
+    () => registerModule.demoResume,
+    preResolve: true,
+  );
   gh.lazySingleton<_i8.FirebaseAuth>(() => registerModule.firebaseAuth);
   gh.singleton<_i9.GlobalKey<_i9.NavigatorState>>(registerModule.key);
   gh.lazySingleton<_i10.GoogleSignIn>(() => registerModule.googleSignIn);
   gh.lazySingleton<_i11.IAuthFacade>(() => _i12.FirebaseAuthFacade(
-      get<_i8.FirebaseAuth>(), get<_i10.GoogleSignIn>()));
+        get<_i8.FirebaseAuth>(),
+        get<_i10.GoogleSignIn>(),
+      ));
   gh.factory<_i13.INavigator>(
       () => _i14.CustomNavigator(get<_i9.GlobalKey<_i9.NavigatorState>>()));
   gh.factory<_i15.ImagePicker>(() => _i16.FilePickerImagePicker());
@@ -71,8 +82,9 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       () => _i20.SignInFormBloc(get<_i11.IAuthFacade>()));
   gh.factory<_i21.AuthBloc>(() => _i21.AuthBloc(get<_i11.IAuthFacade>()));
   gh.factory<_i22.CvEditorBloc>(() => _i22.CvEditorBloc(
-      get<_i5.ContactInformationFormBloc>(),
-      get<_i19.PersonalInformationFormBloc>()));
+        get<_i5.ContactInformationFormBloc>(),
+        get<_i19.PersonalInformationFormBloc>(),
+      ));
   gh.lazySingleton<_i23.IDesings>(
       () => _i24.InMemoryDesings(get<List<_i17.Desing>>()));
   gh.factory<_i25.DesingDetailsBloc>(
