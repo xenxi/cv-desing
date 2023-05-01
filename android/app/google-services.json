@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "431226605593",
+    "project_id": "cv-desing",
+    "storage_bucket": "cv-desing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431226605593:android:107db2a2cd2618f44e9a88",
+        "android_client_info": {
+          "package_name": "com.example.cv_desing_website_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431226605593-437kllsc1ie9jlv22mh1hhjd8bssohjs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhf_2RGZglEykwKnyKNY5QMcWj9aWWU6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "431226605593-437kllsc1ie9jlv22mh1hhjd8bssohjs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
