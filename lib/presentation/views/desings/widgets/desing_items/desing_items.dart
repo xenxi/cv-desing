@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cv_desing_website_flutter/domain/desing.dart';
-import 'package:cv_desing_website_flutter/presentation/core/custom_theme.dart';
 import 'package:cv_desing_website_flutter/presentation/shared/components/category_extensions.dart';
 import 'package:cv_desing_website_flutter/presentation/views/desings/widgets/desing_items/desing_item.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +26,7 @@ class DesingItems extends StatelessWidget {
         gridDelegate: _buildGridSize(),
         itemBuilder: (context, index) {
           final desing = curriculumsData[index];
-          return ElasticIn(
+          return FadeInDown(
             delay: Duration(milliseconds: 100 * index),
             child: DesingItem(
               title: desing.reference,
@@ -45,8 +44,8 @@ class DesingItems extends StatelessWidget {
     return const SliverGridDelegateWithMaxCrossAxisExtent(
       maxCrossAxisExtent: 300,
       childAspectRatio: .7,
-      crossAxisSpacing: CustomTheme.defaultPadding * 2,
-      mainAxisSpacing: CustomTheme.defaultPadding * 2,
+      crossAxisSpacing: 16,
+      mainAxisSpacing: 16,
     );
   }
 }
