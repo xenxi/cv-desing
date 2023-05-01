@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:cv_desing_website_flutter/domain/resumes/resume.dart';
 import 'package:cv_desing_website_flutter/domain/value_objects/date_range.dart';
@@ -21,6 +20,7 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/widgets.dart';
 
 PdfColor green = PdfColor.fromHex('#5a9b43');
 const asideWidth = 7.6 * PdfPageFormat.cm;
@@ -130,8 +130,7 @@ class CreativeGreenResume {
       children: [
         SubCategory(text: 'Idiomas', color: green),
         ...resume.languages.value.map(
-          (l) => pw.Column(
-            crossAxisAlignment: pw.CrossAxisAlignment.stretch,
+          (l) => pw.Row(
             children: [
               pw.Text(l.getOrCrash()),
               pw.Text(
@@ -195,30 +194,28 @@ class CreativeGreenResume {
     const padding = 10.0;
     return pw.Partition(
       width: bodyWidth,
-      child: pw.Container(
-        padding: const pw.EdgeInsets.only(bottom: 8, top: 18),
-        child: pw.Column(
-          crossAxisAlignment: pw.CrossAxisAlignment.start,
-          children: <pw.Widget>[
-            pw.Padding(
-              padding: const pw.EdgeInsets.symmetric(horizontal: padding),
-              child: _buildName(context, name: resume.personalInformation.name),
-            ),
-            pw.SizedBox(height: 4),
-            pw.Padding(
-              padding: const pw.EdgeInsets.symmetric(horizontal: padding),
-              child: _buildJob(context, job: resume.personalInformation.job),
-            ),
-            pw.SizedBox(height: 18),
-            _buildAboutMe(context, padding: padding),
-            _buildWorkExperience(context,
-                padding: padding, bodyWidth: bodyWidth),
-            _buildAcademyTraining(context,
-                padding: padding, bodyWidth: bodyWidth),
-            _buildComplementaryFormations(context,
-                padding: padding, bodyWidth: bodyWidth),
-          ],
-        ),
+      child: pw.Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: pw.CrossAxisAlignment.start,
+        children: <pw.Widget>[
+          pw.SizedBox(height: 8),
+          pw.Padding(
+            padding: const pw.EdgeInsets.symmetric(horizontal: padding),
+            child: _buildName(context, name: resume.personalInformation.name),
+          ),
+          pw.SizedBox(height: 4),
+          pw.Padding(
+            padding: const pw.EdgeInsets.symmetric(horizontal: padding),
+            child: _buildJob(context, job: resume.personalInformation.job),
+          ),
+          pw.SizedBox(height: 18),
+          _buildAboutMe(context, padding: padding),
+          _buildWorkExperience(context, padding: padding, bodyWidth: bodyWidth),
+          _buildAcademyTraining(context,
+              padding: padding, bodyWidth: bodyWidth),
+          _buildComplementaryFormations(context,
+              padding: padding, bodyWidth: bodyWidth),
+        ],
       ),
     );
   }
