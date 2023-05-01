@@ -47,6 +47,7 @@ class CreativeGreenResume {
         pageTheme: pageTheme,
         build: (pw.Context context) => [
           pw.Partitions(
+            mainAxisSize: MainAxisSize.min,
             children: [
               _buildAside(context, pageTheme),
               _buildBody(context, pageTheme),
@@ -193,31 +194,33 @@ class CreativeGreenResume {
     final bodyWidth = pageTheme.pageFormat.width - asideWidth;
     const padding = 10.0;
     return pw.Partition(
-      width: bodyWidth,
-      child: pw.Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: pw.CrossAxisAlignment.start,
-        children: <pw.Widget>[
-          pw.SizedBox(height: 8),
-          pw.Padding(
-            padding: const pw.EdgeInsets.symmetric(horizontal: padding),
-            child: _buildName(context, name: resume.personalInformation.name),
+        width: bodyWidth,
+        child: pw.Padding(
+          padding: const EdgeInsets.only(top: 18, bottom: 8),
+          child: pw.Column(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: <pw.Widget>[
+              pw.Padding(
+                padding: const pw.EdgeInsets.symmetric(horizontal: padding),
+                child:
+                    _buildName(context, name: resume.personalInformation.name),
+              ),
+              pw.SizedBox(height: 4),
+              pw.Padding(
+                padding: const pw.EdgeInsets.symmetric(horizontal: padding),
+                child: _buildJob(context, job: resume.personalInformation.job),
+              ),
+              pw.SizedBox(height: 18),
+              _buildAboutMe(context, padding: padding),
+              _buildWorkExperience(context,
+                  padding: padding, bodyWidth: bodyWidth),
+              _buildAcademyTraining(context,
+                  padding: padding, bodyWidth: bodyWidth),
+              _buildComplementaryFormations(context,
+                  padding: padding, bodyWidth: bodyWidth),
+            ],
           ),
-          pw.SizedBox(height: 4),
-          pw.Padding(
-            padding: const pw.EdgeInsets.symmetric(horizontal: padding),
-            child: _buildJob(context, job: resume.personalInformation.job),
-          ),
-          pw.SizedBox(height: 18),
-          _buildAboutMe(context, padding: padding),
-          _buildWorkExperience(context, padding: padding, bodyWidth: bodyWidth),
-          _buildAcademyTraining(context,
-              padding: padding, bodyWidth: bodyWidth),
-          _buildComplementaryFormations(context,
-              padding: padding, bodyWidth: bodyWidth),
-        ],
-      ),
-    );
+        ));
   }
 
   pw.Widget _buildAcademyTraining(pw.Context context,
